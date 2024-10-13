@@ -40,6 +40,12 @@ public class TakeMoney : MonoBehaviour
         needMoney = currentNeedMoney;
     }
 
+
+    public void SetData(RoomHandler RoomHandler)
+    {
+        roomHandler = RoomHandler;
+    }
+    RoomHandler roomHandler;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && economyManager.bCanWeSpendPetMoney(needMoney))
@@ -47,7 +53,7 @@ public class TakeMoney : MonoBehaviour
             player = other.gameObject.GetComponent<PlayerController>();
             if (player.IsMoving())
             {
-                StartTakeMoney();
+               // StartTakeMoney( roomHandler.);
             }
         }
     }

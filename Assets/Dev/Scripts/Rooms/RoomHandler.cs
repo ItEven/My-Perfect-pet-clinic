@@ -22,7 +22,7 @@ public class RoomLevelData
 
 
 public class RoomHandler : MonoBehaviour
-{    
+{
 
     public RoomData roomData;
     public RoomLevelData[] roomLevels;
@@ -86,9 +86,9 @@ public class RoomHandler : MonoBehaviour
 
     public void SetVisual()
     {
-
         if (roomData.bIsUnlock)
         {
+
             foreach (var item in lockedObjs)
             {
                 if (item.activeInHierarchy)
@@ -128,16 +128,11 @@ public class RoomHandler : MonoBehaviour
             if (roomData.bIsTakeMoneyActive)
             {
                 currntUpgradeCost = roomData.currntUpgradeCost;
+             
             }
             else
             {
-                if (maxLevel > roomData.currntLevel)
-                {
-                    for (int i = 0; i < roomData.currntLevel; i++)
-                    {
-                        currntUpgradeCost += baseUpgradeCost * baseUpgradeCostMultipliers;
-                    }
-                }
+                takeMoney.gameObject.SetActive(false);
             }
         }
         else
@@ -146,4 +141,14 @@ public class RoomHandler : MonoBehaviour
         }
     }
 
+    public void SetTakeMoneyData()
+    {
+
+    }
+
+
+    #region Upgrade Mechanics
+
+
+    #endregion
 }
