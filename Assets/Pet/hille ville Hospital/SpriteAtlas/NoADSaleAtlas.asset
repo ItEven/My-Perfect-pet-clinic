@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &687078895
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NoADSaleAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+    - {fileID: 21300002, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+    - {fileID: 21300004, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+    - {fileID: 21300006, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+    - {fileID: 21300008, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+    - {fileID: 21300010, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+    - {fileID: 21300012, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys: []
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+  - {fileID: 21300002, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+  - {fileID: 21300004, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+  - {fileID: 21300006, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+  - {fileID: 21300008, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+  - {fileID: 21300010, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+  - {fileID: 21300012, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Sprite_Panel_1
+  - Sprite_Button
+  - Sprite_MainPicture
+  - Sprite_Panel_2
+  - Sprite_Title
+  - Sprite_Panel_3
+  - Sprite_Panel_4
+  m_RenderDataMap:
+  - first:
+      b540f023bcae5c343ad33dcaf3da2429: 21300000
+    second:
+      texture: {fileID: 2800000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+      alphaTexture: {fileID: 0}
+      textureRect:
+        serializedVersion: 2
+        x: 0
+        y: 765
+        width: 486
+        height: 115
+      textureRectOffset: {x: 0, y: 0}
+      atlasRectOffset: {x: 0, y: 765}
+      uvTransform: {x: 100, y: 243, z: 100, w: 822.5}
+      downscaleMultiplier: 1
+      settingsRaw: 67
+      secondaryTextures: []
+  - first:
+      5ad73e1cbafaabc498cbd4e94e36ae78: 21300000
+    second:
+      texture: {fileID: 2800000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+      alphaTexture: {fileID: 0}
+      textureRect:
+        serializedVersion: 2
+        x: 561
+        y: 318
+        width: 306
+        height: 93
+      textureRectOffset: {x: 0, y: 0}
+      atlasRectOffset: {x: 561, y: 318}
+      uvTransform: {x: 100, y: 714, z: 100, w: 364.5}
+      downscaleMultiplier: 1
+      settingsRaw: 67
+      secondaryTextures: []
+  - first:
+      c136130372f640648aba1e3b28a78d8a: 21300000
+    second:
+      texture: {fileID: 2800000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+      alphaTexture: {fileID: 0}
+      textureRect:
+        serializedVersion: 2
+        x: 561
+        y: 0
+        width: 418
+        height: 188
+      textureRectOffset: {x: 0, y: 0}
+      atlasRectOffset: {x: 561, y: 0}
+      uvTransform: {x: 100, y: 770, z: 100, w: 94}
+      downscaleMultiplier: 1
+      settingsRaw: 67
+      secondaryTextures: []
+  - first:
+      19ba113d6998552429d6cfa04b8139d5: 21300000
+    second:
+      texture: {fileID: 2800000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+      alphaTexture: {fileID: 0}
+      textureRect:
+        serializedVersion: 2
+        x: 561
+        y: 415
+        width: 130
+        height: 130
+      textureRectOffset: {x: 0, y: 0}
+      atlasRectOffset: {x: 561, y: 415}
+      uvTransform: {x: 100, y: 626, z: 100, w: 480}
+      downscaleMultiplier: 1
+      settingsRaw: 67
+      secondaryTextures: []
+  - first:
+      c82c20320b494244a81250187cbf01d2: 21300000
+    second:
+      texture: {fileID: 2800000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+      alphaTexture: {fileID: 0}
+      textureRect:
+        serializedVersion: 2
+        x: 561
+        y: 192
+        width: 288
+        height: 122
+      textureRectOffset: {x: 0, y: 0}
+      atlasRectOffset: {x: 561, y: 192}
+      uvTransform: {x: 100, y: 705, z: 100, w: 253}
+      downscaleMultiplier: 1
+      settingsRaw: 67
+      secondaryTextures: []
+  - first:
+      26290cb0de90e5d419c56280dd2a218d: 21300000
+    second:
+      texture: {fileID: 2800000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+      alphaTexture: {fileID: 0}
+      textureRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 557
+        height: 761
+      textureRectOffset: {x: 0, y: 0}
+      atlasRectOffset: {x: 0, y: 0}
+      uvTransform: {x: 100, y: 278.5, z: 100, w: 380.5}
+      downscaleMultiplier: 1
+      settingsRaw: 67
+      secondaryTextures: []
+  - first:
+      db5a2de580f7b134fa9518e2046ee440: 21300000
+    second:
+      texture: {fileID: 2800000, guid: 757684e71c706ab4b9a984f726be9e31, type: 3}
+      alphaTexture: {fileID: 0}
+      textureRect:
+        serializedVersion: 2
+        x: 0
+        y: 884
+        width: 437
+        height: 89
+      textureRectOffset: {x: 0, y: 0}
+      atlasRectOffset: {x: 0, y: 884}
+      uvTransform: {x: 100, y: 218.5, z: 100, w: 928.5}
+      downscaleMultiplier: 1
+      settingsRaw: 67
+      secondaryTextures: []
+  m_Tag: NoADSaleAtlas
+  m_IsVariant: 0

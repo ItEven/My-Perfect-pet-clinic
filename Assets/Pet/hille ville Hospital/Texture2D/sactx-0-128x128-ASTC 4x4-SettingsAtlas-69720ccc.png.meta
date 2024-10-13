@@ -1,0 +1,426 @@
+fileFormatVersion: 2
+guid: 5814d90cdebca524c8fd36595b92eaf5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Sprite_Support
+  - first:
+      213: 21300002
+    second: Sprite_Music
+  - first:
+      213: 21300004
+    second: Sprite_Divider
+  - first:
+      213: 21300006
+    second: Sprite_Sound
+  - first:
+      213: 21300008
+    second: Sprite_Vibration
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 48
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 0
+  flipbookColumns: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprite_Support
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 63
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: -32.5}
+        - {x: -31.5, y: -12.5}
+        - {x: -31.5, y: 16.5}
+        - {x: -18.5, y: 32.5}
+        - {x: 16.5, y: 32.5}
+        - {x: 31.5, y: 16.5}
+        - {x: 31.5, y: -12.5}
+        - {x: 29.499998, y: -20.5}
+        - {x: 19.5, y: -32.5}
+      physicsShape:
+      - - {x: -21.499998, y: 32.5}
+        - {x: -31.5, y: 16.5}
+        - {x: -31.5, y: -12.5}
+        - {x: -12.5, y: -22.5}
+        - {x: -8.5, y: -21.499998}
+        - {x: -3.5, y: -5.5}
+        - {x: 3.5, y: -17.5}
+        - {x: 9.5, y: -20.5}
+        - {x: 13.499999, y: -19.5}
+        - {x: 18.5, y: -13.499999}
+        - {x: 12.5, y: -19.5}
+        - {x: 2.4999998, y: -22.5}
+        - {x: 0.5, y: -20.5}
+        - {x: -5.5, y: -18.5}
+        - {x: -9.5, y: -29.499998}
+        - {x: -7.4999995, y: -31.5}
+        - {x: 4.5, y: -31.5}
+        - {x: 20.5, y: -27.5}
+        - {x: 31.5, y: -17.5}
+        - {x: 31.5, y: 14.5}
+        - {x: 24.499998, y: 32.5}
+      - - {x: -8.5, y: -9.5}
+        - {x: -8.5, y: -17.5}
+        - {x: -3.5, y: -18.5}
+        - {x: 6.5, y: -18.5}
+        - {x: 8.5, y: -15.5}
+        - {x: 8.5, y: -9.5}
+      - - {x: 10.5, y: 22.5}
+        - {x: 7.4999995, y: 27.5}
+        - {x: -10.5, y: 28.5}
+        - {x: -12.5, y: 22.5}
+        - {x: -11.499999, y: 21.499998}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3926232811c54769af8241a2d5dadade
+      internalID: 21300000
+      vertices:
+      - {x: 63, y: 49}
+      - {x: 61, y: 12}
+      - {x: 63, y: 20}
+      - {x: 51, y: 0}
+      - {x: 48, y: 65}
+      - {x: 19, y: 0}
+      - {x: 13, y: 65}
+      - {x: 0, y: 49}
+      - {x: 0, y: 20}
+      indices: 080000000700000005000000060000000500000007000000040000000500000006000000030000000500000004000000000000000300000004000000010000000300000000000000020000000100000000000000
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Music
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 49
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 20.5, y: -27.5}
+        - {x: -24.5, y: -27.5}
+        - {x: -24.5, y: -2.5}
+        - {x: -18.5, y: 23.5}
+        - {x: -8.5, y: 27.5}
+        - {x: 24.5, y: 27.5}
+        - {x: 24.5, y: -23.5}
+      physicsShape:
+      - - {x: 24.499998, y: -21.499998}
+        - {x: 24.499998, y: 27.5}
+        - {x: 4.5, y: 27.5}
+        - {x: -14.5, y: 25.5}
+        - {x: -15.5, y: 22.5}
+        - {x: -24.499998, y: -1.5}
+        - {x: -24.499998, y: -27.5}
+        - {x: -6.5, y: -27.5}
+        - {x: 0.5, y: 4.5}
+        - {x: 6.5, y: -25.5}
+        - {x: 21.499998, y: -26.499998}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fe8ed0f0d324fa687c607eac0a0002e
+      internalID: 21300002
+      vertices:
+      - {x: 49, y: 55}
+      - {x: 45, y: 0}
+      - {x: 49, y: 4}
+      - {x: 16, y: 55}
+      - {x: 6, y: 51}
+      - {x: 0, y: 25}
+      - {x: 0, y: 0}
+      indices: 060000000500000001000000040000000100000005000000030000000100000004000000000000000100000003000000020000000100000000000000
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Divider
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 122
+        width: 8
+        height: 2
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: -1}
+        - {x: -4, y: 1}
+        - {x: 4, y: 1}
+        - {x: 4, y: -1}
+      physicsShape:
+      - - {x: -4, y: 1}
+        - {x: -4, y: -1}
+        - {x: 4, y: -1}
+        - {x: 4, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02865787b4ff436f977154fb41216908
+      internalID: 21300004
+      vertices:
+      - {x: 0, y: 2}
+      - {x: 8, y: 2}
+      - {x: 0, y: 0}
+      - {x: 8, y: 0}
+      indices: 000000000100000002000000020000000100000003000000
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Sound
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 59
+        width: 50
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: -20.5}
+        - {x: 5, y: -16.5}
+        - {x: 5, y: 15.5}
+        - {x: 10, y: 21.5}
+        - {x: 19, y: 21.5}
+        - {x: 25, y: 14.5}
+        - {x: 25, y: -12.5}
+        - {x: 23, y: -15.5}
+        - {x: 18, y: -21.5}
+        - {x: 11, y: -21.5}
+      - - {x: -7, y: -25.5}
+        - {x: -25, y: -13.500001}
+        - {x: -25, y: 13.500001}
+        - {x: -4, y: 25.5}
+        - {x: 4, y: 25.5}
+        - {x: 4, y: -25.5}
+      physicsShape:
+      - - {x: -3, y: 25.5}
+        - {x: -25, y: 13.499999}
+        - {x: -25, y: -12.5}
+        - {x: -3, y: -25.5}
+        - {x: 3, y: -25.5}
+        - {x: 3, y: 24.499998}
+        - {x: 2, y: 25.5}
+      - - {x: 4.9999995, y: 20.5}
+        - {x: 4.9999995, y: -17.5}
+        - {x: 11, y: -20.5}
+        - {x: 18, y: -20.5}
+        - {x: 25, y: -13.499999}
+        - {x: 25, y: 14.5}
+        - {x: 18, y: 20.5}
+      - - {x: 21, y: -4.5}
+        - {x: 19.999998, y: 4.5}
+        - {x: 18, y: 9.5}
+        - {x: 14.999999, y: 11.499999}
+        - {x: 14, y: -12.5}
+        - {x: 14.999999, y: -13.499999}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 969b854563b24cf99a7f9506086bb154
+      internalID: 21300006
+      vertices:
+      - {x: 21, y: 51}
+      - {x: 29, y: 0}
+      - {x: 29, y: 51}
+      - {x: 18, y: 0}
+      - {x: 0, y: 39}
+      - {x: 0, y: 11.999999}
+      - {x: 50, y: 40}
+      - {x: 48, y: 10}
+      - {x: 50, y: 13}
+      - {x: 44, y: 47}
+      - {x: 43, y: 4}
+      - {x: 36, y: 4}
+      - {x: 35, y: 47}
+      - {x: 34, y: 5}
+      - {x: 30, y: 41}
+      - {x: 30, y: 9}
+      indices: 0f0000000e0000000d0000000c0000000d0000000e0000000b0000000d0000000c000000090000000b0000000c0000000a0000000b00000009000000070000000a00000009000000060000000700000009000000080000000700000006000000050000000400000003000000000000000300000004000000010000000300000000000000020000000100000000000000
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Vibration
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 69
+        width: 62
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 30.000002, y: -24.5}
+        - {x: -31, y: -24.5}
+        - {x: -31, y: 24.5}
+        - {x: 31, y: 24.5}
+        - {x: 31, y: -22.5}
+      physicsShape:
+      - - {x: -18, y: 24.499998}
+        - {x: -18, y: -24.499998}
+        - {x: 18, y: -24.499998}
+        - {x: 18, y: 24.499998}
+      - - {x: -26, y: 21.499998}
+        - {x: -31, y: 18.5}
+        - {x: -31, y: -16.5}
+        - {x: -25, y: -20.5}
+        - {x: -19, y: -20.5}
+        - {x: -18, y: -19.5}
+        - {x: -18, y: 21.499998}
+      - - {x: 18, y: 20.5}
+        - {x: 18, y: -20.5}
+        - {x: 26.999998, y: -20.5}
+        - {x: 31, y: -17.5}
+        - {x: 31, y: 14.5}
+        - {x: 25, y: 20.5}
+      - - {x: -9.999999, y: -10.5}
+        - {x: -9.999999, y: 16.5}
+        - {x: -9, y: 17.5}
+        - {x: 9, y: 17.5}
+        - {x: 9, y: -10.5}
+        - {x: 8, y: -11.499999}
+        - {x: -9, y: -11.499999}
+        - {x: -9, y: -10.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2814a1c31e4743ce844e35e2c756c0d0
+      internalID: 21300008
+      vertices:
+      - {x: 62, y: 49}
+      - {x: 61, y: 0}
+      - {x: 62, y: 2}
+      - {x: 0, y: 49}
+      - {x: 0, y: 0}
+      indices: 040000000300000001000000000000000100000003000000020000000100000000000000
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Sprite_Divider: 21300004
+      Sprite_Music: 21300002
+      Sprite_Sound: 21300006
+      Sprite_Support: 21300000
+      Sprite_Vibration: 21300008
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

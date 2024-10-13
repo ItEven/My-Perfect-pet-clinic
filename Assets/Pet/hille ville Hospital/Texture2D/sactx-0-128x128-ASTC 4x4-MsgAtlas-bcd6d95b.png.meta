@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: a0f7c624ddae1694ebf74efff0e918e5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Sprite_Button_Check
+  - first:
+      213: 21300002
+    second: Sprite_Button_Delete
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 48
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 0
+  flipbookColumns: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprite_Button_Check
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 59
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.000002, y: -29.499998}
+        - {x: -40, y: -27.5}
+        - {x: -40, y: 26.499998}
+        - {x: -38, y: 29.499998}
+        - {x: 32, y: 29.499998}
+        - {x: 40, y: 26.499998}
+        - {x: 40, y: -21.5}
+        - {x: 32, y: -29.499998}
+      physicsShape:
+      - - {x: -29, y: 29.499998}
+        - {x: -33, y: 20.5}
+        - {x: -33, y: -13.499999}
+        - {x: -22.999998, y: -17.5}
+        - {x: 22, y: -17.5}
+        - {x: 33, y: -14.5}
+        - {x: 33, y: 26.499998}
+        - {x: 26.999998, y: 29.499998}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ab69f067714080ae6a08a01fe7aae5
+      internalID: 21300000
+      vertices:
+      - {x: 72, y: 59}
+      - {x: 80, y: 8}
+      - {x: 80, y: 56}
+      - {x: 72, y: 0.0000019073486}
+      - {x: 9.999998, y: 0.0000019073486}
+      - {x: 2, y: 59}
+      - {x: 0, y: 56}
+      - {x: 0, y: 2}
+      indices: 070000000600000004000000050000000400000006000000000000000400000005000000030000000400000000000000010000000300000000000000020000000100000000000000
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_Button_Delete
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 63
+        width: 68
+        height: 59
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: -29.499998}
+        - {x: -34, y: -25.5}
+        - {x: -34, y: 17.5}
+        - {x: -23, y: 29.499998}
+        - {x: 21, y: 29.499998}
+        - {x: 34, y: 18.5}
+        - {x: 34, y: -19.5}
+        - {x: 26, y: -29.499998}
+      physicsShape:
+      - - {x: 18, y: 29.499998}
+        - {x: -25, y: 29.499998}
+        - {x: -26.999998, y: 22.5}
+        - {x: -26.999998, y: -11.499999}
+        - {x: -21, y: -16.5}
+        - {x: -9.999999, y: -17.5}
+        - {x: 14.999999, y: -17.5}
+        - {x: 25, y: -10.5}
+        - {x: 26.999998, y: -3.5}
+        - {x: 26.999998, y: 16.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: df169b3ef0b546699fc90bb4aa50cccb
+      internalID: 21300002
+      vertices:
+      - {x: 68, y: 48}
+      - {x: 60, y: 0.0000019073486}
+      - {x: 68, y: 10}
+      - {x: 55, y: 59}
+      - {x: 11, y: 59}
+      - {x: 10, y: 0.0000019073486}
+      - {x: 0, y: 47}
+      - {x: 0, y: 4}
+      indices: 070000000600000005000000040000000500000006000000010000000500000004000000030000000100000004000000000000000100000003000000020000000100000000000000
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Sprite_Button_Check: 21300000
+      Sprite_Button_Delete: 21300002
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
