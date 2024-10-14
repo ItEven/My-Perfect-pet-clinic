@@ -466,6 +466,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2037872755}
+  - {fileID: 1199488058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &46487684
@@ -688,6 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 574426166}
   playerPos: {x: 2, y: 0, z: 10}
+  singleMoneybrick: {fileID: 0}
 --- !u!1001 &147870141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3954,6 +3956,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.159995, y: 2.0013485, z: 0.2346507}
   m_Center: {x: 0.18577814, y: 0.000000059604645, z: -0.00000026077032}
+--- !u!1 &1199488057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199488058}
+  m_Layer: 0
+  m_Name: Rooms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1199488058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199488057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1913257708}
+  m_Father: {fileID: 43604996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1199532816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5514,6 +5548,69 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1959734298}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1913257707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1913257708}
+  - component: {fileID: 1913257709}
+  m_Layer: 0
+  m_Name: Room_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1913257708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913257707}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1199488058}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1913257709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913257707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c43f5b9b78c6f4bbcb27bc4a2b8cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomData:
+    bIsUnlock: 0
+    bIsTakeMoneyActive: 0
+    currntLevel: 0
+    currntUpgradeCost: 0
+  roomLevels:
+  - upgradeCost: 0
+    nextRoomUpgrader: {fileID: 0}
+  unlockObjs: []
+  lockedObjs: []
+  groundCanvas: {fileID: 0}
+  currntUpgradeCostText: {fileID: 0}
+  unlockPrice: 0
+  baseUpgradeCost: 0
+  CurrntUpgradeCost: 0
+  currentNeedMoney: 0
+  totalTimeforMoneyCollect: 0.75
+  baseUpgradeCostMultipliers: 0
+  maxLevel: 0
 --- !u!1 &1928520342
 GameObject:
   m_ObjectHideFlags: 0

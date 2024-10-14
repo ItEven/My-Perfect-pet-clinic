@@ -10,7 +10,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public PlayerController playerController;
+    
     public Vector3 playerPos;
+
+    [Space(1)]
+    [Header("Gloable Veriables")]
+    public GameObject singleMoneybrick;
+
     void Awake()
     {
         Instance = this;

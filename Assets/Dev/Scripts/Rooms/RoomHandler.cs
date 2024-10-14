@@ -20,7 +20,6 @@ public class RoomLevelData
     public RoomHandler nextRoomUpgrader;
 }
 
-
 public class RoomHandler : MonoBehaviour
 {
 
@@ -31,14 +30,16 @@ public class RoomHandler : MonoBehaviour
     [Header("Room Visuals")]
     public GameObject[] unlockObjs;
     public GameObject[] lockedObjs;
-    public TakeMoney takeMoney;
+    public GameObject groundCanvas;
     public TextMesh currntUpgradeCostText;
-
 
     [Header("Room datas")]
     public int unlockPrice;
     public int baseUpgradeCost;
     public int CurrntUpgradeCost;
+    public int currentNeedMoney;
+    public float totalTimeforMoneyCollect = 0.75f;
+
     internal int currntUpgradeCost
     {
         get { return CurrntUpgradeCost; }
@@ -55,6 +56,8 @@ public class RoomHandler : MonoBehaviour
     EconomyManager economyManager;
     GameManager gameManager;
     UiManager uiManager;
+    PlayerController player;
+
 
     private void OnEnable()
     {
@@ -81,6 +84,7 @@ public class RoomHandler : MonoBehaviour
     public void loadData()
     {
         SetVisual();
+        SetData();
 
     }
 
@@ -119,20 +123,22 @@ public class RoomHandler : MonoBehaviour
             }
 
         }
+
+
     }
 
     public void SetData()
     {
+        currentNeedMoney = roomData.currntUpgradeCost;
         if (roomData.bIsUnlock)
         {
             if (roomData.bIsTakeMoneyActive)
             {
                 currntUpgradeCost = roomData.currntUpgradeCost;
-             
             }
             else
             {
-                takeMoney.gameObject.SetActive(false);
+                groundCanvas.gameObject.SetActive(false);
             }
         }
         else
@@ -141,13 +147,115 @@ public class RoomHandler : MonoBehaviour
         }
     }
 
-    public void SetTakeMoneyData()
+    public void SetNextUpgrader()
     {
-
+        if (!roomLevels[roomData.currntLevel].nextRoomUpgrader.gameObject.activeInHierarchy)
+        {
+          roomLevels[roomData.currntLevel].nextRoomUpgrader.gameObject.SetActive(true);
+        }
+        roomLevels[roomData.currntLevel].nextRoomUpgrader.SetData();
     }
 
 
+
+
     #region Upgrade Mechanics
+
+
+    private Coroutine takeMoneyCoroutine;
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && economyManager.bCanWeSpendPetMoney(currntUpgradeCost))
+        {
+            player = other.gameObject.GetComponent<PlayerController>();
+            if (player.IsMoving())
+            {
+                StartTakeMoney();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StopTakeMoney();
+        }
+    }
+
+    private void StartTakeMoney()
+    {
+        if (takeMoneyCoroutine == null)
+        {
+            takeMoneyCoroutine = StartCoroutine(TakingMoney());
+        }
+    }
+
+    private void StopTakeMoney()
+    {
+        if (takeMoneyCoroutine != null)
+        {
+            currentNeedMoney = (int)currntUpgradeCost;
+            StopCoroutine(takeMoneyCoroutine);
+            takeMoneyCoroutine = null;
+        }
+    }
+
+    float lastSub = 0f;
+    private IEnumerator TakingMoney()
+    {
+        if (currntUpgradeCost <= 0) yield break;
+
+        float elapsedTime = 0f;
+
+        while (currntUpgradeCost > 0)
+        {
+            elapsedTime += Time.deltaTime;
+            float percentageComplete = Mathf.Clamp01(elapsedTime / totalTimeforMoneyCollect);
+            currntUpgradeCost = Mathf.RoundToInt(Mathf.Lerp(currntUpgradeCost, 0, percentageComplete));
+            var val = currentNeedMoney - currntUpgradeCost;
+
+            if (economyManager.bCanWeSpendPetMoney(val - lastSub))
+            {
+                Debug.Log("Current Value: " + currntUpgradeCost);
+
+                GameObject brickInstance = Instantiate(gameManager.singleMoneybrick, player.moneyCollectPoint.position, Quaternion.identity, player.transform);
+                var brick = brickInstance.GetComponent<SingleMoneybrick>();
+
+                economyManager.SpendPetMoney(val - lastSub);
+                lastSub = val;
+
+
+                if (brick != null)
+                {
+                    brick.StartJump(transform);
+                }
+
+                if (currntUpgradeCost <= 0)
+                {
+                    groundCanvas.gameObject.SetActive(false);
+                    SetNextUpgrader();
+                    StopTakeMoney();
+                    yield break;
+                }
+            }
+            else
+            {
+                StopTakeMoney();
+                yield break;
+            }
+
+            yield return null;
+        }
+
+        //if (needMoney <= 0)
+        //{
+        //    OnMoneyTakingFinish.Invoke();
+        //    gameObject.SetActive(false);
+        //    StopTakeMoney();
+        //}
+    }
 
 
     #endregion
