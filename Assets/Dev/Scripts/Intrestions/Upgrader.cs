@@ -1,23 +1,26 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TakeMoney : MonoBehaviour
+
+
+public class Upgrader : MonoBehaviour
 {
     [Header("Details")]
-    public TextMesh needMoneyText;
-    private float NeedMoney;
+    public TMP_Text needMoneyText;
+    private int NeedMoney;
     public int currentNeedMoney;
     public float totalTime = 5f;
     public GameObject SingleMoneybrick;
-    public UnityEvent OnMoneyTakingFinish;
+    public UnityEvent OnUpgradeFinish;
 
     private PlayerController player;
     private SaveManager saveManager;
     private UiManager uiManager;
     private EconomyManager economyManager;
 
-    internal float needMoney
+    internal int needMoney
     {
         get { return NeedMoney; }
         set
@@ -37,15 +40,17 @@ public class TakeMoney : MonoBehaviour
         saveManager = SaveManager.instance;
         economyManager = saveManager.economyManager;
         uiManager = saveManager.uiManager;
-        needMoney = currentNeedMoney;
+        //needMoney = currentNeedMoney;
     }
 
 
-    public void SetData(RoomHandler RoomHandler)
+    public void SetData(int val)
     {
-        roomHandler = RoomHandler;
+        needMoney = val;
+
+        currentNeedMoney = needMoney;
     }
-    RoomHandler roomHandler;
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && economyManager.bCanWeSpendPetMoney(needMoney))
@@ -53,7 +58,7 @@ public class TakeMoney : MonoBehaviour
             player = other.gameObject.GetComponent<PlayerController>();
             if (player.IsMoving())
             {
-               // StartTakeMoney( roomHandler.);
+                StartTakeMoney();
             }
         }
     }
@@ -108,7 +113,6 @@ public class TakeMoney : MonoBehaviour
                 economyManager.SpendPetMoney(val - lastSub);
                 lastSub = val;
 
-                OnMoneyTakingFinish.Invoke();
                 if (brick != null)
                 {
                     brick.StartJump(transform);
@@ -117,6 +121,7 @@ public class TakeMoney : MonoBehaviour
                 if (needMoney <= 0)
                 {
                     gameObject.SetActive(false);
+                    OnUpgradeFinish.Invoke();
                     StopTakeMoney();
                     yield break;
                 }

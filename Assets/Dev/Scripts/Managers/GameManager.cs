@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using DG.Tweening;
-
-
+using Unity.AI.Navigation;
 
 
 public class GameManager : MonoBehaviour
@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
     [Space(1)]
     [Header("Gloable Veriables")]
     public GameObject singleMoneybrick;
+    public NavMeshSurface navMeshSurface;
+
+    [Space(1)]
+    [Header("Drop objs Veriables")]
+    public float dropHeight = 500.0f;
+    public float dropDuration = 1.0f;
 
     void Awake()
     {
@@ -30,6 +36,19 @@ public class GameManager : MonoBehaviour
         playerController.transform.position = playerPos;
     }
 
+    public void ReBuildNavmesh()
+    {
+        if (navMeshSurface != null)
+        {
+            navMeshSurface.BuildNavMesh();
+        }
+        else
+        {
+            Debug.LogError("NavMeshSurface is not assigned.");
+        }
+    }
+
+
     #region  Visual Drop Effects
 
     public void DropObj(GameObject obj)
@@ -37,8 +56,7 @@ public class GameManager : MonoBehaviour
         if (!obj.activeInHierarchy)
         {
             obj.SetActive(true);
-            float dropHeight = 500.0f;
-            float dropDuration = 1.0f;
+            
 
             var Scale = obj.transform.localScale;
             Vector3 startPosition = obj.transform.position;

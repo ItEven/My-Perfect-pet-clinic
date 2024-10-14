@@ -11,6 +11,7 @@ public class SaveManager : MonoBehaviour
     [Header("All Managers")]
     public EconomyManager economyManager;
     public ReceptionManager receptionManager;
+    public GameManager gameManager;
     public UiManager uiManager;
 
     public GameData gameData = new GameData();
