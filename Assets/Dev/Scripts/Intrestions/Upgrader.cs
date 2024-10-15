@@ -12,9 +12,16 @@ public class Upgrader : MonoBehaviour
     private int NeedMoney;
     public int currentNeedMoney;
     public float totalTime = 5f;
+    public float spwanBetweenTime = 0.05f;
+    public float jumpTime = 0.4f;
+    public float jumpHight = 2.5f;
+    public float fadeOutTime = 0.5f;
+    public float fadeInTime = 0.001f;
+
+
     public GameObject SingleMoneybrick;
     public UnityEvent OnUpgradeFinish;
-
+    public Transform moneyCollectPonit;
     private PlayerController player;
     private SaveManager saveManager;
     private UiManager uiManager;
@@ -75,7 +82,9 @@ public class Upgrader : MonoBehaviour
     {
         if (takeMoneyCoroutine == null)
         {
+            StartCoroutine(MoneySpwaing());
             takeMoneyCoroutine = StartCoroutine(TakingMoney());
+            
         }
     }
 
@@ -84,6 +93,7 @@ public class Upgrader : MonoBehaviour
         if (takeMoneyCoroutine != null)
         {
             currentNeedMoney = (int)needMoney;
+            StopCoroutine(MoneySpwaing());
             StopCoroutine(takeMoneyCoroutine);
             takeMoneyCoroutine = null;
         }
@@ -107,16 +117,9 @@ public class Upgrader : MonoBehaviour
             {
                 Debug.Log("Current Value: " + needMoney);
 
-                GameObject brickInstance = Instantiate(SingleMoneybrick, player.moneyCollectPoint.position, Quaternion.identity, player.transform);
-                var brick = brickInstance.GetComponent<SingleMoneybrick>();
-
+              
                 economyManager.SpendPetMoney(val - lastSub);
                 lastSub = val;
-
-                if (brick != null)
-                {
-                    brick.StartJump(transform);
-                }
 
                 if (needMoney <= 0)
                 {
@@ -142,4 +145,24 @@ public class Upgrader : MonoBehaviour
         //    StopTakeMoney();
         //}
     }
+
+    IEnumerator MoneySpwaing()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(spwanBetweenTime);
+            GameObject brickInstance = Instantiate(SingleMoneybrick, player.moneyCollectPoint.position, Quaternion.identity, player.transform);
+            var brick = brickInstance.GetComponent<SingleMoneybrick>();
+            brick.jumpTime = jumpTime;
+            brick.jumpHight = jumpHight;
+            brick.fadeInTime = fadeInTime;
+            brick.fadeOutTime = fadeOutTime;
+
+            if (brick != null)
+            {
+                brick.StartJump(moneyCollectPonit);
+            }
+        }
+    }
+
 }

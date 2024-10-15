@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaitingQueue : MonoBehaviour
+public abstract class WaitingQueue : MonoBehaviour
 {
     public List<Transform> queue = new List<Transform>();
     public List<Patient> patientInQueue = new List<Patient>();

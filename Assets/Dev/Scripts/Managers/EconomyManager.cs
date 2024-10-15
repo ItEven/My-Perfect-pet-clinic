@@ -15,7 +15,7 @@ public class EconomyManager : MonoBehaviour
     UiManager uiManager;
 
 
-    public TextMeshProUGUI  PetMoneyCountText, gemsCountText;
+    public TextMeshProUGUI PetMoneyCountText, gemsCountText;
     public event Action OnPetMoneyChanged;
 
 
@@ -62,7 +62,7 @@ public class EconomyManager : MonoBehaviour
     public void UpdateGemsCountUI()
     {
 
-       // gemsCountText.text = "" + uiManager.ScoreShow(GemsCount);
+        // gemsCountText.text = "" + uiManager.ScoreShow(GemsCount);
     }
 
 
@@ -94,8 +94,10 @@ public class EconomyManager : MonoBehaviour
         float i = (float)PetMoneyCount - Amt;
         if (i >= 0)
         {
+           
             return true;
         }
+       
         return false;
     }
     public void AddGems(long amountToIncrease)
@@ -116,7 +118,7 @@ public class EconomyManager : MonoBehaviour
 
     }
 
-   
+
     public bool CheckIntractable(double value)
     {
         if (PetMoneyCount >= value)

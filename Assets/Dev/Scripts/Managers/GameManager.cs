@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
         SetPlayerPos();
     }
     public void SetPlayerPos()
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+   
     #region  Visual Drop Effects
 
     public void DropObj(GameObject obj)

@@ -37,7 +37,6 @@ public class UpgradeHandler : MonoBehaviour
 
     public static Transform STAFF_unlock_pos;
     public Upgrader upGrader;
-    public TextMesh currntUpgradeCostText;
 
 
     [Header("Room datas")]
@@ -139,19 +138,23 @@ public class UpgradeHandler : MonoBehaviour
         }
         else
         {
+            Debug.LogError("Eles" + gameObject.name);
 
             if (!roomData.bIsTakeMoneyActive)
             {
                 upGrader.gameObject.SetActive(false);
+                Debug.LogError("upGrader.gameObject.SetActive(false)" + gameObject.name);
 
             }
             else
             {
                 upGrader.gameObject.SetActive(true);
+                Debug.LogError("upGrader.gameObject.SetActive(true)" + gameObject.name);
 
+
+                currntUpgradeCost = unlockPrice;
+                DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(currntUpgradeCost));
             }
-            currntUpgradeCost = unlockPrice;
-            DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(currntUpgradeCost));
         }
     }
 
@@ -182,6 +185,10 @@ public class UpgradeHandler : MonoBehaviour
 
         }
         roomData.currntLevel++;
+        //if (roomData.currntLevel <= roomLevels.Length)
+        //{
+        //    currntUpgradeCost = roomLevels[roomData.currntLevel].upgradeCost;
+        //}
 
     }
 

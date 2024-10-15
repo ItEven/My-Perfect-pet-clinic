@@ -27,6 +27,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     [SerializeField] private float handleRange = 1;
     [SerializeField] private float deadZone = 0;
+    [SerializeField] private float sensitivity = 1.0f;
     [SerializeField] private AxisOptions axisOptions = AxisOptions.Both;
     [SerializeField] private bool snapX = false;
     [SerializeField] private bool snapY = false;
@@ -107,7 +108,12 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 input = normalised;
         }
         else
+        {
             input = Vector2.zero;
+        }
+
+        // Apply sensitivity to the input
+        input *= sensitivity;
     }
 
     private void FormatInput()

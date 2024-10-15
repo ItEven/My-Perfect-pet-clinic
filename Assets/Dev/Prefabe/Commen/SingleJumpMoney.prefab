@@ -47,8 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyValue: 10
-  jumpTime: 0.08
+  jumpTime: 0.4
   jumpHight: 2
+  fadeOutTime: 0.5
+  fadeInTime: 0
+  renderer: {fileID: 5377123190188981685}
 --- !u!65 &2557762011682748796
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,6 +161,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 485c18083f95ff741bc123d0af35ffb4, type: 3}
+--- !u!23 &5377123190188981685 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 485c18083f95ff741bc123d0af35ffb4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6728083915897577777}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6544941721953060570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 485c18083f95ff741bc123d0af35ffb4,

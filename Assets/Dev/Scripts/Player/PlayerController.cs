@@ -1,6 +1,7 @@
 ﻿using EasyCharacterMovement;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     public FloatingJoystick joystick;
@@ -8,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float rotationRate = 540.0f;
 
     public float maxSpeed = 5;
+    public  float customAngle = 45f;
+    public  float Senc = 45f;
 
     public float acceleration = 20.0f;
     public float deceleration = 20.0f;
@@ -52,14 +55,16 @@ public class PlayerController : MonoBehaviour
 
         // Create a movement direction vector (in world space)
         _movementDirection = Vector3.zero;
-        _movementDirection += Vector3.forward * horizontal;
-        _movementDirection -= Vector3.right * vertical;
+        _movementDirection += Vector3.right * horizontal;  
+        _movementDirection += Vector3.forward * vertical;
+        
+        _movementDirection = Quaternion.AngleAxis(customAngle, Vector3.up) * _movementDirection;
 
         // Make Sure it won't move faster diagonally
         _movementDirection = Vector3.ClampMagnitude(_movementDirection, 1.0f);
 
         // Rotate towards movement direction
-        _characterMovement.RotateTowards(_movementDirection, rotationRate * Time.deltaTime);
+        _characterMovement.RotateTowards(_movementDirection, rotationRate * Time.deltaTime*2f);
 
         // Perform movement
         desiredVelocity = _movementDirection * maxSpeed;

@@ -9,7 +9,9 @@ public class SingleMoneybrick : MonoBehaviour
     public float moneyValue;
     public float jumpTime;
     public float jumpHight;
-
+    public float fadeOutTime;
+    public float fadeInTime;
+    public Renderer renderer;
 
     //private void OnTriggerEnter(Collider other)
     //{
@@ -35,19 +37,33 @@ public class SingleMoneybrick : MonoBehaviour
         collider.enabled = false;
 
         Vector3 targetPosition = target.position;
-        Quaternion initialRotation = transform.rotation; // Save the initial rotation
+        Quaternion initialRotation = transform.rotation;
 
-        transform.DOJump(targetPosition, jumpHight, 1, jumpTime).OnUpdate(() =>
+        Material material = renderer.material;
+        material.color = new Color(material.color.r, material.color.g, material.color.b, 0);
+
+        material.DOFade(1, fadeInTime)
+            .OnComplete(() =>
+            {
+                material.DOFade(0, fadeOutTime);
+            });
+
+
+
+        transform.DOJump(targetPosition, jumpHight, 1, jumpTime).OnComplete(() =>
         {
+            material.DOFade(0, fadeOutTime);
             targetPosition = target.position;
-            transform.position = transform.position; // Update the position without rotation
-            transform.rotation = initialRotation;    // Lock to the initial rotation
+            transform.position = transform.position;
+            transform.rotation = initialRotation;
         }).OnComplete(() =>
         {
             transform.SetParent(target.transform);
+
             DOTween.Kill(this);
             Destroy(gameObject);
+
         });
     }
-
 }
+
