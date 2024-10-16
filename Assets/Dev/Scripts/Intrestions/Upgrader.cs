@@ -18,7 +18,7 @@ public class Upgrader : MonoBehaviour
     public float fadeOutTime = 0.5f;
     public float fadeInTime = 0.001f;
 
-
+    bool bIsPlayerStay;
     public GameObject SingleMoneybrick;
     public UnityEvent OnUpgradeFinish;
     public Transform moneyCollectPonit;
@@ -63,8 +63,9 @@ public class Upgrader : MonoBehaviour
         if (other.CompareTag("Player") && economyManager.bCanWeSpendPetMoney(needMoney))
         {
             player = other.gameObject.GetComponent<PlayerController>();
-            if (player.IsMoving())
+            if (!player.IsMoving())
             {
+                bIsPlayerStay = true;
                 StartTakeMoney();
             }
         }
@@ -74,7 +75,7 @@ public class Upgrader : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StopTakeMoney();
+            bIsPlayerStay = false;
         }
     }
 
@@ -84,7 +85,7 @@ public class Upgrader : MonoBehaviour
         {
             StartCoroutine(MoneySpwaing());
             takeMoneyCoroutine = StartCoroutine(TakingMoney());
-            
+
         }
     }
 
@@ -108,6 +109,12 @@ public class Upgrader : MonoBehaviour
 
         while (needMoney > 0)
         {
+            if (!bIsPlayerStay)
+            {
+                StopTakeMoney();
+                yield break;
+
+            }
             elapsedTime += Time.deltaTime;
             float percentageComplete = Mathf.Clamp01(elapsedTime / totalTime);
             needMoney = Mathf.RoundToInt(Mathf.Lerp(needMoney, 0, percentageComplete));
@@ -117,7 +124,7 @@ public class Upgrader : MonoBehaviour
             {
                 Debug.Log("Current Value: " + needMoney);
 
-              
+
                 economyManager.SpendPetMoney(val - lastSub);
                 lastSub = val;
 
@@ -150,6 +157,12 @@ public class Upgrader : MonoBehaviour
     {
         while (true)
         {
+            if (!bIsPlayerStay)
+            {
+                yield break;
+            }
+
+
             yield return new WaitForSeconds(spwanBetweenTime);
             GameObject brickInstance = Instantiate(SingleMoneybrick, player.moneyCollectPoint.position, Quaternion.identity, player.transform);
             var brick = brickInstance.GetComponent<SingleMoneybrick>();

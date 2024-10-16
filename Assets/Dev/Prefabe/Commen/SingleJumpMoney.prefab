@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyValue: 10
   jumpTime: 0.4
-  jumpHight: 2
+  jumpHight: 4
   fadeOutTime: 0.5
   fadeInTime: 0
   renderer: {fileID: 5377123190188981685}

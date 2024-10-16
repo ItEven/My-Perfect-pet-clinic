@@ -1,3 +1,5 @@
+using DG.Tweening;
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,30 +8,31 @@ public class MoneyBox : MonoBehaviour
 {
     public float moneyGivingSpeed;
     public float totalMoneyInBox;
+    public Transform jumpPos;
     public Transform[] moneyBricksPos;
     public List<SingleMoneybrick> singleMoneybricks = new List<SingleMoneybrick>();
-    PlayerController playerController;
+
+    int currntIndex;
 
     SaveManager saveManager;
-    UiManager uiManager;
     EconomyManager economyManager;
-
+    GameManager gameManager;
+    UiManager uiManager;
 
     private void OnEnable()
     {
         UpdateInitializers();
-
     }
     private void OnDisable()
     {
         UpdateInitializers();
-
     }
 
     public void UpdateInitializers()
     {
         saveManager = SaveManager.instance;
         economyManager = saveManager.economyManager;
+        gameManager = saveManager.gameManager;
         uiManager = saveManager.uiManager;
     }
 
@@ -38,8 +41,9 @@ public class MoneyBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerController = other.gameObject.GetComponent<PlayerController>();
-            StartGiveMoney();
+          
+
+            GiveMoney();
         }
     }
 
@@ -70,7 +74,7 @@ public class MoneyBox : MonoBehaviour
         }
         while (singleMoneybricks.Count > 0)
         {
-            singleMoneybricks[singleMoneybricks.Count - 1].StartJump(playerController.moneyCollectPoint);
+            singleMoneybricks[singleMoneybricks.Count - 1].StartJump(gameManager.playerController.moneyCollectPoint);
             int money = (int)(totalMoneyInBox / singleMoneybricks.Count);
 
             economyManager.AddPetMoney(money);
@@ -88,6 +92,78 @@ public class MoneyBox : MonoBehaviour
     }
     #endregion
 
+    public float spacing = 2.0f; // Space between each object
+    public Vector3 startPosition = Vector3.zero; // Starting position
+    public void GiveMoney()
+    {
+        SpreadObjectsRandomlyWithAnimation();
+        //foreach (var money in singleMoneybricks)
+        //{
+        //    money.StartRandomJump(jumpPos, gameManager.playerController.moneyCollectPoint);
 
+ 
+        //    currntIndex--;
+        //}
+
+        //economyManager.AddPetMoney(totalMoneyInBox);
+        //totalMoneyInBox = 0;
+
+    }
+
+    public Vector3 minRange = new Vector3(-10, 0, -10); 
+    public Vector3 maxRange = new Vector3(10, 5, 10);  
+    public float spreadDuration = 0.5f; 
+
+    void SpreadObjectsRandomlyWithAnimation()
+    {
+        foreach (var obj in singleMoneybricks)
+        {
+            Vector3 randomPosition = new Vector3(
+                Random.Range(minRange.x, maxRange.x),
+                Random.Range(minRange.y, maxRange.y),
+                Random.Range(minRange.z, maxRange.z)
+            );
+
+            obj.transform.DOMove(randomPosition, spreadDuration).SetEase(Ease.OutQuad);
+        }
+    }
+
+    [Button("TakeMoney")]
+    public void TakeMoney(int amount)
+    {   
+        totalMoneyInBox += amount;
+        for (int i = 0; i < GetHowManyBrickSpwan(amount); i++)
+        {
+            GameObject brickInstance = Instantiate(gameManager.singleMoneybrick, moneyBricksPos[currntIndex]);
+            var brick = brickInstance.GetComponent<SingleMoneybrick>();
+            singleMoneybricks.Add(brick);
+            currntIndex++;
+
+        }
+    }
+
+    public int GetHowManyBrickSpwan(int amount)
+    {
+        return amount switch
+        {
+            >= 2000 => 48,
+            >= 1600 => 40, 
+            >= 1200 => 35,
+            >= 900 => 30,
+            >= 700 => 25,     
+            >= 500 => 20,
+            >= 400 => 16,
+            >= 300 => 12,  
+            >= 240 => 9,
+            >= 180 => 8,
+            >= 120 => 7,
+            >= 70 => 5,
+            >= 40 => 4,
+            >= 20 => 3,
+            >= 10 => 2,
+            >= 5 => 1,
+            _ => -1,
+        };
+    }
 
 }

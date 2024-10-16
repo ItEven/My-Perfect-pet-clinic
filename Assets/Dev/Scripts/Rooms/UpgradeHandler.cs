@@ -138,18 +138,18 @@ public class UpgradeHandler : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Eles" + gameObject.name);
+            //Debug.LogError("Eles" + gameObject.name);
 
             if (!roomData.bIsTakeMoneyActive)
             {
                 upGrader.gameObject.SetActive(false);
-                Debug.LogError("upGrader.gameObject.SetActive(false)" + gameObject.name);
+               // Debug.LogError("upGrader.gameObject.SetActive(false)" + gameObject.name);
 
             }
             else
             {
                 upGrader.gameObject.SetActive(true);
-                Debug.LogError("upGrader.gameObject.SetActive(true)" + gameObject.name);
+                //Debug.LogError("upGrader.gameObject.SetActive(true)" + gameObject.name);
 
 
                 currntUpgradeCost = unlockPrice;
