@@ -601,7 +601,7 @@ MonoBehaviour:
   playerPos: {x: 0.1, y: 0, z: -6}
   singleMoneybrick: {fileID: 2221736062232325856, guid: 78effe5661a670d4b951b8a07f7341cb,
     type: 3}
-  navMeshSurface: {fileID: 340512344}
+  navMeshSurface: {fileID: 4931218026238115731}
   dropHeight: 10
   dropDuration: 0.2
 --- !u!114 &49313745
@@ -1224,7 +1224,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 25794ac3c1fd0484398cfe5454a15f84,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2272,7 +2272,7 @@ PrefabInstance:
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -2366,7 +2366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &536800665
 Transform:
   m_ObjectHideFlags: 0
@@ -2891,10 +2891,8 @@ MonoBehaviour:
   - {fileID: 5120002389900691794}
   - {fileID: 8955353583778025466}
   singleMoneybricks: []
-  spacing: 2
-  startPosition: {x: 0, y: 0, z: 0}
-  minRange: {x: 1, y: 0, z: 1}
-  maxRange: {x: 2, y: 2, z: 2}
+  minRange: {x: -1, y: 5, z: -4}
+  maxRange: {x: 0, y: 3, z: -1}
   spreadDuration: 0.5
 --- !u!65 &625407460
 BoxCollider:
@@ -3250,7 +3248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &735813333
 Transform:
   m_ObjectHideFlags: 0
@@ -3290,10 +3288,14 @@ MonoBehaviour:
     currntUpgradeCost: 0
   roomLevels:
   - upgradeCost: 0
+    prossesSpeed: 0
+    succsesRate: 0
+    doctretype: 0
     nextUpgrader: []
   unlockObjs:
   - {fileID: 1901229265}
   lockedObjs:
+  - {fileID: 915341546}
   - {fileID: 1822977130}
   roundUpgradePartical:
   - {fileID: 1257015430}
@@ -3576,7 +3578,7 @@ PrefabInstance:
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -3979,6 +3981,9 @@ MonoBehaviour:
     currntUpgradeCost: 0
   roomLevels:
   - upgradeCost: 0
+    prossesSpeed: 0
+    succsesRate: 0
+    doctretype: 0
     nextUpgrader:
     - {fileID: 1944709396}
   unlockObjs:
@@ -5666,13 +5671,16 @@ MonoBehaviour:
     currntUpgradeCost: 0
   roomLevels:
   - upgradeCost: 0
+    prossesSpeed: 0
+    succsesRate: 0
+    doctretype: 0
     nextUpgrader:
     - {fileID: 822428934}
   unlockObjs:
   - {fileID: 56980723}
-  - {fileID: 1944709394}
-  - {fileID: 1647067000}
-  - {fileID: 735813332}
+  - {fileID: 300584089}
+  - {fileID: 2108203457}
+  - {fileID: 1100541161}
   lockedObjs:
   - {fileID: 703343954}
   roundUpgradePartical:
@@ -6194,7 +6202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1647067001
 Transform:
   m_ObjectHideFlags: 0
@@ -6234,6 +6242,9 @@ MonoBehaviour:
     currntUpgradeCost: 0
   roomLevels:
   - upgradeCost: 0
+    prossesSpeed: 0
+    succsesRate: 0
+    doctretype: 0
     nextUpgrader:
     - {fileID: 735813334}
   unlockObjs:
@@ -7165,7 +7176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1944709395
 Transform:
   m_ObjectHideFlags: 0
@@ -7205,6 +7216,9 @@ MonoBehaviour:
     currntUpgradeCost: 0
   roomLevels:
   - upgradeCost: 0
+    prossesSpeed: 0
+    succsesRate: 0
+    doctretype: 0
     nextUpgrader:
     - {fileID: 1647067002}
   unlockObjs:
@@ -7237,7 +7251,7 @@ PrefabInstance:
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -7472,7 +7486,7 @@ PrefabInstance:
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -8689,6 +8703,7 @@ GameObject:
   - component: {fileID: 4876933053451617682}
   - component: {fileID: 1305037033769662847}
   - component: {fileID: 4931218026238115730}
+  - component: {fileID: 4931218026238115731}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -9673,8 +9688,39 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 36.143646, y: 0.018880606, z: 18.43665}
+  m_Size: {x: 36.143646, y: 0.04880468, z: 18.43665}
   m_Center: {x: 0.00025558472, y: -0.0059001893, z: -1.7443066}
+--- !u!114 &4931218026238115731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193423313412900575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 3
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.06666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
 --- !u!4 &4972879927454121605
 Transform:
   m_ObjectHideFlags: 0
@@ -10532,6 +10578,7 @@ GameObject:
   - component: {fileID: 8446897971981723847}
   - component: {fileID: 5415109362613339395}
   - component: {fileID: 3010012237114995904}
+  - component: {fileID: 8446897971981723848}
   m_Layer: 0
   m_Name: ParkingBase.005
   m_TagString: Untagged
@@ -11082,6 +11129,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 543450653595106382}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8446897971981723848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7495734379326330830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8447994468587576098
 GameObject:
   m_ObjectHideFlags: 0

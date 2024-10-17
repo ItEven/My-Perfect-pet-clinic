@@ -41,7 +41,7 @@ public class MoneyBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-          
+
 
             GiveMoney();
         }
@@ -92,29 +92,13 @@ public class MoneyBox : MonoBehaviour
     }
     #endregion
 
-    public float spacing = 2.0f; // Space between each object
-    public Vector3 startPosition = Vector3.zero; // Starting position
-    public void GiveMoney()
-    {
-        SpreadObjectsRandomlyWithAnimation();
-        //foreach (var money in singleMoneybricks)
-        //{
-        //    money.StartRandomJump(jumpPos, gameManager.playerController.moneyCollectPoint);
 
- 
-        //    currntIndex--;
-        //}
+    private Vector3 startPosition = Vector3.zero;
+    public Vector3 minRange = new Vector3(-10, 0, -10);
+    public Vector3 maxRange = new Vector3(10, 5, 10);
+    public float spreadDuration = 0.5f;
 
-        //economyManager.AddPetMoney(totalMoneyInBox);
-        //totalMoneyInBox = 0;
-
-    }
-
-    public Vector3 minRange = new Vector3(-10, 0, -10); 
-    public Vector3 maxRange = new Vector3(10, 5, 10);  
-    public float spreadDuration = 0.5f; 
-
-    void SpreadObjectsRandomlyWithAnimation()
+    void GiveMoney()
     {
         foreach (var obj in singleMoneybricks)
         {
@@ -124,13 +108,25 @@ public class MoneyBox : MonoBehaviour
                 Random.Range(minRange.z, maxRange.z)
             );
 
-            obj.transform.DOMove(randomPosition, spreadDuration).SetEase(Ease.OutQuad);
+            obj.transform.DORotate(new Vector3(360, 360, 360), 1f, RotateMode.FastBeyond360)
+    .SetLoops(-1, LoopType.Yoyo);
+
+            obj.transform.DOMove(randomPosition, spreadDuration).OnComplete(() =>
+            {
+                obj.StartJump(gameManager.playerController.moneyCollectPoint);
+
+                currntIndex--;
+            }).SetEase(Ease.OutQuad);
         }
+
+        singleMoneybricks.Clear();
+        economyManager.AddPetMoney(totalMoneyInBox);
+        totalMoneyInBox = 0;
     }
 
     [Button("TakeMoney")]
     public void TakeMoney(int amount)
-    {   
+    {
         totalMoneyInBox += amount;
         for (int i = 0; i < GetHowManyBrickSpwan(amount); i++)
         {
@@ -147,13 +143,13 @@ public class MoneyBox : MonoBehaviour
         return amount switch
         {
             >= 2000 => 48,
-            >= 1600 => 40, 
+            >= 1600 => 40,
             >= 1200 => 35,
             >= 900 => 30,
-            >= 700 => 25,     
+            >= 700 => 25,
             >= 500 => 20,
             >= 400 => 16,
-            >= 300 => 12,  
+            >= 300 => 12,
             >= 240 => 9,
             >= 180 => 8,
             >= 120 => 7,

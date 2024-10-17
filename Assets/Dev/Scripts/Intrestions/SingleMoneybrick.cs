@@ -67,35 +67,6 @@ public class SingleMoneybrick : MonoBehaviour
         });
     }
 
-    public void StartRandomJump(Transform jumpPos, Transform target)
-    {
-        transform.SetParent(target.transform);
-        Collider collider = GetComponent<Collider>();
-        collider.enabled = false;
-
-        Vector3 targetPosition = target.position;
-        Quaternion initialRotation = transform.rotation;
-
-        float randomJumpHeight = Random.Range(jumpHight - 1f, jumpHight + 1f); 
-        float randomSideSpread = Random.Range(-2f, 2f);
-        Vector3 randomSideOffset = new Vector3(randomSideSpread, 0, randomSideSpread);
-
-        transform.DORotate(new Vector3(360, 360, 360), 1f, RotateMode.FastBeyond360)
-    .SetLoops(-1, LoopType.Yoyo);
-
-        transform.DOMove(jumpPos.position + randomSideOffset, jumpTime).OnComplete(() =>
-        {
-
-            transform.DOMove(targetPosition + randomSideOffset, jumpTime).OnComplete(() =>
-            {
-                
-                DOTween.Kill(this);
-                Destroy(gameObject);
-
-            });
-
-        }).SetEase(Ease.OutBounce);
-        
-    }
+  
 }
 
