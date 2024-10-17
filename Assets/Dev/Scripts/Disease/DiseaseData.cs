@@ -24,12 +24,12 @@ public enum DiseaseType
 }
 
 [System.Serializable]
-public enum Doctretype
+public enum Stafftype
 {
-    Junior_Veterinarian,
-    Veterinarian,
-    Senior_Veterinarian,
-    Chief_Veterinarian,
+    Intern,
+    Junior,
+    Senior,
+    Chief,
 }
 
 [System.Serializable]

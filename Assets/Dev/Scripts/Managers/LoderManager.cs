@@ -17,11 +17,11 @@ public class LoaderManager : MonoBehaviour
     private float per;
     internal int needMoney
     {
-        get { return Mathf.RoundToInt(per); } // Converting float to int
+        get { return Mathf.RoundToInt(per); } 
         set
         {
             per = value;
-            needMoneyText.text = $"{ScoreShow(needMoney)}"; // Assuming ScoreShow is a method for formatting
+            needMoneyText.text = $"{ScoreShow(needMoney)}"; 
         }
     }
 
@@ -32,13 +32,13 @@ public class LoaderManager : MonoBehaviour
 
     public void LoadLevel(int sceneIndex)
     {
-        // Simulate a loading process for demonstration
+
         slider.fillAmount = 0f;
 
-        // Tween the fill amount of the slider to full over slidingTime duration
+        
         DOTween.To(() => slider.fillAmount, x => slider.fillAmount = x, 1f, slidingTime)
-               .OnUpdate(UpdatePercentage) // Update the percentage text while loading
-               .OnComplete(() => SceneManager.LoadScene(sceneIndex)); // Load the scene after the tween
+               .OnUpdate(UpdatePercentage) 
+               .OnComplete(() => SceneManager.LoadScene(sceneIndex)); 
     }
 
     private void UpdatePercentage()
@@ -47,9 +47,9 @@ public class LoaderManager : MonoBehaviour
         percentageText.text = $"{Mathf.FloorToInt(slider.fillAmount * 100)}%";
     }
 
-    // Assuming this method formats the score
+   
     private string ScoreShow(int score)
     {
-        return score.ToString("N0"); // Formats the number with commas
+        return score.ToString("N0"); 
     }
 }

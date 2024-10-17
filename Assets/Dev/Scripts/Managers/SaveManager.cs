@@ -10,9 +10,9 @@ public class SaveManager : MonoBehaviour
 
     [Header("All Managers")]
     public EconomyManager economyManager;
-    public ReceptionManager receptionManager;
     public GameManager gameManager;
     public UiManager uiManager;
+    public RoomManager roomManager;
 
     public GameData gameData = new GameData();
 
@@ -26,18 +26,35 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            //for (int i = 0; i < universityManager.listOfUniversityHandlers.Count; i++)
+            //for (int i = 0; i < roomManager.roomHandlers.Length; i++)
             //{
-            //    universityManager.listOfUniversityHandlers[i].LoadData();
+            //    var room = roomManager.roomHandlers[i];
+            //    room.loadData();
             //}
         }
 
     }
 
-
-
     public void SaveData()
     {
+        gameData.roomHandlerDatas.Clear();
+
+
+        for (int i = 0; i < roomManager.roomHandlers.Length; i++)
+        {
+            RoomHandlersData roomHandler = new RoomHandlersData();
+
+            var room = roomManager.roomHandlers[i];
+            if (room != null)
+            {
+
+                roomHandler.bIsUnlock = room.bIsUnlock;
+                roomHandler.bIsUpgraderActive = room.bIsUpgraderActive;
+                roomHandler.currentCost = room.currentCost;
+            }
+            gameData.roomHandlerDatas.Add(roomHandler);
+
+        }
 
         string jsonData = JsonUtility.ToJson(gameData);
         PlayerPrefs.SetString("GameData", jsonData);
@@ -47,6 +64,17 @@ public class SaveManager : MonoBehaviour
     {
         string jsonData = PlayerPrefs.GetString("GameData");
         gameData = JsonUtility.FromJson<GameData>(jsonData);
+
+        // RoomHandlers
+
+        for (int i = 0; i < gameData.roomHandlerDatas.Count; i++)
+        {
+            var room = gameData.roomHandlerDatas[i];
+            roomManager.roomHandlers[i].bIsUnlock = room.bIsUnlock;
+            roomManager.roomHandlers[i].bIsUpgraderActive = room.bIsUpgraderActive;
+            roomManager.roomHandlers[i].currentCost = room.currentCost;
+            roomManager.roomHandlers[i].loadData();
+        }
 
     }
     private void OnApplicationQuit()
@@ -68,7 +96,9 @@ public class SaveManager : MonoBehaviour
 public class GameData
 {
     public EconomyDatas economyDatas;
-    public ReceptionData receptionData;
+    public List<RoomHandlersData> roomHandlerDatas = new List<RoomHandlersData>();
+
+
 }
 
 [Serializable]
@@ -79,12 +109,14 @@ public class EconomyDatas
 }
 
 [Serializable]
-public class ReceptionData
+public class RoomHandlersData
 {
-    public int currntLevel;
-    public double totalCash;
+    public int currentCost;
     public bool bIsUnlock;
-    public bool bIsAnyUpgradeAveilable;
+    public bool bIsUpgraderActive;
 }
+
+
+
 
 

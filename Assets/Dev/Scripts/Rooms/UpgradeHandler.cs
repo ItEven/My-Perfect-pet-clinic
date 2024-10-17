@@ -4,47 +4,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-[System.Serializable]
-public class RoomData
-{
-    public bool bIsUnlock;
-    public bool bIsTakeMoneyActive;
-    public int currntLevel;
-    public int currntUpgradeCost;
-}
-
-[System.Serializable]
-public class RoomLevelData
-{
-    public int upgradeCost;
-    public int prossesSpeed;
-    public int succsesRate;
-    public Doctretype doctretype;
-    public UpgradeHandler[] nextUpgrader;
-}
-
-
 public class UpgradeHandler : MonoBehaviour
 {
 
-    public RoomData roomData;
-    public RoomLevelData[] roomLevels;
+    //publice
+    public bool bIsUnlock;
+    public bool bIsUpgraderActive;
+
+    public Upgrader upGrader;
+    public UpgradeHandler[] nextUpgrader;
 
 
     [Header("Room Visuals")]
     public GameObject[] unlockObjs;
     public GameObject[] lockedObjs;
     public ParticleSystem[] roundUpgradePartical;
-    public static Transform STAFF_unlock_pos;
-    public Upgrader upGrader;
-    
 
 
-    [Header("Room datas")]
     public int unlockPrice;
-    internal int currntUpgradeCost
+    internal int currentCost
     {
         get { return upGrader.needMoney; }
         set
@@ -52,7 +30,12 @@ public class UpgradeHandler : MonoBehaviour
             upGrader.needMoney = value;
         }
     }
-    ReceptionManager receptionManager;
+
+    // private
+
+
+    #region Initializers
+
     SaveManager saveManager;
     EconomyManager economyManager;
     GameManager gameManager;
@@ -74,22 +57,26 @@ public class UpgradeHandler : MonoBehaviour
         gameManager = saveManager.gameManager;
         uiManager = saveManager.uiManager;
     }
+
+    #endregion
+
     private void Start()
     {
+        currentCost = unlockPrice;
         loadData();
     }
 
-    public void loadData()
+    public virtual void loadData()
     {
+        UpdateInitializers();
         SetVisual();
-        SetData();
+        SetUpgredeVisual();
     }
 
-    public void SetVisual()
+    public virtual void SetVisual()
     {
-        if (roomData.bIsUnlock)
+        if (bIsUnlock)
         {
-
             foreach (var item in lockedObjs)
             {
                 if (item.activeInHierarchy)
@@ -126,67 +113,39 @@ public class UpgradeHandler : MonoBehaviour
 
     }
 
-    public void SetData()
+    public virtual void SetUpgredeVisual()
     {
-        if (roomData.bIsUnlock)
+
+        if (bIsUpgraderActive)
         {
-            if (roomData.bIsTakeMoneyActive)
-            {
-                currntUpgradeCost = roomData.currntUpgradeCost;
-                SetTakeMoneyData();
-            }
-            else
-            {
-                upGrader.gameObject.SetActive(false);
-            }
+            SetTakeMoneyData();
         }
         else
         {
-            if (!roomData.bIsTakeMoneyActive)
-            {
-                upGrader.gameObject.SetActive(false);
-            }
-            else
-            {
-               
-                upGrader.gameObject.SetActive(true);
-                currntUpgradeCost = unlockPrice;
-                DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(currntUpgradeCost));
-            }
+            upGrader.gameObject.SetActive(false);
         }
+
     }
 
-    public void SetTakeMoneyData()
+    public virtual void SetTakeMoneyData()
     {
-        DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(currntUpgradeCost));
+        DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(currentCost));
     }
 
-    public void UpgradeChacker()
+    public void OnUnlockAndUpgrade()
     {
-        if (roomLevels[roomData.currntLevel].nextUpgrader != null)
+
+        if (nextUpgrader.Length > 0)
         {
-            foreach (var item in roomLevels[roomData.currntLevel].nextUpgrader)
+            foreach (var item in nextUpgrader)
             {
-                item.roomData.bIsTakeMoneyActive = true;
-                item.SetData();
+                item.bIsUpgraderActive = true;
+                item.SetUpgredeVisual();
             }
         }
-
-
-        if (!roomData.bIsUnlock)
-        {
-            roomData.bIsTakeMoneyActive = false;
-            roomData.bIsUnlock = true;
-            SetVisual();
-        }
-
-        roomData.currntLevel++;
-
-        //if (roomData.currntLevel <= roomLevels.Length)
-        //{
-        //    currntUpgradeCost = roomLevels[roomData.currntLevel].upgradeCost;
-        //}
-
+        bIsUnlock = true;
+        bIsUpgraderActive = false;
+        SetVisual();
     }
 
 }

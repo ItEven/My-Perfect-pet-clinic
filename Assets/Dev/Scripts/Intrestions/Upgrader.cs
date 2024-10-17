@@ -32,6 +32,7 @@ public class Upgrader : MonoBehaviour
         get { return NeedMoney; }
         set
         {
+            UpdateInitializers();
             NeedMoney = value;
             needMoneyText.text = $"{uiManager.ScoreShow(needMoney)}";
         }
