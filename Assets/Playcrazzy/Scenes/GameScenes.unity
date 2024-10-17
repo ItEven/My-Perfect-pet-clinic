@@ -2839,7 +2839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyGivingSpeed: 0
-  totalMoneyInBox: 0
+  totalMoneyInBox: 1000
   jumpPos: {fileID: 1115031832}
   moneyBricksPos:
   - {fileID: 7114259290303033359}
@@ -2891,8 +2891,8 @@ MonoBehaviour:
   - {fileID: 5120002389900691794}
   - {fileID: 8955353583778025466}
   singleMoneybricks: []
-  minRange: {x: -1, y: 5, z: -4}
-  maxRange: {x: 0, y: 3, z: -1}
+  minRange: {x: -1, y: 0, z: -4}
+  maxRange: {x: 0, y: 0, z: -1}
   spreadDuration: 0.5
 --- !u!65 &625407460
 BoxCollider:
@@ -6268,6 +6268,7 @@ GameObject:
   - component: {fileID: 1674072607}
   - component: {fileID: 1674072606}
   - component: {fileID: 1674072605}
+  - component: {fileID: 1674072609}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6361,6 +6362,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1674072609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674072604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a148b530b1a81fd41a2979c82a2c0873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasScalers:
+  - {fileID: 1674072606}
+  currentDeviceResolution: 0
 --- !u!1 &1699424682
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Playcrazzy/Scenes/LoderScene.unity
+    guid: ddc4c5a7e618408499353d6b0c396561
+  - enabled: 1
     path: Assets/Playcrazzy/Scenes/GameScenes.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
   m_configObjects:

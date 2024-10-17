@@ -7,7 +7,7 @@ using UnityEngine;
 public class MoneyBox : MonoBehaviour
 {
     public float moneyGivingSpeed;
-    public float totalMoneyInBox;
+    public int totalMoneyInBox;
     public Transform jumpPos;
     public Transform[] moneyBricksPos;
     public List<SingleMoneybrick> singleMoneybricks = new List<SingleMoneybrick>();
@@ -37,6 +37,10 @@ public class MoneyBox : MonoBehaviour
     }
 
     #region Money give to player
+    private void Start()
+    {
+        TakeMoney(totalMoneyInBox);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
