@@ -17,11 +17,15 @@ public class StaffHandler : UpgradeHandler
 {
     // Public
     public bool bIsMovingStaff;
-    public Transform staffSheat;
+    public bool bIsStaffAtSit;
+    public Transform sitPos;
+    public Transform standPos;
     public StaffUpgrade[] staffUpgrades;
 
     //private
     NPCMovement npcMovement;
+
+
     public override void Start()
     {
         npcMovement = GetComponent<NPCMovement>();
@@ -30,28 +34,35 @@ public class StaffHandler : UpgradeHandler
     public override void loadData()
     {
         base.loadData();
+
         if (bIsUnlock)
         {
-            npcMovement.MoveToTarget(staffSheat, () =>
-            {
-                Debug.LogError("Anims Playe");
-                //npcMovement.animator.PlayAnimation(AnimType.sit);
-            });
+
+            transform.position = sitPos.position;
+            transform.rotation = sitPos.rotation;
+            npcMovement.StopNpc();
+            npcMovement.animator.PlayAnimation(AnimType.Talking_01);
+            bIsStaffAtSit = true;
         }
+
     }
-
-
 
 
     public override void OnUnlockAndUpgrade()
     {
-       
+
         base.OnUnlockAndUpgrade();
-        npcMovement.MoveToTarget(staffSheat, () =>
+
+        if (!bIsStaffAtSit)
         {
-            Debug.LogError("Anims Playe");
-            //npcMovement.animator.PlayAnimation(AnimType.sit);
-        });
+            
+            npcMovement.MoveToTarget(standPos, () =>
+            {
+                bIsStaffAtSit = true;
+                npcMovement.animator.PlayAnimation(AnimType.Talking_01);
+            });
+
+        }
     }
 
     public void OnReachSheat()

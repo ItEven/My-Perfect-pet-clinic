@@ -1,9 +1,11 @@
 ﻿
-public enum AnimType 
+public enum AnimType
 {
-   Idle,
-   Walk,
-   sit
+    Idle,
+    Walk,
+    Npc_Walk,
+    Talking_01,
+    Talking_02
 }
 
 

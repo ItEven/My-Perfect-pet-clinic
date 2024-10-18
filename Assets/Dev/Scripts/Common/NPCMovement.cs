@@ -18,6 +18,15 @@ public class NPCMovement : MonoBehaviour
     {
         navmeshAgent = GetComponent<NavMeshAgent>();
     }
+    private void OnEnable()
+    {
+        PatientUpdater.patientAIUpdate += PerformUpdate;  
+    }
+
+    private void OnDisable()
+    {
+        PatientUpdater.patientAIUpdate -= PerformUpdate;  
+    }
     public virtual void PerformUpdate()
     {
         if (!navmeshAgent.enabled)
@@ -39,29 +48,39 @@ public class NPCMovement : MonoBehaviour
                         navmeshAgent.ResetPath();
 
                     animator.PlayAnimation(AnimType.Idle);
-                    navmeshAgent.isStopped = true;
-                    navmeshAgent.enabled = false;
+                    StopNpc();
                     onCompleteAction?.Invoke();
                 }
             }
             else
             {
+                Debug.LogError("YOYOYOYO");
                 animator.PlayAnimation(AnimType.Walk);
+                animator.controller.SetFloat("Velocity", GetVelocity());
+
 
             }
         }
     }
-
-    [Button("test")]
-    public virtual void MoveToTarget(Transform target, Action onComplete = null)
+    public float GetVelocity()
     {
-        DOVirtual.DelayedCall(2f, () =>
+        float velocity = navmeshAgent.velocity.magnitude;
+
+
+        return Mathf.Clamp01(velocity);
+    }
+    [Button("test")]
+    public void MoveToTarget(Transform target, Action onComplete = null)
+    {
+        DOVirtual.DelayedCall(1f, () =>
         {
             if (navmeshAgent != null)
             {
                 onCompleteAction = null;
                 navmeshAgent.enabled = true;
                 navmeshAgent.isStopped = false;
+                animator.PlayAnimation(AnimType.Npc_Walk);
+
                 navmeshAgent.SetDestination(target.position);
                 onCompleteAction = onComplete;
             }
@@ -72,5 +91,10 @@ public class NPCMovement : MonoBehaviour
         });
     }
 
+    public void StopNpc()
+    {
+        navmeshAgent.isStopped = true;
+        navmeshAgent.enabled = false;
 
+    }
 }

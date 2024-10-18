@@ -16,16 +16,23 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (_PlayerAnimator != null)
         {
-            _PlayerAnimator.SetBool("bIsWalking", playerController.IsMoving());
+          
             if (playerController.IsMoving())
             {
+                _PlayerAnimator.Play(AnimType.Walk.ToString());
                 HandleMovementAnimation();
+            }
+            else
+            {
+                _PlayerAnimator.Play(AnimType.Idle.ToString());
+
             }
         }
     }
 
     public void HandleMovementAnimation()
-    {
+    {    
+
         _PlayerAnimator.SetFloat("Velocity", playerController.GetVelocity());
     }
 }

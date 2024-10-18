@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    Animator controller;
+    internal Animator controller;
     public AnimType startanimation;
 
     void Start()
