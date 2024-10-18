@@ -5152,7 +5152,7 @@ Transform:
   m_GameObject: {fileID: 574426163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 9.7, y: 0, z: 27}
+  m_LocalPosition: {x: -13.4, y: 0, z: 12.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8756,16 +8756,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ApplyMethod: 0
-  SampleCount: 1
+  SampleCount: 0
   PerPixelNormals: 1
-  Intensity: 1
+  Intensity: 0.412
   Tint: {r: 0, g: 0, b: 0, a: 1}
   Radius: 2
-  PowerExponent: 1.8
+  PowerExponent: 0.96
   Bias: 0.05
   Thickness: 1
-  Downsample: 1
-  CacheAware: 1
+  Downsample: 0
+  CacheAware: 0
   FadeEnabled: 0
   FadeStart: 100
   FadeLength: 50
