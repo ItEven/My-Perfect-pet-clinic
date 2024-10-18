@@ -24,7 +24,7 @@ public enum DiseaseType
 }
 
 [System.Serializable]
-public enum Stafftype
+public enum StaffExprinceType
 {
     Intern,
     Junior,

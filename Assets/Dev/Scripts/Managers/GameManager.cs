@@ -40,14 +40,14 @@ public class GameManager : MonoBehaviour
 
     public void ReBuildNavmesh()
     {
-        if (navMeshSurface != null)
-        {
-            navMeshSurface.BuildNavMesh();
-        }
-        else
-        {
-            Debug.LogError("NavMeshSurface is not assigned.");
-        }
+        //if (navMeshSurface != null)
+        //{
+        //    navMeshSurface.BuildNavMesh();
+        //}
+        //else
+        //{
+        //    Debug.LogError("NavMeshSurface is not assigned.");
+        //}
     }
 
    

@@ -60,7 +60,7 @@ public class UpgradeHandler : MonoBehaviour
 
     #endregion
 
-    private void Start()
+    public virtual void Start()
     {
         currentCost = unlockPrice;
         loadData();
@@ -134,7 +134,7 @@ public class UpgradeHandler : MonoBehaviour
         DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(currentCost));
     }
 
-    public void OnUnlockAndUpgrade()
+    public virtual void OnUnlockAndUpgrade()
     {
 
         if (nextUpgrader.Length > 0)

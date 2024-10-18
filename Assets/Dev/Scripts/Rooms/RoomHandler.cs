@@ -8,10 +8,10 @@ using UnityEngine;
 
 public class RoomHandler : UpgradeHandler
 {
-
     public override void loadData()
     {
         base.loadData();
+
 
     }
 

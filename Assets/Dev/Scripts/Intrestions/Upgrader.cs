@@ -131,9 +131,9 @@ public class Upgrader : MonoBehaviour
 
                 if (needMoney <= 0)
                 {
-                    gameObject.SetActive(false);
                     OnUpgradeFinish.Invoke();
                     StopTakeMoney();
+                    gameObject.SetActive(false);
                     yield break;
                 }
             }

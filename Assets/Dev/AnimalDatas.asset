@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animales:
   - animalType: 0
-    Animal:
-    - {fileID: 0}
+    Animal: []
   - animalType: 1
     Animal: []
   - animalType: 2

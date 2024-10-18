@@ -1,0 +1,542 @@
+fileFormatVersion: 2
+guid: 2b2eeee4d5f638849bf1ee83bc0ac308
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Cloud2x2HardSoftshadow_0
+  - first:
+      213: 21300002
+    second: Cloud2x2HardSoftshadow_1
+  - first:
+      213: 21300004
+    second: Cloud2x2HardSoftshadow_3
+  - first:
+      213: 21300006
+    second: Cloud2x2HardSoftshadow_2
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 51
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 25
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 0
+  flipbookColumns: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cloud2x2HardSoftshadow_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 73.75
+        width: 47
+        height: 47
+      alignment: 9
+      pivot: {x: 0.49468085, y: 0.4867021}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.25, y: -23.375}
+        - {x: -23.75, y: -23.375}
+        - {x: -23.75, y: 20.625}
+        - {x: -18.75, y: 23.625}
+        - {x: 20.25, y: 23.625}
+        - {x: 23.25, y: 15.625}
+        - {x: 23.25, y: -15.374999}
+      physicsShape:
+      - - {x: 14.25, y: 23.625}
+        - {x: -9.75, y: 23.625}
+        - {x: -21.749998, y: 19.625}
+        - {x: -23.75, y: 12.624999}
+        - {x: -23.75, y: -19.375}
+        - {x: -19.75, y: -23.375}
+        - {x: 14.25, y: -23.375}
+        - {x: 23.25, y: -8.375}
+        - {x: 23.25, y: 14.625}
+        - {x: 17.25, y: 22.625}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722411fa928c447da1de4ccf95221ab8
+      internalID: 21300000
+      vertices:
+      - {x: 44, y: 47.75}
+      - {x: 47, y: 8.750001}
+      - {x: 47, y: 39.75}
+      - {x: 36, y: 0.75}
+      - {x: 5, y: 47.75}
+      - {x: 0, y: 44.75}
+      - {x: 0, y: 0.75}
+      indices: 060000000500000003000000040000000300000005000000000000000300000004000000010000000300000000000000020000000100000000000000
+      edges: []
+      weights:
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+    - serializedVersion: 2
+      name: Cloud2x2HardSoftshadow_1
+      rect:
+        serializedVersion: 2
+        x: 84.25
+        y: 85
+        width: 22.5
+        height: 22.75
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.25, y: -11.375}
+        - {x: -11.25, y: 11.375}
+        - {x: 11.25, y: 11.375}
+        - {x: 11.25, y: -11.375}
+      physicsShape:
+      - - {x: -11.25, y: 11.499999}
+        - {x: -11.25, y: -8.5}
+        - {x: -7.25, y: -11.499999}
+        - {x: 8.75, y: -11.499999}
+        - {x: 11.75, y: -7.4999995}
+        - {x: 11.75, y: 7.4999995}
+        - {x: 8.75, y: 11.499999}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f117c57a6d9b49f687ff5da40044d4a8
+      internalID: 21300002
+      vertices:
+      - {x: 0, y: 22.75}
+      - {x: 22.5, y: 22.75}
+      - {x: 0, y: 0}
+      - {x: 22.5, y: 0}
+      indices: 000000000100000002000000020000000100000003000000
+      edges: []
+      weights:
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+    - serializedVersion: 2
+      name: Cloud2x2HardSoftshadow_3
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 13.75
+        width: 39
+        height: 39
+      alignment: 9
+      pivot: {x: 0.49679488, y: 0.48397437}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.625, y: -18.375}
+        - {x: -19.625, y: -14.375}
+        - {x: -19.625, y: 9.625}
+        - {x: -15.625, y: 19.625}
+        - {x: 10.375, y: 19.625}
+        - {x: 19.375, y: 13.625}
+        - {x: 19.375, y: -19.375}
+        - {x: -8.625, y: -19.375}
+      physicsShape:
+      - - {x: 12.375, y: 19.625}
+        - {x: -11.624999, y: 19.625}
+        - {x: -19.625, y: 15.625}
+        - {x: -19.625, y: -19.375}
+        - {x: 19.375, y: -19.375}
+        - {x: 19.375, y: 5.625}
+        - {x: 16.375, y: 15.625}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd652424d0a04f8ab2541bac9feedf21
+      internalID: 21300004
+      vertices:
+      - {x: 30, y: 39.75}
+      - {x: 39, y: 0.75}
+      - {x: 39, y: 33.75}
+      - {x: 11, y: 0.75}
+      - {x: 4, y: 39.75}
+      - {x: 3, y: 1.75}
+      - {x: 0, y: 29.75}
+      - {x: 0, y: 5.75}
+      indices: 070000000600000005000000040000000500000006000000030000000500000004000000000000000300000004000000010000000300000000000000020000000100000000000000
+      edges: []
+      weights:
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+    - serializedVersion: 2
+      name: Cloud2x2HardSoftshadow_2
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 14
+        width: 43
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4903846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: -19.875}
+        - {x: -21.5, y: -16.875}
+        - {x: -21.5, y: 19.125}
+        - {x: 10.5, y: 19.125}
+        - {x: 21.5, y: 9.125}
+        - {x: 21.5, y: -11.875}
+        - {x: 18.5, y: -17.875}
+        - {x: 13.500001, y: -19.875}
+      physicsShape:
+      - - {x: -18.5, y: 19.125}
+        - {x: -21.499998, y: 17.125}
+        - {x: -21.499998, y: -17.875}
+        - {x: -17.5, y: -19.875}
+        - {x: 9.5, y: -19.875}
+        - {x: 21.499998, y: -8.875}
+        - {x: 21.499998, y: 7.1249995}
+        - {x: 9.5, y: 19.125}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f10edb4ca8e46268aaac29c5c33fba2
+      internalID: 21300006
+      vertices:
+      - {x: 43, y: 29}
+      - {x: 40, y: 2}
+      - {x: 43, y: 8}
+      - {x: 35, y: 0}
+      - {x: 32, y: 39}
+      - {x: 1, y: 0}
+      - {x: 0, y: 39}
+      - {x: 0, y: 3}
+      indices: 070000000600000005000000040000000500000006000000030000000500000004000000000000000300000004000000010000000300000000000000020000000100000000000000
+      edges: []
+      weights:
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+      - weight[0]: 1
+        weight[1]: 0
+        weight[2]: 0
+        weight[3]: 0
+        boneIndex[0]: 0
+        boneIndex[1]: 0
+        boneIndex[2]: 0
+        boneIndex[3]: 0
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Cloud2x2HardSoftshadow_0: 21300000
+      Cloud2x2HardSoftshadow_1: 21300002
+      Cloud2x2HardSoftshadow_2: 21300006
+      Cloud2x2HardSoftshadow_3: 21300004
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 9a95d14285e39774ddbf0518bac7be8c.bundle
+  assetBundleVariant: 
