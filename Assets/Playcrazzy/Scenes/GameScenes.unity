@@ -512,39 +512,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 11878450}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &20092467
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 20092468}
-  m_Layer: 0
-  m_Name: Ishan_Room Setup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &20092468
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20092467}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2044530617}
-  - {fileID: 1756030599}
-  m_Father: {fileID: 221410787}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &23527123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1107,7 +1074,7 @@ MonoBehaviour:
   economyManager: {fileID: 49313741}
   gameManager: {fileID: 49313744}
   uiManager: {fileID: 49313743}
-  roomManager: {fileID: 0}
+  roomManager: {fileID: 49313746}
   gameData:
     economyDatas:
       totalPetMoney: 0
@@ -1169,7 +1136,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomHandlers:
-  - {fileID: 0}
+  - {fileID: 1441797007}
+  - {fileID: 822428934}
+  - {fileID: 1944709396}
+  - {fileID: 735813334}
+  - {fileID: 1647067002}
+  - {fileID: 808581779}
+  - {fileID: 1359212157}
+  - {fileID: 2139393867}
+  - {fileID: 1429209693}
+  - {fileID: 1112049473}
+  - {fileID: 165994087}
+  - {fileID: 1460131399}
+  - {fileID: 49769382}
 --- !u!1 &49769380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,7 +2137,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 20092468}
   - {fileID: 579112256}
   - {fileID: 543450653595106382}
   - {fileID: 340512338}
@@ -2585,7 +2563,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b82fc5d0c0252e741b2a74bfb67c04c1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3885,6 +3863,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.9523808}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2044530617}
   - {fileID: 763634729}
   - {fileID: 2038765619}
   - {fileID: 1281562333}
@@ -4496,6 +4475,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.739969, y: 2.741343, z: 0.2346507}
   m_Center: {x: 0.0000044107437, y: 0.35154825, z: -0.0000014305117}
+--- !u!1 &460905649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6660221662038536678, guid: c7182de786bb59f4da382495348d08d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 915341542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &461107166
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,7 +7267,10 @@ MonoBehaviour:
   - {fileID: 1901229265}
   lockedObjs:
   - {fileID: 1822977130}
-  roundUpgradePartical: []
+  - {fileID: 460905649}
+  roundUpgradePartical:
+  - {fileID: 1257015431}
+  - {fileID: 1974878550}
   unlockPrice: 500
 --- !u!1001 &739902783
 PrefabInstance:
@@ -7879,6 +7867,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnUpgradeFinish.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 735813334}
+    - target: {fileID: 2399909360664832352, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
+        type: 3}
+      propertyPath: OnUpgradeFinish.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUnlockAndUpgrade
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -8356,7 +8349,8 @@ MonoBehaviour:
   upGrader: {fileID: 499630693}
   nextUpgrader:
   - {fileID: 1944709396}
-  unlockObjs: []
+  unlockObjs:
+  - {fileID: 1532217287}
   lockedObjs: []
   roundUpgradePartical: []
   unlockPrice: 50
@@ -8951,15 +8945,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ApplyMethod: 0
-  SampleCount: 0
+  SampleCount: 1
   PerPixelNormals: 1
-  Intensity: 0.412
+  Intensity: 1
   Tint: {r: 0, g: 0, b: 0, a: 1}
   Radius: 2
-  PowerExponent: 0.96
+  PowerExponent: 1.8
   Bias: 0.05
   Thickness: 1
-  Downsample: 0
+  Downsample: 1
   CacheAware: 1
   FadeEnabled: 0
   FadeStart: 100
@@ -10036,7 +10030,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 091c214cc8e0f1440b28ae1938a1ad4d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10409,6 +10403,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Recapation Table
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cda9b57391993dc4a9078e5b1da764ac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10604,6 +10603,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1756030599}
   - {fileID: 536800665}
   m_Father: {fileID: 1379737522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10803,6 +10803,12 @@ PrefabInstance:
 --- !u!4 &1257015429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2104042960861942581, guid: 8d0198f84b757cd47bf8e3ba32fdf425,
+    type: 3}
+  m_PrefabInstance: {fileID: 1257015428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1257015431 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8728818703215981839, guid: 8d0198f84b757cd47bf8e3ba32fdf425,
     type: 3}
   m_PrefabInstance: {fileID: 1257015428}
   m_PrefabAsset: {fileID: 0}
@@ -11807,6 +11813,9 @@ MonoBehaviour:
   nextUpgrader:
   - {fileID: 822428934}
   unlockObjs:
+  - {fileID: 300584089}
+  - {fileID: 1100541161}
+  - {fileID: 2108203457}
   - {fileID: 56980723}
   lockedObjs:
   - {fileID: 703343954}
@@ -12428,7 +12437,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8dc41119abc71f341ae6063acc324fd5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13784,12 +13793,17 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 20092468}
+    m_TransformParent: {fileID: 1203506250}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 014d25d9d346c6f4c9f7d69ec279a2f9,
         type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.95238096
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 014d25d9d346c6f4c9f7d69ec279a2f9,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.16
+      value: -6.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 014d25d9d346c6f4c9f7d69ec279a2f9,
         type: 3}
@@ -13799,7 +13813,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 014d25d9d346c6f4c9f7d69ec279a2f9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.27
+      value: -8.066809
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 014d25d9d346c6f4c9f7d69ec279a2f9,
         type: 3}
@@ -15556,6 +15570,7 @@ MonoBehaviour:
   - {fileID: 735813334}
   unlockObjs:
   - {fileID: 1203506249}
+  - {fileID: 1203506249}
   lockedObjs:
   - {fileID: 374439704}
   roundUpgradePartical:
@@ -15742,6 +15757,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnUpgradeFinish.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1944709396}
+    - target: {fileID: 2399909360664832352, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
+        type: 3}
+      propertyPath: OnUpgradeFinish.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUnlockAndUpgrade
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -15835,6 +15855,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631007f99e8d2374190cb19b267f5ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &1974878550 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1304057707326578109, guid: 8d76f30e205203e46a02fc4e62694bb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 619933088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1986873374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16170,6 +16196,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnUpgradeFinish.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1647067002}
+    - target: {fileID: 2399909360664832352, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
+        type: 3}
+      propertyPath: OnUpgradeFinish.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUnlockAndUpgrade
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -16639,22 +16670,22 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 20092468}
+    m_TransformParent: {fileID: 414960495}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6289ead051662a347951e499ec582192,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7.7653227
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6289ead051662a347951e499ec582192,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.0191238
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6289ead051662a347951e499ec582192,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -8.893296
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6289ead051662a347951e499ec582192,
         type: 3}
@@ -17285,7 +17316,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6697d3cc108407e45be9295e98212358,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

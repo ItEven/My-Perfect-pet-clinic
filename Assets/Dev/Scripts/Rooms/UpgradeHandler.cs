@@ -118,6 +118,8 @@ public class UpgradeHandler : MonoBehaviour
 
         if (bIsUpgraderActive)
         {
+            upGrader.gameObject.SetActive(true);
+
             SetTakeMoneyData();
         }
         else
