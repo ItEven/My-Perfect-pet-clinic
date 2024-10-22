@@ -5,7 +5,9 @@ public enum AnimType
     Walk,
     Npc_Walk,
     Talking_01,
-    Talking_02
+    Talking_02,
+    Sit_Type
+
 }
 
 

@@ -11,6 +11,7 @@ public class AnimationController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Animator>();
+        PlayAnimation(startanimation);
         controller.cullingMode = AnimatorCullingMode.AlwaysAnimate;
     }
 

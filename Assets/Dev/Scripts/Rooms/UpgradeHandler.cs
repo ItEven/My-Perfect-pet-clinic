@@ -137,6 +137,10 @@ public class UpgradeHandler : MonoBehaviour
     public virtual void OnUnlockAndUpgrade()
     {
 
+        bIsUnlock = true;
+        bIsUpgraderActive = false;
+        SetVisual();
+
         if (nextUpgrader.Length > 0)
         {
             foreach (var item in nextUpgrader)
@@ -145,9 +149,6 @@ public class UpgradeHandler : MonoBehaviour
                 item.SetUpgredeVisual();
             }
         }
-        bIsUnlock = true;
-        bIsUpgraderActive = false;
-        SetVisual();
     }
 
 }

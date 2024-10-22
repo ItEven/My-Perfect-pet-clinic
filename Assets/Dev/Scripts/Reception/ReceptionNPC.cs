@@ -3,12 +3,17 @@ using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
-public class ReceptionManager : MonoBehaviour
+[System.Serializable]
+public class ReceptionNPCLevelDetail
 {
-
+    public int levelNum, upgradeCost, customerCost, minBricks, maxBricks;
+    public float processTime;
+}
+public class ReceptionNPC : MonoBehaviour
+{
     [Header(" Reception Details")]
+
     public int unlockPrice;
     internal int currentCost
     {
@@ -23,16 +28,19 @@ public class ReceptionManager : MonoBehaviour
     public bool bIsUpgraderActive;
 
     public Upgrader upGrader;
-    public MoneyBox moneyBox;
 
 
-    [Header(" NPC Details")]
-    public ReceptionNPC npc;
-
+    [Header(" Level Details")]
+    public int currentLevel;
+    internal int nextLevel;
+    internal ReceptionNPCLevelDetail currentLevelData;
+    public ReceptionNPCLevelDetail[] levels;
 
     [Header(" Visuals Details")]
-    public GameObject[] unlockObjs;
-    public GameObject[] lockedObjs;
+    public Transform sitPos;
+    public GameObject npcObj;
+    //public GameObject[] unlockObjs;
+    //public GameObject[] lockedObjs;
     public ParticleSystem[] roundUpgradePartical;
 
     #region Initializers
@@ -75,43 +83,21 @@ public class ReceptionManager : MonoBehaviour
     }
     public void SetVisual()
     {
+        npcObj.transform.position = sitPos.position;
+        npcObj.transform.rotation = sitPos.rotation;
+
         if (bIsUnlock)
         {
-            foreach (var item in lockedObjs)
-            {
-                if (item.activeInHierarchy)
-                {
-                    item.SetActive(false);
-                }
-            }
-            foreach (var item in unlockObjs)
-            {
-                gameManager.DropObj(item);
-            }
-            npc.gameObject.SetActive(true);
 
+            gameManager.DropObj(npcObj);
             roundUpgradePartical.ForEach(X => X.Play());
         }
         else
         {
-            foreach (var item in unlockObjs)
-            {
-                if (item.activeInHierarchy)
-                {
-                    item.SetActive(false);
-                }
-            }
-            foreach (var item in lockedObjs)
-            {
-                if (!item.activeInHierarchy)
-                {
-                    item.SetActive(true);
-                }
-            }
-            npc.gameObject.SetActive(false);
-
+            npcObj.SetActive(false);
         }
         gameManager.ReBuildNavmesh();
+
     }
 
 
@@ -129,20 +115,26 @@ public class ReceptionManager : MonoBehaviour
         {
             upGrader.gameObject.SetActive(false);
         }
-    }
 
+    }
     public void OnUnlockAndUpgrade()
     {
+
         if (!bIsUnlock)
         {
             bIsUnlock = true;
             bIsUpgraderActive = false;
+            currentLevel = 0;
+            currentLevelData = levels[currentLevel];
             SetVisual();
-            if (TaskManager.instance != null)
-            {
-                TaskManager.instance.OnTaskComplete(0);
-            }
-        } 
+
+        }
+        else
+        {
+
+            OnUpgrade();
+        }
+
     }
 
     public void SetTakeMoneyData(int cost)
@@ -150,12 +142,31 @@ public class ReceptionManager : MonoBehaviour
         DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(cost));
     }
 
+    public void OnUpgrade()
+    {
+        currentLevel++;
+        currentLevelData = levels[currentLevel];
+        roundUpgradePartical.ForEach(X => X.Play());
+
+    }
 
     public void LoadNextUpgrade()
     {
-        npc.LoadNextUpgrade();
+        bIsUpgraderActive = true;
+        if (bIsUnlock)
+        {
+            if (currentLevel + 1 < levels.Length)
+            {
+                currentCost = levels[currentLevel + 1 ].upgradeCost;
+            }
+            else
+            {
+                bIsUpgraderActive = false;
+
+            }
+        }
+        SetUpgredeVisual();
     }
 
     #endregion
-
 }

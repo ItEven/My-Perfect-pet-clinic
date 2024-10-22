@@ -13,6 +13,7 @@ public class SaveManager : MonoBehaviour
     public GameManager gameManager;
     public UiManager uiManager;
     public RoomManager roomManager;
+    
 
     public GameData gameData = new GameData();
 
@@ -43,7 +44,6 @@ public class SaveManager : MonoBehaviour
         for (int i = 0; i < roomManager.roomHandlers.Length; i++)
         {
             RoomHandlersData roomHandler = new RoomHandlersData();
-
             var room = roomManager.roomHandlers[i];
             if (room != null)
             {

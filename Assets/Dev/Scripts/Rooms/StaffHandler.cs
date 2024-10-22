@@ -1,28 +1,31 @@
+using DG.Tweening;
+using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 [System.Serializable]
-public class StaffUpgrade
+public class StaffUpgradeProperties
 {
     public int Level;
     public int upgradeCost;
     public int exprince;
-    public bool bIsMovingStaff;
     public StaffExprinceType type;
     public DiseaseType[] diseases;
+    public UpgradeHandler[] nextUpgeades;
 }
 public class StaffHandler : UpgradeHandler
 {
     // Public
-    public bool bIsMovingStaff;
+    public int level;
     public bool bIsStaffAtSit;
     public Transform sitPos;
     public Transform standPos;
-    public StaffUpgrade[] staffUpgrades;
+    public StaffUpgradeProperties[] staffUpgrades;
 
     //private
+    internal StaffUpgradeProperties currentProperties;
     NPCMovement npcMovement;
 
 
@@ -32,12 +35,12 @@ public class StaffHandler : UpgradeHandler
         base.Start();
     }
     public override void loadData()
-    {
+    {  
+
         base.loadData();
 
         if (bIsUnlock)
         {
-
             transform.position = sitPos.position;
             transform.rotation = sitPos.rotation;
             npcMovement.StopNpc();
@@ -47,27 +50,62 @@ public class StaffHandler : UpgradeHandler
 
     }
 
+    public override void SetTakeMoneyData()
+    {
+        if (bIsUnlock)
+        {
+
+            DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(currentProperties.upgradeCost));
+        }
+        else
+        {
+            DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(currentCost));
+        }
+
+    }
 
     public override void OnUnlockAndUpgrade()
     {
-
-        base.OnUnlockAndUpgrade();
-
-        if (!bIsStaffAtSit)
+        if (bIsUnlock)
         {
-            
-            npcMovement.MoveToTarget(standPos, () =>
+            if (currentProperties != null)
             {
-                bIsStaffAtSit = true;
-                npcMovement.animator.PlayAnimation(AnimType.Talking_01);
-            });
+                foreach (var item in currentProperties.nextUpgeades)
+                {
+                    item.bIsUpgraderActive = true;
+                    item.SetUpgredeVisual();
+                }
+            }
+
+            bIsUpgraderActive = false;
+
+            level++;
+            roundUpgradePartical.ForEach(X => X.Play());
 
         }
+        else
+        {
+            base.OnUnlockAndUpgrade();
+
+            if (!bIsStaffAtSit)
+            {
+                npcMovement.Init();
+                npcMovement.MoveToTarget(standPos, () =>
+                {
+                    bIsStaffAtSit = true;
+                    transform.position = sitPos.position;
+                    transform.rotation = sitPos.rotation;
+                    npcMovement.animator.PlayAnimation(AnimType.Talking_01);
+                });
+
+            }
+
+
+        }
+        currentProperties = staffUpgrades[level];
+
     }
 
-    public void OnReachSheat()
-    {
 
-    }
 
 }
