@@ -19,13 +19,13 @@ public class AnimationController : MonoBehaviour
     {
         if (controller != null)
         {
-            Debug.LogError("Not Null");
+     
             controller.Play(anim.ToString());
 
         }
         else
         {
-            Debug.LogError("Null");
+        
 
         }
     }

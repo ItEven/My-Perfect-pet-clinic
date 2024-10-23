@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomManager : MonoBehaviour
+public class HospitalManager : MonoBehaviour
 {
     public RoomHandler[] roomHandlers;
 

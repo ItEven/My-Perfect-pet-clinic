@@ -60,32 +60,36 @@ public class PatientManager : MonoBehaviour
     float lastSub = 0f;
     private IEnumerator SpwaningPatinet()
     {
-        yield return new WaitForSeconds(spwanDalay);
-
-        if (!receptionManager.waitingQueue.bIsQueueFull())
+        while (true)
         {
-            GameObject gameObject = Instantiate(GetRandomPatients(), playerSpwanPos.position, Quaternion.identity, playerSpwanPos);
 
-            var p = gameObject.GetComponent<Patient>();
+            yield return new WaitForSeconds(spwanDalay);
+
+            if (!receptionManager.waitingQueue.bIsQueueFull())
+            {
+                GameObject gameObject = Instantiate(GetRandomPatients(), playerSpwanPos.position, Quaternion.identity, playerSpwanPos);
+
+                var p = gameObject.GetComponent<Patient>();
 
 
-            GameObject gameObject_2 = Instantiate(GetRandomAnimalObj(), p.animalFollowPos.position, Quaternion.identity, playerSpwanPos);
+                GameObject gameObject_2 = Instantiate(GetRandomAnimalObj(), p.animalFollowPos.position, Quaternion.identity, playerSpwanPos);
 
-            var a = gameObject_2.GetComponent<Animal>();
-            //a.player = p.animalFollowPos;
+                var a = gameObject_2.GetComponent<Animal>();
+                //a.player = p.animalFollowPos;
 
-            p.animal = a;
-            p.NPCMovement.Init();
-            a.Init();
-            receptionManager.waitingQueue.AddInQueue(p);
-            p.MoveAnimal();
+                p.animal = a;
+                p.NPCMovement.Init();
+                a.Init();
+                receptionManager.waitingQueue.AddInQueue(p);
+                p.MoveAnimal();
+            }
+            else
+            {
+                StopSpwanPatinet();
+                yield break;
+            }
+
         }
-        else
-        {
-            StopSpwanPatinet();
-            yield break;
-        }
-
     }
     #endregion
 
@@ -97,5 +101,5 @@ public class PatientManager : MonoBehaviour
         return AnimalData.animales[randomIndex].Animal[ranIndex];
     }
 
-    
+
 }

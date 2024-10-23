@@ -3,14 +3,12 @@ using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-public class ReceptionManager : MonoBehaviour
+public class HallManager : MonoBehaviour
 {
     [Header("Task Number")]
     public int currentTask;
 
-    [Header("Reception Details")]
+    [Header("Hall Details")]
     public int unlockPrice;
     internal int currentCost
     {
@@ -25,13 +23,6 @@ public class ReceptionManager : MonoBehaviour
     public bool bIsUpgraderActive;
 
     public Upgrader upGrader;
-    public MoneyBox moneyBox;
-    internal WaitingQueue waitingQueue;
-     
-
-
-    [Header(" NPC Details")]
-    public ReceptionNPC npc;
 
 
     [Header(" Visuals Details")]
@@ -42,9 +33,8 @@ public class ReceptionManager : MonoBehaviour
     #region Initializers
 
     SaveManager saveManager;
-    EconomyManager economyManager;
     GameManager gameManager;
-    UiManager uiManager;
+  
 
     private void OnEnable()
     {
@@ -58,9 +48,8 @@ public class ReceptionManager : MonoBehaviour
     public void UpdateInitializers()
     {
         saveManager = SaveManager.instance;
-        economyManager = saveManager.economyManager;
         gameManager = saveManager.gameManager;
-        uiManager = saveManager.uiManager;
+      
     }
 
     #endregion
@@ -69,7 +58,6 @@ public class ReceptionManager : MonoBehaviour
     public void Start()
     {
         currentCost = unlockPrice;
-        waitingQueue = GetComponent<WaitingQueue>();
         loadData();
     }
     public void loadData()
@@ -93,7 +81,7 @@ public class ReceptionManager : MonoBehaviour
             {
                 gameManager.DropObj(item);
             }
-            npc.gameObject.SetActive(true);
+
 
             roundUpgradePartical.ForEach(X => X.Play());
         }
@@ -113,7 +101,7 @@ public class ReceptionManager : MonoBehaviour
                     item.SetActive(true);
                 }
             }
-            npc.gameObject.SetActive(false);
+
 
         }
         gameManager.ReBuildNavmesh();
@@ -147,7 +135,7 @@ public class ReceptionManager : MonoBehaviour
             {
                 TaskManager.instance.OnTaskComplete(currentTask);
             }
-        } 
+        }
     }
 
     public void SetTakeMoneyData(int cost)
@@ -155,12 +143,5 @@ public class ReceptionManager : MonoBehaviour
         DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(cost));
     }
 
-
-    public void LoadNextUpgrade()
-    {
-        npc.LoadNextUpgrade();
-    }
-
     #endregion
-
 }

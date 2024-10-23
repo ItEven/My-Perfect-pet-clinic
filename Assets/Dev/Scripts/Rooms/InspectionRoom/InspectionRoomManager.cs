@@ -5,12 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ReceptionManager : MonoBehaviour
+public class InspectionRoomManager : MonoBehaviour
 {
     [Header("Task Number")]
     public int currentTask;
-
-    [Header("Reception Details")]
+    [Header("InspectionRoom Details")]
     public int unlockPrice;
     internal int currentCost
     {
@@ -27,11 +26,11 @@ public class ReceptionManager : MonoBehaviour
     public Upgrader upGrader;
     public MoneyBox moneyBox;
     internal WaitingQueue waitingQueue;
-     
+
 
 
     [Header(" NPC Details")]
-    public ReceptionNPC npc;
+    public InspectionRoomNpc npc;
 
 
     [Header(" Visuals Details")]
@@ -147,7 +146,7 @@ public class ReceptionManager : MonoBehaviour
             {
                 TaskManager.instance.OnTaskComplete(currentTask);
             }
-        } 
+        }
     }
 
     public void SetTakeMoneyData(int cost)
@@ -162,5 +161,4 @@ public class ReceptionManager : MonoBehaviour
     }
 
     #endregion
-
 }

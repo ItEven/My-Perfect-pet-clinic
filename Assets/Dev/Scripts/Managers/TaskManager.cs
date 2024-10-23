@@ -7,9 +7,14 @@ using Sirenix.OdinInspector;
 public class TaskManager : MonoBehaviour
 {
     public static TaskManager instance;
-   // public event Action<int> OnTaskComplite;
+    // public event Action<int> OnTaskComplite;
+    public PatientManager patientManager;  
 
+    public HallManager hallManager_01;
     public ReceptionManager receptionManager;
+    public InspectionRoomManager inspectionRoomManager_01;
+    public InspectionRoomManager pharmacy_room;
+    public InspectionRoomManager storage_room;
 
     #region Initializers
     SaveManager saveManager;
@@ -24,13 +29,13 @@ public class TaskManager : MonoBehaviour
     private void OnEnable()
     {
         UpdateInitializers();
-       // OnTaskComplite += OnChcekTask;
+        // OnTaskComplite += OnChcekTask;
 
     }
     private void OnDisable()
     {
         UpdateInitializers();
-      //  OnTaskComplite -= OnChcekTask;
+        //  OnTaskComplite -= OnChcekTask;
 
     }
 
@@ -50,7 +55,29 @@ public class TaskManager : MonoBehaviour
     {
         switch (taskNum)
         {
-            case 0: receptionManager.LoadNextUpgrade(); break;
+            case 0:
+                receptionManager.bIsUpgraderActive = true;
+                receptionManager.SetUpgredeVisual(); break;
+            case 1:
+                inspectionRoomManager_01.bIsUpgraderActive = true;
+                inspectionRoomManager_01.SetUpgredeVisual();
+                break;
+            case 2:
+                pharmacy_room.bIsUpgraderActive = true;
+                pharmacy_room.SetUpgredeVisual();
+                patientManager.gameObject.SetActive(true);
+                break;
+            case 3:
+                storage_room.bIsUpgraderActive = true;
+                storage_room.SetUpgredeVisual();
+                break;
+
+            case 4:
+                receptionManager.LoadNextUpgrade();
+                break;
+
+            default: break;
+
         }
     }
 }
