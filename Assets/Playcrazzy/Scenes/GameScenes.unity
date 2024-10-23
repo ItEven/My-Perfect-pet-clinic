@@ -920,6 +920,13 @@ MonoBehaviour:
   receptionManager: {fileID: 822428934}
   patients:
   - {fileID: 6770784963712755198, guid: 726066e75aab568469b629aa7b5649ed, type: 3}
+  - {fileID: 4753505445743004100, guid: 3bf819d7a8880e3478b7c718444ead04, type: 3}
+  - {fileID: 5235183939208596063, guid: dce1f9d30795b9346afbfe7f751cd480, type: 3}
+  - {fileID: 6611707397996608419, guid: bbc8d853811c2d84cba99abb1afdc6b6, type: 3}
+  - {fileID: 5865388031168382676, guid: a774eb338686e954d8e66aa9e795882f, type: 3}
+  - {fileID: 5730015727171928620, guid: 8f17dd2bc1de37e4094276c0677bb692, type: 3}
+  - {fileID: 1482779252948031042, guid: d9a7604d8a9eed44b9738140a48866f1, type: 3}
+  - {fileID: 5189658552941449280, guid: 3973bb545c5396841bca420e9b2aee0e, type: 3}
   playerSpwanPos: {fileID: 1513302853}
   animalSpwanPos: {fileID: 0}
   spwanDalay: 2
@@ -5282,6 +5289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccef314d87b6d1741bc89170f74024c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationController: {fileID: 1486097418}
   joystick: {fileID: 8170153791829913699}
   moneyCollectPoint: {fileID: 1938873651}
   rotationRate: 800
@@ -5296,6 +5304,7 @@ MonoBehaviour:
   airControl: 0.3
   gravity: {x: 0, y: -9.81, z: 0}
   isDragging: 0
+  bCanDarg: 1
 --- !u!136 &574426167
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8659,6 +8668,7 @@ Transform:
   - {fileID: 2109240277}
   - {fileID: 498342880}
   - {fileID: 618056589}
+  - {fileID: 1801567337}
   - {fileID: 922571534}
   m_Father: {fileID: 43604996}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -9046,7 +9056,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1801567337}
   - {fileID: 1470740738}
   - {fileID: 1114231396}
   - {fileID: 1711599037}
@@ -14209,6 +14218,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1486097416}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8dc41119abc71f341ae6063acc324fd5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1486097418}
   m_SourcePrefab: {fileID: 100100000, guid: 8dc41119abc71f341ae6063acc324fd5, type: 3}
 --- !u!4 &1486097414 stripped
 Transform:
@@ -14229,7 +14242,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486097415}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc8338cf59b0db64cb74e2527ebbf69c, type: 3}
   m_Name: 
@@ -14257,6 +14270,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1486097418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486097415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff985437424ebff41bee460562444fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1486097417}
+  startanimation: 0
 --- !u!1 &1513302852
 GameObject:
   m_ObjectHideFlags: 0
@@ -17306,12 +17333,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801567336}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.067, y: 0.567, z: -0}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -1.0670002, y: 0.567, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 922571534}
+  m_Father: {fileID: 822428933}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1803141971
 GameObject:
@@ -23448,6 +23475,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
+        type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
+        type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
+        type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 822428934}
+    - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
+        type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
+        type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPlayerTriger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
+        type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ReceptionManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
+        type: 3}
+      propertyPath: onTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

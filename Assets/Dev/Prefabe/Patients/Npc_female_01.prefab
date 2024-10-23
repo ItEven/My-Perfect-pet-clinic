@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4510734232331113358}
   - component: {fileID: 7293927979537291256}
   m_Layer: 0
-  m_Name: Patient
+  m_Name: Npc_female_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,16 +1,17 @@
 ﻿using EasyCharacterMovement;
+using UnityEditor.Search;
 using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour
 {
+    public AnimationController animationController;
     public FloatingJoystick joystick;
     public Transform moneyCollectPoint;
     public float rotationRate = 540.0f;
-
     public float maxSpeed = 5;
-    public  float customAngle = 45f;
-    public  float Senc = 45f;
+    public float customAngle = 45f;
+    public float Senc = 45f;
 
     public float acceleration = 20.0f;
     public float deceleration = 20.0f;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 desiredVelocity;
 
     public bool isDragging;
+    public bool bCanDarg;
 
     private void Awake()
     {
@@ -41,30 +43,44 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HendelMovement();
+        HendelAnimtion();
     }
-
+    float horizontal;
+    float vertical;
     #region Movement
     public void HendelMovement()
-    {
+    {    
 
-        float horizontal = joystick.Horizontal;
-        float vertical = joystick.Vertical;
+
+        //if (!bCanDarg)
+        //{
+
+        //    StopPlayer();
+        //    return;
+        //}
+        //else
+        //{
+            horizontal = joystick.Horizontal;
+            vertical = joystick.Vertical;
+        //}
 
         // Check if the player is dragging
         isDragging = Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f;
 
+       
+
         // Create a movement direction vector (in world space)
         _movementDirection = Vector3.zero;
-        _movementDirection += Vector3.right * horizontal;  
+        _movementDirection += Vector3.right * horizontal;
         _movementDirection += Vector3.forward * vertical;
-        
+
         _movementDirection = Quaternion.AngleAxis(customAngle, Vector3.up) * _movementDirection;
 
         // Make Sure it won't move faster diagonally
         _movementDirection = Vector3.ClampMagnitude(_movementDirection, 1.0f);
 
         // Rotate towards movement direction
-        _characterMovement.RotateTowards(_movementDirection, rotationRate * Time.deltaTime*2f);
+        _characterMovement.RotateTowards(_movementDirection, rotationRate * Time.deltaTime * 2f);
 
         // Perform movement
         desiredVelocity = _movementDirection * maxSpeed;
@@ -88,12 +104,52 @@ public class PlayerController : MonoBehaviour
         velocity = new Vector2(joystick.Horizontal, joystick.Vertical).magnitude;
         return velocity = Mathf.Clamp01(velocity);
     }
+    #endregion
+
+
+    #region HendelAnimtion
+    internal bool bhasSit;
+    internal bool bIsDiagnosing;
+    internal bool bIsTyping;
+    public void HendelAnimtion()
+    {
+        if (IsMoving())
+        {
+            animationController.PlayAnimation(AnimType.Walk);
+            animationController.controller.SetFloat("Velocity", GetVelocity());
+        }
+        else
+        {
+            if (bhasSit && !bIsTyping && !bIsDiagnosing)
+            {
+                animationController.PlayAnimation(AnimType.Sti_Idle);
+            }
+            else if (bhasSit && bIsTyping)
+            {
+                animationController.PlayAnimation(AnimType.Typing);
+            }
+            else if (bhasSit && bIsDiagnosing)
+            {
+                animationController.PlayAnimation(AnimType.Diagnosing_01);
+            }
+            else
+            {
+                animationController.PlayAnimation(AnimType.Idle);
+            }
+        }
+    }
 
     #endregion
 
     #region Intreaction 
 
+    public void StopPlayer()
+    {
 
+        _movementDirection = Vector3.zero;
+        desiredVelocity = Vector3.zero;
+        _characterMovement.SimpleMove(Vector3.zero, 0, 0, 0, groundFriction, airFriction, gravity);
+    }
 
     #endregion
 

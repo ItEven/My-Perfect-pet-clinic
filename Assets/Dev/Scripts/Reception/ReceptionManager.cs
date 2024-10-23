@@ -27,7 +27,7 @@ public class ReceptionManager : MonoBehaviour
     public Upgrader upGrader;
     public MoneyBox moneyBox;
     internal WaitingQueue waitingQueue;
-     
+
 
 
     [Header(" NPC Details")]
@@ -147,7 +147,7 @@ public class ReceptionManager : MonoBehaviour
             {
                 TaskManager.instance.OnTaskComplete(currentTask);
             }
-        } 
+        }
     }
 
     public void SetTakeMoneyData(int cost)
@@ -160,6 +160,30 @@ public class ReceptionManager : MonoBehaviour
     {
         npc.LoadNextUpgrade();
     }
+
+    #endregion
+
+    #region Prosece Mechanics
+
+    public void OnPlayerTriger()
+    {
+        if (!npc.bIsUnlock)
+        {   
+
+            gameManager.playerController.enabled = false;
+         
+            //gameManager.playerController.joystick.gameObject.SetActive(false);
+            gameManager.playerController.transform.position = npc.sitPos.position;
+            gameManager.playerController.transform.rotation = npc.sitPos.rotation;
+            DOVirtual.DelayedCall(5f, () =>
+            {
+                gameManager.playerController.enabled = true;
+                //gameManager.playerController.joystick.gameObject.SetActive(true);
+
+            });
+        }
+    }
+
 
     #endregion
 

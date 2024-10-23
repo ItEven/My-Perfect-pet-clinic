@@ -4,9 +4,10 @@ public enum AnimType
     Idle,
     Walk,
     Npc_Walk,
-    Talking_01,
-    Talking_02,
-    Sit_Type
+    Diagnosing_01,
+    Diagnosing_02,
+    Typing,
+    Sti_Idle
 
 }
 

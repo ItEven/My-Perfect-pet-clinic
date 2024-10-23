@@ -10,7 +10,7 @@ public class OnTrigger : MonoBehaviour
     public SpriteRenderer filler;
     private bool bIsStay = false;
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
