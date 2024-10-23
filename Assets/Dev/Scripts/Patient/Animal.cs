@@ -3,27 +3,19 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Sirenix.OdinInspector;
+using DG.Tweening;
 
 public class Animal : MonoBehaviour
 {
     public NavMeshAgent navmeshAgent;
-    //public Animator animator;
-
+    public AnimationController animator;
     public Transform player;
 
 
-    public Action onCompleteAction;
-
-    #region Aniamtions State
-    [Header("Animation State Hash")]
-    public static int walking = Animator.StringToHash("Walking");
-    public static int idle = Animator.StringToHash("Idle");
-    #endregion
-
-    private void Start()
-    {
-        Init();
-    }
+    //private void Start()
+    //{
+    //    Init();
+    //}
 
     public void Init()
     {
@@ -38,18 +30,19 @@ public class Animal : MonoBehaviour
 
     public void PerformUpdate()
     {
-        //if (player != null)
-        //{
-        //    MoveToTarget(player);
-        //}
 
         if (!navmeshAgent.enabled)
             return;
 
         if (navmeshAgent.isStopped)
         {
-          //  animator.Play(idle);
+            animator.PlayAnimation(AnimType.Idle);
             return;
+        }
+
+        if (player != null)
+        {
+            MoveToTarget(player);
         }
 
         if (!navmeshAgent.pathPending)
@@ -60,28 +53,37 @@ public class Animal : MonoBehaviour
                 {
                     if (navmeshAgent.isActiveAndEnabled)
                         navmeshAgent.ResetPath();
+                    StopAnimal();
 
-                   // animator.Play(idle);
-
-                    navmeshAgent.isStopped = true;
-                    navmeshAgent.enabled = false;
-                    onCompleteAction?.Invoke();
                 }
             }
             else
             {
-                //animator.Play(walking);
+                animator.PlayAnimation(AnimType.Walk);
             }
+
         }
     }
 
-    
+
     public void MoveToTarget(Transform target)
     {
-
-        navmeshAgent.enabled = true;
-        navmeshAgent.isStopped = false;
-        
         navmeshAgent.SetDestination(target.position);
+    }
+
+    public void startFollow()
+    {
+        DOVirtual.DelayedCall(1.5f, () =>
+        {
+            navmeshAgent.enabled = true;
+            navmeshAgent.isStopped = false;
+            animator.PlayAnimation(AnimType.Walk);
+        });
+    }
+    public void StopAnimal()
+    {
+        animator.PlayAnimation(AnimType.Idle);
+        navmeshAgent.isStopped = true;
+        navmeshAgent.enabled = false;
     }
 }

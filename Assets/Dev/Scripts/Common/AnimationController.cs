@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    internal Animator controller;
+    public Animator controller;
     public AnimType startanimation;
 
     void Start()
@@ -17,7 +17,17 @@ public class AnimationController : MonoBehaviour
 
     public void PlayAnimation(AnimType anim)
     {
-        controller.Play(anim.ToString());
+        if (controller != null)
+        {
+            Debug.LogError("Not Null");
+            controller.Play(anim.ToString());
+
+        }
+        else
+        {
+            Debug.LogError("Null");
+
+        }
     }
 
 }

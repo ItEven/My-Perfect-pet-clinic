@@ -14,10 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animales:
   - animalType: 0
-    Animal: []
-  - animalType: 1
-    Animal: []
-  - animalType: 2
-    Animal: []
-  - animalType: 3
-    Animal: []
+    Animal:
+    - {fileID: 8623219520096653994, guid: 91894868b1a6d304da0c0ff2e43b10e1, type: 3}

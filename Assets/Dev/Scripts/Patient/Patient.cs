@@ -9,11 +9,14 @@ using UnityEngine.AI;
 public class Patient : MonoBehaviour
 {
     public Transform animalFollowPos;
-    internal NPCMovement NPCMovement;
+    public NPCMovement NPCMovement;
+    public Animal animal;
 
-    private void Start()
+ 
+    public void MoveAnimal()
     {
-        NPCMovement = GetComponent<NPCMovement>();
+        animal.player = animalFollowPos;
+        animal.startFollow();
     }
 
 }

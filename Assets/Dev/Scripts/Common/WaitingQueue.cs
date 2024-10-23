@@ -8,7 +8,7 @@ public class WaitingQueue : MonoBehaviour
     public List<Transform> queue = new List<Transform>();
     public List<Patient> patientInQueue = new List<Patient>();
     [SerializeField] int queueIndex;
-    [SerializeField] UnityAction OnReachQueueEnd;
+    [SerializeField] UnityEvent OnReachQueueEnd;
 
     public int QueueIndex
     {
@@ -27,6 +27,8 @@ public class WaitingQueue : MonoBehaviour
                 patientInQueue.Add(patient);
             else
                 return;
+
+            //patient.NPCMovement.MoveToTarget(queue[QueueIndex], null); 
 
             patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
