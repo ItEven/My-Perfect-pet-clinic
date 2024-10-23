@@ -24,6 +24,8 @@ public class ReceptionManager : MonoBehaviour
 
     public Upgrader upGrader;
     public MoneyBox moneyBox;
+    internal WaitingQueue waitingQueue;
+     
 
 
     [Header(" NPC Details")]
@@ -65,6 +67,7 @@ public class ReceptionManager : MonoBehaviour
     public void Start()
     {
         currentCost = unlockPrice;
+        waitingQueue = GetComponent<WaitingQueue>();
         loadData();
     }
     public void loadData()

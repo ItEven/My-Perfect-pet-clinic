@@ -62,26 +62,26 @@ public class PatientManager : MonoBehaviour
     {
         yield return new WaitForSeconds(spwanDalay);
 
-        //if (receptionManager.bIsQueueFull())
-        //{
-        //    GameObject gameObject = Instantiate(GetRandomPatients(), playerSpwanPos.position, Quaternion.identity, playerSpwanPos);
+        if (receptionManager.waitingQueue.bIsQueueFull())
+        {
+            GameObject gameObject = Instantiate(GetRandomPatients(), playerSpwanPos.position, Quaternion.identity, playerSpwanPos);
 
-        //    var p = gameObject.GetComponent<Patient>();
-
-
-        //    GameObject gameObject_2 = Instantiate(GetRandomAnimalObj(), animalSpwanPos.position, Quaternion.identity, animalSpwanPos);
-
-        //    var a = gameObject_2.GetComponent<Animal>();
-        //    a.player = p.animalFollowPos;
+            var p = gameObject.GetComponent<Patient>();
 
 
-        //    receptionManager.AddInQueue(p);
-        //}
-        //else
-        //{
-        //    StopSpwanPatinet();
-        //    yield break;
-        //}
+            GameObject gameObject_2 = Instantiate(GetRandomAnimalObj(), animalSpwanPos.position, Quaternion.identity, animalSpwanPos);
+
+            var a = gameObject_2.GetComponent<Animal>();
+            a.player = p.animalFollowPos;
+
+
+            receptionManager.waitingQueue.AddInQueue(p);
+        }
+        else
+        {
+            StopSpwanPatinet();
+            yield break;
+        }
 
     }
     #endregion

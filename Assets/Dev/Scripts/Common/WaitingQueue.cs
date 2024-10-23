@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.Events;
 
-public abstract class WaitingQueue : MonoBehaviour
+public class WaitingQueue : MonoBehaviour
 {
     public List<Transform> queue = new List<Transform>();
     public List<Patient> patientInQueue = new List<Patient>();
     [SerializeField] int queueIndex;
+    [SerializeField] UnityAction OnReachQueueEnd;
 
     public int QueueIndex
     {
@@ -25,7 +28,7 @@ public abstract class WaitingQueue : MonoBehaviour
             else
                 return;
 
-            patient.MoveToTarget(queue[QueueIndex], () =>
+            patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
                 OnReachedQueueAction(patient);
             });
@@ -44,7 +47,7 @@ public abstract class WaitingQueue : MonoBehaviour
 
         var patient = PatientManager.instance.SpwanNewPatinet();
 
-        patient.MoveToTarget(queue[QueueIndex], () =>
+        patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
                 OnReachedQueueAction(patient);
             });
@@ -59,7 +62,13 @@ public abstract class WaitingQueue : MonoBehaviour
 
     public virtual void OnReachedQueueAction(Patient customer)
     {
-        //Will execute by drive class
+        if (customer != null)
+        {
+            if (customer == patientInQueue[0])
+            {
+                OnReachQueueEnd?.Invoke();
+            }
+        }
     }
 
     public virtual void CheckForFreeSlots()
