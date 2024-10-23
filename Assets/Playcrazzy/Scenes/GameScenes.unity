@@ -8082,6 +8082,9 @@ MonoBehaviour:
   - {fileID: 1577290285}
   patientInQueue: []
   queueIndex: 0
+  OnReachQueueEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &828437419
 GameObject:
   m_ObjectHideFlags: 0
@@ -10602,6 +10605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff985437424ebff41bee460562444fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   startanimation: 0
 --- !u!1001 &1236912551
 PrefabInstance:
@@ -12531,6 +12535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff985437424ebff41bee460562444fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   startanimation: 5
 --- !u!1001 &1473789649
 PrefabInstance:
