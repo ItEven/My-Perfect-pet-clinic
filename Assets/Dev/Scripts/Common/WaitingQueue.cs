@@ -47,12 +47,25 @@ public class WaitingQueue : MonoBehaviour
     public virtual void ReOrderQueue()
     {
 
-        var patient = PatientManager.instance.SpwanNewPatinet();
+        QueueIndex = 0;
 
-        patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
+ 
+        for (int i = 0; i < patientInQueue.Count; i++)
+        {
+            var patient = patientInQueue[i];
+
+      
+            patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
                 OnReachedQueueAction(patient);
             });
+            patient.MoveAnimal();
+
+
+            QueueIndex++;
+        }
+        PatientManager.instance.StartSpwanPatinet();
+
 
     }
     public virtual void RemoveFromQueue(Patient customer)
@@ -73,7 +86,8 @@ public class WaitingQueue : MonoBehaviour
         }
     }
 
-  
+
+
 
 
 }

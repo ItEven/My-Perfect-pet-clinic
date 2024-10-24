@@ -39,23 +39,24 @@ public class Animal : MonoBehaviour
             animator.PlayAnimation(AnimType.Idle);
             return;
         }
-
         if (player != null)
         {
             MoveToTarget(player);
         }
 
+
         if (!navmeshAgent.pathPending)
         {
             if (navmeshAgent.remainingDistance <= navmeshAgent.stoppingDistance)
             {
-                if (!navmeshAgent.hasPath || navmeshAgent.velocity.sqrMagnitude == 0f)
-                {
+                //if (!navmeshAgent.hasPath || navmeshAgent.velocity.sqrMagnitude == 0f)
+                //{
                     if (navmeshAgent.isActiveAndEnabled)
                         navmeshAgent.ResetPath();
                     StopAnimal();
 
-                }
+                //}k
+                //}k
             }
             else
             {
@@ -68,12 +69,13 @@ public class Animal : MonoBehaviour
 
     public void MoveToTarget(Transform target)
     {
+
         navmeshAgent.SetDestination(target.position);
     }
 
     public void startFollow()
     {
-        DOVirtual.DelayedCall(1.5f, () =>
+        DOVirtual.DelayedCall(0.5f, () =>
         {
             navmeshAgent.enabled = true;
             navmeshAgent.isStopped = false;
@@ -84,6 +86,6 @@ public class Animal : MonoBehaviour
     {
         animator.PlayAnimation(AnimType.Idle);
         navmeshAgent.isStopped = true;
-        navmeshAgent.enabled = false;
+        //navmeshAgent.enabled = false;
     }
 }

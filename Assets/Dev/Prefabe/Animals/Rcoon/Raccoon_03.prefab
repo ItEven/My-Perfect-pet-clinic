@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6930316341194323337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5306024721753503271}
+  - component: {fileID: 4487608283156566281}
+  - component: {fileID: 6274087620766069368}
+  m_Layer: 0
+  m_Name: Raccoon_03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5306024721753503271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930316341194323337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 61973156817221935}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4487608283156566281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930316341194323337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9308d38d2cb152143a9fa476a246f2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navmeshAgent: {fileID: 6274087620766069368}
+  animator: {fileID: 4049396651358319291}
+  player: {fileID: 0}
+--- !u!195 &6274087620766069368
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930316341194323337}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.28
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 20
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.55
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!1001 &7650992164106508845
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5306024721753503271}
+    m_Modifications:
+    - target: {fileID: 6304453442681051039, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304453442681051039, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7b48e83ee62533740b90a00168499f03, type: 2}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8290603463784323891, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      propertyPath: m_Name
+      value: Raccoon PA (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8290603463784323891, guid: dcbb04aae0a131849993968758e3c5ef,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4049396651358319291}
+  m_SourcePrefab: {fileID: 100100000, guid: dcbb04aae0a131849993968758e3c5ef, type: 3}
+--- !u!4 &61973156817221935 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7706191778179621634, guid: dcbb04aae0a131849993968758e3c5ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 7650992164106508845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1811550113376583966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8290603463784323891, guid: dcbb04aae0a131849993968758e3c5ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 7650992164106508845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4049396651358319291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811550113376583966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff985437424ebff41bee460562444fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4418070640123415986}
+  startanimation: 0
+--- !u!95 &4418070640123415986 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6304453442681051039, guid: dcbb04aae0a131849993968758e3c5ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 7650992164106508845}
+  m_PrefabAsset: {fileID: 0}

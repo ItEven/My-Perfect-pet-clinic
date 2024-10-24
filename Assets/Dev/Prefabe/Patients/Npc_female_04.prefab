@@ -1211,6 +1211,7 @@ MonoBehaviour:
   animalFollowPos: {fileID: 166406884820846498}
   NPCMovement: {fileID: 8556789058507023525}
   animal: {fileID: 0}
+  diseaseType: 0
 --- !u!114 &8556789058507023525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,7 +1239,7 @@ NavMeshAgent:
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 500
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

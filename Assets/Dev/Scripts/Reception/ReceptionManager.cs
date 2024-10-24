@@ -222,7 +222,7 @@ public class ReceptionManager : MonoBehaviour
                 .SetId(tweenID)
                 .OnComplete(() =>
                 {
-                    Debug.LogError("waitingQueue = 3");
+                    Debug.LogError("waitingQu eue = 3");
 
                     moneyBox.TakeMoney(npc.currentLevelData.customerCost);
                     room.RegisterPatient(waitingQueue.patientInQueue[0]);
@@ -237,6 +237,7 @@ public class ReceptionManager : MonoBehaviour
 
     public void StopProsses()
     {
+        bCanProsses = false;
         worldProgresBar.fillAmount = 0;
         DOTween.Kill(tweenID);
     }

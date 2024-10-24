@@ -69,7 +69,7 @@ public class NPCMovement : MonoBehaviour
 
     public void MoveToTarget(Transform target, Action onComplete = null)
     {
-        DOVirtual.DelayedCall(1f, () =>
+        DOVirtual.DelayedCall(0.2f, () =>
         {
             if (navmeshAgent != null)
             {

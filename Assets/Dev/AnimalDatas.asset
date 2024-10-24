@@ -19,3 +19,12 @@ MonoBehaviour:
   - animalType: 1
     Animal:
     - {fileID: 305982639868614230, guid: 318355a707e0ff74181e8545b4504231, type: 3}
+  - animalType: 3
+    Animal:
+    - {fileID: 0}
+  - animalType: 2
+    Animal:
+    - {fileID: 732051841999303853, guid: 0f3e6df0539d86f478e4b003665ef58b, type: 3}
+    - {fileID: 6169664503884020033, guid: 071ba92976c4e3441aa0fa6ba5c4b964, type: 3}
+    - {fileID: 6930316341194323337, guid: e99cb28bda43df3488a8868ad3066ce9, type: 3}
+    - {fileID: 3013717078126421647, guid: ba908316fbae6fb47aad86a414bf8a16, type: 3}

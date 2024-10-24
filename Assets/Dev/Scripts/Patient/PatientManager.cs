@@ -60,7 +60,7 @@ public class PatientManager : MonoBehaviour
 
     private Coroutine takeMoneyCoroutine;
 
-    private void StartSpwanPatinet()
+    public void StartSpwanPatinet()
     {
         if (takeMoneyCoroutine == null)
         {
@@ -82,26 +82,62 @@ public class PatientManager : MonoBehaviour
     {
         while (true)
         {
-
+            yield return new WaitForSeconds(spwanDalay);
 
             if (!receptionManager.waitingQueue.bIsQueueFull())
             {
-                GameObject gameObject = Instantiate(GetRandomPatients(), playerSpwanPos.position, Quaternion.identity, playerSpwanPos);
+                GameObject randomPatientPrefab = GetRandomPatients();
+                if (randomPatientPrefab != null)
+                {
+                    GameObject gameObject = Instantiate(randomPatientPrefab, playerSpwanPos.position, Quaternion.identity, playerSpwanPos);
 
-                var p = gameObject.GetComponent<Patient>();
+                    Patient p = gameObject.GetComponent<Patient>();
+                    if (p != null)
+                    {
+                        GameObject randomAnimalPrefab = GetRandomAnimalObj();
+                        if (randomAnimalPrefab != null)
+                        {
+                            if (p.animalFollowPos != null)
+                            {
 
+                                GameObject gameObject_2 = Instantiate(randomAnimalPrefab, p.animalFollowPos.position, Quaternion.identity, p.animalFollowPos);
 
-                GameObject gameObject_2 = Instantiate(GetRandomAnimalObj(), p.animalFollowPos.position, Quaternion.identity, playerSpwanPos);
-
-                var a = gameObject_2.GetComponent<Animal>();
-                //a.player = p.animalFollowPos;
-
-                p.diseaseType = GetRandomDisease();
-                p.animal = a;
-                p.NPCMovement.Init();
-                a.Init();
-                receptionManager.waitingQueue.AddInQueue(p);
-                p.MoveAnimal();
+                                Animal a = gameObject_2.GetComponent<Animal>();
+                                if (a != null)
+                                {
+                                    p.diseaseType = GetRandomDisease();
+                                    p.animal = a;
+                                    p.NPCMovement.Init();
+                                    a.Init();
+                                    receptionManager.waitingQueue.AddInQueue(p);
+                                    p.MoveAnimal();
+                                }
+                                else
+                                {
+                                    Debug.LogWarning("Animal component missing!");
+                                }
+                            }
+                            else
+                            {
+                                Destroy(p.gameObject);
+                                Debug.LogWarning(" animalFollowPos is null!");
+                            }
+                        }
+                        else
+                        {
+                            Destroy(p.gameObject);
+                            Debug.LogWarning("Animal prefab is null ");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Patient component missing!");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Patient prefab is null!");
+                }
             }
             else
             {
@@ -109,14 +145,26 @@ public class PatientManager : MonoBehaviour
                 yield break;
             }
 
-            yield return new WaitForSeconds(spwanDalay);
-
         }
     }
     public GameObject GetRandomAnimalObj()
     {
+        if (AnimalData.animales == null || AnimalData.animales.Length == 0)
+        {
+            Debug.LogWarning("Animal data array is empty or null!");
+            return null;
+        }
+
         int randomIndex = Random.Range(0, AnimalData.animales.Length);
+
+        if (AnimalData.animales[randomIndex].Animal == null || AnimalData.animales[randomIndex].Animal.Length == 0)
+        {
+            Debug.LogWarning($"Animal array at index {randomIndex} is empty or null!");
+            return null;
+        }
+
         int ranIndex = Random.Range(0, AnimalData.animales[randomIndex].Animal.Length);
+
         return AnimalData.animales[randomIndex].Animal[ranIndex];
     }
 
