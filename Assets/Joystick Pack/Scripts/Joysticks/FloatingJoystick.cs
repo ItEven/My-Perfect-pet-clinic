@@ -15,6 +15,11 @@ public class FloatingJoystick : Joystick
     {
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
+        if (GameManager.Instance.playerController.bhasSit)
+        {
+            GameManager.Instance.playerController.bhasSit = false;
+            GameManager.Instance.playerController.enabled = true;
+        }
         base.OnPointerDown(eventData);
     }
 

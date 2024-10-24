@@ -20,13 +20,13 @@ public class PlayerController : MonoBehaviour
     public float airFriction = 0.5f;
 
     public float jumpImpulse = 6.5f;
-
+    
     [Range(0.0f, 1.0f)]
     public float airControl = 0.3f;
 
     public Vector3 gravity = Vector3.down * 9.81f;
 
-    private CharacterMovement _characterMovement;
+    internal CharacterMovement _characterMovement;
 
     private Vector3 _movementDirection;
 
@@ -49,40 +49,32 @@ public class PlayerController : MonoBehaviour
     float vertical;
     #region Movement
     public void HendelMovement()
-    {    
+    {
 
 
-        //if (!bCanDarg)
-        //{
+     
 
-        //    StopPlayer();
-        //    return;
-        //}
-        //else
-        //{
-            horizontal = joystick.Horizontal;
+        horizontal = joystick.Horizontal;
             vertical = joystick.Vertical;
-        //}
-
-        // Check if the player is dragging
+     
         isDragging = Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f;
 
        
 
-        // Create a movement direction vector (in world space)
+
         _movementDirection = Vector3.zero;
         _movementDirection += Vector3.right * horizontal;
         _movementDirection += Vector3.forward * vertical;
 
         _movementDirection = Quaternion.AngleAxis(customAngle, Vector3.up) * _movementDirection;
 
-        // Make Sure it won't move faster diagonally
+
         _movementDirection = Vector3.ClampMagnitude(_movementDirection, 1.0f);
 
-        // Rotate towards movement direction
+
         _characterMovement.RotateTowards(_movementDirection, rotationRate * Time.deltaTime * 2f);
 
-        // Perform movement
+
         desiredVelocity = _movementDirection * maxSpeed;
 
         float actualAcceleration = _characterMovement.isGrounded ? acceleration : acceleration * airControl;

@@ -168,17 +168,27 @@ public class ReceptionManager : MonoBehaviour
     public void OnPlayerTriger()
     {
         if (!npc.bIsUnlock)
-        {   
+        {
 
+            gameManager.playerController._characterMovement.enabled = false;
             gameManager.playerController.enabled = false;
-         
-            //gameManager.playerController.joystick.gameObject.SetActive(false);
+            gameManager.playerController.bhasSit = true;
+            gameManager.playerController.joystick.gameObject.SetActive(false);
+            gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+            gameManager.playerController.transform.SetParent(npc.sitPos);
             gameManager.playerController.transform.position = npc.sitPos.position;
-            gameManager.playerController.transform.rotation = npc.sitPos.rotation;
-            DOVirtual.DelayedCall(5f, () =>
+            gameManager.playerController._characterMovement.rotatingObj.rotation = npc.sitPos.rotation;
+
+
+            DOVirtual.DelayedCall(3f, () =>
             {
-                gameManager.playerController.enabled = true;
-                //gameManager.playerController.joystick.gameObject.SetActive(true);
+                gameManager.playerController.transform.SetParent(null);
+                gameManager.playerController.joystick.gameObject.SetActive(true);
+                gameManager.playerController.joystick.OnPointerUp(null);
+                gameManager.playerController._characterMovement.enabled = true;
+
+
+
 
             });
         }
