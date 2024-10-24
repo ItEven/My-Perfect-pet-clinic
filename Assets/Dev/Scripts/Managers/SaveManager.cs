@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour
     public EconomyManager economyManager;
     public GameManager gameManager;
     public UiManager uiManager;
-    //public HospitalManager roomManager;
+    public HospitalManager hospitalManager;
     
 
     public GameData gameData = new GameData();

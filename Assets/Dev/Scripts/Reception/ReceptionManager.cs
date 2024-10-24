@@ -2,7 +2,9 @@ using DG.Tweening;
 using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ReceptionManager : MonoBehaviour
@@ -23,6 +25,8 @@ public class ReceptionManager : MonoBehaviour
 
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
+    internal bool bCanProsses;
+
 
     public Upgrader upGrader;
     public MoneyBox moneyBox;
@@ -35,6 +39,8 @@ public class ReceptionManager : MonoBehaviour
 
 
     [Header(" Visuals Details")]
+    public Image worldProgresBar;
+
     public GameObject[] unlockObjs;
     public GameObject[] lockedObjs;
     public ParticleSystem[] roundUpgradePartical;
@@ -45,6 +51,7 @@ public class ReceptionManager : MonoBehaviour
     EconomyManager economyManager;
     GameManager gameManager;
     UiManager uiManager;
+    HospitalManager hospitalManager;
 
     private void OnEnable()
     {
@@ -61,6 +68,7 @@ public class ReceptionManager : MonoBehaviour
         economyManager = saveManager.economyManager;
         gameManager = saveManager.gameManager;
         uiManager = saveManager.uiManager;
+        hospitalManager = saveManager.hospitalManager;
     }
 
     #endregion
@@ -82,6 +90,8 @@ public class ReceptionManager : MonoBehaviour
     {
         if (bIsUnlock)
         {
+            worldProgresBar.fillAmount = 0;
+
             foreach (var item in lockedObjs)
             {
                 if (item.activeInHierarchy)
@@ -169,7 +179,8 @@ public class ReceptionManager : MonoBehaviour
     {
         if (!npc.bIsUnlock)
         {
-
+            bCanProsses = true;
+            StratProssesPatients();
             gameManager.playerController._characterMovement.enabled = false;
             gameManager.playerController.enabled = false;
             gameManager.playerController.bhasSit = true;
@@ -188,12 +199,47 @@ public class ReceptionManager : MonoBehaviour
                 gameManager.playerController._characterMovement.enabled = true;
 
 
-
-
             });
         }
     }
 
+    string tweenID = "worldProgressBarTween";
+    public void StratProssesPatients()
+    {
+        Debug.LogError("waitingQueue -1");
+
+        if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving && bCanProsses)
+        {
+            Debug.LogError("waitingQueue");
+            //if (!hospitalManager.CheckRegiterPosFull())
+            //{
+            Debug.LogError("waitingQueue = 2");
+
+            var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
+
+            worldProgresBar.fillAmount = 0;
+            worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
+                .SetId(tweenID)
+                .OnComplete(() =>
+                {
+                    Debug.LogError("waitingQueue = 3");
+
+                    moneyBox.TakeMoney(npc.currentLevelData.customerCost);
+                    room.RegisterPatient(waitingQueue.patientInQueue[0]);
+                   
+                    waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                });
+
+
+            //}
+        }
+    }
+
+    public void StopProsses()
+    {
+        worldProgresBar.fillAmount = 0;
+        DOTween.Kill(tweenID);
+    }
 
     #endregion
 

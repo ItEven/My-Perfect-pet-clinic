@@ -26,11 +26,13 @@ public class InspectionRoomManager : MonoBehaviour
     public Upgrader upGrader;
     public MoneyBox moneyBox;
     internal WaitingQueue waitingQueue;
-
+    public DiseaseType[] diseaseTypes;
 
 
     [Header(" NPC Details")]
-    public InspectionRoomNpc npc;
+    public InspectionRoomNpc DocterNpc;
+    public List<Patient> unRegisterPatientList;
+
 
 
     [Header(" Visuals Details")]
@@ -44,6 +46,7 @@ public class InspectionRoomManager : MonoBehaviour
     EconomyManager economyManager;
     GameManager gameManager;
     UiManager uiManager;
+    HospitalManager hospitalManager;
 
     private void OnEnable()
     {
@@ -60,11 +63,12 @@ public class InspectionRoomManager : MonoBehaviour
         economyManager = saveManager.economyManager;
         gameManager = saveManager.gameManager;
         uiManager = saveManager.uiManager;
+        hospitalManager = saveManager.hospitalManager;
     }
 
     #endregion
 
-
+    #region Starters
     public void Start()
     {
         currentCost = unlockPrice;
@@ -92,7 +96,7 @@ public class InspectionRoomManager : MonoBehaviour
             {
                 gameManager.DropObj(item);
             }
-            npc.gameObject.SetActive(true);
+            DocterNpc.gameObject.SetActive(true);
 
             roundUpgradePartical.ForEach(X => X.Play());
         }
@@ -112,12 +116,12 @@ public class InspectionRoomManager : MonoBehaviour
                     item.SetActive(true);
                 }
             }
-            npc.gameObject.SetActive(false);
+            DocterNpc.gameObject.SetActive(false);
 
         }
         gameManager.ReBuildNavmesh();
     }
-
+    #endregion
 
     #region Upgrade Mechanics 
     public void SetUpgredeVisual()
@@ -157,8 +161,31 @@ public class InspectionRoomManager : MonoBehaviour
 
     public void LoadNextUpgrade()
     {
-        npc.LoadNextUpgrade();
+        DocterNpc.LoadNextUpgrade();
     }
 
     #endregion
+
+    #region Patient Prosses Machincs
+
+    public void RegisterPatient(Patient patients)
+    {
+        if(patients != null)
+        {
+            if (!waitingQueue.bIsQueueFull())
+            {        
+                waitingQueue.AddInQueue(patients);
+                patients.MoveAnimal();
+            }
+            else
+            {
+                unRegisterPatientList.Add(patients);
+                patients.NPCMovement.MoveToTarget(hospitalManager.GetRandomPos(), null);
+
+            }
+        }
+    }
+
+    #endregion
+
 }

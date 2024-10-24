@@ -13,17 +13,17 @@ public class NPCMovement : MonoBehaviour
     public NavMeshAgent navmeshAgent;
     public AnimationController animator;
     public Action onCompleteAction;
-
+    internal bool bIsMoving;
 
     public virtual void Init()
     {
         navmeshAgent = GetComponent<NavMeshAgent>();
         PatientUpdater.patientAIUpdate += PerformUpdate;
-    } 
+    }
 
     private void OnDisable()
     {
-        PatientUpdater.patientAIUpdate -= PerformUpdate;  
+        PatientUpdater.patientAIUpdate -= PerformUpdate;
     }
     public virtual void PerformUpdate()
     {
@@ -63,8 +63,6 @@ public class NPCMovement : MonoBehaviour
     public float GetVelocity()
     {
         float velocity = navmeshAgent.velocity.magnitude;
-
-
         return Mathf.Clamp01(velocity);
     }
 
@@ -75,6 +73,7 @@ public class NPCMovement : MonoBehaviour
         {
             if (navmeshAgent != null)
             {
+                bIsMoving = true;
                 onCompleteAction = null;
                 navmeshAgent.enabled = true;
                 navmeshAgent.isStopped = false;
@@ -92,6 +91,8 @@ public class NPCMovement : MonoBehaviour
 
     public void StopNpc()
     {
+        bIsMoving = false;
+
         navmeshAgent.isStopped = true;
         navmeshAgent.enabled = false;
     }

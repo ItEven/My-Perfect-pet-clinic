@@ -14,6 +14,26 @@ public class PatientManager : MonoBehaviour
     public Transform animalSpwanPos;
     public float spwanDalay;
 
+
+
+
+
+    [Header("Disease Data")]
+    public List<DiseaseType> UnlocDiseases;
+    public int currntDiseaseIndex
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("CurrentDiseaseIndex", 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("CurrentDiseaseIndex", value);
+            PlayerPrefs.Save();
+        }
+    }
+    public List<DiseaseType> Alldiseases;
+
     private void Awake()
     {
         instance = this;
@@ -63,7 +83,6 @@ public class PatientManager : MonoBehaviour
         while (true)
         {
 
-            yield return new WaitForSeconds(spwanDalay);
 
             if (!receptionManager.waitingQueue.bIsQueueFull())
             {
@@ -77,6 +96,7 @@ public class PatientManager : MonoBehaviour
                 var a = gameObject_2.GetComponent<Animal>();
                 //a.player = p.animalFollowPos;
 
+                p.diseaseType = GetRandomDisease();
                 p.animal = a;
                 p.NPCMovement.Init();
                 a.Init();
@@ -89,11 +109,10 @@ public class PatientManager : MonoBehaviour
                 yield break;
             }
 
+            yield return new WaitForSeconds(spwanDalay);
+
         }
     }
-    #endregion
-
-
     public GameObject GetRandomAnimalObj()
     {
         int randomIndex = Random.Range(0, AnimalData.animales.Length);
@@ -101,5 +120,39 @@ public class PatientManager : MonoBehaviour
         return AnimalData.animales[randomIndex].Animal[ranIndex];
     }
 
+    #endregion
 
+
+    #region Disease Machiniacs
+    public void UpdateDisease()
+    {
+        for (int i = 0; i < currntDiseaseIndex; i++)
+        {
+            AddDisease(Alldiseases[i]);
+        }
+    }
+
+    public void AddDisease(DiseaseType disease)
+    {
+        if (!UnlocDiseases.Contains(disease))
+        {
+            UnlocDiseases.Add(disease);
+        }
+    }
+
+    public DiseaseType GetRandomDisease()
+    {
+        if (UnlocDiseases.Count > 0)
+        {
+            int randomIndex = Random.Range(0, UnlocDiseases.Count);
+            return UnlocDiseases[randomIndex];
+        }
+        else
+        {
+            AddDisease(DiseaseType.Cough);
+            return DiseaseType.Cough;
+        }
+    }
+
+    #endregion
 }

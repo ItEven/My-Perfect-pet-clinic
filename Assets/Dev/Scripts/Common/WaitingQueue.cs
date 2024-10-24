@@ -73,22 +73,7 @@ public class WaitingQueue : MonoBehaviour
         }
     }
 
-    public virtual void CheckForFreeSlots()
-    {
-        patientInQueue.RemoveAll(x => x == null);
-
-        if (patientInQueue.Count != 0)
-        {
-            for (int i = 0; i < patientInQueue.Count; i++)
-            {
-                //customerInQueue[i].CheckForFreeEquipement();
-            }
-        }
-        else
-        {
-            // AssignCustomerFromOtherQueue();
-        }
-    }
+  
 
 
 }

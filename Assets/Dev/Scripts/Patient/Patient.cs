@@ -11,6 +11,7 @@ public class Patient : MonoBehaviour
     public Transform animalFollowPos;
     public NPCMovement NPCMovement;
     public Animal animal;
+    public DiseaseType diseaseType;
 
  
     public void MoveAnimal()

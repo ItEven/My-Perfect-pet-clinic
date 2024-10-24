@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class OnTrigger : MonoBehaviour
 {
-    public UnityEvent onTrigger;
+    public UnityEvent onTriggerEnter;
+    public UnityEvent onTriggerExit;
     public SpriteRenderer filler;
     private bool bIsStay = false;
 
@@ -14,7 +15,7 @@ public class OnTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            onTrigger.Invoke();
+            onTriggerEnter.Invoke();
             filler.gameObject.SetActive(true);
         }
     }
@@ -23,6 +24,7 @@ public class OnTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            onTriggerExit.Invoke();
             filler.gameObject.SetActive(false);
         }
     }
