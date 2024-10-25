@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class ReceptionNPCLevelDetail
 {
-    public int levelNum, upgradeCost, customerCost, minBricks, maxBricks;
+    public int levelNum, upgradeCost, customerCost;
     public float processTime;
 }
 public class ReceptionNPC : MonoBehaviour

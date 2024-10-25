@@ -4,6 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Staff_NPC_LevelData
+{
+    public int levelNum, upgradeCost;
+    public float processTime;
+    public DiseaseType[] DiseaseType;
+    public StaffExprinceType StaffExprinceType;
+}
 public class InspectionRoomNpc : MonoBehaviour
 {
     [Header(" Room Details")]
@@ -121,14 +129,12 @@ public class InspectionRoomNpc : MonoBehaviour
             currentLevel = 0;
             currentLevelData = levels[currentLevel];
             SetVisual();
-
         }
         else
         {
 
             OnUpgrade();
         }
-
     }
 
     public void SetTakeMoneyData(int cost)
