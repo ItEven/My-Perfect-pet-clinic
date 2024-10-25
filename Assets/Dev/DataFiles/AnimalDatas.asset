@@ -21,7 +21,7 @@ MonoBehaviour:
     - {fileID: 305982639868614230, guid: 318355a707e0ff74181e8545b4504231, type: 3}
   - animalType: 3
     Animal:
-    - {fileID: 0}
+    - {fileID: 7658580455364019920, guid: f46583688bf46564abf41c406fa58eff, type: 3}
   - animalType: 2
     Animal:
     - {fileID: 732051841999303853, guid: 0f3e6df0539d86f478e4b003665ef58b, type: 3}

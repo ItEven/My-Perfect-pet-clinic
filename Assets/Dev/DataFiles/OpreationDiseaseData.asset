@@ -12,4 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26dae262bc41f2c45880486411e46458, type: 3}
   m_Name: OpreationDiseaseData
   m_EditorClassIdentifier: 
-  diseases: []
+  diseases:
+  - Type: 10
+    juniorVeterinarianFee: 64
+    VeterinarianFee: 80
+    seniorVeterinarianFee: 96
+    chiefVeterinarianFee: 128
+  - Type: 11
+    juniorVeterinarianFee: 60
+    VeterinarianFee: 75
+    seniorVeterinarianFee: 90
+    chiefVeterinarianFee: 120
+  - Type: 12
+    juniorVeterinarianFee: 72
+    VeterinarianFee: 90
+    seniorVeterinarianFee: 108
+    chiefVeterinarianFee: 144
+  - Type: 13
+    juniorVeterinarianFee: 96
+    VeterinarianFee: 120
+    seniorVeterinarianFee: 144
+    chiefVeterinarianFee: 192
+  - Type: 14
+    juniorVeterinarianFee: 88
+    VeterinarianFee: 110
+    seniorVeterinarianFee: 132
+    chiefVeterinarianFee: 176
+  - Type: 15
+    juniorVeterinarianFee: 56
+    VeterinarianFee: 70
+    seniorVeterinarianFee: 84
+    chiefVeterinarianFee: 112

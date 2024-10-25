@@ -12,4 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26dae262bc41f2c45880486411e46458, type: 3}
   m_Name: IcuDiseaseData
   m_EditorClassIdentifier: 
-  diseases: []
+  diseases:
+  - Type: 11
+    juniorVeterinarianFee: 50
+    VeterinarianFee: 65
+    seniorVeterinarianFee: 80
+    chiefVeterinarianFee: 100
+  - Type: 12
+    juniorVeterinarianFee: 55
+    VeterinarianFee: 70
+    seniorVeterinarianFee: 85
+    chiefVeterinarianFee: 110
+  - Type: 13
+    juniorVeterinarianFee: 90
+    VeterinarianFee: 115
+    seniorVeterinarianFee: 140
+    chiefVeterinarianFee: 180
+  - Type: 14
+    juniorVeterinarianFee: 70
+    VeterinarianFee: 90
+    seniorVeterinarianFee: 110
+    chiefVeterinarianFee: 140
+  - Type: 15
+    juniorVeterinarianFee: 40
+    VeterinarianFee: 55
+    seniorVeterinarianFee: 70
+    chiefVeterinarianFee: 90
