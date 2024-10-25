@@ -11,9 +11,10 @@ public class TaskManager : MonoBehaviour
     public PatientManager patientManager;  
 
     public HallManager hallManager_01;
+
     public ReceptionManager receptionManager;
     public InspectionRoomManager inspectionRoomManager_01;
-    public InspectionRoomManager pharmacy_room;
+    public PharmacyRoom  pharmacy_room;
     public InspectionRoomManager storage_room;
 
     #region Initializers
@@ -63,11 +64,11 @@ public class TaskManager : MonoBehaviour
                 inspectionRoomManager_01.SetUpgredeVisual();
                 break;
             case 2:
-                pharmacy_room.bIsUpgraderActive = true;
                 pharmacy_room.SetUpgredeVisual();
                 patientManager.gameObject.SetActive(true);
                 break;
             case 3:
+                pharmacy_room.bIsUpgraderActive = true;
                 storage_room.bIsUpgraderActive = true;
                 storage_room.SetUpgredeVisual();
                 break;

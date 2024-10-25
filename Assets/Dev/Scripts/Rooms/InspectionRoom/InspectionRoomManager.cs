@@ -3,6 +3,7 @@ using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class InspectionRoomManager : MonoBehaviour
@@ -22,6 +23,7 @@ public class InspectionRoomManager : MonoBehaviour
 
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
+    internal bool bCanProsses;
 
     public Upgrader upGrader;
     public MoneyBox moneyBox;
@@ -30,12 +32,13 @@ public class InspectionRoomManager : MonoBehaviour
 
 
     [Header(" NPC Details")]
-    public InspectionRoomNpc DocterNpc;
+    public InspectionRoomNpc Staff_NPC;
     public List<Patient> unRegisterPatientList;
 
 
 
     [Header(" Visuals Details")]
+    public Image worldProgresBar;
     public GameObject[] unlockObjs;
     public GameObject[] lockedObjs;
     public ParticleSystem[] roundUpgradePartical;
@@ -96,7 +99,7 @@ public class InspectionRoomManager : MonoBehaviour
             {
                 gameManager.DropObj(item);
             }
-            DocterNpc.gameObject.SetActive(true);
+            Staff_NPC.gameObject.SetActive(true);
 
             roundUpgradePartical.ForEach(X => X.Play());
         }
@@ -116,7 +119,7 @@ public class InspectionRoomManager : MonoBehaviour
                     item.SetActive(true);
                 }
             }
-            DocterNpc.gameObject.SetActive(false);
+            Staff_NPC.gameObject.SetActive(false);
 
         }
         gameManager.ReBuildNavmesh();
@@ -161,7 +164,7 @@ public class InspectionRoomManager : MonoBehaviour
 
     public void LoadNextUpgrade()
     {
-        DocterNpc.LoadNextUpgrade();
+        Staff_NPC.LoadNextUpgrade();
     }
 
     #endregion
@@ -170,10 +173,10 @@ public class InspectionRoomManager : MonoBehaviour
 
     public void RegisterPatient(Patient patients)
     {
-        if(patients != null)
+        if (patients != null)
         {
             if (!waitingQueue.bIsQueueFull())
-            {        
+            {
                 waitingQueue.AddInQueue(patients);
                 patients.MoveAnimal();
             }
@@ -184,6 +187,50 @@ public class InspectionRoomManager : MonoBehaviour
 
             }
         }
+    }
+
+    public void OnReachDocter()
+    {
+
+    }
+
+    string tweenID = "worldProgressBarTween";
+    public void StratProssesPatients()
+    {
+        Debug.LogError("waitingQueue -1");
+
+        if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving && bCanProsses)
+        {
+            Debug.LogError("waitingQueue");
+            //if (!hospitalManager.CheckRegiterPosFull())
+            //{
+            Debug.LogError("waitingQueue = 2");
+
+            var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
+
+            worldProgresBar.fillAmount = 0;
+            worldProgresBar.DOFillAmount(1, Staff_NPC.currentLevelData.processTime)
+                .SetId(tweenID)
+                .OnComplete(() =>
+                {
+                    Debug.LogError("waitingQu eue = 3");
+
+                    moneyBox.TakeMoney(Staff_NPC.currentLevelData.customerCost);
+                    room.RegisterPatient(waitingQueue.patientInQueue[0]);
+
+                    waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                });
+
+
+            //}
+        }
+    }
+
+    public void StopProsses()
+    {
+        bCanProsses = false;
+        worldProgresBar.fillAmount = 0;
+        DOTween.Kill(tweenID);
     }
 
     #endregion
