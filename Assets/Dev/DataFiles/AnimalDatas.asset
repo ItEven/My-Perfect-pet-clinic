@@ -13,18 +13,25 @@ MonoBehaviour:
   m_Name: AnimalDatas
   m_EditorClassIdentifier: 
   animales:
-  - animalType: 0
-    Animal:
-    - {fileID: 8623219520096653994, guid: 91894868b1a6d304da0c0ff2e43b10e1, type: 3}
   - animalType: 1
     Animal:
-    - {fileID: 305982639868614230, guid: 318355a707e0ff74181e8545b4504231, type: 3}
-  - animalType: 3
+    - {fileID: 8590099032156570822, guid: 318355a707e0ff74181e8545b4504231, type: 3}
+    - {fileID: 8205958231961715858, guid: 371a695d590bc4e4cbb357c365f74023, type: 3}
+    - {fileID: 328631097106933031, guid: 699560397f600c749b27b73cc565f78c, type: 3}
+    - {fileID: 736307053019359200, guid: a47c6da1fe7b33147aa05935e17d81f7, type: 3}
+    - {fileID: 3502691865702618906, guid: 28855b073bf5ca04eae3174b8b94de23, type: 3}
+  - animalType: 0
     Animal:
-    - {fileID: 7658580455364019920, guid: f46583688bf46564abf41c406fa58eff, type: 3}
+    - {fileID: 7746874350469197059, guid: 91894868b1a6d304da0c0ff2e43b10e1, type: 3}
+    - {fileID: 843095230032396140, guid: 56412a34fa1febb45b79214da51b0ad0, type: 3}
+    - {fileID: 4682411473558697250, guid: 55be8468e1ed75245bd762634dbd71cc, type: 3}
+    - {fileID: 5865217845504539996, guid: 4c0fa4f3a6273c2469575cd40bb39d28, type: 3}
   - animalType: 2
     Animal:
     - {fileID: 732051841999303853, guid: 0f3e6df0539d86f478e4b003665ef58b, type: 3}
     - {fileID: 6169664503884020033, guid: 071ba92976c4e3441aa0fa6ba5c4b964, type: 3}
     - {fileID: 6930316341194323337, guid: e99cb28bda43df3488a8868ad3066ce9, type: 3}
     - {fileID: 3013717078126421647, guid: ba908316fbae6fb47aad86a414bf8a16, type: 3}
+  - animalType: 3
+    Animal:
+    - {fileID: 7658580455364019920, guid: f46583688bf46564abf41c406fa58eff, type: 3}

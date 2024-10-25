@@ -185,13 +185,13 @@ public class ReceptionManager : MonoBehaviour
             gameManager.playerController.enabled = false;
             gameManager.playerController.bhasSit = true;
             gameManager.playerController.joystick.gameObject.SetActive(false);
-
+            
             gameManager.playerController.transform.SetParent(npc.sitPos);
             gameManager.playerController.transform.position = npc.sitPos.position;
             gameManager.playerController._characterMovement.rotatingObj.rotation = npc.sitPos.rotation;
 
 
-            DOVirtual.DelayedCall(3f, () =>
+            DOVirtual.DelayedCall(1.5f, () =>
             {
                 gameManager.playerController.transform.SetParent(null);
                 gameManager.playerController.joystick.gameObject.SetActive(true);
@@ -199,51 +199,52 @@ public class ReceptionManager : MonoBehaviour
                 gameManager.playerController._characterMovement.enabled = true;
 
 
-            });
+            }).SetId("YONiga");
         }
     }
 
     string tweenID = "worldProgressBarTween";
     public void StratProssesPatients()
     {
+        gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
         Debug.LogError("waitingQueue -1");
 
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving && bCanProsses)
         {
             Debug.LogError("waitingQueue");
-            //if (!hospitalManager.CheckRegiterPosFull())
-            //{
-            Debug.LogError("waitingQueue = 2");
+            if (!hospitalManager.CheckRegiterPosFull())
+            {
+                Debug.LogError("waitingQueue = 2");
 
-            var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
-            gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
-            worldProgresBar.fillAmount = 0;
-            worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
-                .SetId(tweenID)
-                .OnComplete(() =>
-                {
-                    Debug.LogError("waitingQu eue = 3");
+                var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
+                gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+                worldProgresBar.fillAmount = 0;
+                worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
+                    .SetId(tweenID)
+                    .OnComplete(() =>
+                    {
+                        Debug.LogError("waitingQu eue = 3");
 
-                    moneyBox.TakeMoney(npc.currentLevelData.customerCost);
-                    room.RegisterPatient(waitingQueue.patientInQueue[0]);
+                        moneyBox.TakeMoney(npc.currentLevelData.customerCost);
+                        room.RegisterPatient(waitingQueue.patientInQueue[0]);
 
-                    waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
-                });
-
-
-            //}
+                        waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                    });
+            }
         }
+
     }
 
     public void StopProsses()
     {
-        gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+        gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
         bCanProsses = false;
         worldProgresBar.fillAmount = 0;
+        DOTween.Kill("YONiga");
         DOTween.Kill(tweenID);
     }
 
-    
+
 
     #endregion
 

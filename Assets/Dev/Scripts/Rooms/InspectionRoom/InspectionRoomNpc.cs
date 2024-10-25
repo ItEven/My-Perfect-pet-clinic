@@ -85,6 +85,8 @@ public class InspectionRoomNpc : MonoBehaviour
     }
     public void SetVisual()
     {
+        currentLevelData = levels[currentLevel];
+
         npcObj.transform.position = sitPos.position;
         npcObj.transform.rotation = sitPos.rotation;
 

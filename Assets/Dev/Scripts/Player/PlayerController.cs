@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (bhasSit && bIsDiagnosing)
             {
-                animationController.PlayAnimation(AnimType.Diagnosing_01);
+                animationController.PlayAnimation(AnimType.Diagnosing);
             }
             else
             {

@@ -64,13 +64,16 @@ public class TaskManager : MonoBehaviour
                 inspectionRoomManager_01.SetUpgredeVisual();
                 break;
             case 2:
+                pharmacy_room.bIsUpgraderActive = true;
                 pharmacy_room.SetUpgredeVisual();
-                patientManager.gameObject.SetActive(true);
                 break;
             case 3:
-                pharmacy_room.bIsUpgraderActive = true;
-                storage_room.bIsUpgraderActive = true;
-                storage_room.SetUpgredeVisual();
+                //pharmacy_room.bIsUpgraderActive = true;
+                //storage_room.bIsUpgraderActive = true;
+                //storage_room.SetUpgredeVisual();
+                inspectionRoomManager_01.LoadNextUpgrade();
+                patientManager.AddDisease(DiseaseType.Cold);
+                patientManager.gameObject.SetActive(true);
                 break;
 
             case 4:

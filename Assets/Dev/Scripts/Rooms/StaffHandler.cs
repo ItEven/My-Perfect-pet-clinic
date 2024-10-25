@@ -44,7 +44,7 @@ public class StaffHandler : UpgradeHandler
             transform.position = sitPos.position;
             transform.rotation = sitPos.rotation;
             npcMovement.StopNpc();
-            npcMovement.animator.PlayAnimation(AnimType.Diagnosing_01);
+            npcMovement.animator.PlayAnimation(AnimType.Diagnosing);
             bIsStaffAtSit = true;
         }
 
@@ -95,7 +95,7 @@ public class StaffHandler : UpgradeHandler
                     bIsStaffAtSit = true;
                     transform.position = sitPos.position;
                     transform.rotation = sitPos.rotation;
-                    npcMovement.animator.PlayAnimation(AnimType.Diagnosing_01);
+                    npcMovement.animator.PlayAnimation(AnimType.Diagnosing);
                 });
 
             }

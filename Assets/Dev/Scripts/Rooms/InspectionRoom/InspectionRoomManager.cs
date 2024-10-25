@@ -33,6 +33,7 @@ public class InspectionRoomManager : MonoBehaviour
 
 
     [Header(" NPC Details")]
+    public Transform animalDignosPos;
     public InspectionRoomNpc Staff_NPC;
     public List<Patient> unRegisterPatientList;
 
@@ -46,11 +47,11 @@ public class InspectionRoomManager : MonoBehaviour
 
     #region Initializers
 
-    SaveManager saveManager;
-    EconomyManager economyManager;
-    GameManager gameManager;
-    UiManager uiManager;
-    HospitalManager hospitalManager;
+    internal SaveManager saveManager;
+    internal EconomyManager economyManager;
+    internal GameManager gameManager;
+    internal UiManager uiManager;
+    internal HospitalManager hospitalManager;
 
     private void OnEnable()
     {
@@ -87,6 +88,8 @@ public class InspectionRoomManager : MonoBehaviour
     }
     public void SetVisual()
     {
+        worldProgresBar.fillAmount = 0;
+
         if (bIsUnlock)
         {
             foreach (var item in lockedObjs)
@@ -184,7 +187,10 @@ public class InspectionRoomManager : MonoBehaviour
             else
             {
                 unRegisterPatientList.Add(patients);
-                patients.NPCMovement.MoveToTarget(hospitalManager.GetRandomPos(), null);
+                Transform transform = hospitalManager.GetRandomPos();
+                
+                patients.NPCMovement.MoveToTarget(transform, null);
+                patients.MoveAnimal();
 
             }
         }
@@ -198,15 +204,14 @@ public class InspectionRoomManager : MonoBehaviour
             StratProssesPatients();
             gameManager.playerController._characterMovement.enabled = false;
             gameManager.playerController.enabled = false;
-            gameManager.playerController.bhasSit = true;
+            gameManager.playerController.bIsDiagnosing = true;
             gameManager.playerController.joystick.gameObject.SetActive(false);
-
             gameManager.playerController.transform.SetParent(Staff_NPC.sitPos);
             gameManager.playerController.transform.position = Staff_NPC.sitPos.position;
             gameManager.playerController._characterMovement.rotatingObj.rotation = Staff_NPC.sitPos.rotation;
 
 
-            DOVirtual.DelayedCall(3f, () =>
+            DOVirtual.DelayedCall(1.5f, () =>
             {
                 gameManager.playerController.transform.SetParent(null);
                 gameManager.playerController.joystick.gameObject.SetActive(true);
@@ -218,40 +223,64 @@ public class InspectionRoomManager : MonoBehaviour
         }
     }
 
-    string tweenID = "worldProgressBarTween";
+    internal string tweenID = "worldProgressBarTween";
     public virtual void StratProssesPatients()
     {
-        Debug.LogError("waitingQueue -1");
+        if (!gameManager.playerController.bhasSit)
+        {
+            gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
+        }
 
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving && bCanProsses)
         {
+       
+
             Debug.LogError("waitingQueue");
-            //if (!hospitalManager.CheckRegiterPosFull())
-            //{
-            Debug.LogError("waitingQueue = 2");
+            if (!hospitalManager.CheckRegiterPosFull())
+            {
+                Debug.LogError("waitingQueue = 2");
 
-            var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
+                var room = hospitalManager.pharmacyRoom;
+        gameManager.playerController.animationController.PlayAnimation(AnimType.Diagnosing);
 
-            worldProgresBar.fillAmount = 0;
-            worldProgresBar.DOFillAmount(1, Staff_NPC.currentLevelData.processTime)
-                .SetId(tweenID)
-                .OnComplete(() =>
-                {
-                    Debug.LogError("waitingQu eue = 3");
+                worldProgresBar.fillAmount = 0;
+                worldProgresBar.DOFillAmount(1, Staff_NPC.currentLevelData.processTime)
+                    .SetId(tweenID)
+                    .OnComplete(() =>
+                    {
+                        Debug.LogError("waitingQu eue = 3");
 
-                    moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
-                    room.RegisterPatient(waitingQueue.patientInQueue[0]);
-
-                    waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
-                });
-
-
-            //}
+                        moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
+                        room.RegisterPatient(waitingQueue.patientInQueue[0]);
+                        var p = waitingQueue.patientInQueue[0];
+                        p.MoveAnimal();
+                        waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                    });
+            }
         }
+        
     }
 
-    public void StopProsses()
+    public void OnReachTable()
     {
+        DOVirtual.DelayedCall(1f, () =>
+        {
+
+            if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
+            {
+                Patient p = waitingQueue.patientInQueue[0];
+                Animal animal = p.animal;
+                animal.navmeshAgent.enabled = false;
+                animal.transform.position = animalDignosPos.position;
+                animal.transform.rotation = animalDignosPos.rotation;
+                animal.animator.PlayAnimation(AnimType.Idle);
+
+            }
+        });
+    }
+    public virtual void StopProsses()
+    {
+        gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
         bCanProsses = false;
         worldProgresBar.fillAmount = 0;
         DOTween.Kill(tweenID);
@@ -280,7 +309,7 @@ public class InspectionRoomManager : MonoBehaviour
         return 0;
     }
 
-    
+
 
 
     #endregion

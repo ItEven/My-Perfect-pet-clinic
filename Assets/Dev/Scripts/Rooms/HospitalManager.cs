@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 [System.Serializable]
@@ -12,9 +13,12 @@ public class RegisterPos
 public class HospitalManager : MonoBehaviour
 {
     //public RoomHandler[] roomHandlers;
-
+    [Header("All Room")]
     public InspectionRoomManager[] InspectionRoom;
-   
+    public PharmacyRoom pharmacyRoom;
+
+    [Header("ExitTransfrom")]
+    public Transform[] exitsPosses;
 
     [Header("Sprade Poses List")]
     public RegisterPos[] registerPoses;
@@ -43,23 +47,27 @@ public class HospitalManager : MonoBehaviour
     #endregion
 
     #region Pharmacy Room Machenics
-
+    
 
 
     #endregion
 
+    public Transform GetRandomExit()
+    {
+        int randomIndex = Random.Range(0, exitsPosses.Length);
+        return exitsPosses[randomIndex];
+    }
 
     public bool CheckRegiterPosFull()
     {
         for (int i = 0; i < registerPoses.Length; i++)
         {
-            var pos = registerPoses[i];
+            RegisterPos pos = registerPoses[i];
             if (!pos.bIsRegiseter)
             {
                 return false;
             }
         }
-
         return true;
     }
     public Transform GetRandomPos()
@@ -68,7 +76,8 @@ public class HospitalManager : MonoBehaviour
         {
             var p = registerPoses[i];
             if (!p.bIsRegiseter)
-            {
+            {   
+                p.bIsRegiseter = true;
                 return p.pos;
             }
         }
