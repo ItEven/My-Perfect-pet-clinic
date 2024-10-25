@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Staff_NPC_LevelData
+public class StaffNPCLevelData
 {
     public int levelNum, upgradeCost;
     public float processTime;
@@ -35,8 +35,8 @@ public class InspectionRoomNpc : MonoBehaviour
     [Header(" Level Details")]
     public int currentLevel;
     internal int nextLevel;
-    internal ReceptionNPCLevelDetail currentLevelData;
-    public ReceptionNPCLevelDetail[] levels;
+    internal StaffNPCLevelData currentLevelData;
+    public StaffNPCLevelData[] levels;
 
     [Header(" Visuals Details")]
     public Transform sitPos;

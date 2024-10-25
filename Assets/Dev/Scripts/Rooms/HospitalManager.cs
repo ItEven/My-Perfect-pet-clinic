@@ -14,7 +14,7 @@ public class HospitalManager : MonoBehaviour
     //public RoomHandler[] roomHandlers;
 
     public InspectionRoomManager[] InspectionRoom;
-    
+   
 
     [Header("Sprade Poses List")]
     public RegisterPos[] registerPoses;
@@ -47,6 +47,8 @@ public class HospitalManager : MonoBehaviour
 
 
     #endregion
+
+
     public bool CheckRegiterPosFull()
     {
         for (int i = 0; i < registerPoses.Length; i++)

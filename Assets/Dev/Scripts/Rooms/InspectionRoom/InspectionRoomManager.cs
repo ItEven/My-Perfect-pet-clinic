@@ -29,6 +29,7 @@ public class InspectionRoomManager : MonoBehaviour
     public MoneyBox moneyBox;
     internal WaitingQueue waitingQueue;
     public DiseaseType[] diseaseTypes;
+    public DiseaseData diseaseData;
 
 
     [Header(" NPC Details")]
@@ -191,11 +192,34 @@ public class InspectionRoomManager : MonoBehaviour
 
     public void OnReachDocter()
     {
+        if (!Staff_NPC.bIsUnlock)
+        {
+            bCanProsses = true;
+            StratProssesPatients();
+            gameManager.playerController._characterMovement.enabled = false;
+            gameManager.playerController.enabled = false;
+            gameManager.playerController.bhasSit = true;
+            gameManager.playerController.joystick.gameObject.SetActive(false);
 
+            gameManager.playerController.transform.SetParent(Staff_NPC.sitPos);
+            gameManager.playerController.transform.position = Staff_NPC.sitPos.position;
+            gameManager.playerController._characterMovement.rotatingObj.rotation = Staff_NPC.sitPos.rotation;
+
+
+            DOVirtual.DelayedCall(3f, () =>
+            {
+                gameManager.playerController.transform.SetParent(null);
+                gameManager.playerController.joystick.gameObject.SetActive(true);
+                gameManager.playerController.joystick.OnPointerUp(null);
+                gameManager.playerController._characterMovement.enabled = true;
+
+
+            });
+        }
     }
 
     string tweenID = "worldProgressBarTween";
-    public void StratProssesPatients()
+    public virtual void StratProssesPatients()
     {
         Debug.LogError("waitingQueue -1");
 
@@ -215,7 +239,7 @@ public class InspectionRoomManager : MonoBehaviour
                 {
                     Debug.LogError("waitingQu eue = 3");
 
-                    moneyBox.TakeMoney(Staff_NPC.currentLevelData.customerCost);
+                    moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
                     room.RegisterPatient(waitingQueue.patientInQueue[0]);
 
                     waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
@@ -233,6 +257,31 @@ public class InspectionRoomManager : MonoBehaviour
         DOTween.Kill(tweenID);
     }
 
-    #endregion
 
+    public int GetCustomerCost(Patient patient)
+    {
+        if (patient != null)
+        {
+            for (int i = 0; i < diseaseData.diseases.Length; i++)
+            {
+                var dis = diseaseData.diseases[i];
+                if (dis.Type == patient.diseaseType)
+                {
+                    switch (Staff_NPC.currentLevelData.StaffExprinceType)
+                    {
+                        case StaffExprinceType.Intern: return dis.InternFee;
+                        case StaffExprinceType.Junior: return dis.juniorVeterinarianFee;
+                        case StaffExprinceType.Senior: return dis.seniorVeterinarianFee;
+                        case StaffExprinceType.Chief: return dis.chiefVeterinarianFee;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    
+
+
+    #endregion
 }

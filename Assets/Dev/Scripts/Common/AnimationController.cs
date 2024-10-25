@@ -19,15 +19,18 @@ public class AnimationController : MonoBehaviour
     {
         if (controller != null)
         {
-     
+
             controller.Play(anim.ToString());
 
         }
         else
         {
-        
+
 
         }
     }
+
+
+    
 
 }

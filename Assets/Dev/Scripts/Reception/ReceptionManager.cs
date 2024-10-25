@@ -185,7 +185,7 @@ public class ReceptionManager : MonoBehaviour
             gameManager.playerController.enabled = false;
             gameManager.playerController.bhasSit = true;
             gameManager.playerController.joystick.gameObject.SetActive(false);
-            gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+
             gameManager.playerController.transform.SetParent(npc.sitPos);
             gameManager.playerController.transform.position = npc.sitPos.position;
             gameManager.playerController._characterMovement.rotatingObj.rotation = npc.sitPos.rotation;
@@ -216,7 +216,7 @@ public class ReceptionManager : MonoBehaviour
             Debug.LogError("waitingQueue = 2");
 
             var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
-
+            gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
             worldProgresBar.fillAmount = 0;
             worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
                 .SetId(tweenID)
@@ -226,7 +226,7 @@ public class ReceptionManager : MonoBehaviour
 
                     moneyBox.TakeMoney(npc.currentLevelData.customerCost);
                     room.RegisterPatient(waitingQueue.patientInQueue[0]);
-                   
+
                     waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
                 });
 
@@ -237,10 +237,13 @@ public class ReceptionManager : MonoBehaviour
 
     public void StopProsses()
     {
+        gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
         bCanProsses = false;
         worldProgresBar.fillAmount = 0;
         DOTween.Kill(tweenID);
     }
+
+    
 
     #endregion
 

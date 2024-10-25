@@ -36,8 +36,8 @@ public enum StaffExprinceType
 public class Disease
 {
     public DiseaseType Type;
+    public int InternFee;
     public int juniorVeterinarianFee;
-    public int VeterinarianFee;
     public int seniorVeterinarianFee;
     public int chiefVeterinarianFee;
 }

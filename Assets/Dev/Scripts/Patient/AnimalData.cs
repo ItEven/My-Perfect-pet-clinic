@@ -8,7 +8,7 @@ public enum AnimalType
     Dog,
     Cat,
     Raccon,
-    Pnada
+    Panda
 }
 
 [System.Serializable]

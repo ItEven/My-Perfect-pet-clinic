@@ -13,7 +13,7 @@ public class BillBoard : MonoBehaviour
     }
     void LateUpdate() {
         transform.LookAt(mainCamera.transform);
-        transform.Rotate(0, 180, 0);
+        transform.Rotate(0, 359, 0);
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         if (mainCamera == null) {
