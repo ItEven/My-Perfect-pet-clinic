@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
+using DG.Tweening;
+using System.ComponentModel;
 
 public class WaitingQueue : MonoBehaviour
 {
@@ -28,11 +30,15 @@ public class WaitingQueue : MonoBehaviour
             else
                 return;
 
-            //patient.NPCMovement.MoveToTarget(queue[QueueIndex], null); 
 
+
+            int index = queueIndex;
             patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
+                patient.patientMeshObj.transform.rotation = queue[index].rotation;
+
                 OnReachedQueueAction(patient);
+
             });
 
             QueueIndex++;
@@ -49,15 +55,18 @@ public class WaitingQueue : MonoBehaviour
 
         QueueIndex = 0;
 
- 
+
         for (int i = 0; i < patientInQueue.Count; i++)
         {
             var patient = patientInQueue[i];
 
-      
+
+
             patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
+                patient.patientMeshObj.transform.rotation = queue[i].rotation;
                 OnReachedQueueAction(patient);
+
             });
             patient.MoveAnimal();
 

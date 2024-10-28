@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class ReceptionManager : MonoBehaviour
 {
+
     [Header("Task Number")]
     public int currentTask;
 
@@ -229,6 +230,8 @@ public class ReceptionManager : MonoBehaviour
                         room.RegisterPatient(waitingQueue.patientInQueue[0]);
 
                         waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                        worldProgresBar.fillAmount = 0;
+
                     });
             }
         }
@@ -243,8 +246,6 @@ public class ReceptionManager : MonoBehaviour
         DOTween.Kill("YONiga");
         DOTween.Kill(tweenID);
     }
-
-
 
     #endregion
 

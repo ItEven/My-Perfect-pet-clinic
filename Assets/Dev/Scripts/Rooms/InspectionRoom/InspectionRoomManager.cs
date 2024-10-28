@@ -2,8 +2,10 @@ using DG.Tweening;
 using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 
 public class InspectionRoomManager : MonoBehaviour
@@ -181,19 +183,30 @@ public class InspectionRoomManager : MonoBehaviour
         {
             if (!waitingQueue.bIsQueueFull())
             {
+
                 waitingQueue.AddInQueue(patients);
                 patients.MoveAnimal();
             }
             else
             {
+
                 unRegisterPatientList.Add(patients);
-                Transform transform = hospitalManager.GetRandomPos();
-                
+                Transform transform = hospitalManager.GetRandomPos(patients);
+
                 patients.NPCMovement.MoveToTarget(transform, null);
                 patients.MoveAnimal();
 
             }
         }
+    }
+
+    public void NextPatient()
+    {
+        Patient patient = unRegisterPatientList[0];
+        RegisterPatient(patient);
+        patient.registerPos.bIsRegiseter = false;
+        unRegisterPatientList.RemoveAt(0);
+        PatientManager.instance.receptionManager.StratProssesPatients();
     }
 
     public void OnReachDocter()
@@ -233,32 +246,41 @@ public class InspectionRoomManager : MonoBehaviour
 
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving && bCanProsses)
         {
-       
+
 
             Debug.LogError("waitingQueue");
             if (!hospitalManager.CheckRegiterPosFull())
             {
-                Debug.LogError("waitingQueue = 2");
+
 
                 var room = hospitalManager.pharmacyRoom;
-        gameManager.playerController.animationController.PlayAnimation(AnimType.Diagnosing);
+                gameManager.playerController.animationController.PlayAnimation(AnimType.Diagnosing);
 
                 worldProgresBar.fillAmount = 0;
                 worldProgresBar.DOFillAmount(1, Staff_NPC.currentLevelData.processTime)
                     .SetId(tweenID)
                     .OnComplete(() =>
                     {
-                        Debug.LogError("waitingQu eue = 3");
 
+
+                        gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
                         moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
+                        Debug.LogError(GetCustomerCost(waitingQueue.patientInQueue[0]) + "GetCustomerCost");
+                        waitingQueue.patientInQueue[0].patientMeshObj.transform.rotation = Quaternion.identity;
                         room.RegisterPatient(waitingQueue.patientInQueue[0]);
                         var p = waitingQueue.patientInQueue[0];
                         p.MoveAnimal();
                         waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                        if (unRegisterPatientList.Count > 0)
+                        {
+                            NextPatient();
+                        }
+
                     });
+
             }
         }
-        
+
     }
 
     public void OnReachTable()
@@ -271,9 +293,15 @@ public class InspectionRoomManager : MonoBehaviour
                 Patient p = waitingQueue.patientInQueue[0];
                 Animal animal = p.animal;
                 animal.navmeshAgent.enabled = false;
-                animal.transform.position = animalDignosPos.position;
-                animal.transform.rotation = animalDignosPos.rotation;
+
+                Debug.LogWarning("OnReachTable()");
+
+                animal.gameObject.transform.position = animalDignosPos.position;
+                animal.gameObject.transform.rotation = animalDignosPos.rotation;
+
+
                 animal.animator.PlayAnimation(AnimType.Idle);
+                StratProssesPatients();
 
             }
         });
@@ -289,26 +317,29 @@ public class InspectionRoomManager : MonoBehaviour
 
     public int GetCustomerCost(Patient patient)
     {
-        if (patient != null)
+        if (patient == null)
         {
-            for (int i = 0; i < diseaseData.diseases.Length; i++)
-            {
-                var dis = diseaseData.diseases[i];
-                if (dis.Type == patient.diseaseType)
-                {
-                    switch (Staff_NPC.currentLevelData.StaffExprinceType)
-                    {
-                        case StaffExprinceType.Intern: return dis.InternFee;
-                        case StaffExprinceType.Junior: return dis.juniorVeterinarianFee;
-                        case StaffExprinceType.Senior: return dis.seniorVeterinarianFee;
-                        case StaffExprinceType.Chief: return dis.chiefVeterinarianFee;
-                    }
-                }
-            }
+            return 0;
         }
-        return 0;
-    }
 
+
+        var disease = diseaseData.diseases.FirstOrDefault(d => d.Type == patient.diseaseType);
+
+        if (disease == null)
+        {
+            return 0;
+        }
+
+
+        return Staff_NPC.currentLevelData.StaffExprinceType switch
+        {
+            StaffExprinceType.Intern => disease.InternFee,
+            StaffExprinceType.Junior => disease.juniorVeterinarianFee,
+            StaffExprinceType.Senior => disease.seniorVeterinarianFee,
+            StaffExprinceType.Chief => disease.chiefVeterinarianFee,
+            _ => 0
+        };
+    }
 
 
 

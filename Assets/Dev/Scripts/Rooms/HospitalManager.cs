@@ -47,7 +47,7 @@ public class HospitalManager : MonoBehaviour
     #endregion
 
     #region Pharmacy Room Machenics
-    
+
 
 
     #endregion
@@ -70,17 +70,19 @@ public class HospitalManager : MonoBehaviour
         }
         return true;
     }
-    public Transform GetRandomPos()
+    public Transform GetRandomPos(Patient patient)
     {
         for (int i = 0; i < registerPoses.Length; i++)
         {
             var p = registerPoses[i];
             if (!p.bIsRegiseter)
-            {   
+            {
                 p.bIsRegiseter = true;
+                patient.registerPos = p;
                 return p.pos;
             }
         }
         return null;
     }
+
 }

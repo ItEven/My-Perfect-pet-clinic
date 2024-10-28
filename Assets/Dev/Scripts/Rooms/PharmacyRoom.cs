@@ -9,7 +9,7 @@ public class PharmacyRoom : InspectionRoomManager
 
     public override void StratProssesPatients()
     {
-        gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
+
         if (!gameManager.playerController.bhasSit && !gameManager.playerController.bIsDiagnosing)
         {
             gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
@@ -18,12 +18,12 @@ public class PharmacyRoom : InspectionRoomManager
 
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving && bCanProsses)
         {
-            Debug.LogError("waitingQueue");
+
             if (!hospitalManager.CheckRegiterPosFull())
             {
-                Debug.LogError("waitingQueue = 2");
 
-                var room = hospitalManager.pharmacyRoom;
+
+               
                 gameManager.playerController.animationController.PlayAnimation(AnimType.Talking);
 
                 worldProgresBar.fillAmount = 0;
@@ -31,16 +31,18 @@ public class PharmacyRoom : InspectionRoomManager
                     .SetId(tweenID)
                     .OnComplete(() =>
                     {
-                        Debug.LogError("waitingQu eue = 3");
 
+                        gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
                         moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
                         var p = waitingQueue.patientInQueue[0];
                         p.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(), () =>
                         {
-                            Destroy(p.gameObject);
+                          Destroy(p.gameObject);
                         });
                         p.MoveAnimal();
                         waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                        worldProgresBar.fillAmount = 0;
+
                     });
             }
         }

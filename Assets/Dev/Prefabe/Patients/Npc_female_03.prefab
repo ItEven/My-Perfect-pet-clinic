@@ -976,6 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41883aa41889cd34ea0a683f6d8de1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patientMeshObj: {fileID: 8168802392641331014}
   animalFollowPos: {fileID: 445756015070392880}
   NPCMovement: {fileID: 566968955731455310}
   animal: {fileID: 0}

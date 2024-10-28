@@ -8,11 +8,12 @@ using UnityEngine.AI;
 
 public class Patient : MonoBehaviour
 {
+    public GameObject patientMeshObj;
     public Transform animalFollowPos;
     public NPCMovement NPCMovement;
     public Animal animal;
     public DiseaseType diseaseType;
-
+    internal RegisterPos registerPos;
  
     public void MoveAnimal()
     {

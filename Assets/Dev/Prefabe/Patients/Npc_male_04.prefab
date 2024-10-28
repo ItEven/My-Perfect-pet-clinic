@@ -851,6 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41883aa41889cd34ea0a683f6d8de1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patientMeshObj: {fileID: 3713105640406161188}
   animalFollowPos: {fileID: 5811130989309999357}
   NPCMovement: {fileID: 9152111282095364429}
   animal: {fileID: 0}
