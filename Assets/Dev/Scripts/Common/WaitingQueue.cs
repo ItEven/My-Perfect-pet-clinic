@@ -3,7 +3,7 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 using DG.Tweening;
-using System.ComponentModel;
+
 
 public class WaitingQueue : MonoBehaviour
 {
@@ -35,8 +35,7 @@ public class WaitingQueue : MonoBehaviour
             int index = queueIndex;
             patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
-                patient.patientMeshObj.transform.rotation = queue[index].rotation;
-
+                patient.transform.rotation = queue[index].rotation;
                 OnReachedQueueAction(patient);
 
             });
@@ -64,7 +63,7 @@ public class WaitingQueue : MonoBehaviour
 
             patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
-                patient.patientMeshObj.transform.rotation = queue[i].rotation;
+                patient.transform.rotation = queue[i].rotation;
                 OnReachedQueueAction(patient);
 
             });

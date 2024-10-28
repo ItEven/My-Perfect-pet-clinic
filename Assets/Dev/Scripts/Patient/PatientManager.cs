@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -100,7 +100,7 @@ public class PatientManager : MonoBehaviour
                             if (p.animalFollowPos != null)
                             {
 
-                                GameObject gameObject_2 = Instantiate(randomAnimalPrefab, p.animalFollowPos.position, Quaternion.identity, p.animalFollowPos);
+                                GameObject gameObject_2 = Instantiate(randomAnimalPrefab, p.animalFollowPos.position, Quaternion.identity, playerSpwanPos);
 
                                 Animal a = gameObject_2.GetComponent<Animal>();
                                 if (a != null)

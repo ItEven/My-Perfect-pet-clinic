@@ -263,18 +263,18 @@ public class InspectionRoomManager : MonoBehaviour
                     {
 
 
-                        gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
+                        gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);             
                         moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
-                        Debug.LogError(GetCustomerCost(waitingQueue.patientInQueue[0]) + "GetCustomerCost");
-                        waitingQueue.patientInQueue[0].patientMeshObj.transform.rotation = Quaternion.identity;
                         room.RegisterPatient(waitingQueue.patientInQueue[0]);
                         var p = waitingQueue.patientInQueue[0];
                         p.MoveAnimal();
                         waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+
                         if (unRegisterPatientList.Count > 0)
                         {
                             NextPatient();
                         }
+                        worldProgresBar.fillAmount = 0;
 
                     });
 
@@ -293,7 +293,7 @@ public class InspectionRoomManager : MonoBehaviour
                 Patient p = waitingQueue.patientInQueue[0];
                 Animal animal = p.animal;
                 animal.navmeshAgent.enabled = false;
-
+                p.transform.rotation = Quaternion.identity;
                 Debug.LogWarning("OnReachTable()");
 
                 animal.gameObject.transform.position = animalDignosPos.position;
@@ -315,30 +315,29 @@ public class InspectionRoomManager : MonoBehaviour
     }
 
 
+
+
+    
     public int GetCustomerCost(Patient patient)
     {
-        if (patient == null)
+        if (patient != null)
         {
-            return 0;
+            for (int i = 0; i < diseaseData.diseases.Length; i++)
+            {
+                var dis = diseaseData.diseases[i];
+                if (dis.Type == patient.diseaseType)
+                {
+                    switch (Staff_NPC.currentLevelData.StaffExprinceType)
+                    {
+                        case StaffExprinceType.Intern: return dis.InternFee;
+                        case StaffExprinceType.Junior: return dis.juniorVeterinarianFee;
+                        case StaffExprinceType.Senior: return dis.seniorVeterinarianFee;
+                        case StaffExprinceType.Chief: return dis.chiefVeterinarianFee;
+                    }
+                }
+            }
         }
-
-
-        var disease = diseaseData.diseases.FirstOrDefault(d => d.Type == patient.diseaseType);
-
-        if (disease == null)
-        {
-            return 0;
-        }
-
-
-        return Staff_NPC.currentLevelData.StaffExprinceType switch
-        {
-            StaffExprinceType.Intern => disease.InternFee,
-            StaffExprinceType.Junior => disease.juniorVeterinarianFee,
-            StaffExprinceType.Senior => disease.seniorVeterinarianFee,
-            StaffExprinceType.Chief => disease.chiefVeterinarianFee,
-            _ => 0
-        };
+        return 0;
     }
 
 

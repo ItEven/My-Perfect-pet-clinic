@@ -14,82 +14,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diseases:
   - Type: 0
-    juniorVeterinarianFee: 20
-    VeterinarianFee: 25
+    InternFee: 20
+    juniorVeterinarianFee: 25
     seniorVeterinarianFee: 30
     chiefVeterinarianFee: 40
   - Type: 1
-    juniorVeterinarianFee: 20
-    VeterinarianFee: 25
+    InternFee: 20
+    juniorVeterinarianFee: 25
     seniorVeterinarianFee: 30
     chiefVeterinarianFee: 40
   - Type: 2
-    juniorVeterinarianFee: 25
-    VeterinarianFee: 31
+    InternFee: 25
+    juniorVeterinarianFee: 31
     seniorVeterinarianFee: 38
-    chiefVeterinarianFee: 40
+    chiefVeterinarianFee: 50
   - Type: 3
-    juniorVeterinarianFee: 40
-    VeterinarianFee: 50
+    InternFee: 40
+    juniorVeterinarianFee: 50
     seniorVeterinarianFee: 60
     chiefVeterinarianFee: 80
   - Type: 4
-    juniorVeterinarianFee: 35
-    VeterinarianFee: 44
+    InternFee: 35
+    juniorVeterinarianFee: 44
     seniorVeterinarianFee: 53
     chiefVeterinarianFee: 70
   - Type: 5
-    juniorVeterinarianFee: 35
-    VeterinarianFee: 44
+    InternFee: 35
+    juniorVeterinarianFee: 44
     seniorVeterinarianFee: 53
     chiefVeterinarianFee: 70
   - Type: 6
-    juniorVeterinarianFee: 60
-    VeterinarianFee: 75
+    InternFee: 60
+    juniorVeterinarianFee: 75
     seniorVeterinarianFee: 90
     chiefVeterinarianFee: 120
   - Type: 7
-    juniorVeterinarianFee: 35
-    VeterinarianFee: 44
+    InternFee: 35
+    juniorVeterinarianFee: 44
     seniorVeterinarianFee: 53
     chiefVeterinarianFee: 70
   - Type: 8
-    juniorVeterinarianFee: 45
-    VeterinarianFee: 56
+    InternFee: 45
+    juniorVeterinarianFee: 56
     seniorVeterinarianFee: 68
     chiefVeterinarianFee: 90
   - Type: 9
-    juniorVeterinarianFee: 100
-    VeterinarianFee: 125
+    InternFee: 100
+    juniorVeterinarianFee: 125
     seniorVeterinarianFee: 150
     chiefVeterinarianFee: 200
   - Type: 10
-    juniorVeterinarianFee: 80
-    VeterinarianFee: 100
+    InternFee: 80
+    juniorVeterinarianFee: 100
     seniorVeterinarianFee: 120
     chiefVeterinarianFee: 160
   - Type: 11
-    juniorVeterinarianFee: 75
-    VeterinarianFee: 94
+    InternFee: 75
+    juniorVeterinarianFee: 100
     seniorVeterinarianFee: 113
     chiefVeterinarianFee: 150
   - Type: 12
-    juniorVeterinarianFee: 90
-    VeterinarianFee: 113
+    InternFee: 90
+    juniorVeterinarianFee: 113
     seniorVeterinarianFee: 135
     chiefVeterinarianFee: 180
   - Type: 13
-    juniorVeterinarianFee: 120
-    VeterinarianFee: 150
+    InternFee: 120
+    juniorVeterinarianFee: 150
     seniorVeterinarianFee: 180
     chiefVeterinarianFee: 240
   - Type: 14
-    juniorVeterinarianFee: 110
-    VeterinarianFee: 138
+    InternFee: 110
+    juniorVeterinarianFee: 138
     seniorVeterinarianFee: 165
     chiefVeterinarianFee: 220
   - Type: 15
-    juniorVeterinarianFee: 70
-    VeterinarianFee: 88
+    InternFee: 70
+    juniorVeterinarianFee: 88
     seniorVeterinarianFee: 105
     chiefVeterinarianFee: 140
