@@ -108,6 +108,13 @@ public class InspectionRoomManager : MonoBehaviour
             Staff_NPC.gameObject.SetActive(true);
 
             roundUpgradePartical.ForEach(X => X.Play());
+            if (Staff_NPC != null)
+            {
+                if (Staff_NPC.bIsUnlock)
+                {
+                    //
+                }
+            }
         }
         else
         {
@@ -130,6 +137,7 @@ public class InspectionRoomManager : MonoBehaviour
         }
         gameManager.ReBuildNavmesh();
     }
+
     #endregion
 
     #region Upgrade Mechanics 
@@ -249,10 +257,9 @@ public class InspectionRoomManager : MonoBehaviour
 
 
             Debug.LogError("waitingQueue");
+
             if (!hospitalManager.CheckRegiterPosFull())
             {
-
-
                 var room = hospitalManager.pharmacyRoom;
                 gameManager.playerController.animationController.PlayAnimation(AnimType.Diagnosing);
 
@@ -261,8 +268,7 @@ public class InspectionRoomManager : MonoBehaviour
                     .SetId(tweenID)
                     .OnComplete(() =>
                     {
-
-
+                            
                         gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);             
                         moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
                         room.RegisterPatient(waitingQueue.patientInQueue[0]);

@@ -87,8 +87,8 @@ public class InspectionRoomNpc : MonoBehaviour
     {
         currentLevelData = levels[currentLevel];
 
-        npcObj.transform.position = sitPos.position;
-        npcObj.transform.rotation = sitPos.rotation;
+        transform.position = sitPos.position;
+        transform.rotation = sitPos.rotation;
 
         if (bIsUnlock)
         {

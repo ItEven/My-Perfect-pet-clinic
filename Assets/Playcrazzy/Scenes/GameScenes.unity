@@ -10675,6 +10675,7 @@ MonoBehaviour:
     upgradeCost: 0
     customerCost: 0
     processTime: 0
+  animationController: {fileID: 1470740741}
   sitPos: {fileID: 1801567337}
   npcObj: {fileID: 1470740739}
   roundUpgradePartical:
@@ -10710,22 +10711,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
         type: 3}
@@ -17518,22 +17519,22 @@ PrefabInstance:
     - target: {fileID: 3258599249886230155, guid: cae1cba1726b8064496f5d3f8d190c49,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3258599249886230155, guid: cae1cba1726b8064496f5d3f8d190c49,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3258599249886230155, guid: cae1cba1726b8064496f5d3f8d190c49,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3258599249886230155, guid: cae1cba1726b8064496f5d3f8d190c49,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3258599249886230155, guid: cae1cba1726b8064496f5d3f8d190c49,
         type: 3}
@@ -19534,7 +19535,7 @@ Transform:
   m_GameObject: {fileID: 1778038574}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -8, y: 0, z: -1.710001}
+  m_LocalPosition: {x: -6.03, y: 0, z: 1.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

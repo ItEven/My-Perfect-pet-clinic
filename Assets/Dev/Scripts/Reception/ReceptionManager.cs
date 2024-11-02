@@ -201,6 +201,10 @@ public class ReceptionManager : MonoBehaviour
 
             }).SetId("YONiga");
         }
+        else
+        {
+
+        }
     }
 
     string tweenID = "worldProgressBarTween";
@@ -214,7 +218,7 @@ public class ReceptionManager : MonoBehaviour
             Debug.LogError("waitingQueue");
             if (!hospitalManager.CheckRegiterPosFull())
             {
-                Debug.LogError("waitingQueue = 2");
+                //Debug.LogError("waitingQueue = 2");
 
                 var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
                 gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);

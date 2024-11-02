@@ -6,10 +6,16 @@ using UnityEngine.UI;
 
 public class OnTrigger : MonoBehaviour
 {
+    private bool bIsStay = false;
     public UnityEvent onTriggerEnter;
     public UnityEvent onTriggerExit;
     public SpriteRenderer filler;
-    private bool bIsStay = false;
+    internal Collider Collider;
+
+    private void Start()
+    {
+        Collider = GetComponent<Collider>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {

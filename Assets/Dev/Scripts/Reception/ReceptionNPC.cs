@@ -37,6 +37,7 @@ public class ReceptionNPC : MonoBehaviour
     public ReceptionNPCLevelDetail[] levels;
 
     [Header(" Visuals Details")]
+    public AnimationController animationController;
     public Transform sitPos;
     public GameObject npcObj;
     //public GameObject[] unlockObjs;
@@ -114,7 +115,7 @@ public class ReceptionNPC : MonoBehaviour
 
             SetTakeMoneyData(currentCost);
         }
-        else
+        
         {
             upGrader.gameObject.SetActive(false);
         }
