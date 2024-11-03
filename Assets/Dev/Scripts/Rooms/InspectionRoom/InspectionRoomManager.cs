@@ -26,6 +26,7 @@ public class InspectionRoomManager : MonoBehaviour
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
     internal bool bCanProsses;
+    internal bool bIsPlayerOnDesk;
 
     public Upgrader upGrader;
     public MoneyBox moneyBox;
@@ -34,7 +35,7 @@ public class InspectionRoomManager : MonoBehaviour
     public DiseaseData diseaseData;
 
 
-    [Header(" NPC Details")]
+    [Header("NPC Details")]
     public Transform animalDignosPos;
     public InspectionRoomNpc Staff_NPC;
     public List<Patient> unRegisterPatientList;
@@ -217,7 +218,17 @@ public class InspectionRoomManager : MonoBehaviour
         PatientManager.instance.receptionManager.StratProssesPatients();
     }
 
-    public void OnReachDocter()
+
+    public void OnPlayerTrigger()
+    {
+        
+    }
+
+    public void OnPlayerExit()
+    {
+
+    }
+    public void StartProsses()
     {
         if (!Staff_NPC.bIsUnlock)
         {
@@ -232,14 +243,12 @@ public class InspectionRoomManager : MonoBehaviour
             gameManager.playerController._characterMovement.rotatingObj.rotation = Staff_NPC.sitPos.rotation;
 
 
-            DOVirtual.DelayedCall(1.5f, () =>
+            DOVirtual.DelayedCall(1f, () =>
             {
                 gameManager.playerController.transform.SetParent(null);
                 gameManager.playerController.joystick.gameObject.SetActive(true);
                 gameManager.playerController.joystick.OnPointerUp(null);
                 gameManager.playerController._characterMovement.enabled = true;
-
-
             });
         }
     }
@@ -268,8 +277,8 @@ public class InspectionRoomManager : MonoBehaviour
                     .SetId(tweenID)
                     .OnComplete(() =>
                     {
-                            
-                        gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);             
+
+                        gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
                         moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
                         room.RegisterPatient(waitingQueue.patientInQueue[0]);
                         var p = waitingQueue.patientInQueue[0];
@@ -288,7 +297,6 @@ public class InspectionRoomManager : MonoBehaviour
         }
 
     }
-
     public void OnReachTable()
     {
         DOVirtual.DelayedCall(1f, () =>
@@ -319,11 +327,6 @@ public class InspectionRoomManager : MonoBehaviour
         worldProgresBar.fillAmount = 0;
         DOTween.Kill(tweenID);
     }
-
-
-
-
-    
     public int GetCustomerCost(Patient patient)
     {
         if (patient != null)
@@ -345,8 +348,6 @@ public class InspectionRoomManager : MonoBehaviour
         }
         return 0;
     }
-
-
 
     #endregion
 }
