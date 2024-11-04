@@ -40,8 +40,6 @@ public class ReceptionNPC : MonoBehaviour
     public AnimationController animationController;
     public Transform sitPos;
     public GameObject npcObj;
-    //public GameObject[] unlockObjs;
-    //public GameObject[] lockedObjs;
     public ParticleSystem[] roundUpgradePartical;
 
     #region Initializers

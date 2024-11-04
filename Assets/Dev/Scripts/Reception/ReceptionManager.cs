@@ -103,7 +103,7 @@ public class ReceptionManager : MonoBehaviour
             {
                 gameManager.DropObj(item);
             }
-            npc.gameObject.SetActive(true);
+           
 
             roundUpgradePartical.ForEach(X => X.Play());
         }
@@ -123,7 +123,7 @@ public class ReceptionManager : MonoBehaviour
                     item.SetActive(true);
                 }
             }
-            npc.gameObject.SetActive(false);
+      
 
         }
         gameManager.ReBuildNavmesh();
