@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class StaffNPCLevelData
 {
-    public int levelNum, upgradeCost;
+    public int levelNum, upgradeCost, nextTask;
     public float processTime;
     public DiseaseType[] DiseaseType;
     public StaffExprinceType StaffExprinceType;
@@ -28,9 +28,8 @@ public class InspectionRoomNpc : MonoBehaviour
 
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
-
+    internal AnimationController animationController;
     public Upgrader upGrader;
-
 
     [Header(" Level Details")]
     public int currentLevel;
@@ -74,6 +73,7 @@ public class InspectionRoomNpc : MonoBehaviour
 
     public void Start()
     {
+        animationController = npcObj.GetComponent<AnimationController>();
         currentCost = unlockPrice;
         loadData();
     }
@@ -95,35 +95,37 @@ public class InspectionRoomNpc : MonoBehaviour
 
             gameManager.DropObj(npcObj);
             roundUpgradePartical.ForEach(X => X.Play());
+
         }
         else
         {
             npcObj.SetActive(false);
         }
-        gameManager.ReBuildNavmesh();
+        //  gameManager.ReBuildNavmesh();
 
     }
 
 
     #region Upgrade Mechanics 
+
     public void SetUpgredeVisual()
     {
 
         if (bIsUpgraderActive)
         {
-            upGrader.gameObject.SetActive(true);
 
+            upGrader.gameObject.SetActive(true);
             SetTakeMoneyData(currentCost);
         }
         else
         {
+
             upGrader.gameObject.SetActive(false);
         }
-
     }
+
     public void OnUnlockAndUpgrade()
     {
-
         if (!bIsUnlock)
         {
             bIsUnlock = true;
@@ -131,10 +133,13 @@ public class InspectionRoomNpc : MonoBehaviour
             currentLevel = 0;
             currentLevelData = levels[currentLevel];
             SetVisual();
+            if (TaskManager.instance != null)
+            {
+                TaskManager.instance.OnTaskComplete(currentLevelData.nextTask);
+            }
         }
         else
         {
-
             OnUpgrade();
         }
     }
@@ -149,7 +154,6 @@ public class InspectionRoomNpc : MonoBehaviour
         currentLevel++;
         currentLevelData = levels[currentLevel];
         roundUpgradePartical.ForEach(X => X.Play());
-
     }
 
     public void LoadNextUpgrade()

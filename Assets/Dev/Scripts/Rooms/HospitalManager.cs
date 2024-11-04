@@ -14,7 +14,7 @@ public class HospitalManager : MonoBehaviour
 {
     //public RoomHandler[] roomHandlers;
     [Header("All Room")]
-    public InspectionRoomManager[] InspectionRoom;
+    public RoomManager[] InspectionRoom;
     public PharmacyRoom pharmacyRoom;
 
     [Header("ExitTransfrom")]
@@ -25,7 +25,7 @@ public class HospitalManager : MonoBehaviour
 
 
     #region InspectionRoom Machenics
-    public InspectionRoomManager GetInspectionRoom(Patient patient)
+    public RoomManager GetInspectionRoom(Patient patient)
     {
         for (int i = 0; i < InspectionRoom.Length; i++)
         {

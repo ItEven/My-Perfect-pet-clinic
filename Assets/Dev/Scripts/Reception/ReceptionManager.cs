@@ -25,7 +25,7 @@ public class ReceptionManager : MonoBehaviour
 
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
-    internal bool bCanProsses;
+    internal bool bIsPlayerOnDesk;
 
 
     public Upgrader upGrader;
@@ -175,67 +175,97 @@ public class ReceptionManager : MonoBehaviour
 
     #region Prosece Mechanics
 
-    public void OnPlayerTriger()
+    public void OnPlayerTrigger()
     {
+        bIsPlayerOnDesk = true;
         if (!npc.bIsUnlock)
         {
-            bCanProsses = true;
-            StratProssesPatients();
-            gameManager.playerController._characterMovement.enabled = false;
-            gameManager.playerController.enabled = false;
-            gameManager.playerController.bhasSit = true;
-            gameManager.playerController.joystick.gameObject.SetActive(false);
-            
-            gameManager.playerController.transform.SetParent(npc.sitPos);
-            gameManager.playerController.transform.position = npc.sitPos.position;
-            gameManager.playerController._characterMovement.rotatingObj.rotation = npc.sitPos.rotation;
-
-
-            DOVirtual.DelayedCall(1.5f, () =>
-            {
-                gameManager.playerController.transform.SetParent(null);
-                gameManager.playerController.joystick.gameObject.SetActive(true);
-                gameManager.playerController.joystick.OnPointerUp(null);
-                gameManager.playerController._characterMovement.enabled = true;
-
-
-            }).SetId("YONiga");
+            SetUpPlayer();
         }
-        else
+    }
+
+    public void OnPlayerExit()
+    {
+
+        bIsPlayerOnDesk = false;
+        if (!npc.bIsUnlock)
         {
-
+            StopProsses();
         }
+    }
+
+    public void SetUpPlayer()
+    {
+        StratProssesPatients();
+        gameManager.playerController._characterMovement.enabled = false;
+        gameManager.playerController.enabled = false;
+        gameManager.playerController.bhasSit = true;
+        gameManager.playerController.joystick.gameObject.SetActive(false);
+
+        gameManager.playerController.transform.SetParent(npc.sitPos);
+        gameManager.playerController.transform.position = npc.sitPos.position;
+        gameManager.playerController._characterMovement.rotatingObj.rotation = npc.sitPos.rotation;
+
+
+        DOVirtual.DelayedCall(1.5f, () =>
+        {
+            gameManager.playerController.transform.SetParent(null);
+            gameManager.playerController.joystick.gameObject.SetActive(true);
+            gameManager.playerController.joystick.OnPointerUp(null);
+            gameManager.playerController._characterMovement.enabled = true;
+
+
+        }).SetId("YONiga");
+
     }
 
     string tweenID = "worldProgressBarTween";
     public void StratProssesPatients()
     {
-        gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
-        Debug.LogError("waitingQueue -1");
-
-        if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving && bCanProsses)
+        if (bIsPlayerOnDesk)
         {
-            Debug.LogError("waitingQueue");
+            gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
+        }
+
+
+        if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
+        {
             if (!hospitalManager.CheckRegiterPosFull())
             {
-                //Debug.LogError("waitingQueue = 2");
-
                 var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
-                gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
-                worldProgresBar.fillAmount = 0;
-                worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
-                    .SetId(tweenID)
-                    .OnComplete(() =>
-                    {
-                        Debug.LogError("waitingQu eue = 3");
+                if (bIsPlayerOnDesk)
+                {
+                    gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+                    worldProgresBar.fillAmount = 0;
+                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
+                        .SetId(tweenID)
+                        .OnComplete(() =>
+                        {
 
-                        moneyBox.TakeMoney(npc.currentLevelData.customerCost);
-                        room.RegisterPatient(waitingQueue.patientInQueue[0]);
+                            moneyBox.TakeMoney(npc.currentLevelData.customerCost);
+                            room.RegisterPatient(waitingQueue.patientInQueue[0]);
 
-                        waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
-                        worldProgresBar.fillAmount = 0;
+                            waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                            worldProgresBar.fillAmount = 0;
+                        });
 
-                    });
+                }
+                else if (npc.bIsUnlock)
+                {
+                    gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+                    worldProgresBar.fillAmount = 0;
+                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
+                        .SetId(tweenID)
+                        .OnComplete(() =>
+                        {
+
+                            moneyBox.TakeMoney(npc.currentLevelData.customerCost);
+                            room.RegisterPatient(waitingQueue.patientInQueue[0]);
+
+                            waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                            worldProgresBar.fillAmount = 0;
+                        });
+                }
             }
         }
 
@@ -244,7 +274,7 @@ public class ReceptionManager : MonoBehaviour
     public void StopProsses()
     {
         gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
-        bCanProsses = false;
+        bIsPlayerOnDesk = false;
         worldProgresBar.fillAmount = 0;
         DOTween.Kill("YONiga");
         DOTween.Kill(tweenID);

@@ -8,14 +8,14 @@ public class TaskManager : MonoBehaviour
 {
     public static TaskManager instance;
     // public event Action<int> OnTaskComplite;
-    public PatientManager patientManager;  
+    public PatientManager patientManager;
 
     public HallManager hallManager_01;
 
     public ReceptionManager receptionManager;
-    public InspectionRoomManager inspectionRoomManager_01;
-    public PharmacyRoom  pharmacy_room;
-    public InspectionRoomManager storage_room;
+    public RoomManager inspectionRoomManager_01;
+    public PharmacyRoom pharmacy_room;
+    public RoomManager storage_room;
 
     #region Initializers
     SaveManager saveManager;
@@ -75,10 +75,40 @@ public class TaskManager : MonoBehaviour
                 patientManager.AddDisease(DiseaseType.Cold);
                 patientManager.gameObject.SetActive(true);
                 break;
-
             case 4:
+                pharmacy_room.LoadNextUpgrade();
+                break;
+            case 5:
                 receptionManager.LoadNextUpgrade();
                 break;
+            case 6:
+                inspectionRoomManager_01.LoadNextUpgrade();
+                break;
+            case 7:
+                receptionManager.LoadNextUpgrade();
+                break;
+            case 8:
+                pharmacy_room.LoadNextUpgrade();
+                break;
+            case 9:
+                inspectionRoomManager_01.LoadNextUpgrade();
+                break;
+            case 10:
+                receptionManager.LoadNextUpgrade();
+                break;
+            case 11:
+                pharmacy_room.LoadNextUpgrade();
+                break;
+            case 12:
+                inspectionRoomManager_01.LoadNextUpgrade();
+                break;
+            case 13:
+                receptionManager.LoadNextUpgrade();
+                break;
+            case 14:
+                pharmacy_room.LoadNextUpgrade();
+                break;
+
 
             default: break;
 

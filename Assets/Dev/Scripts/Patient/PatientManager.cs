@@ -82,7 +82,6 @@ public class PatientManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spwanDalay);
 
             if (!receptionManager.waitingQueue.bIsQueueFull())
             {
@@ -145,6 +144,7 @@ public class PatientManager : MonoBehaviour
                 yield break;
             }
 
+            yield return new WaitForSeconds(spwanDalay);
         }
     }
     public GameObject GetRandomAnimalObj()

@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class ReceptionNPCLevelDetail
 {
-    public int levelNum, upgradeCost, customerCost;
+    public int levelNum, upgradeCost, customerCost, nextTask;
     public float processTime;
 }
 public class ReceptionNPC : MonoBehaviour
@@ -86,13 +86,11 @@ public class ReceptionNPC : MonoBehaviour
     {
         currentLevelData = levels[currentLevel];
 
-
         npcObj.transform.position = sitPos.position;
         npcObj.transform.rotation = sitPos.rotation;
 
         if (bIsUnlock)
         {
-
             gameManager.DropObj(npcObj);
             roundUpgradePartical.ForEach(X => X.Play());
         }
@@ -100,12 +98,8 @@ public class ReceptionNPC : MonoBehaviour
         {
             npcObj.SetActive(false);
         }
-        gameManager.ReBuildNavmesh();
-
+       // gameManager.ReBuildNavmesh();
     }
-
-
-    #region Upgrade Mechanics 
     public void SetUpgredeVisual()
     {
 
@@ -115,12 +109,15 @@ public class ReceptionNPC : MonoBehaviour
 
             SetTakeMoneyData(currentCost);
         }
-        
+        else
         {
             upGrader.gameObject.SetActive(false);
         }
 
     }
+
+
+    #region Upgrade Mechanics 
     public void OnUnlockAndUpgrade()
     {
 
@@ -131,6 +128,10 @@ public class ReceptionNPC : MonoBehaviour
             currentLevel = 0;
             currentLevelData = levels[currentLevel];
             SetVisual();
+            if (TaskManager.instance != null)
+            {
+                TaskManager.instance.OnTaskComplete(currentLevelData.nextTask);
+            }
 
         }
         else
@@ -161,7 +162,7 @@ public class ReceptionNPC : MonoBehaviour
         {
             if (currentLevel + 1 < levels.Length)
             {
-                currentCost = levels[currentLevel + 1 ].upgradeCost;
+                currentCost = levels[currentLevel + 1].upgradeCost;
             }
             else
             {

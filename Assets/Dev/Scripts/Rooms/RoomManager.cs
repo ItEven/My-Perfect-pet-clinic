@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 
 
-public class InspectionRoomManager : MonoBehaviour
+public class RoomManager : MonoBehaviour
 {
     [Header("Task Number")]
     public int currentTask;
@@ -25,8 +25,8 @@ public class InspectionRoomManager : MonoBehaviour
 
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
-    internal bool bCanProsses;
     internal bool bIsPlayerOnDesk;
+
 
     public Upgrader upGrader;
     public MoneyBox moneyBox;
@@ -42,7 +42,7 @@ public class InspectionRoomManager : MonoBehaviour
 
 
 
-    [Header(" Visuals Details")]
+    [Header("Visuals Details")]
     public Image worldProgresBar;
     public GameObject[] unlockObjs;
     public GameObject[] lockedObjs;
@@ -106,7 +106,7 @@ public class InspectionRoomManager : MonoBehaviour
             {
                 gameManager.DropObj(item);
             }
-            Staff_NPC.gameObject.SetActive(true);
+            //  Staff_NPC.gameObject.SetActive(true);
 
             roundUpgradePartical.ForEach(X => X.Play());
             if (Staff_NPC != null)
@@ -133,7 +133,7 @@ public class InspectionRoomManager : MonoBehaviour
                     item.SetActive(true);
                 }
             }
-            Staff_NPC.gameObject.SetActive(false);
+            //  Staff_NPC.gameObject.SetActive(false);
 
         }
         gameManager.ReBuildNavmesh();
@@ -221,85 +221,120 @@ public class InspectionRoomManager : MonoBehaviour
 
     public void OnPlayerTrigger()
     {
-        
+        bIsPlayerOnDesk = true;
+        if (!Staff_NPC.bIsUnlock)
+        {
+            SetUpPlayer();
+        }
     }
 
     public void OnPlayerExit()
     {
+        bIsPlayerOnDesk = false;
 
-    }
-    public void StartProsses()
-    {
         if (!Staff_NPC.bIsUnlock)
         {
-            bCanProsses = true;
-            StratProssesPatients();
-            gameManager.playerController._characterMovement.enabled = false;
-            gameManager.playerController.enabled = false;
-            gameManager.playerController.bIsDiagnosing = true;
-            gameManager.playerController.joystick.gameObject.SetActive(false);
-            gameManager.playerController.transform.SetParent(Staff_NPC.sitPos);
-            gameManager.playerController.transform.position = Staff_NPC.sitPos.position;
-            gameManager.playerController._characterMovement.rotatingObj.rotation = Staff_NPC.sitPos.rotation;
-
-
-            DOVirtual.DelayedCall(1f, () =>
-            {
-                gameManager.playerController.transform.SetParent(null);
-                gameManager.playerController.joystick.gameObject.SetActive(true);
-                gameManager.playerController.joystick.OnPointerUp(null);
-                gameManager.playerController._characterMovement.enabled = true;
-            });
+            StopProsses();
         }
+    }
+    public void SetUpPlayer()
+    {
+
+        StratProssesPatients();
+        gameManager.playerController._characterMovement.enabled = false;
+        gameManager.playerController.enabled = false;
+        gameManager.playerController.bIsDiagnosing = true;
+        gameManager.playerController.joystick.gameObject.SetActive(false);
+        gameManager.playerController.transform.SetParent(Staff_NPC.sitPos);
+        gameManager.playerController.transform.position = Staff_NPC.sitPos.position;
+        gameManager.playerController._characterMovement.rotatingObj.rotation = Staff_NPC.sitPos.rotation;
+
+
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            gameManager.playerController.transform.SetParent(null);
+            gameManager.playerController.joystick.gameObject.SetActive(true);
+            gameManager.playerController.joystick.OnPointerUp(null);
+            gameManager.playerController._characterMovement.enabled = true;
+        });
+
     }
 
     internal string tweenID = "worldProgressBarTween";
     public virtual void StratProssesPatients()
     {
-        if (!gameManager.playerController.bhasSit)
+        if (bIsPlayerOnDesk)
         {
             gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
         }
 
-        if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving && bCanProsses)
+
+        if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
         {
-
-
-            Debug.LogError("waitingQueue");
-
             if (!hospitalManager.CheckRegiterPosFull())
             {
                 var room = hospitalManager.pharmacyRoom;
-                gameManager.playerController.animationController.PlayAnimation(AnimType.Diagnosing);
+                if (bIsPlayerOnDesk)
+                {
+                    gameManager.playerController.animationController.PlayAnimation(AnimType.Diagnosing);
 
-                worldProgresBar.fillAmount = 0;
-                worldProgresBar.DOFillAmount(1, Staff_NPC.currentLevelData.processTime)
-                    .SetId(tweenID)
-                    .OnComplete(() =>
-                    {
-
-                        gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
-                        moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
-                        room.RegisterPatient(waitingQueue.patientInQueue[0]);
-                        var p = waitingQueue.patientInQueue[0];
-                        p.MoveAnimal();
-                        waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
-
-                        if (unRegisterPatientList.Count > 0)
+                    worldProgresBar.fillAmount = 0;
+                    worldProgresBar.DOFillAmount(1, Staff_NPC.currentLevelData.processTime)
+                        .SetId(tweenID)
+                        .OnComplete(() =>
                         {
-                            NextPatient();
-                        }
-                        worldProgresBar.fillAmount = 0;
 
-                    });
+                            gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
+                            moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
+                            room.RegisterPatient(waitingQueue.patientInQueue[0]);
+                            var p = waitingQueue.patientInQueue[0];
+                            p.MoveAnimal();
+                            waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
 
+                            if (unRegisterPatientList.Count > 0)
+                            {
+                                NextPatient();
+                            }
+                            worldProgresBar.fillAmount = 0;
+
+                        });
+
+                }
+                else if (Staff_NPC.bIsUnlock)
+                {
+
+
+                    Staff_NPC.animationController.PlayAnimation(AnimType.Diagnosing);
+
+                    worldProgresBar.fillAmount = 0;
+                    worldProgresBar.DOFillAmount(1, Staff_NPC.currentLevelData.processTime)
+                        .SetId(tweenID)
+                        .OnComplete(() =>
+                        {
+
+                            gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
+                            moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
+                            room.RegisterPatient(waitingQueue.patientInQueue[0]);
+                            var p = waitingQueue.patientInQueue[0];
+                            p.MoveAnimal();
+                            waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+
+                            if (unRegisterPatientList.Count > 0)
+                            {
+                                NextPatient();
+                            }
+                            worldProgresBar.fillAmount = 0;
+
+                        });
+
+                }
             }
         }
 
     }
     public void OnReachTable()
     {
-        DOVirtual.DelayedCall(1f, () =>
+        DOVirtual.DelayedCall(0.2f, () =>
         {
 
             if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
@@ -308,6 +343,7 @@ public class InspectionRoomManager : MonoBehaviour
                 Animal animal = p.animal;
                 animal.navmeshAgent.enabled = false;
                 p.transform.rotation = Quaternion.identity;
+
                 Debug.LogWarning("OnReachTable()");
 
                 animal.gameObject.transform.position = animalDignosPos.position;
@@ -323,7 +359,7 @@ public class InspectionRoomManager : MonoBehaviour
     public virtual void StopProsses()
     {
         gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
-        bCanProsses = false;
+        bIsPlayerOnDesk = false;
         worldProgresBar.fillAmount = 0;
         DOTween.Kill(tweenID);
     }
