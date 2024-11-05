@@ -14,7 +14,7 @@ public class HospitalManager : MonoBehaviour
 {
     //public RoomHandler[] roomHandlers;
     [Header("All Room")]
-    public RoomManager[] InspectionRoom;
+    public InspectionRoom[] InspectionRoom;
     public PharmacyRoom pharmacyRoom;
 
     [Header("ExitTransfrom")]
@@ -48,7 +48,13 @@ public class HospitalManager : MonoBehaviour
 
     #region Pharmacy Room Machenics
 
-
+    public void OnRoomHaveSpace()
+    {
+        foreach (var item in InspectionRoom)
+        {
+            item.StratProssesPatients();
+        }
+    }
 
     #endregion
 
@@ -70,6 +76,10 @@ public class HospitalManager : MonoBehaviour
         }
         return true;
     }
+
+
+
+
     public Transform GetRandomPos(Patient patient)
     {
         for (int i = 0; i < registerPoses.Length; i++)

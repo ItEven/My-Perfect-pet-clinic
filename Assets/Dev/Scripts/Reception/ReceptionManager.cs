@@ -30,6 +30,8 @@ public class ReceptionManager : MonoBehaviour
 
     public Upgrader upGrader;
     public MoneyBox moneyBox;
+    // public OnTrigger onTrigger;
+    public Seat seat;
     internal WaitingQueue waitingQueue;
 
 
@@ -78,6 +80,7 @@ public class ReceptionManager : MonoBehaviour
     {
         currentCost = unlockPrice;
         waitingQueue = GetComponent<WaitingQueue>();
+        // seat = onTrigger.seat;
         loadData();
     }
     public void loadData()
@@ -103,7 +106,7 @@ public class ReceptionManager : MonoBehaviour
             {
                 gameManager.DropObj(item);
             }
-           
+
 
             roundUpgradePartical.ForEach(X => X.Play());
         }
@@ -123,7 +126,7 @@ public class ReceptionManager : MonoBehaviour
                     item.SetActive(true);
                 }
             }
-      
+
 
         }
         gameManager.ReBuildNavmesh();
@@ -148,6 +151,8 @@ public class ReceptionManager : MonoBehaviour
 
     public void OnUnlockAndUpgrade()
     {
+        AudioManager.i.OnUpgrade();
+
         if (!bIsUnlock)
         {
             bIsUnlock = true;
@@ -194,6 +199,7 @@ public class ReceptionManager : MonoBehaviour
         }
     }
 
+    //Seat seat;
     public void SetUpPlayer()
     {
         StratProssesPatients();
@@ -202,45 +208,47 @@ public class ReceptionManager : MonoBehaviour
         gameManager.playerController.bhasSit = true;
         gameManager.playerController.joystick.gameObject.SetActive(false);
 
-        gameManager.playerController.transform.SetParent(npc.sitPos);
-        gameManager.playerController.transform.position = npc.sitPos.position;
-        gameManager.playerController._characterMovement.rotatingObj.rotation = npc.sitPos.rotation;
+
+        gameManager.playerController.transform.position = seat.transform.position;
+        gameManager.playerController._characterMovement.rotatingObj.rotation = seat.transform.rotation;
 
 
-        DOVirtual.DelayedCall(1.5f, () =>
+        DOVirtual.DelayedCall(1f, () =>
         {
             gameManager.playerController.transform.SetParent(null);
             gameManager.playerController.joystick.gameObject.SetActive(true);
             gameManager.playerController.joystick.OnPointerUp(null);
             gameManager.playerController._characterMovement.enabled = true;
 
-
-        }).SetId("YONiga");
+        });
 
     }
 
-    string tweenID = "worldProgressBarTween";
+    private Tween Tw_Filler;
     public void StratProssesPatients()
     {
         if (bIsPlayerOnDesk)
         {
-            gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
+            gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
         }
 
 
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
         {
-            if (!hospitalManager.CheckRegiterPosFull())
+            //if (!hospitalManager.CheckRegiterPosFull())
+            //{
+            var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
+            if (!room.bIsUnRegisterQueIsFull())
             {
-                var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
+
                 if (bIsPlayerOnDesk)
                 {
-                    gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+                    gameManager.playerController.animationController.PlayAnimation(seat.workingAnim);
                     worldProgresBar.fillAmount = 0;
-                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
-                        .SetId(tweenID)
+                    Tw_Filler = worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
                         .OnComplete(() =>
                         {
+                            gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
 
                             moneyBox.TakeMoney(npc.currentLevelData.customerCost);
                             room.RegisterPatient(waitingQueue.patientInQueue[0]);
@@ -252,13 +260,12 @@ public class ReceptionManager : MonoBehaviour
                 }
                 else if (npc.bIsUnlock)
                 {
-                    gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+                    npc.animationController.PlayAnimation(seat.workingAnim);
                     worldProgresBar.fillAmount = 0;
-                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
-                        .SetId(tweenID)
+                    Tw_Filler = worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
                         .OnComplete(() =>
                         {
-
+                            npc.animationController.PlayAnimation(seat.idleAnim);
                             moneyBox.TakeMoney(npc.currentLevelData.customerCost);
                             room.RegisterPatient(waitingQueue.patientInQueue[0]);
 
@@ -267,17 +274,18 @@ public class ReceptionManager : MonoBehaviour
                         });
                 }
             }
+            //}
         }
 
     }
 
     public void StopProsses()
     {
-        gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
+        gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
         bIsPlayerOnDesk = false;
         worldProgresBar.fillAmount = 0;
-        DOTween.Kill("YONiga");
-        DOTween.Kill(tweenID);
+        DOTween.Kill(Tw_Filler);
+
     }
 
     #endregion

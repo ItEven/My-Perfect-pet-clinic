@@ -3,6 +3,7 @@ using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class StaffNPCLevelData
@@ -14,9 +15,11 @@ public class StaffNPCLevelData
 }
 public class InspectionRoomNpc : MonoBehaviour
 {
-    [Header(" Room Details")]
-
+    [Header("Room Details")]
+    [Tooltip("Cost required to unlock the NPC's room")]
     public int unlockPrice;
+
+    [Tooltip("Current cost required for the NPC's upgrade")]
     internal int currentCost
     {
         get { return upGrader.needMoney; }
@@ -26,22 +29,36 @@ public class InspectionRoomNpc : MonoBehaviour
         }
     }
 
+    [Tooltip("Indicates if the NPC's room is unlocked")]
     public bool bIsUnlock;
-    public bool bIsUpgraderActive;
-    internal AnimationController animationController;
-    public Upgrader upGrader;
 
-    [Header(" Level Details")]
+    [Tooltip("Indicates if the NPC's upgrader is active")]
+    public bool bIsUpgraderActive;
+
+    [Tooltip("Reference to the Animation Controller for NPC animations")]
+    internal AnimationController animationController;
+
+    [Tooltip("Reference to the Upgrader component to manage NPC upgrades")]
+    public Upgrader upGrader;
+    public UnityEvent OnUnlockNpc;
+
+    [Header("Level Details")]
+    [Tooltip("Current level of the NPC")]
     public int currentLevel;
+    [Tooltip("Next level target for NPC upgrades")]
     internal int nextLevel;
+    [Tooltip("Data of the current level for NPC")]
     internal StaffNPCLevelData currentLevelData;
+    [Tooltip("Array of level data for each NPC level")]
     public StaffNPCLevelData[] levels;
 
-    [Header(" Visuals Details")]
+    [Header("Visuals Details")]
+    [Tooltip("Position where NPC can sit")]
     public Transform sitPos;
+    [Tooltip("GameObject representing the NPC in the scene")]
     public GameObject npcObj;
-    //public GameObject[] unlockObjs;
-    //public GameObject[] lockedObjs;
+
+    [Tooltip("Particle effects displayed during NPC upgrades")]
     public ParticleSystem[] roundUpgradePartical;
 
     #region Initializers
@@ -126,6 +143,8 @@ public class InspectionRoomNpc : MonoBehaviour
 
     public void OnUnlockAndUpgrade()
     {
+        AudioManager.i.OnUpgrade();
+
         if (!bIsUnlock)
         {
             bIsUnlock = true;
@@ -133,14 +152,15 @@ public class InspectionRoomNpc : MonoBehaviour
             currentLevel = 0;
             currentLevelData = levels[currentLevel];
             SetVisual();
-            if (TaskManager.instance != null)
-            {
-                TaskManager.instance.OnTaskComplete(currentLevelData.nextTask);
-            }
+            OnUnlockNpc.Invoke();
         }
         else
         {
             OnUpgrade();
+        }
+        if (TaskManager.instance != null)
+        {
+            TaskManager.instance.OnTaskComplete(currentLevelData.nextTask);
         }
     }
 

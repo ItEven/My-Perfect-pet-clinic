@@ -85,6 +85,8 @@ public class TaskManager : MonoBehaviour
                 inspectionRoomManager_01.LoadNextUpgrade();
                 break;
             case 7:
+                Debug.LogError("yo niga");
+
                 receptionManager.LoadNextUpgrade();
                 break;
             case 8:
@@ -103,10 +105,9 @@ public class TaskManager : MonoBehaviour
                 inspectionRoomManager_01.LoadNextUpgrade();
                 break;
             case 13:
-                receptionManager.LoadNextUpgrade();
+                pharmacy_room.LoadNextUpgrade();
                 break;
             case 14:
-                pharmacy_room.LoadNextUpgrade();
                 break;
 
 

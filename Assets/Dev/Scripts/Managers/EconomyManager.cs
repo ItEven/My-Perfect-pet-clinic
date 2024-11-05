@@ -89,12 +89,13 @@ public class EconomyManager : MonoBehaviour
 
     }
 
+
+
     public bool bCanWeSpendPetMoney(float Amt)
     {
         float i = (float)PetMoneyCount - Amt;
         if (i >= 0)
         {
-           
             return true;
         }
        

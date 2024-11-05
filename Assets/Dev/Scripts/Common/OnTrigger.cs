@@ -10,11 +10,11 @@ public class OnTrigger : MonoBehaviour
     public UnityEvent onTriggerEnter;
     public UnityEvent onTriggerExit;
     public SpriteRenderer filler;
-    internal Collider Collider;
+    public Seat seat;
 
     private void Start()
     {
-        Collider = GetComponent<Collider>();
+
     }
 
     public void OnTriggerEnter(Collider other)

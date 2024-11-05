@@ -3,6 +3,7 @@ using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class ReceptionNPCLevelDetail
@@ -26,8 +27,8 @@ public class ReceptionNPC : MonoBehaviour
 
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
-
     public Upgrader upGrader;
+    public UnityEvent OnUnlockNpc;
 
 
     [Header(" Level Details")]
@@ -96,7 +97,7 @@ public class ReceptionNPC : MonoBehaviour
         {
             npcObj.SetActive(false);
         }
-       // gameManager.ReBuildNavmesh();
+        // gameManager.ReBuildNavmesh();
     }
     public void SetUpgredeVisual()
     {
@@ -118,7 +119,7 @@ public class ReceptionNPC : MonoBehaviour
     #region Upgrade Mechanics 
     public void OnUnlockAndUpgrade()
     {
-
+        AudioManager.i.OnUpgrade();
         if (!bIsUnlock)
         {
             bIsUnlock = true;
@@ -126,16 +127,18 @@ public class ReceptionNPC : MonoBehaviour
             currentLevel = 0;
             currentLevelData = levels[currentLevel];
             SetVisual();
-            if (TaskManager.instance != null)
-            {
-                TaskManager.instance.OnTaskComplete(currentLevelData.nextTask);
-            }
+            OnUnlockNpc.Invoke();
 
         }
         else
         {
 
             OnUpgrade();
+        }
+
+        if (TaskManager.instance != null)
+        {
+            TaskManager.instance.OnTaskComplete(currentLevelData.nextTask);
         }
 
     }

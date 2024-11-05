@@ -3,8 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-
 public class Upgrader : MonoBehaviour
 {
     [Header("Details")]
@@ -61,14 +59,18 @@ public class Upgrader : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && economyManager.bCanWeSpendPetMoney(needMoney))
+        if (other.CompareTag("Player"))
         {
-            player = other.gameObject.GetComponent<PlayerController>();
-            if (!player.IsMoving())
+            if (needMoney > 0 && (float)economyManager.PetMoneyCount > 0)
             {
-                bIsPlayerStay = true;
-                StartTakeMoney();
+                player = other.gameObject.GetComponent<PlayerController>();
+                if (!player.IsMoving())
+                {
+                    bIsPlayerStay = true;
+                    StartTakeMoney();
+                }
             }
+
         }
     }
 
@@ -94,6 +96,7 @@ public class Upgrader : MonoBehaviour
     {
         if (takeMoneyCoroutine != null)
         {
+            lastSub = 0f;
             currentNeedMoney = (int)needMoney;
             StopCoroutine(MoneySpwaing());
             StopCoroutine(takeMoneyCoroutine);
@@ -105,25 +108,39 @@ public class Upgrader : MonoBehaviour
     private IEnumerator TakingMoney()
     {
         if (needMoney <= 0) yield break;
+        if (economyManager.PetMoneyCount <= 0) yield break;
 
         float elapsedTime = 0f;
 
         while (needMoney > 0)
         {
-            if (!bIsPlayerStay)
+            if (!bIsPlayerStay || (float)economyManager.PetMoneyCount <= 0)
             {
                 StopTakeMoney();
                 yield break;
 
             }
+
+
             elapsedTime += Time.deltaTime;
             float percentageComplete = Mathf.Clamp01(elapsedTime / totalTime);
-            needMoney = Mathf.RoundToInt(Mathf.Lerp(needMoney, 0, percentageComplete));
+
+
+            if (economyManager.PetMoneyCount < needMoney)
+            {
+                needMoney = Mathf.RoundToInt(Mathf.Lerp(needMoney, needMoney - (float)economyManager.PetMoneyCount, percentageComplete));
+            }
+            else
+            {
+
+                needMoney = Mathf.RoundToInt(Mathf.Lerp(needMoney, 0, percentageComplete));
+            }
+
             var val = currentNeedMoney - needMoney;
 
-            if (economyManager.bCanWeSpendPetMoney(val - lastSub))
+
+            if (economyManager.bCanWeSpendPetMoney(val - lastSub) && (float)economyManager.PetMoneyCount > 0)
             {
-                Debug.Log("Current Value: " + needMoney);
 
 
                 economyManager.SpendPetMoney(val - lastSub);
@@ -158,10 +175,8 @@ public class Upgrader : MonoBehaviour
     {
         while (true)
         {
-            if (!bIsPlayerStay)
-            {
-                yield break;
-            }
+            if (!bIsPlayerStay) yield break;
+            if (economyManager.PetMoneyCount <= 0) yield break;
 
 
             yield return new WaitForSeconds(spwanBetweenTime);
@@ -176,6 +191,7 @@ public class Upgrader : MonoBehaviour
             {
                 brick.StartJump(moneyCollectPonit);
             }
+            AudioManager.i.OnmoneyDrop();
         }
     }
 

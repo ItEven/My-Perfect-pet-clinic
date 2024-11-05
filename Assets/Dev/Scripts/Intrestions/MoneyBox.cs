@@ -8,7 +8,8 @@ public class MoneyBox : MonoBehaviour
 {
     public float moneyGivingSpeed;
     public int totalMoneyInBox;
-    public Transform jumpPos;
+    public float spreadRadius = 5f;
+    public float spreadDuration = 0.5f;
     public Transform[] moneyBricksPos;
     public List<SingleMoneybrick> singleMoneybricks = new List<SingleMoneybrick>();
 
@@ -45,9 +46,17 @@ public class MoneyBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
-
-            GiveMoney();
+            //GiveMoney();
+            StartGiveMoney();
+        }
+    } 
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //GiveMoney();
+            StartGiveMoney();
         }
     }
 
@@ -84,11 +93,14 @@ public class MoneyBox : MonoBehaviour
             economyManager.AddPetMoney(money);
             totalMoneyInBox -= money;
             singleMoneybricks.RemoveAt(singleMoneybricks.Count - 1);
-
+            currntIndex--;
+            AudioManager.i.OnMonenyCollect();
             yield return new WaitForSeconds(moneyGivingSpeed);
 
             if (singleMoneybricks.Count <= 0)
             {
+                totalMoneyInBox = 0;
+                singleMoneybricks.Clear();
                 StopGiveMoney();
             }
         }
@@ -97,25 +109,22 @@ public class MoneyBox : MonoBehaviour
     #endregion
 
 
-    private Vector3 startPosition = Vector3.zero;
-    public Vector3 minRange = new Vector3(-10, 0, -10);
-    public Vector3 maxRange = new Vector3(10, 5, 10);
-    public float spreadDuration = 0.5f;
 
     void GiveMoney()
     {
         foreach (var obj in singleMoneybricks)
         {
-            Vector3 randomPosition = new Vector3(
-                Random.Range(minRange.x, maxRange.x),
-                Random.Range(minRange.y, maxRange.y),
-                Random.Range(minRange.z, maxRange.z)
-            );
+            Vector3 randomDirection = new Vector3(
+                Random.Range(-1f, 1f),
+                Mathf.Abs(Random.Range(0f, 1f)),
+                Random.Range(-1f, 1f)
+            ).normalized * spreadRadius;
+
 
             obj.transform.DORotate(new Vector3(360, 360, 360), 1f, RotateMode.FastBeyond360)
     .SetLoops(-1, LoopType.Yoyo);
 
-            obj.transform.DOMove(randomPosition, spreadDuration).OnComplete(() =>
+            obj.transform.DOMove(randomDirection, spreadDuration).OnComplete(() =>
             {
                 obj.StartJump(gameManager.playerController.moneyCollectPoint);
 
@@ -127,7 +136,7 @@ public class MoneyBox : MonoBehaviour
         economyManager.AddPetMoney(totalMoneyInBox);
         totalMoneyInBox = 0;
     }
-
+    
     [Button("TakeMoney")]
     public void TakeMoney(int amount)
     {
@@ -146,8 +155,8 @@ public class MoneyBox : MonoBehaviour
     {
         return amount switch
         {
-            >= 2000 => 48,
-            >= 1600 => 40,
+
+            >= 2000 => 40,
             >= 1200 => 35,
             >= 900 => 30,
             >= 700 => 25,

@@ -126,6 +126,8 @@ public class HallManager : MonoBehaviour
 
     public void OnUnlockAndUpgrade()
     {
+        AudioManager.i.OnUpgrade();
+
         if (!bIsUnlock)
         {
             bIsUnlock = true;
