@@ -191,8 +191,7 @@ public class Upgrader : MonoBehaviour
             {
                 brick.StartJump(moneyCollectPonit);
             }
-            AudioManager.i.OnmoneyDrop();
+            AudioManager.i.OnMoneyDrop();
         }
     }
-
 }

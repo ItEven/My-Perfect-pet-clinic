@@ -1,16 +1,15 @@
 ﻿using EasyCharacterMovement;
+using MoreMountains.Tools;
 using UnityEngine;
 
-
-public class PlayerController : MonoBehaviour
+[System.Serializable]
+public class PlayerControllerData
 {
-    public AnimationController animationController;
     public FloatingJoystick joystick;
-    public Transform moneyCollectPoint;
     public float rotationRate = 540.0f;
-    public float maxSpeed = 5;
+    public float maxSpeed = 5f;
     public float customAngle = 45f;
-    public float Senc = 45f;
+    public float sensitivity = 45f;
 
     public float acceleration = 20.0f;
     public float deceleration = 20.0f;
@@ -19,109 +18,135 @@ public class PlayerController : MonoBehaviour
     public float airFriction = 0.5f;
 
     public float jumpImpulse = 6.5f;
-    
+
     [Range(0.0f, 1.0f)]
     public float airControl = 0.3f;
 
     public Vector3 gravity = Vector3.down * 9.81f;
 
-    internal CharacterMovement _characterMovement;
-
-    private Vector3 _movementDirection;
-
-    private Vector3 desiredVelocity;
+    internal CharacterMovement characterMovement;
 
     public bool isDragging;
-    public bool bCanDarg;
+    public bool canDrag;
+}
+[System.Serializable]
+public class PlayerAnimationBool
+{
+    public bool bHasCarringItem;
+}
+
+public class PlayerController : MonoBehaviour
+{
+    [Header("Player Data Refrence")]
+    public PlayerControllerData playerControllerData;
+    public AnimationController animationController;
+    public Transform moneyCollectPoint;
+
+    [Header("Imp Refrence")]
+    public ItemsCarryhandler itemsCarryhandler;
+
+    [Header("Animation bool")]
+    public PlayerAnimationBool animationBool;
+
+
+    private Vector3 movementDirection;
+    private Vector3 desiredVelocity;
 
     private void Awake()
     {
-        _characterMovement = GetComponent<CharacterMovement>();
+        playerControllerData.characterMovement = GetComponent<CharacterMovement>();
     }
 
     private void Update()
     {
-        HendelMovement();
-        HendelAnimtion();
+        HandleMovement();
+        HandleAnimation();
     }
-    float horizontal;
-    float vertical;
+
+    private float horizontal;
+    private float vertical;
+
     #region Movement
-    public void HendelMovement()
+    public void HandleMovement()
     {
+        horizontal = playerControllerData.joystick.Horizontal;
+        vertical = playerControllerData.joystick.Vertical;
 
+        playerControllerData.isDragging = Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f;
 
-     
+        movementDirection = Vector3.zero;
+        movementDirection += Vector3.right * horizontal;
+        movementDirection += Vector3.forward * vertical;
 
-        horizontal = joystick.Horizontal;
-            vertical = joystick.Vertical;
-     
-        isDragging = Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f;
+        movementDirection = Quaternion.AngleAxis(playerControllerData.customAngle, Vector3.up) * movementDirection;
+        movementDirection = Vector3.ClampMagnitude(movementDirection, 1.0f);
 
-       
+        playerControllerData.characterMovement.RotateTowards(movementDirection, playerControllerData.rotationRate * Time.deltaTime * 2f);
 
+        desiredVelocity = movementDirection * playerControllerData.maxSpeed;
 
-        _movementDirection = Vector3.zero;
-        _movementDirection += Vector3.right * horizontal;
-        _movementDirection += Vector3.forward * vertical;
+        float actualAcceleration = playerControllerData.characterMovement.isGrounded ? playerControllerData.acceleration : playerControllerData.acceleration * playerControllerData.airControl;
+        float actualDeceleration = playerControllerData.characterMovement.isGrounded ? playerControllerData.deceleration : 0.0f;
 
-        _movementDirection = Quaternion.AngleAxis(customAngle, Vector3.up) * _movementDirection;
+        float actualFriction = playerControllerData.characterMovement.isGrounded ? playerControllerData.groundFriction : playerControllerData.airFriction;
 
-
-        _movementDirection = Vector3.ClampMagnitude(_movementDirection, 1.0f);
-
-
-        _characterMovement.RotateTowards(_movementDirection, rotationRate * Time.deltaTime * 2f);
-
-
-        desiredVelocity = _movementDirection * maxSpeed;
-
-        float actualAcceleration = _characterMovement.isGrounded ? acceleration : acceleration * airControl;
-        float actualDeceleration = _characterMovement.isGrounded ? deceleration : 0.0f;
-
-        float actualFriction = _characterMovement.isGrounded ? groundFriction : airFriction;
-
-        _characterMovement.SimpleMove(desiredVelocity, maxSpeed, actualAcceleration, actualDeceleration,
-            actualFriction, actualFriction, gravity);
-
+        playerControllerData.characterMovement.SimpleMove(desiredVelocity, playerControllerData.maxSpeed, actualAcceleration, actualDeceleration, actualFriction, actualFriction, playerControllerData.gravity);
     }
+
     public bool IsMoving()
     {
         return desiredVelocity.magnitude > 0.1f;
     }
-    float velocity;
+
+    private float velocity;
     public float GetVelocity()
     {
-        velocity = new Vector2(joystick.Horizontal, joystick.Vertical).magnitude;
+        velocity = new Vector2(playerControllerData.joystick.Horizontal, playerControllerData.joystick.Vertical).magnitude;
         return velocity = Mathf.Clamp01(velocity);
     }
     #endregion
 
+    #region Animation
+    internal bool hasSit;
+    internal bool isDiagnosing;
+    internal bool isTyping;
 
-    #region HendelAnimtion
-    internal bool bhasSit;
-    internal bool bIsDiagnosing;
-    internal bool bIsTyping;
-    public void HendelAnimtion()
+    public void HandleAnimation()
     {
         if (IsMoving())
         {
-            animationController.PlayAnimation(AnimType.Walk);
-            animationController.controller.SetFloat("Velocity", GetVelocity());
+            if (animationBool.bHasCarringItem)
+            {
+
+                animationController.PlayAnimation(AnimType.Walk_With_Object);
+                animationController.controller.SetFloat("Velocity", GetVelocity());
+
+            }
+            else
+            {
+                animationController.PlayAnimation(AnimType.Walk);
+                animationController.controller.SetFloat("Velocity", GetVelocity());
+
+            }
         }
         else
         {
-            if (bhasSit && !bIsTyping && !bIsDiagnosing)
+            //if (hasSit && !isTyping && !isDiagnosing)
+            //{
+            //    animationController.PlayAnimation(AnimType.Sti_Idle);
+            //}
+            //else if (hasSit && isTyping)
+            //{
+            //    animationController.PlayAnimation(AnimType.Typing);
+            //}
+            //else if (hasSit && isDiagnosing)
+            //{
+            //    animationController.PlayAnimation(AnimType.Diagnosing);
+            //}
+            if (animationBool.bHasCarringItem)
             {
-                animationController.PlayAnimation(AnimType.Sti_Idle);
-            }
-            else if (bhasSit && bIsTyping)
-            {
-                animationController.PlayAnimation(AnimType.Typing);
-            }
-            else if (bhasSit && bIsDiagnosing)
-            {
-                animationController.PlayAnimation(AnimType.Diagnosing);
+                //animationController.PlayAnimation(AnimType.Idle_With_Object);
+                animationController.PlayAnimation(AnimType.Idle);
             }
             else
             {
@@ -129,19 +154,14 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     #endregion
 
-    #region Intreaction 
-
+    #region Interaction
     public void StopPlayer()
     {
-
-        _movementDirection = Vector3.zero;
+        movementDirection = Vector3.zero;
         desiredVelocity = Vector3.zero;
-        _characterMovement.SimpleMove(Vector3.zero, 0, 0, 0, groundFriction, airFriction, gravity);
+        playerControllerData.characterMovement.SimpleMove(Vector3.zero, 0, 0, 0, playerControllerData.groundFriction, playerControllerData.airFriction, playerControllerData.gravity);
     }
-
     #endregion
-
 }

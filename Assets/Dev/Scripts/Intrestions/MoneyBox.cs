@@ -79,6 +79,7 @@ public class MoneyBox : MonoBehaviour
         }
     }
 
+
     IEnumerator GiveingMoney()
     {
         if (singleMoneybricks.Count <= 0)
@@ -95,6 +96,7 @@ public class MoneyBox : MonoBehaviour
             singleMoneybricks.RemoveAt(singleMoneybricks.Count - 1);
             currntIndex--;
             AudioManager.i.OnMonenyCollect();
+
             yield return new WaitForSeconds(moneyGivingSpeed);
 
             if (singleMoneybricks.Count <= 0)

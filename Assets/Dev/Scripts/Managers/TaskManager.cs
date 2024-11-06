@@ -11,11 +11,10 @@ public class TaskManager : MonoBehaviour
     public PatientManager patientManager;
 
     public HallManager hallManager_01;
-
     public ReceptionManager receptionManager;
-    public RoomManager inspectionRoomManager_01;
+    public InspectionRoom inspectionRoomManager_01;
     public PharmacyRoom pharmacy_room;
-    public RoomManager storage_room;
+    public StorageRoom storage_room;
 
     #region Initializers
     SaveManager saveManager;
@@ -66,11 +65,11 @@ public class TaskManager : MonoBehaviour
             case 2:
                 pharmacy_room.bIsUpgraderActive = true;
                 pharmacy_room.SetUpgredeVisual();
+                storage_room.bIsUpgraderActive = true;
+                storage_room.SetUpgradeVisual();
                 break;
             case 3:
                 //pharmacy_room.bIsUpgraderActive = true;
-                //storage_room.bIsUpgraderActive = true;
-                //storage_room.SetUpgredeVisual();
                 inspectionRoomManager_01.LoadNextUpgrade();
                 patientManager.AddDisease(DiseaseType.Cold);
                 patientManager.gameObject.SetActive(true);
@@ -79,13 +78,15 @@ public class TaskManager : MonoBehaviour
                 pharmacy_room.LoadNextUpgrade();
                 break;
             case 5:
-                receptionManager.LoadNextUpgrade();
+                
                 break;
             case 6:
-                inspectionRoomManager_01.LoadNextUpgrade();
+                receptionManager.LoadNextUpgrade();
                 break;
             case 7:
                 Debug.LogError("yo niga");
+                inspectionRoomManager_01.LoadNextUpgrade();
+                storage_room.LoadNextUpgrade();
 
                 receptionManager.LoadNextUpgrade();
                 break;

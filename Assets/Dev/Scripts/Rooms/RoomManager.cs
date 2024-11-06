@@ -10,31 +10,30 @@ using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
-    [Header("Task Number")]
+    [Header("Task Details")]
     public int currentTask;
-    [Header("InspectionRoom Details")]
+
+    [Header("Inspection Room Details")]
     public int unlockPrice;
     internal int currentCost
     {
         get { return upGrader.needMoney; }
-        set
-        {
-            upGrader.needMoney = value;
-        }
+        set { upGrader.needMoney = value; }
     }
-
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
     internal bool bIsPlayerOnDesk;
 
 
+    // Room Dependencies
     public Upgrader upGrader;
     public MoneyBox moneyBox;
     public Seat seat;
     internal WaitingQueue waitingQueue;
+
+    // Disease Information
     public DiseaseType[] diseaseTypes;
     public DiseaseData diseaseData;
-
 
     [Header("NPC Details")]
     public Transform animalDignosPos;
@@ -42,21 +41,19 @@ public class RoomManager : MonoBehaviour
     public int unRegisterLimit;
     public List<Patient> unRegisterPatientList;
 
-
-
-    [Header("Visuals Details")]
+    [Header("Visuals")]
     public Image worldProgresBar;
     public GameObject[] unlockObjs;
     public GameObject[] lockedObjs;
     public ParticleSystem[] roundUpgradePartical;
 
     #region Initializers
-
     internal SaveManager saveManager;
     internal EconomyManager economyManager;
     internal GameManager gameManager;
     internal UiManager uiManager;
     internal HospitalManager hospitalManager;
+
 
     private void OnEnable()
     {
@@ -254,23 +251,22 @@ public class RoomManager : MonoBehaviour
     }
     public void SetUpPlayer()
     {
-
         StratProssesPatients();
-        gameManager.playerController._characterMovement.enabled = false;
+        gameManager.playerController.playerControllerData.characterMovement.enabled = false;
         gameManager.playerController.enabled = false;
-        gameManager.playerController.bIsDiagnosing = true;
-        gameManager.playerController.joystick.gameObject.SetActive(false);
+       // gameManager.playerController.bIsDiagnosing = true;
+        gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(false);
 
         gameManager.playerController.transform.position = seat.transform.position;
-        gameManager.playerController._characterMovement.rotatingObj.rotation = seat.transform.rotation;
+        gameManager.playerController.playerControllerData.characterMovement.rotatingObj.rotation = seat.transform.rotation;
 
 
         DOVirtual.DelayedCall(1f, () =>
         {
             gameManager.playerController.transform.SetParent(null);
-            gameManager.playerController.joystick.gameObject.SetActive(true);
-            gameManager.playerController.joystick.OnPointerUp(null);
-            gameManager.playerController._characterMovement.enabled = true;
+            gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(true);
+            gameManager.playerController.playerControllerData.joystick.OnPointerUp(null);
+            gameManager.playerController.playerControllerData.characterMovement.enabled = true;
         });
 
     }

@@ -203,28 +203,28 @@ public class ReceptionManager : MonoBehaviour
     public void SetUpPlayer()
     {
         StratProssesPatients();
-        gameManager.playerController._characterMovement.enabled = false;
+        gameManager.playerController.playerControllerData.characterMovement.enabled = false;
         gameManager.playerController.enabled = false;
-        gameManager.playerController.bhasSit = true;
-        gameManager.playerController.joystick.gameObject.SetActive(false);
+        //gameManager.playerController.bhasSit = true;
+        gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(false);
 
 
         gameManager.playerController.transform.position = seat.transform.position;
-        gameManager.playerController._characterMovement.rotatingObj.rotation = seat.transform.rotation;
+        gameManager.playerController.playerControllerData.characterMovement.rotatingObj.rotation = seat.transform.rotation;
 
 
         DOVirtual.DelayedCall(1f, () =>
         {
             gameManager.playerController.transform.SetParent(null);
-            gameManager.playerController.joystick.gameObject.SetActive(true);
-            gameManager.playerController.joystick.OnPointerUp(null);
-            gameManager.playerController._characterMovement.enabled = true;
+            gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(true);
+            gameManager.playerController.playerControllerData.joystick.OnPointerUp(null);
+            gameManager.playerController.playerControllerData.characterMovement.enabled = true;
 
         });
 
     }
 
-    private Tween Tw_Filler;
+
     public void StratProssesPatients()
     {
         if (bIsPlayerOnDesk)
@@ -244,25 +244,25 @@ public class ReceptionManager : MonoBehaviour
                 if (bIsPlayerOnDesk)
                 {
                     gameManager.playerController.animationController.PlayAnimation(seat.workingAnim);
-                    worldProgresBar.fillAmount = 0;
-                    Tw_Filler = worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
-                        .OnComplete(() =>
-                        {
-                            gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
 
-                            moneyBox.TakeMoney(npc.currentLevelData.customerCost);
-                            room.RegisterPatient(waitingQueue.patientInQueue[0]);
+                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime).SetId("ProgressTween")
+                       .OnComplete(() =>
+                       {
+                           gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
 
-                            waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
-                            worldProgresBar.fillAmount = 0;
-                        });
+                           moneyBox.TakeMoney(npc.currentLevelData.customerCost);
+                           room.RegisterPatient(waitingQueue.patientInQueue[0]);
+
+                           waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+                           worldProgresBar.fillAmount = 0;
+                       });
 
                 }
                 else if (npc.bIsUnlock)
                 {
                     npc.animationController.PlayAnimation(seat.workingAnim);
-                    worldProgresBar.fillAmount = 0;
-                    Tw_Filler = worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
+
+                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
                         .OnComplete(() =>
                         {
                             npc.animationController.PlayAnimation(seat.idleAnim);
@@ -281,10 +281,12 @@ public class ReceptionManager : MonoBehaviour
 
     public void StopProsses()
     {
+
+        DOTween.Kill("ProgressTween");
+
         gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
         bIsPlayerOnDesk = false;
-        worldProgresBar.fillAmount = 0;
-        DOTween.Kill(Tw_Filler);
+
 
     }
 

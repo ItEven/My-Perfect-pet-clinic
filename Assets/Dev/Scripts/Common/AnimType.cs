@@ -7,7 +7,9 @@ public enum AnimType
     Diagnosing,
     Typing,
     Sti_Idle,
-    Talking
+    Talking,
+    Walk_With_Object,
+    Idle_With_Object,
 
 }
 

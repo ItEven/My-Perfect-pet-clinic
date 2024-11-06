@@ -116,7 +116,7 @@ public class AudioManager : MonoBehaviour
         AudioSource.PlayOneShot(moneyCollectClip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
     } 
-    public void OnmoneyDrop()
+    public void OnMoneyDrop()
     {
         AudioSource.PlayOneShot(moneyDropClip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);

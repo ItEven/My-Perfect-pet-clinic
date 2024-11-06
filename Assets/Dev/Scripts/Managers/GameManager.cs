@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public PlayerController playerController;
-    
+
     public Vector3 playerPos;
 
     [Space(1)]
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-   
+
     #region  Visual Drop Effects
 
     public void DropObj(GameObject obj)
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         if (!obj.activeInHierarchy)
         {
             obj.SetActive(true);
-            
+
 
             var Scale = obj.transform.localScale;
             Vector3 startPosition = obj.transform.position;
@@ -77,6 +77,36 @@ public class GameManager : MonoBehaviour
                            });
         }
 
+    }
+
+
+    public void SetObjectsState(GameObject[] objects, bool state)
+    {
+        foreach (var obj in objects)
+        {
+            if (obj.activeInHierarchy != state)
+                obj.SetActive(state);
+        }
+    }
+
+    public void PlayParticles(ParticleSystem[] particles)
+    {
+        foreach (var particle in particles)
+        {
+            particle.Play();
+        }
+    }
+    public void SetObjectsState(GameObject objects, bool state)
+    {
+
+        if (objects.activeInHierarchy != state)
+            objects.SetActive(state);
+
+    }
+
+    public void PlayParticles(ParticleSystem particles)
+    {
+        particles.Play();
     }
 
 

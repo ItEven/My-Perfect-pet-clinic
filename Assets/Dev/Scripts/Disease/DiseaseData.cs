@@ -3,6 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public enum ItemsTyps
+{
+    Notepad,
+    Dryer,
+    Bandages,
+    Spray_bottle,
+    Operation_kit,
+    Oxygen_cylinder,
+}
+
+
+[System.Serializable]
 public enum DiseaseType
 {
     Cough,
