@@ -6506,7 +6506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &574426164
 Transform:
   m_ObjectHideFlags: 0
@@ -15011,6 +15011,9 @@ MonoBehaviour:
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 1893658296}
+  moneyBox: {fileID: 0}
+  unRegisterLimit: 0
+  unRegisterPatientList: []
   currntOpenBeds: 0
   bedsArr: []
   unlockObjs: []
@@ -16487,9 +16490,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upGrader: {fileID: 0}
   bIsUnlock: 0
   bIsUpgraderActive: 0
+  bIsOccupied: 0
+  upGrader: {fileID: 0}
+  onTrigger: {fileID: 0}
+  petDignosPos: {fileID: 0}
+  petOwnerSeat: {fileID: 0}
+  staffNPC: {fileID: 0}
   worldProgresBar: {fileID: 1708837684}
   unlockObjs: {fileID: 0}
   groundCanvas: {fileID: 1708837683}
@@ -17969,12 +17977,12 @@ MonoBehaviour:
   upGrader: {fileID: 2016510565}
   moneyBox: {fileID: 1547032321}
   seat: {fileID: 29814629}
+  unRegisterLimit: 3
+  unRegisterPatientList: []
   diseaseTypes: 
   diseaseData: {fileID: 11400000, guid: b1930ad8515110044b863b0ef633e66b, type: 2}
   animalDignosPos: {fileID: 0}
   Staff_NPC: {fileID: 1914248557}
-  unRegisterLimit: 3
-  unRegisterPatientList: []
   worldProgresBar: {fileID: 38450220}
   unlockObjs:
   - {fileID: 434701907}
@@ -21664,12 +21672,12 @@ MonoBehaviour:
   upGrader: {fileID: 1970016002}
   moneyBox: {fileID: 1941811402}
   seat: {fileID: 536201153}
+  unRegisterLimit: 3
+  unRegisterPatientList: []
   diseaseTypes: 00000000010000000200000003000000
   diseaseData: {fileID: 11400000, guid: c71afbfb6080fbd4289a3c337197eaab, type: 2}
   animalDignosPos: {fileID: 1690636892}
   Staff_NPC: {fileID: 1778038577}
-  unRegisterLimit: 3
-  unRegisterPatientList: []
   worldProgresBar: {fileID: 1753277011}
   unlockObjs:
   - {fileID: 1203506249}

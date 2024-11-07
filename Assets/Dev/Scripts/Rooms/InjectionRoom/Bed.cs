@@ -8,8 +8,13 @@ public class Bed : MonoBehaviour
     [Header("Bed Dependencies")]
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
+    public bool bIsOccupied;
     public Upgrader upGrader;
     public OnTrigger onTrigger;
+
+    [Header("Tranfroms")]
+    public Transform petDignosPos;
+    public Seat petOwnerSeat;
 
     [Header("NPC Details")]
     public StaffNPC staffNPC;

@@ -30,6 +30,8 @@ public class RoomManager : MonoBehaviour
     public MoneyBox moneyBox;
     public Seat seat;
     internal WaitingQueue waitingQueue;
+    public int unRegisterLimit;
+    public List<Patient> unRegisterPatientList;
 
     // Disease Information
     public DiseaseType[] diseaseTypes;
@@ -38,8 +40,6 @@ public class RoomManager : MonoBehaviour
     [Header("NPC Details")]
     public Transform animalDignosPos;
     public StaffNPC Staff_NPC;
-    public int unRegisterLimit;
-    public List<Patient> unRegisterPatientList;
 
     [Header("Visuals")]
     public Image worldProgresBar;
