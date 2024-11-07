@@ -24,11 +24,8 @@ public class Items : MonoBehaviour
 
     public void StartJumpToStatic(Transform target)
     {
-
-
         Vector3 targetPosition = target.position;
         Quaternion initialRotation = transform.rotation;
-
 
         transform.DOJump(targetPosition, jumpHight, 1, jumpTime).OnComplete(() =>
         {
@@ -47,21 +44,6 @@ public class Items : MonoBehaviour
         
         transform.parent = target;
         StartCoroutine(Jumping());
-        //Vector3 targetPosition = perent.position;
-        //Quaternion initialRotation = transform.rotation;
-
-
-        //transform.DOJump(targetPosition, jumpHight, 1, jumpTime).OnComplete(() =>
-        //{
-        //    targetPosition = perent.position;
-        //    transform.position = transform.position;
-        //    transform.rotation = initialRotation;
-
-        //}).OnComplete(() =>
-        //{
-        //    transform.SetParent(perent.transform);
-        //    DOTween.Kill(this);
-        //});
     }
     IEnumerator Jumping()
     {
@@ -69,7 +51,7 @@ public class Items : MonoBehaviour
     
         yield return new WaitForEndOfFrame();
 
-        
+        AudioManager.i.OnMonenyCollect();
         float _jump = Random.Range(3.1f, 5.1f);
         transform.DOLocalJump(Vector3.zero, _jump, 1, 1).OnComplete(() =>
         {          

@@ -404,7 +404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631007f99e8d2374190cb19b267f5ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needMoneyText: {fileID: 1340746667900881360}
   currentNeedMoney: 10000
   totalTime: 1
   spwanBetweenTime: 0.05
@@ -412,6 +411,8 @@ MonoBehaviour:
   jumpHight: 2.5
   fadeOutTime: 0.5
   fadeInTime: 0.001
+  needMoneyText: {fileID: 1340746667900881360}
+  indicationIcon: {fileID: 7147391218635953493}
   SingleMoneybrick: {fileID: 2221736062232325856, guid: 78effe5661a670d4b951b8a07f7341cb,
     type: 3}
   OnUpgradeFinish:
@@ -430,6 +431,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   moneyCollectPonit: {fileID: 6516039718504257937}
+  addSprtie: {fileID: 21300000, guid: 91ac3742a876bd54d91eac518968e1f7, type: 3}
+  arrowSprtie: {fileID: 21300030, guid: bd12243c8e515334c9807b29469b5f2e, type: 3}
 --- !u!65 &407051935688909880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -946,7 +949,7 @@ GameObject:
   - component: {fileID: 2946529089680537486}
   - component: {fileID: 7147391218635953493}
   m_Layer: 0
-  m_Name: +
+  m_Name: IndicationIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

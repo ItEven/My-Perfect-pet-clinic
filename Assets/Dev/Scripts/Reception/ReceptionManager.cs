@@ -129,7 +129,6 @@ public class ReceptionManager : MonoBehaviour
 
 
         }
-        gameManager.ReBuildNavmesh();
     }
 
 

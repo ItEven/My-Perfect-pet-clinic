@@ -37,7 +37,7 @@ public class RoomManager : MonoBehaviour
 
     [Header("NPC Details")]
     public Transform animalDignosPos;
-    public InspectionRoomNpc Staff_NPC;
+    public StaffNPC Staff_NPC;
     public int unRegisterLimit;
     public List<Patient> unRegisterPatientList;
 
@@ -105,16 +105,9 @@ public class RoomManager : MonoBehaviour
             {
                 gameManager.DropObj(item);
             }
-            //  Staff_NPC.gameObject.SetActive(true);
 
             roundUpgradePartical.ForEach(X => X.Play());
-            if (Staff_NPC != null)
-            {
-                if (Staff_NPC.bIsUnlock)
-                {
-                    //
-                }
-            }
+           
         }
         else
         {
@@ -132,10 +125,8 @@ public class RoomManager : MonoBehaviour
                     item.SetActive(true);
                 }
             }
-            //  Staff_NPC.gameObject.SetActive(false);
 
         }
-        gameManager.ReBuildNavmesh();
     }
 
     #endregion
@@ -254,7 +245,7 @@ public class RoomManager : MonoBehaviour
         StratProssesPatients();
         gameManager.playerController.playerControllerData.characterMovement.enabled = false;
         gameManager.playerController.enabled = false;
-       // gameManager.playerController.bIsDiagnosing = true;
+       //gameManager.playerController.bIsDiagnosing = true;
         gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(false);
 
         gameManager.playerController.transform.position = seat.transform.position;

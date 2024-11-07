@@ -104,7 +104,6 @@ public class HallManager : MonoBehaviour
 
 
         }
-        gameManager.ReBuildNavmesh();
     }
 
 

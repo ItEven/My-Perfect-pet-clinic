@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [Space(1)]
     [Header("Gloable Veriables")]
     public GameObject singleMoneybrick;
-    public NavMeshSurface navMeshSurface;
+
 
     [Space(1)]
     [Header("Drop objs Veriables")]
@@ -38,17 +38,7 @@ public class GameManager : MonoBehaviour
         playerController.transform.position = playerPos;
     }
 
-    public void ReBuildNavmesh()
-    {
-        //if (navMeshSurface != null)
-        //{
-        //    navMeshSurface.BuildNavMesh();
-        //}
-        //else
-        //{
-        //    Debug.LogError("NavMeshSurface is not assigned.");
-        //}
-    }
+
 
 
     #region  Visual Drop Effects

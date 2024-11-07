@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Tools;
 using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ public class StaffNPCLevelData
 {
     public int levelNum, upgradeCost, nextTask;
     public float processTime;
-    public DiseaseType[] DiseaseType;
     public StaffExprinceType StaffExprinceType;
 }
-public class InspectionRoomNpc : MonoBehaviour
+
+public class StaffNPC : MonoBehaviour
 {
     [Header("Room Details")]
     [Tooltip("Cost required to unlock the NPC's room")]
@@ -31,6 +32,9 @@ public class InspectionRoomNpc : MonoBehaviour
 
     [Tooltip("Indicates if the NPC's room is unlocked")]
     public bool bIsUnlock;
+
+    [Tooltip("Indicates if the NPC's room is Moveable or not")]
+    public bool bIsMoveable;
 
     [Tooltip("Indicates if the NPC's upgrader is active")]
     public bool bIsUpgraderActive;
@@ -61,6 +65,8 @@ public class InspectionRoomNpc : MonoBehaviour
     [Tooltip("Particle effects displayed during NPC upgrades")]
     public ParticleSystem[] roundUpgradePartical;
 
+
+    Seat Seat;
     #region Initializers
 
     SaveManager saveManager;
@@ -102,24 +108,19 @@ public class InspectionRoomNpc : MonoBehaviour
     }
     public void SetVisual()
     {
-        currentLevelData = levels[currentLevel];
-
         transform.position = sitPos.position;
         transform.rotation = sitPos.rotation;
 
         if (bIsUnlock)
         {
-
             gameManager.DropObj(npcObj);
             roundUpgradePartical.ForEach(X => X.Play());
-
         }
         else
         {
             npcObj.SetActive(false);
         }
-        //  gameManager.ReBuildNavmesh();
-
+        currentLevelData = levels[currentLevel];
     }
 
 
@@ -158,15 +159,14 @@ public class InspectionRoomNpc : MonoBehaviour
         {
             OnUpgrade();
         }
-        if (TaskManager.instance != null)
-        {
-            TaskManager.instance.OnTaskComplete(currentLevelData.nextTask);
-        }
+        TaskManager.instance?.OnTaskComplete(currentLevelData.nextTask);
+
     }
 
     public void SetTakeMoneyData(int cost)
     {
         DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(cost));
+        if (bIsUnlock) upGrader.SetUpgraderSprite();
     }
 
     public void OnUpgrade()
@@ -192,6 +192,25 @@ public class InspectionRoomNpc : MonoBehaviour
             }
         }
         SetUpgredeVisual();
+    }
+
+
+    #endregion
+
+    #region MoveAble Thing
+
+    public void GoToTragetPostion()
+    {
+        if(Seat != null)
+        {
+            
+
+        }
+    }
+
+    public void SetMainSeat(Seat seat)
+    {
+        Seat = seat;
     }
 
     #endregion

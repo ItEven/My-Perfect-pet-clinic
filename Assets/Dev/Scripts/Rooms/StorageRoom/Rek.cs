@@ -100,8 +100,6 @@ public class Rek : MonoBehaviour
 
     public void StopGiving()
     {
-        // DOTween.Kill(Tw_ItemReFiller);
-        //CheckIfRefillNeed();
         if (itemsCarryhandler != null)
         {
             itemsCarryhandler.StartCoroutine();

@@ -7,6 +7,7 @@ public class AnimationController : MonoBehaviour
 {
     public Animator controller;
     public AnimType startanimation;
+    
 
     void Start()
     {
@@ -19,9 +20,7 @@ public class AnimationController : MonoBehaviour
     {
         if (controller != null)
         {
-
             controller.Play(anim.ToString());
-
         }
         else
         {
@@ -30,7 +29,7 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-
+    
     
 
 }

@@ -1,11 +1,9 @@
 using DG.Tweening;
-using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class StorageRoom : MonoBehaviour
+public class InjectionRoom : MonoBehaviour
 {
     [Header("Task Details")]
     public int currentTask;
@@ -25,9 +23,9 @@ public class StorageRoom : MonoBehaviour
     public Upgrader upGrader;
 
 
-    [Header("Rek Details")]
-    public int currntOpenReks;
-    public Rek[] reks;
+    [Header("Bed Details")]
+    public int currntOpenBeds;
+    public Bed[] bedsArr;
 
 
     [Header("Visuals")]
@@ -82,12 +80,15 @@ public class StorageRoom : MonoBehaviour
             }
             LoadRekData();
             gameManager.PlayParticles(roundUpgradePartical);
+            Destroy(upGrader.gameObject);
+
         }
         else
         {
             gameManager.SetObjectsState(unlockObjs, false);
             gameManager.SetObjectsState(lockedObjs, true);
         }
+
     }
     #endregion
 
@@ -120,16 +121,19 @@ public class StorageRoom : MonoBehaviour
 
     public void LoadRekData()
     {
-        for (int i = 0; i < currntOpenReks; i++)
+        for (int i = 0; i < currntOpenBeds; i++)
         {
-            var rek = reks[i];
+            var rek = bedsArr[i];
             rek.gameObject.SetActive(true);
         }
     }
+
+
     public void LoadNextUpgrade()
     {
-        currntOpenReks++;
-        reks[currntOpenReks].gameObject.SetActive(true);
+        currntOpenBeds++;
+        bedsArr[currntOpenBeds].gameObject.SetActive(true);
     }
+
     #endregion
 }

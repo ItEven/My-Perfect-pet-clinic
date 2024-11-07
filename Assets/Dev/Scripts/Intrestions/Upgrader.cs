@@ -2,11 +2,10 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 public class Upgrader : MonoBehaviour
 {
     [Header("Details")]
-    public TMP_Text needMoneyText;
     private int NeedMoney;
     public int currentNeedMoney;
     public float totalTime = 5f;
@@ -15,6 +14,8 @@ public class Upgrader : MonoBehaviour
     public float jumpHight = 2.5f;
     public float fadeOutTime = 0.5f;
     public float fadeInTime = 0.001f;
+    public TMP_Text needMoneyText;
+    public SpriteRenderer indicationIcon;
 
     bool bIsPlayerStay;
     public GameObject SingleMoneybrick;
@@ -24,6 +25,11 @@ public class Upgrader : MonoBehaviour
     private SaveManager saveManager;
     private UiManager uiManager;
     private EconomyManager economyManager;
+
+    [Header("Sprites")]
+    public Sprite addSprtie;
+    public Sprite arrowSprtie;
+
 
     internal int needMoney
     {
@@ -81,7 +87,11 @@ public class Upgrader : MonoBehaviour
             bIsPlayerStay = false;
         }
     }
-
+    public void SetUpgraderSprite()
+    {
+        indicationIcon.sprite = arrowSprtie;
+        indicationIcon.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+    }
     private void StartTakeMoney()
     {
         if (takeMoneyCoroutine == null)

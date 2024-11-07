@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MoneyBox : MonoBehaviour
 {
     public float moneyGivingSpeed;
