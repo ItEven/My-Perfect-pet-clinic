@@ -11,6 +11,8 @@ public enum ItemsTyps
     Spray_bottle,
     Operation_kit,
     Oxygen_cylinder,
+    injection,
+
 }
 
 
@@ -58,4 +60,6 @@ public class Disease
 public class DiseaseData : ScriptableObject
 {
     public Disease[] diseases;
+
+   
 }

@@ -1,12 +1,10 @@
-using DG.Tweening;
-using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class InjectionRoom : MonoBehaviour
+using DG.Tweening;
+public abstract class ARoom : MonoBehaviour
 {
-    [Header("Task Details")]
+    //[Header("Task Details")]
     public int currentTask;
 
     [Header("Inspection Room Details")]
@@ -20,7 +18,7 @@ public class InjectionRoom : MonoBehaviour
     public bool bIsUpgraderActive;
     internal bool bIsPlayerOnDesk;
 
-    
+
     [Header("Disease Dependencies")]
     public DiseaseType[] diseaseTypes;
     public DiseaseData diseaseData;
@@ -63,7 +61,6 @@ public class InjectionRoom : MonoBehaviour
         hospitalManager = saveManager.hospitalManager;
     }
     #endregion
-
     #region Starters
     private void Start()
     {
@@ -79,7 +76,7 @@ public class InjectionRoom : MonoBehaviour
         SetUpgradeVisual();
     }
 
-    private void SetVisual()
+    public virtual void SetVisual()
     {
         if (bIsUnlock)
         {
@@ -149,8 +146,6 @@ public class InjectionRoom : MonoBehaviour
     {
         bedsArr[index].staffNPC.LoadNextUpgrade();
     }
-     
-
     #endregion
 
     #region Prosece Mechanics
@@ -189,7 +184,6 @@ public class InjectionRoom : MonoBehaviour
     {
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
         {
-
             Patient patient = waitingQueue.patientInQueue[0];
             Bed bed = GetBed();
             if (bed != null)
@@ -221,26 +215,19 @@ public class InjectionRoom : MonoBehaviour
     {
         DOVirtual.DelayedCall(0.2f, () =>
         {
-
             if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
             {
-
                 Animal animal = patient.animal;
                 animal.navmeshAgent.enabled = false;
                 patient.transform.rotation = Quaternion.identity;
 
-
                 animal.gameObject.transform.position = bed.petDignosPos.position;
                 animal.gameObject.transform.rotation = bed.petDignosPos.rotation;
 
-
                 animal.animator.PlayAnimation(bed.petOwnerSeat.idleAnim);
-
-
             }
         });
     }
-
     public bool bIsUnRegisterQueIsFull()
     {
         if (unRegisterPatientList.Count >= unRegisterLimit)

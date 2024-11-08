@@ -17,7 +17,7 @@ public class ItemsCarryhandler : MonoBehaviour
         if (currntCount < maxItemCarryCapicty)
         {
             Debug.LogError("yo wapp");
-            GameManager.Instance.playerController.animationBool.bHasCarringItem = true;
+            GameManager.Instance.playerController.animationBools.bHasCarringItem = true;
             StartCoroutine(TakingItems());
         }
     }

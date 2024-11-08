@@ -5,6 +5,24 @@ using DG.Tweening;
 
 public class InspectionRoom : RoomManager
 {
+    public override void RegisterPatient(Patient patients)
+    {
+        if (patients != null)
+        {
+            if (!waitingQueue.bIsQueueFull())
+            {
+                waitingQueue.AddInQueue(patients);
+                patients.MoveAnimal();
+            }
+            else
+            {
+                unRegisterPatientList.Add(patients);
+                Transform transform = hospitalManager.GetRandomPos(patients);
+                patients.NPCMovement.MoveToTarget(transform, null);
+                patients.MoveAnimal();
+            }
+        }
+    }
     public override void NextPatient()
     {
         Patient patient = unRegisterPatientList[0];
@@ -35,9 +53,9 @@ public class InspectionRoom : RoomManager
                     Tw_Filler = worldProgresBar.DOFillAmount(1, Staff_NPC.currentLevelData.processTime)
                         .OnComplete(() =>
                         {
-
                             gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
-                            moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
+                            //moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
+                            moneyBox.TakeMoney(hospitalManager.GetCustomerCost(waitingQueue.patientInQueue[0], diseaseData, Staff_NPC.currentLevelData.StaffExprinceType));
                             room.RegisterPatient(waitingQueue.patientInQueue[0]);
                             var p = waitingQueue.patientInQueue[0];
                             p.MoveAnimal();

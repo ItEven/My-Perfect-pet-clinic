@@ -178,7 +178,7 @@ public class RoomManager : MonoBehaviour
 
     #region Patient Prosses Machincs
 
-    public void RegisterPatient(Patient patients)
+    public virtual void RegisterPatient(Patient patients)
     {
         if (patients != null)
         {

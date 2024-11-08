@@ -30,9 +30,16 @@ public class PlayerControllerData
     public bool canDrag;
 }
 [System.Serializable]
-public class PlayerAnimationBool
+public class PlayerAnimationBools
 {
     public bool bHasCarringItem;
+    public bool bHasInjection;
+}
+
+[System.Serializable]
+public class PlayerEquipments
+{
+    public GameObject injection;
 }
 
 public class PlayerController : MonoBehaviour
@@ -40,15 +47,19 @@ public class PlayerController : MonoBehaviour
     [Header("Player Data Refrence")]
     public PlayerControllerData playerControllerData;
     public AnimationController animationController;
+    public ArrowController arrowController;
     public Transform moneyCollectPoint;
 
     [Header("Imp Refrence")]
     public ItemsCarryhandler itemsCarryhandler;
 
     [Header("Animation bool")]
-    public PlayerAnimationBool animationBool;
+    public PlayerAnimationBools animationBools;
 
+    [Header("Equipments Objects")]
+    public PlayerEquipments playerEquipments;
 
+    public bool bHaveItems;
     private Vector3 movementDirection;
     private Vector3 desiredVelocity;
 
@@ -115,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsMoving())
         {
-            if (animationBool.bHasCarringItem)
+            if (animationBools.bHasCarringItem)
             {
 
                 animationController.PlayAnimation(AnimType.Walk_With_Object);
@@ -143,7 +154,7 @@ public class PlayerController : MonoBehaviour
             //{
             //    animationController.PlayAnimation(AnimType.Diagnosing);
             //}
-            if (animationBool.bHasCarringItem)
+            if (animationBools.bHasCarringItem)
             {
                 //animationController.PlayAnimation(AnimType.Idle_With_Object);
                 animationController.PlayAnimation(AnimType.Idle);
@@ -156,12 +167,19 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region Interaction
-    public void StopPlayer()
+    #region Items Interaction
+    public void SetItemState(ItemsTyps items, bool state)
     {
-        movementDirection = Vector3.zero;
-        desiredVelocity = Vector3.zero;
-        playerControllerData.characterMovement.SimpleMove(Vector3.zero, 0, 0, 0, playerControllerData.groundFriction, playerControllerData.airFriction, playerControllerData.gravity);
+        switch (items)
+        {
+            case ItemsTyps.injection:
+                playerEquipments.injection.SetActive(state);
+                animationBools.bHasInjection = state;
+                break;
+
+        }
+        bHaveItems = state;
     }
+   
     #endregion
 }
