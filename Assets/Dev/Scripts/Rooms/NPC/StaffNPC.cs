@@ -33,13 +33,17 @@ public class StaffNPC : MonoBehaviour
     [Tooltip("Indicates if the NPC's room is unlocked")]
     public bool bIsUnlock;
 
+    [Tooltip("Indicates if the NPC's is on desk or not")]
+    public bool bIsOnDesk;
+    
     [Tooltip("Indicates if the NPC's room is Moveable or not")]
-    public bool bIsMoveable;
+    public bool bHaveIteam;
 
     [Tooltip("Indicates if the NPC's upgrader is active")]
     public bool bIsUpgraderActive;
 
     [Tooltip("Reference to the Animation Controller for NPC animations")]
+    public Transform animalCarryPos; 
     internal AnimationController animationController;
 
     [Tooltip("Reference to the Upgrader component to manage NPC upgrades")]
@@ -57,16 +61,18 @@ public class StaffNPC : MonoBehaviour
     public StaffNPCLevelData[] levels;
 
     [Header("Visuals Details")]
-    [Tooltip("Position where NPC can sit")]
-    public Transform sitPos;
     [Tooltip("GameObject representing the NPC in the scene")]
     public GameObject npcObj;
 
     [Tooltip("Particle effects displayed during NPC upgrades")]
     public ParticleSystem[] roundUpgradePartical;
 
+    [Header("Equipments Objects")]
+    public Equipments playerEquipments;
 
-    Seat Seat;
+
+    internal NPCMovement nPCMovement;
+    internal Seat seat;
     #region Initializers
 
     SaveManager saveManager;
@@ -97,8 +103,9 @@ public class StaffNPC : MonoBehaviour
     public void Start()
     {
         animationController = npcObj.GetComponent<AnimationController>();
+        nPCMovement = gameObject.GetComponent<NPCMovement>();
         currentCost = unlockPrice;
-        loadData();
+        //loadData();
     }
     public void loadData()
     {
@@ -108,12 +115,12 @@ public class StaffNPC : MonoBehaviour
     }
     public void SetVisual()
     {
-        transform.position = sitPos.position;
-        transform.rotation = sitPos.rotation;
-
         if (bIsUnlock)
         {
             gameManager.DropObj(npcObj);
+            transform.position = seat.transform.position;
+            transform.rotation = seat.transform.rotation;
+            animationController.PlayAnimation(seat.idleAnim);
             roundUpgradePartical.ForEach(X => X.Play());
         }
         else
@@ -128,16 +135,13 @@ public class StaffNPC : MonoBehaviour
 
     public void SetUpgredeVisual()
     {
-
         if (bIsUpgraderActive)
         {
-
             upGrader.gameObject.SetActive(true);
             SetTakeMoneyData(currentCost);
         }
         else
         {
-
             upGrader.gameObject.SetActive(false);
         }
     }
@@ -152,6 +156,7 @@ public class StaffNPC : MonoBehaviour
             bIsUpgraderActive = false;
             currentLevel = 0;
             currentLevelData = levels[currentLevel];
+
             SetVisual();
             OnUnlockNpc.Invoke();
         }
@@ -160,7 +165,6 @@ public class StaffNPC : MonoBehaviour
             OnUpgrade();
         }
         TaskManager.instance?.OnTaskComplete(currentLevelData.nextTask);
-
     }
 
     public void SetTakeMoneyData(int cost)
@@ -199,18 +203,18 @@ public class StaffNPC : MonoBehaviour
 
     #region MoveAble Thing
 
-    public void GoToTragetPostion()
-    {
-        if(Seat != null)
-        {
-            
+    //public void GoToTragetPostion()
+    //{
+    //    if (Seat != null)
+    //    {
 
-        }
-    }
+
+    //    }
+    //}
 
     public void SetMainSeat(Seat seat)
     {
-        Seat = seat;
+        this.seat = seat;
     }
 
     #endregion

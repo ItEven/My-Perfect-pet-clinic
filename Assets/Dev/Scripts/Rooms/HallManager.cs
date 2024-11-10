@@ -5,6 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 public class HallManager : MonoBehaviour
 {
+    //private ARoomData _save = new ARoomData();
+    public string HallName;
+
+    /*
+     * 
+     * 
+     * 
+     * */
     [Header("Task Number")]
     public int currentTask;
 
@@ -34,7 +42,7 @@ public class HallManager : MonoBehaviour
 
     SaveManager saveManager;
     GameManager gameManager;
-  
+
 
     private void OnEnable()
     {
@@ -49,7 +57,7 @@ public class HallManager : MonoBehaviour
     {
         saveManager = SaveManager.instance;
         gameManager = saveManager.gameManager;
-      
+
     }
 
     #endregion
@@ -58,9 +66,16 @@ public class HallManager : MonoBehaviour
     public void Start()
     {
         currentCost = unlockPrice;
-        loadData();
+        if (PlayerPrefs.HasKey(HallName))
+        {
+            LoadSaveData();
+        }
+        else
+        {
+            LoadData();
+        }
     }
-    public void loadData()
+    public void LoadData()
     {
         UpdateInitializers();
         SetVisual();
@@ -145,4 +160,41 @@ public class HallManager : MonoBehaviour
     }
 
     #endregion
+    #region Data Functions
+    public void SaveData()
+    {
+        ARoomData aRoom = new ARoomData();
+        aRoom.bIsUnlock = bIsUnlock;
+        aRoom.bIsUpgraderActive = bIsUpgraderActive;
+        aRoom.currentCost = currentCost;
+
+        string JsonData = JsonUtility.ToJson(aRoom);
+        PlayerPrefs.SetString(HallName, JsonData);
+
+    }
+    public void LoadSaveData()
+    {
+        string JsonData = PlayerPrefs.GetString(HallName);
+        ARoomData receivefile = JsonUtility.FromJson<ARoomData>(JsonData);
+
+        bIsUnlock = receivefile.bIsUnlock;
+        bIsUpgraderActive = receivefile.bIsUpgraderActive;
+        currentCost = receivefile.currentCost;
+        LoadData();
+
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveData();
+    }
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            SaveData();
+        }
+    }
+    #endregion
+
 }

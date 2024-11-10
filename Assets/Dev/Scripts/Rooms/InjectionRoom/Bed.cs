@@ -7,17 +7,29 @@ using UnityEngine.UI;
 using System;
 public class Bed : MonoBehaviour
 {
+    [Header("Task Details")]
+    public int currentTask;
+
+    [Header("Inspection Room Details")]
+    public int unlockPrice;
+    internal int currentCost
+    {
+        get { return upGrader.needMoney; }
+        set { upGrader.needMoney = value; }
+    }
+
     [Header("Bed Dependencies")]
     public bool bIsUnlock;
     public bool bIsUpgraderActive;
-    internal bool bIsPlayerOnDesk;
     public bool bIsOccupied;
-    public InjectionRoom room;
+    internal bool bIsPlayerOnDesk;
+
+    public ARoom room;
     public Upgrader upGrader;
     public OnTrigger onTrigger;
 
     [Header("Tranfroms")]
-    public Transform petDignosPos;
+    public Seat petDignosPos;
     public Seat petOwnerSeat;
 
     [Header("NPC Details")]
@@ -35,9 +47,8 @@ public class Bed : MonoBehaviour
     public SpriteRenderer groundCanvas;
     public ParticleSystem roundUpgradePartical;
 
-    Seat seat;
-    Patient patient;
-
+    protected Seat seat;
+    internal Patient patient;
     #region Initializers
     internal SaveManager saveManager;
     internal GameManager gameManager;
@@ -65,36 +76,78 @@ public class Bed : MonoBehaviour
     private void Start()
     {
         seat = onTrigger.seat;
+        worldProgresBar.fillAmount = 0;
         LoadData();
     }
 
-    private void LoadData()
+    public void LoadData()
     {
         UpdateInitializers();
         SetVisual();
+        SetUpgradeVisual();
+
     }
 
     private void SetVisual()
     {
         if (bIsUnlock)
         {
-            gameManager.DropObj(unlockObjs);
+            if (unlockObjs != null)
+            {
+                gameManager.DropObj(unlockObjs);
+            }
             gameManager.PlayParticles(roundUpgradePartical);
             Destroy(upGrader.gameObject);
             LoadNpcData();
+            staffNPC.gameObject.SetActive(true);
+            staffNPC.loadData();
+
+        }
+        else
+        {
+            staffNPC.gameObject.SetActive(false);
+            gameManager.SetObjectsState(unlockObjs, false);
         }
     }
 
-    public void LoadNpcData() 
+    public void LoadNpcData()
     {
         staffNPC.SetMainSeat(onTrigger.seat);
     }
 
+    #endregion
+
+    #region Upgrade Mechanics 
+    public void SetUpgradeVisual()
+    {
+        upGrader.gameObject.SetActive(bIsUpgraderActive);
+
+        if (bIsUpgraderActive)
+            SetTakeMoneyData(currentCost);
+    }
+
+    public void OnUnlockAndUpgrade()
+    {
+        AudioManager.i.OnUpgrade();
+
+        if (!bIsUnlock)
+        {
+            bIsUnlock = true;
+            bIsUpgraderActive = false;
+            SetVisual();
+            TaskManager.instance?.OnTaskComplete(currentTask);
+        }
+    }
+
+    private void SetTakeMoneyData(int cost)
+    {
+        DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(cost));
+    }
 
     #endregion
 
     #region Proses Mechanics
-    public void OnPlayerTrigger()
+    public virtual void OnPlayerTrigger()
     {
         bIsPlayerOnDesk = true;
         if (!staffNPC.bIsUnlock)
@@ -103,16 +156,17 @@ public class Bed : MonoBehaviour
         }
     }
 
-    public void OnPlayerExit()
+    public virtual void OnPlayerExit()
     {
+        
         bIsPlayerOnDesk = false;
         if (!staffNPC.bIsUnlock)
         {
-            // StopProsses();
+            BreakProcess();
         }
     }
 
-    public void SetUpPlayer()
+    public virtual void SetUpPlayer()
     {
         StartProcessPatients();
         playerController.playerControllerData.characterMovement.enabled = false;
@@ -133,51 +187,39 @@ public class Bed : MonoBehaviour
 
     }
 
-    public bool bCanDoProcess()
+    //public bool bCanDoProcess()
+    //{
+    //    //return playerController.bHaveItems;
+    //}
+    public virtual void StartProcessPatients()
     {
-        return playerController.bHaveItems;
-    }
-    public void StartProcessPatients()
-    {
+        if (patient == null) return;
 
-        if (bCanDoProcess())
+
+        var pharmacyRoom = hospitalManager.pharmacyRoom;
+        var workingAnimation = seat.workingAnim;
+        var processTime = staffNPC.currentLevelData.processTime;
+
+        if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
-            var pharmacyRoom = hospitalManager.pharmacyRoom;
-            var workingAnimation = seat.workingAnim;
-            var processTime = staffNPC.currentLevelData.processTime;
-            StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, processTime, () =>
+            StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
-                room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
-                worldProgresBar.fillAmount = 0;
-                if (room.bIsUnRegisterQueIsFull())
-                {
-                    playerController.animationController.PlayAnimation(seat.idleAnim);
-                    patient.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(), () =>
-                    {
-                        Destroy(patient.gameObject);
-                    });
-                    patient.animal.SetPartical(hospitalManager.GetAnimalMood());
-                }
-                else
-                {
-                    room.RegisterPatient(patient);
-                }
-                patient.MoveAnimal();
-
+                OnProcessComplite(pharmacyRoom,staffNPC.animationController, AnimType.Idle);
             });
         }
-        else
+        else if (bIsPlayerOnDesk)
         {
-            if (!arrowController.gameObject.activeInHierarchy && bIsOccupied) arrowController.gameObject.SetActive(true);
-            arrowController.SetTarget(ItemGiver.transform, 1f);
-
+            StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
+            {
+                OnProcessComplite(pharmacyRoom, playerController.animationController, AnimType.Idle);
+            });
         }
 
     }
 
-    private string processTweenId;
+    protected string processTweenId;
 
-    private void StartPatientProcessing(AnimationController animationController, AnimType workingAnim, AnimType idleAnim, float processTime, Action onComplete)
+    protected void StartPatientProcessing(AnimationController animationController, AnimType workingAnim, AnimType idleAnim, float processTime, Action onComplete)
     {
 
         if (string.IsNullOrEmpty(processTweenId))
@@ -186,7 +228,6 @@ public class Bed : MonoBehaviour
         }
 
         animationController.PlayAnimation(workingAnim);
-        worldProgresBar.fillAmount = 0;
 
         worldProgresBar.DOFillAmount(1, processTime).SetId(processTweenId)
             .OnComplete(() =>
@@ -196,7 +237,33 @@ public class Bed : MonoBehaviour
             });
     }
 
+    public virtual void OnProcessComplite(ARoom nextRoom, AnimationController animationController, AnimType idleAnim)
+    {
+        room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
+        worldProgresBar.fillAmount = 0;
 
+        if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null)
+        {
+            animationController.PlayAnimation(idleAnim);
+            patient.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(), () =>
+            {
+                Destroy(patient.gameObject);
+            });
+            patient.animal.SetPartical(hospitalManager.GetAnimalMood());
+        }
+        else
+        {
+            nextRoom.RegisterPatient(patient);
+        }
+        patient.MoveAnimal();
+        patient = null;
+    }
+
+    protected void BreakProcess()
+    {
+        worldProgresBar.fillAmount = 0;
+        DOTween.Kill(processTweenId);
+    }
     public void GetItemForProcess()
     {
         if (!playerController.bHaveItems)
@@ -212,5 +279,31 @@ public class Bed : MonoBehaviour
             playerController.SetItemState(itemsTyps, false);
         }
     }
+    #endregion
+
+    #region Some Call backs
+    public void OnStaffUnlock()
+    {
+        staffNPC.bIsOnDesk = false;
+        staffNPC.transform.position = upGrader.transform.position;
+        staffNPC.transform.rotation = upGrader.transform.rotation;
+        staffNPC.nPCMovement.MoveToTarget(seat.transform, () =>
+        {
+            staffNPC.transform.position = seat.transform.position;
+            staffNPC.transform.rotation = seat.transform.rotation;
+            staffNPC.animationController.PlayAnimation(seat.idleAnim);
+            staffNPC.bIsOnDesk = true;
+            StartProcessPatients();
+        });
+    }
+
+    //public virtual void TakeIteam(AnimType animType)
+    //{
+    //    switch (animType)
+    //    {
+
+    //    }
+    //}
+
     #endregion
 }

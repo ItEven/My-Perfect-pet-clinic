@@ -8,6 +8,7 @@ public class OnTrigger : MonoBehaviour
 {
     private bool bIsStay = false;
     public UnityEvent onTriggerEnter;
+    public UnityEvent onTriggerStay;
     public UnityEvent onTriggerExit;
     public SpriteRenderer filler;
     public Seat seat;
@@ -25,7 +26,14 @@ public class OnTrigger : MonoBehaviour
             filler.gameObject.SetActive(true);
         }
     }
-
+    public void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            onTriggerStay.Invoke();
+            filler.gameObject.SetActive(true);
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

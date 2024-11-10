@@ -10,7 +10,8 @@ public enum AnimType
     Talking,
     Walk_With_Object,
     Idle_With_Object,
-
+    Pet_Diagnos,
+    Injection  
 }
 
 

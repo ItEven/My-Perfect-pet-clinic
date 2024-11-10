@@ -8,6 +8,14 @@ using UnityEngine.UI;
 
 public class ReceptionManager : MonoBehaviour
 {
+    //private ARoomData _save = new ARoomData();
+    public string Reception = "Reception";
+
+    /*
+     * 
+     * 
+     * 
+     * */
 
     [Header("Task Number")]
     public int currentTask;
@@ -81,9 +89,16 @@ public class ReceptionManager : MonoBehaviour
         currentCost = unlockPrice;
         waitingQueue = GetComponent<WaitingQueue>();
         // seat = onTrigger.seat;
-        loadData();
+        if (PlayerPrefs.HasKey(Reception))
+        {
+            LoadSaveData();
+        }
+        else
+        {
+            LoadData();
+        }
     }
-    public void loadData()
+    public void LoadData()
     {
         UpdateInitializers();
         SetVisual();
@@ -185,6 +200,14 @@ public class ReceptionManager : MonoBehaviour
         if (!npc.bIsUnlock)
         {
             SetUpPlayer();
+            StratProssesPatients();
+        }
+    }
+    public void OnTriggerStay(Collider other)
+    {
+        if (!bIsPlayerOnDesk)
+        {
+
         }
     }
 
@@ -201,12 +224,10 @@ public class ReceptionManager : MonoBehaviour
     //Seat seat;
     public void SetUpPlayer()
     {
-        StratProssesPatients();
+
         gameManager.playerController.playerControllerData.characterMovement.enabled = false;
         gameManager.playerController.enabled = false;
-        //gameManager.playerController.bhasSit = true;
         gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(false);
-
 
         gameManager.playerController.transform.position = seat.transform.position;
         gameManager.playerController.playerControllerData.characterMovement.rotatingObj.rotation = seat.transform.rotation;
@@ -218,7 +239,6 @@ public class ReceptionManager : MonoBehaviour
             gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(true);
             gameManager.playerController.playerControllerData.joystick.OnPointerUp(null);
             gameManager.playerController.playerControllerData.characterMovement.enabled = true;
-
         });
 
     }
@@ -289,6 +309,65 @@ public class ReceptionManager : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Data Functions
+    public void SaveData()
+    {
+        ARoomData aRoom = new ARoomData();
+        aRoom.bIsUnlock = bIsUnlock;
+        aRoom.bIsUpgraderActive = bIsUpgraderActive;
+        aRoom.currentCost = currentCost;
+        var bed = new BedData();
+        bed.staffData = new StaffData
+        {
+            bIsUnlock = npc.bIsUnlock,
+            bIsUpgraderActive = npc.bIsUpgraderActive,
+            currentCost = npc.currentCost,
+            currentLevel = npc.currentLevel,
+            nextLevel = npc.nextLevel,
+        };
+        aRoom.bedDatas.Add(bed);
+
+        string JsonData = JsonUtility.ToJson(aRoom);
+        PlayerPrefs.SetString(Reception, JsonData);
+
+    }
+    public void LoadSaveData()
+    {
+        string JsonData = PlayerPrefs.GetString(Reception, string.Empty);
+        if (string.IsNullOrEmpty(JsonData))
+        {
+            // Handle the case where no data has been saved yet
+            return;
+        }
+        ARoomData receivefile = JsonUtility.FromJson<ARoomData>(JsonData);
+
+        bIsUnlock = receivefile.bIsUnlock;
+        bIsUpgraderActive = receivefile.bIsUpgraderActive;
+        currentCost = receivefile.currentCost;
+        LoadData();
+
+        var bedData = receivefile.bedDatas[0];
+        npc.bIsUnlock = bedData.staffData.bIsUnlock;
+        npc.bIsUpgraderActive = bedData.staffData.bIsUpgraderActive;
+        npc.currentCost = bedData.staffData.currentCost;
+        npc.currentLevel = bedData.staffData.currentLevel;
+        npc.nextLevel = bedData.staffData.nextLevel;
+        npc.loadData();
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveData();
+    }
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            SaveData();
+        }
+    }
     #endregion
 
 }

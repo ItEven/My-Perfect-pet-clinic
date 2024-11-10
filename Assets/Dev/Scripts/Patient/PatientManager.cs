@@ -4,15 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public class PatientManagerData
+{
+    public bool bIsUnlock;
+    public int curentUnlockDisease;
+}
 public class PatientManager : MonoBehaviour
 {
     public static PatientManager instance;
+
     public AnimalData AnimalData;
     public ReceptionManager receptionManager;
-    [SerializeField] GameObject[] patients;
+
+    [SerializeField] private GameObject[] patients;
+
     public Transform playerSpwanPos;
     public Transform animalSpwanPos;
     public float spwanDalay;
+
+    internal bool bIsUnlock;
 
 
 
@@ -20,18 +30,7 @@ public class PatientManager : MonoBehaviour
 
     [Header("Disease Data")]
     public List<DiseaseType> UnlocDiseases;
-    public int currntDiseaseIndex
-    {
-        get
-        {
-            return PlayerPrefs.GetInt("CurrentDiseaseIndex", 0);
-        }
-        set
-        {
-            PlayerPrefs.SetInt("CurrentDiseaseIndex", value);
-            PlayerPrefs.Save();
-        }
-    }
+    public int currntDiseaseIndex;
     public List<DiseaseType> Alldiseases;
 
     private void Awake()
@@ -41,7 +40,27 @@ public class PatientManager : MonoBehaviour
 
     private void Start()
     {
-        StartSpwanPatinet();
+        if (PlayerPrefs.HasKey("PatientManager"))
+        {
+            LoadSaveData();
+        }
+        else
+        {
+            LoadData();
+        }
+
+    }
+
+    public void LoadData()
+    {
+        if (bIsUnlock)
+        {
+            StartSpwanPatinet();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     #region SpwanPatient
@@ -203,4 +222,47 @@ public class PatientManager : MonoBehaviour
     }
 
     #endregion
+
+
+    #region Data Functions
+
+    public void SaveData()
+    {
+        PatientManagerData data = new PatientManagerData();
+
+        data.bIsUnlock = bIsUnlock;
+        data.curentUnlockDisease = UnlocDiseases.Count;
+
+        string JsonData = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString("PatientManager", JsonData);
+    }
+    public void LoadSaveData()
+    {
+        string JsonData = PlayerPrefs.GetString("PatientManager", string.Empty);
+        if (string.IsNullOrEmpty(JsonData))
+        {
+            // Handle the case where no data has been saved yet
+            return;
+        }
+        PatientManagerData receivefile = JsonUtility.FromJson<PatientManagerData>(JsonData);
+        bIsUnlock = receivefile.bIsUnlock;
+        currntDiseaseIndex = receivefile.curentUnlockDisease;
+        UpdateDisease();
+        LoadData();
+
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveData();
+    }
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            SaveData();
+        }
+    }
+    #endregion
+
 }

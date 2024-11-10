@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class FloatingJoystick : Joystick
 {
+    //  internal bool bIsOnSeat;
     protected override void Start()
     {
         base.Start();
@@ -15,23 +16,17 @@ public class FloatingJoystick : Joystick
     {
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
-        //if (GameManager.Instance.playerController.bhasSit)
-        //{
-        //    GameManager.Instance.playerController.bhasSit = false;
 
         GameManager.Instance.playerController.enabled = true;
-        //}
-        //if (GameManager.Instance.playerController.bIsDiagnosing)
-        //{
-
-        //    GameManager.Instance.playerController.bIsDiagnosing = false;
-        //    GameManager.Instance.playerController.enabled = true;
-        //}
+        // if (!bIsOnSeat)
+        //  {
         base.OnPointerDown(eventData);
+        // }
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
+        // bIsOnSeat = false;
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
     }

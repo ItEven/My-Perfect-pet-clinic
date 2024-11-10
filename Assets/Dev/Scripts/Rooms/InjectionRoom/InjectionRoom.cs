@@ -230,8 +230,8 @@ public class InjectionRoom : MonoBehaviour
                 patient.transform.rotation = Quaternion.identity;
 
 
-                animal.gameObject.transform.position = bed.petDignosPos.position;
-                animal.gameObject.transform.rotation = bed.petDignosPos.rotation;
+                //animal.gameObject.transform.position = bed.petDignosPos.position;
+                //animal.gameObject.transform.rotation = bed.petDignosPos.rotation;
 
 
                 animal.animator.PlayAnimation(bed.petOwnerSeat.idleAnim);

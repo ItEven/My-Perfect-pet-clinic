@@ -15,7 +15,7 @@ public class HospitalManager : MonoBehaviour
 {
     //public RoomHandler[] roomHandlers;
     [Header("All Room")]
-    public InspectionRoom[] InspectionRoom;
+    public ARoom[] InspectionRoom;
     public ARoom pharmacyRoom;
     public StorageRoom storageRoom;
     public ARoom InjectionRoom;
@@ -33,7 +33,7 @@ public class HospitalManager : MonoBehaviour
 
 
     #region InspectionRoom Machenics
-    public RoomManager GetInspectionRoom(Patient patient)
+    public ARoom GetInspectionRoom(Patient patient)
     {
         for (int i = 0; i < InspectionRoom.Length; i++)
         {
@@ -60,7 +60,7 @@ public class HospitalManager : MonoBehaviour
     {
         foreach (var item in InspectionRoom)
         {
-            item.StratProssesPatients();
+           // item.StratProssesPatients();
         }
     }
 

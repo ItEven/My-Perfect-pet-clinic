@@ -13,6 +13,8 @@ public class NPCMovement : MonoBehaviour
     public NavMeshAgent navmeshAgent;
     public AnimationController animator;
     public Action onCompleteAction;
+    internal AnimType idleAnimType = AnimType.Idle;
+    internal AnimType walkingAnimType = AnimType.Walk;
     internal bool bIsMoving;
 
     public virtual void Init()
@@ -32,7 +34,7 @@ public class NPCMovement : MonoBehaviour
 
         if (navmeshAgent.isStopped)
         {
-            animator.PlayAnimation(AnimType.Idle);
+            animator.PlayAnimation(idleAnimType);
             return;
         }
 
@@ -45,7 +47,7 @@ public class NPCMovement : MonoBehaviour
                     if (navmeshAgent.isActiveAndEnabled)
                         navmeshAgent.ResetPath();
 
-                    animator.PlayAnimation(AnimType.Idle);
+                    animator.PlayAnimation(idleAnimType);
                     StopNpc();
                     onCompleteAction?.Invoke();
                 }
@@ -53,7 +55,7 @@ public class NPCMovement : MonoBehaviour
             else
             {
 
-                animator.PlayAnimation(AnimType.Walk);
+                animator.PlayAnimation(walkingAnimType);
                 animator.controller.SetFloat("Velocity", GetVelocity());
 
 
@@ -77,7 +79,7 @@ public class NPCMovement : MonoBehaviour
                 onCompleteAction = null;
                 navmeshAgent.enabled = true;
                 navmeshAgent.isStopped = false;
-                animator.PlayAnimation(AnimType.Npc_Walk);
+                animator.PlayAnimation(walkingAnimType);
 
                 navmeshAgent.SetDestination(target.position);
                 onCompleteAction = onComplete;

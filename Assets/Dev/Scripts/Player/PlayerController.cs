@@ -31,13 +31,14 @@ public class PlayerControllerData
 }
 [System.Serializable]
 public class PlayerAnimationBools
-{
+{  
+   
     public bool bHasCarringItem;
     public bool bHasInjection;
 }
 
 [System.Serializable]
-public class PlayerEquipments
+public class Equipments
 {
     public GameObject injection;
 }
@@ -57,9 +58,10 @@ public class PlayerController : MonoBehaviour
     public PlayerAnimationBools animationBools;
 
     [Header("Equipments Objects")]
-    public PlayerEquipments playerEquipments;
+    public Equipments playerEquipments;
 
     public bool bHaveItems;
+
     private Vector3 movementDirection;
     private Vector3 desiredVelocity;
 
@@ -137,7 +139,6 @@ public class PlayerController : MonoBehaviour
             {
                 animationController.PlayAnimation(AnimType.Walk);
                 animationController.controller.SetFloat("Velocity", GetVelocity());
-
             }
         }
         else

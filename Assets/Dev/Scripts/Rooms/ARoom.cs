@@ -2,9 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public abstract class ARoom : MonoBehaviour
+
+public class ARoomData
 {
-    //[Header("Task Details")]
+    public bool bIsUnlock;
+    public bool bIsUpgraderActive;
+    public int currentCost;
+    public List<BedData> bedDatas = new List<BedData>();
+}
+public class BedData
+{
+    public bool bIsUnlock;
+    public bool bIsUpgraderActive;
+    public int currentCost;
+    public StaffData staffData;
+}
+public class StaffData
+{
+    public bool bIsUnlock;
+    public bool bIsUpgraderActive;
+    public int currentCost;
+    public int currentLevel;
+    internal int nextLevel;
+}
+
+public class ARoom : MonoBehaviour
+{
+    //private ARoomData _save = new ARoomData();
+    public string ROOMNAME;
+
+    /*
+     * 
+     * 
+     * 
+     * */
+
+    [Header("Task Details")]
     public int currentTask;
 
     [Header("Inspection Room Details")]
@@ -61,12 +94,21 @@ public abstract class ARoom : MonoBehaviour
         hospitalManager = saveManager.hospitalManager;
     }
     #endregion
+
     #region Starters
     private void Start()
     {
         currentCost = unlockPrice;
         waitingQueue = GetComponent<WaitingQueue>();
-        LoadData();
+
+        if (PlayerPrefs.HasKey(ROOMNAME))
+        {
+            LoadSaveData();
+        }
+        else
+        {
+            LoadData();
+        }
     }
 
     private void LoadData()
@@ -221,10 +263,20 @@ public abstract class ARoom : MonoBehaviour
                 animal.navmeshAgent.enabled = false;
                 patient.transform.rotation = Quaternion.identity;
 
-                animal.gameObject.transform.position = bed.petDignosPos.position;
-                animal.gameObject.transform.rotation = bed.petDignosPos.rotation;
+                if (bed.petDignosPos != null)
+                {
+                    animal.gameObject.transform.position = bed.petDignosPos.transform.position;
+                    animal.gameObject.transform.rotation = bed.petDignosPos.transform.rotation;
+                }
+                else
+                {
+                    Debug.LogError("bed.PetDignosPos Null");
+                }
 
-                animal.animator.PlayAnimation(bed.petOwnerSeat.idleAnim);
+                animal.animator.PlayAnimation(bed.petDignosPos.idleAnim);
+                bed.patient = null;
+                bed.patient = patient;
+                bed.StartProcessPatients();
             }
         });
     }
@@ -237,6 +289,76 @@ public abstract class ARoom : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+    #endregion
+
+    #region Data Functions
+    public void SaveData()
+    {
+        ARoomData aRoomData = new ARoomData();
+        aRoomData.bIsUnlock = bIsUnlock;
+        aRoomData.bIsUpgraderActive = bIsUpgraderActive;
+        aRoomData.currentCost = currentCost;
+        for (int i = 0; i < bedsArr.Length; i++)
+        {
+            var bed = new BedData();
+            bed.bIsUnlock = bedsArr[i].bIsUnlock;
+            bed.bIsUpgraderActive = bedsArr[i].bIsUpgraderActive;
+            bed.currentCost = bedsArr[i].currentCost;
+
+            bed.staffData = new StaffData
+            {
+                bIsUnlock = bedsArr[i].staffNPC.bIsUnlock,
+                bIsUpgraderActive = bedsArr[i].staffNPC.bIsUpgraderActive,
+                currentCost = bedsArr[i].staffNPC.currentCost,
+                currentLevel = bedsArr[i].staffNPC.currentLevel,
+                nextLevel = bedsArr[i].staffNPC.nextLevel
+            };
+
+            aRoomData.bedDatas.Add(bed);
+        }
+
+        string JsonData = JsonUtility.ToJson(aRoomData);
+        PlayerPrefs.SetString(ROOMNAME, JsonData);
+
+    }
+    public void LoadSaveData()
+    {
+        string JsonData = PlayerPrefs.GetString(ROOMNAME);
+        ARoomData receivefile = JsonUtility.FromJson<ARoomData>(JsonData);
+
+        bIsUnlock = receivefile.bIsUnlock;
+        bIsUpgraderActive = receivefile.bIsUpgraderActive;
+        currentCost = receivefile.currentCost;
+        LoadData();
+        for (int i = 0; i < receivefile.bedDatas.Count; i++)
+        {
+            var bedData = receivefile.bedDatas[i];
+            var bed = bedsArr[i];
+            bed.bIsUnlock = bedData.bIsUnlock;
+            bed.bIsUpgraderActive = bedData.bIsUpgraderActive;
+            bed.currentCost = bedData.currentCost;
+            bed.LoadData();
+            bed.staffNPC.bIsUnlock = bedData.staffData.bIsUnlock;
+            bed.staffNPC.bIsUpgraderActive = bedData.staffData.bIsUpgraderActive;
+            bed.staffNPC.currentCost = bedData.staffData.currentCost;
+            bed.staffNPC.currentLevel = bedData.staffData.currentLevel;
+            bed.staffNPC.nextLevel = bedData.staffData.nextLevel;
+            bed.staffNPC.loadData();
+        }
+
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveData();
+    }
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            SaveData();
         }
     }
     #endregion
