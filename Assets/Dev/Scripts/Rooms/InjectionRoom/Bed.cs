@@ -43,12 +43,13 @@ public class Bed : MonoBehaviour
 
     [Header("Visuals")]
     public Image worldProgresBar;
-    public GameObject unlockObjs;
+    public GameObject[] unlockObjs;
     public SpriteRenderer groundCanvas;
     public ParticleSystem roundUpgradePartical;
 
     protected Seat seat;
     internal Patient patient;
+    Collider Collider;
     #region Initializers
     internal SaveManager saveManager;
     internal GameManager gameManager;
@@ -74,7 +75,8 @@ public class Bed : MonoBehaviour
 
     #region Starters
     private void Start()
-    {
+    { 
+        Collider = GetComponent<Collider>();
         seat = onTrigger.seat;
         worldProgresBar.fillAmount = 0;
         LoadData();
@@ -94,17 +96,21 @@ public class Bed : MonoBehaviour
         {
             if (unlockObjs != null)
             {
-                gameManager.DropObj(unlockObjs);
+                foreach (var item in unlockObjs)
+                {
+                    gameManager.DropObj(item);
+                }
             }
             gameManager.PlayParticles(roundUpgradePartical);
             Destroy(upGrader.gameObject);
             LoadNpcData();
             staffNPC.gameObject.SetActive(true);
             staffNPC.loadData();
-
+            Collider.enabled = true;
         }
         else
         {
+            Collider.enabled = false;
             staffNPC.gameObject.SetActive(false);
             gameManager.SetObjectsState(unlockObjs, false);
         }

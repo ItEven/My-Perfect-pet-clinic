@@ -951,8 +951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Operation_Room
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 43
+  unlockPrice: 8000
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 
@@ -1255,6 +1255,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 61
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 27600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 28800
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 31300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 32700
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 79597604}
@@ -1529,8 +1569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 57
+  unlockPrice: 26500
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -1543,7 +1583,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 79597600}
-  unlockObjs: {fileID: 307096435}
+  unlockObjs: []
   groundCanvas: {fileID: 79597599}
   roundUpgradePartical: {fileID: 79597595}
 --- !u!1001 &95115393
@@ -2570,8 +2610,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Icu _Room
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 51
+  unlockPrice: 17000
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 
@@ -2893,12 +2933,6 @@ PrefabInstance:
 --- !u!4 &183583447 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2f1ebadbdbe9a2e4297908c8e8dec0d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 183583446}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &183583448 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8198974585012491391, guid: 2f1ebadbdbe9a2e4297908c8e8dec0d5,
     type: 3}
   m_PrefabInstance: {fileID: 183583446}
   m_PrefabAsset: {fileID: 0}
@@ -3400,8 +3434,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Inspection_Room_2
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 19
+  unlockPrice: 820
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 0300000004000000050000000600000007000000
@@ -4576,24 +4610,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 307096432}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &307096434 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -5812658864879430302, guid: 2a58c6a1d3f20d0419b7e571514379ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 307096432}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &307096435 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -937543344289767495, guid: 2a58c6a1d3f20d0419b7e571514379ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 307096432}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &307096436 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -5066573916796865446, guid: 2a58c6a1d3f20d0419b7e571514379ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 307096432}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &308614817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4684,6 +4700,46 @@ PrefabInstance:
       propertyPath: npcObj
       value: 
       objectReference: {fileID: 1598727152}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 1140
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 1750
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 2530
+      objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
       propertyPath: roundUpgradePartical.Array.data[0]
@@ -4944,7 +5000,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 308614825}
-  unlockObjs: {fileID: 659536884}
+  unlockObjs: []
   groundCanvas: {fileID: 308614824}
   roundUpgradePartical: {fileID: 308614820}
 --- !u!1001 &322998626
@@ -6112,12 +6168,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 440562727}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &440562729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6589810424104579900, guid: ecf0667edb7b9c64f905bedde98f2935,
-    type: 3}
-  m_PrefabInstance: {fileID: 440562727}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &440562730 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3195039942092769691, guid: ecf0667edb7b9c64f905bedde98f2935,
@@ -6243,6 +6293,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5764507758774338384, guid: 8d76f30e205203e46a02fc4e62694bb8,
     type: 3}
   m_PrefabInstance: {fileID: 445887450}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &447767893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8635388381880146507, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+    type: 3}
+  m_PrefabInstance: {fileID: 8902683946432182765}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &459023838
 PrefabInstance:
@@ -7560,6 +7616,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 68
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 28200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 30000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 32000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 33500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 490579655}
@@ -7834,8 +7930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 54
+  unlockPrice: 22630
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -7848,7 +7944,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 490579651}
-  unlockObjs: {fileID: 815594525}
+  unlockObjs: []
   groundCanvas: {fileID: 490579650}
   roundUpgradePartical: {fileID: 490579646}
 --- !u!1001 &491256674
@@ -8596,6 +8692,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 490
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: roundUpgradePartical.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -8894,7 +9020,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 537281113}
-  unlockObjs: {fileID: 183583448}
+  unlockObjs: []
   groundCanvas: {fileID: 537281112}
   roundUpgradePartical: {fileID: 537281108}
 --- !u!1001 &543161387
@@ -9049,6 +9175,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 1050
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 1370
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 2100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 3730
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
@@ -9250,7 +9416,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 543161395}
-  unlockObjs: {fileID: 1759266710}
+  unlockObjs: []
   groundCanvas: {fileID: 543161394}
   roundUpgradePartical: {fileID: 543161389}
 --- !u!1001 &544801851
@@ -10525,18 +10691,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 659536881}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &659536883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4972085716706654227, guid: c058abecf016e9a43bf2fd9c3f8b4121,
-    type: 3}
-  m_PrefabInstance: {fileID: 659536881}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &659536884 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -2171047140281090165, guid: c058abecf016e9a43bf2fd9c3f8b4121,
-    type: 3}
-  m_PrefabInstance: {fileID: 659536881}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &661151605
 GameObject:
   m_ObjectHideFlags: 0
@@ -11577,7 +11731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894459c9b2f36ae4f8ac58a12ecb0316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 14
+  currentTask: 4
   unlockPrice: 200
   bIsUnlock: 0
   bIsUpgraderActive: 0
@@ -12316,8 +12470,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HallName: Hall_02_Data
-  currentTask: 0
-  unlockPrice: 180
+  currentTask: 16
+  unlockPrice: 620
   bIsUnlock: 0
   bIsUpgraderActive: 1
   upGrader: {fileID: 1143806181}
@@ -12423,24 +12577,6 @@ PrefabInstance:
 --- !u!4 &815594523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb309ed40f91eff49ad29948580910ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 815594522}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &815594524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 728020173230609106, guid: cb309ed40f91eff49ad29948580910ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 815594522}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &815594525 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -7639458579956257989, guid: cb309ed40f91eff49ad29948580910ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 815594522}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &815594526 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6831798064009912161, guid: cb309ed40f91eff49ad29948580910ec,
     type: 3}
   m_PrefabInstance: {fileID: 815594522}
   m_PrefabAsset: {fileID: 0}
@@ -12634,7 +12770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Reception: Reception
   currentTask: 1
-  unlockPrice: 50
+  unlockPrice: 140
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 499630693}
@@ -13452,6 +13588,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 25050
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 27060
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 29400
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 30690
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 908147130}
@@ -13711,7 +13887,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 63582495}
-  unlockObjs: {fileID: 1672025661}
+  unlockObjs: []
   groundCanvas: {fileID: 63582494}
   roundUpgradePartical: {fileID: 63582493}
 --- !u!1 &912813431 stripped
@@ -14114,19 +14290,19 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - levelNum: 0
-    upgradeCost: 500
+    upgradeCost: 290
     customerCost: 5
-    nextTask: 6
+    nextTask: 8
     processTime: 3
   - levelNum: 1
-    upgradeCost: 600
+    upgradeCost: 380
     customerCost: 10
-    nextTask: 8
+    nextTask: 11
     processTime: 2.5
   - levelNum: 2
-    upgradeCost: 1200
+    upgradeCost: 500
     customerCost: 15
-    nextTask: 11
+    nextTask: 14
     processTime: 2
   animationController: {fileID: 1470740741}
   sitPos: {fileID: 1801567337}
@@ -15007,6 +15183,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 5850
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 8790
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 14140
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 20840
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 990919576}
@@ -15310,7 +15526,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 990919572}
-  unlockObjs: {fileID: 815594524}
+  unlockObjs: []
   groundCanvas: {fileID: 990919571}
   roundUpgradePartical: {fileID: 990919567}
 --- !u!1 &992512779 stripped
@@ -15894,6 +16110,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 86
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 46600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 47600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 49880
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 52200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1036899156}
@@ -16163,8 +16419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 81
+  unlockPrice: 44500
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -16177,7 +16433,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 1036899152}
-  unlockObjs: {fileID: 1672025659}
+  unlockObjs: []
   groundCanvas: {fileID: 1036899151}
   roundUpgradePartical: {fileID: 1036899147}
 --- !u!1001 &1042744729
@@ -17391,6 +17647,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 73
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 82
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 37300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 41700
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 45780
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 48780
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1128965978}
@@ -17665,8 +17961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 70
+  unlockPrice: 34950
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -17679,7 +17975,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 1128965974}
-  unlockObjs: {fileID: 815594526}
+  unlockObjs: []
   groundCanvas: {fileID: 1128965973}
   roundUpgradePartical: {fileID: 1128965969}
 --- !u!1001 &1130678300
@@ -18959,8 +19255,8 @@ Transform:
   - {fileID: 1689134787}
   - {fileID: 1429209692}
   - {fileID: 1112049472}
-  - {fileID: 165994086}
   - {fileID: 1460131398}
+  - {fileID: 165994086}
   - {fileID: 49769381}
   m_Father: {fileID: 43604996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20275,6 +20571,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 76
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 87
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 38153
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 39880
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 43500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 51000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1345357021}
@@ -20549,8 +20885,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 71
+  unlockPrice: 35700
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -20563,7 +20899,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 1345357017}
-  unlockObjs: {fileID: 307096434}
+  unlockObjs: []
   groundCanvas: {fileID: 1345357016}
   roundUpgradePartical: {fileID: 1345357012}
 --- !u!1 &1359212155
@@ -20617,8 +20953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Injection_Room
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 17
+  unlockPrice: 670
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 
@@ -21273,6 +21609,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 6500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 10630
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 12900
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 18750
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1417146735}
@@ -21481,7 +21857,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 1417146731}
-  unlockObjs: {fileID: 1130678301}
+  unlockObjs: []
   groundCanvas: {fileID: 1417146730}
   roundUpgradePartical: {fileID: 1417146725}
 --- !u!1 &1417147954
@@ -21632,7 +22008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HallName: Hall_01_Data
   currentTask: 0
-  unlockPrice: 180
+  unlockPrice: 130
   bIsUnlock: 0
   bIsUpgraderActive: 1
   upGrader: {fileID: 1143806181}
@@ -21844,8 +22220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Mri_Room
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 37
+  unlockPrice: 4500
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 
@@ -22481,6 +22857,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1486097417}
   startanimation: 0
+--- !u!1 &1500780392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1922735218493363702, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+    type: 3}
+  m_PrefabInstance: {fileID: 8902683946432182765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1504218999 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2756379217020734739, guid: 80abb2456e40b52429cf42350903b096,
@@ -24455,8 +24837,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Pharmacy_Room
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 3
+  unlockPrice: 180
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 
@@ -24780,24 +25162,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1672025656}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1672025659 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6266357779795779961, guid: be0ce12e284659f42b345493b069850b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1672025656}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1672025660 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5953036055568536137, guid: be0ce12e284659f42b345493b069850b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1672025656}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1672025661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6557611506234511575, guid: be0ce12e284659f42b345493b069850b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1672025656}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1672025662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24819,6 +25183,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8890553, y: 1.0375633, z: 1.3284111}
   m_Center: {x: 0.73464966, y: -0.28185606, z: 0.1416569}
+--- !u!1 &1673247880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9008573326023664454, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+    type: 3}
+  m_PrefabInstance: {fileID: 8902683946432182765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1674072604
 GameObject:
   m_ObjectHideFlags: 0
@@ -25027,11 +25397,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Inspection_Room_3
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 38
+  unlockPrice: 5000
   bIsUnlock: 0
   bIsUpgraderActive: 0
-  diseaseTypes: 00000000000000000000000000000000
+  diseaseTypes: 0b0000000c0000000d0000000e0000000f000000
   diseaseData: {fileID: 11400000, guid: c71afbfb6080fbd4289a3c337197eaab, type: 2}
   upGrader: {fileID: 1632687081}
   moneyBox: {fileID: 546009760}
@@ -26695,6 +27065,46 @@ PrefabInstance:
       objectReference: {fileID: 627114625}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 1250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 1850
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 2240
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1839772521}
@@ -26871,7 +27281,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 1839772526}
-  unlockObjs: {fileID: 440562729}
+  unlockObjs: []
   groundCanvas: {fileID: 0}
   roundUpgradePartical: {fileID: 1839772522}
   BathProgresBar: {fileID: 258958346}
@@ -28159,6 +28569,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 9700
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 11700
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 15550
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 26000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: OnUnlockNpc.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1921367403}
@@ -28447,7 +28897,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 1921367399}
-  unlockObjs: {fileID: 307096436}
+  unlockObjs: []
   groundCanvas: {fileID: 1921367398}
   roundUpgradePartical: {fileID: 1921367394}
 --- !u!1 &1925851864 stripped
@@ -28752,8 +29202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Inspection_Room
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 2
+  unlockPrice: 160
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 00000000010000000200000009000000
@@ -28772,6 +29222,12 @@ MonoBehaviour:
   roundUpgradePartical:
   - {fileID: 1872004723}
   - {fileID: 816758735}
+--- !u!1 &1961707185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8560512122757327619, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+    type: 3}
+  m_PrefabInstance: {fileID: 8902683946432182765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1964387885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30176,6 +30632,46 @@ PrefabInstance:
       objectReference: {fileID: 927220692}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 3280
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 4100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 5450
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 7270
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
       propertyPath: roundUpgradePartical.Array.data[0]
       value: 
       objectReference: {fileID: 1564809082}
@@ -30415,8 +30911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 32
+  unlockPrice: 2800
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -30429,7 +30925,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 2059715212}
-  unlockObjs: {fileID: 659536883}
+  unlockObjs: []
   groundCanvas: {fileID: 2059715211}
   roundUpgradePartical: {fileID: 2059715206}
 --- !u!1 &2063314211
@@ -30683,6 +31179,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bed  (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].nextTask
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].nextTask
+      value: 77
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 36500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 39000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 40800
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 42640
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
@@ -30955,8 +31491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 69
+  unlockPrice: 34190
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -30969,7 +31505,7 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 2099789794}
-  unlockObjs: {fileID: 1672025660}
+  unlockObjs: []
   groundCanvas: {fileID: 2099789793}
   roundUpgradePartical: {fileID: 2099789789}
 --- !u!1001 &2108203455
@@ -31413,8 +31949,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Grooming_Room
-  currentTask: 0
-  unlockPrice: 0
+  currentTask: 21
+  unlockPrice: 1000
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 
@@ -49541,6 +50077,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Bed '
       objectReference: {fileID: 0}
+    - target: {fileID: 1991691397382099096, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2622971120786699757, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
       propertyPath: sitPos
@@ -49610,6 +50151,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].nextTask
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].nextTask
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[0].upgradeCost
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[1].upgradeCost
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[2].upgradeCost
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
+        type: 3}
+      propertyPath: levels.Array.data[3].upgradeCost
+      value: 555
       objectReference: {fileID: 0}
     - target: {fileID: 6756749391455499310, guid: 6a8d3c6f8ee21cb4195c5a887e095515,
         type: 3}
@@ -49731,7 +50302,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8902683946432182765}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1500780392}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c1fc9c378124e7439dce82b9bd1f1bf, type: 3}
@@ -49761,7 +50332,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8902683946432182765}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1961707185}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c917c182fc971e4896d02d4a0e39d07, type: 3}
@@ -49773,7 +50344,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8902683946432182765}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 447767893}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 631007f99e8d2374190cb19b267f5ee6, type: 3}
@@ -49811,7 +50382,11 @@ MonoBehaviour:
   itemsTyps: 0
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 8902683946432182773}
-  unlockObjs: {fileID: 511990678}
+  unlockObjs:
+  - {fileID: 1961707185}
+  - {fileID: 1673247880}
+  - {fileID: 447767893}
+  - {fileID: 1500780392}
   groundCanvas: {fileID: 8902683946432182772}
   roundUpgradePartical: {fileID: 8902683946432182767}
 --- !u!23 &8906645589827637980
