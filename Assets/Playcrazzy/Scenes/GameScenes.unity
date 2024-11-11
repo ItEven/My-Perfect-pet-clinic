@@ -9492,7 +9492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &574426164
 Transform:
   m_ObjectHideFlags: 0
@@ -22620,17 +22620,17 @@ MonoBehaviour:
   patientManager: {fileID: 47327465}
   hallManager_01: {fileID: 1441797007}
   receptionManager: {fileID: 822428934}
-  InspectionRoom: {fileID: 0}
-  pharmacyRoom: {fileID: 0}
-  storageRoom: {fileID: 0}
-  hallManager_02: {fileID: 0}
-  InjectionRoom: {fileID: 0}
-  InspectionRoom_2: {fileID: 0}
-  GroomingRoom: {fileID: 0}
-  InspectionRoom_3: {fileID: 0}
-  OpreationRoom: {fileID: 0}
-  MriRoom: {fileID: 0}
-  IcuRoom: {fileID: 0}
+  InspectionRoom: {fileID: 1944709399}
+  pharmacyRoom: {fileID: 1647067005}
+  storageRoom: {fileID: 735813334}
+  hallManager_02: {fileID: 808581779}
+  InjectionRoom: {fileID: 1359212157}
+  InspectionRoom_2: {fileID: 216651187}
+  GroomingRoom: {fileID: 2139393868}
+  InspectionRoom_3: {fileID: 1689134788}
+  OpreationRoom: {fileID: 49769382}
+  MriRoom: {fileID: 1460131399}
+  IcuRoom: {fileID: 165994087}
 --- !u!1 &1520336858
 GameObject:
   m_ObjectHideFlags: 0
@@ -23745,13 +23745,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InspectionRoom:
   - {fileID: 1944709399}
-  pharmacyRoom: {fileID: 0}
-  storageRoom: {fileID: 0}
-  InjectionRoom: {fileID: 0}
-  GroomingRoom: {fileID: 0}
-  OpreationRoom: {fileID: 0}
-  MriRoom: {fileID: 0}
-  IcuRoom: {fileID: 0}
+  - {fileID: 216651187}
+  - {fileID: 1689134788}
+  pharmacyRoom: {fileID: 1647067005}
+  storageRoom: {fileID: 735813334}
+  InjectionRoom: {fileID: 1359212157}
+  GroomingRoom: {fileID: 2139393868}
+  OpreationRoom: {fileID: 49769382}
+  MriRoom: {fileID: 1460131399}
+  IcuRoom: {fileID: 165994087}
   exitsPosses:
   - {fileID: 732150444}
   - {fileID: 306348548}
@@ -40639,8 +40641,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 63.1203, y: 1.7788979, z: 5.947652}
-  m_Center: {x: -50.68, y: 0.103548944, z: -0.38999987}
+  m_Size: {x: 53.956535, y: 1.7788979, z: 5.947652}
+  m_Center: {x: -55.261883, y: 0.103548944, z: -0.38999987}
 --- !u!65 &4931218026238115734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40660,8 +40662,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 63.1203, y: 1.7788979, z: 5.947652}
-  m_Center: {x: 49.592056, y: 0.103548944, z: -0.38999987}
+  m_Size: {x: 53.74108, y: 1.7788979, z: 5.947652}
+  m_Center: {x: 54.281666, y: 0.103548944, z: -0.38999987}
 --- !u!65 &4931218026238115735
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40681,8 +40683,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 77.44463, y: 1.7788979, z: 1.430637}
-  m_Center: {x: -42.04, y: 0.103548944, z: 2.4887002}
+  m_Size: {x: 77.444626, y: 1.7788979, z: 0.14150572}
+  m_Center: {x: -42.04, y: 0.103548944, z: 3.1332657}
 --- !u!65 &4931218026238115736
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40702,8 +40704,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 77.44463, y: 1.7788979, z: 1.430637}
-  m_Center: {x: 41.92069, y: 0.103548944, z: 2.4887002}
+  m_Size: {x: 77.44463, y: 1.7788979, z: 0.21007705}
+  m_Center: {x: 41.92069, y: 0.103548944, z: 3.09898}
 --- !u!65 &4931218026238115737
 BoxCollider:
   m_ObjectHideFlags: 0
