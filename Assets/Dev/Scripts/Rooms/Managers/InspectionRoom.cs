@@ -66,7 +66,6 @@ public class InspectionRoom : RoomManager
                                 NextPatient();
                             }
                             worldProgresBar.fillAmount = 0;
-
                         });
 
                 }

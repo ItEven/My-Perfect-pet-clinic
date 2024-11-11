@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8860888433088246553}
   - component: {fileID: 1991691397382099096}
-  - component: {fileID: 7817440644305549243}
+  - component: {fileID: 7508115339906136251}
   m_Layer: 0
   m_Name: 'Bed '
   m_TagString: Untagged
@@ -271,8 +271,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &7817440644305549243
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!208 &7508115339906136251
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,7 +286,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1 &8854706826857932010
 GameObject:
@@ -638,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.019999998
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -811,7 +811,7 @@ PrefabInstance:
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45086956
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}

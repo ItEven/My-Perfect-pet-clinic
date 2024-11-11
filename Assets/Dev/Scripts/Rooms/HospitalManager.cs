@@ -131,8 +131,8 @@ public class HospitalManager : MonoBehaviour
         {
             case DiseaseType.Cough: return pharmacyRoom;
             case DiseaseType.Cold: return InjectionRoom;
-            case DiseaseType.Fever: return InjectionRoom;
             case DiseaseType.Heartworm_Disease: return pharmacyRoom;
+            case DiseaseType.Fever: return InjectionRoom;
             case DiseaseType.Ear_Infection: return GroomingRoom;
             case DiseaseType.Fleas_and_Ticks: return GroomingRoom;
             case DiseaseType.Allergies: return GroomingRoom;
