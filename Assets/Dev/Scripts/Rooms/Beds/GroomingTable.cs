@@ -59,8 +59,8 @@ public class GroomingTable : Bed
     }
     public override void SetUpPlayer()
     {
+      //  playerController.animationController.PlayAnimation(AnimType.Idle);
         base.SetUpPlayer();
-        playerController.animationController.PlayAnimation(AnimType.Idle);
     }
     public override void StartProcessPatients()
     {
@@ -198,22 +198,22 @@ public class GroomingTable : Bed
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
 
-        if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null)
+        if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
             animationController.PlayAnimation(idleAnim);
-            patient.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(), () =>
-            {
-                Destroy(patient.gameObject);
-            });
-            patient.animal.SetPartical(hospitalManager.GetAnimalMood());
+            patient.MoveToExit(hospitalManager.GetRandomExit());
+
+            patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
         }
         else
         {
             nextRoom.RegisterPatient(patient);
         }
-        patient = null;
+
+
         bIsProcessing = false;
         bHasBathDone = false;
+        MoveAnimal(patient.animal);
 
 
 

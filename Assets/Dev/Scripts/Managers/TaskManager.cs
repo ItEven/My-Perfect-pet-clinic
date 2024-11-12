@@ -104,10 +104,11 @@ public class TaskManager : MonoBehaviour
                 receptionManager.LoadNextUpgrade();
                 break;
             case 11:
-                storageRoom.LoadNextUpgrade();
+                //  storageRoom.LoadNextUpgrade();
+                OnTaskComplete(12);
                 break;
             case 12:
-                pharmacyRoom.LoadNextUpgrade();
+                pharmacyRoom.LoadNextForStaff(0);
                 break;
             case 13:
                 receptionManager.LoadNextUpgrade();

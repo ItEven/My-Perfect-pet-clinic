@@ -40,7 +40,6 @@ public class ReceptionManager : MonoBehaviour
     public MoneyBox moneyBox;
     // public OnTrigger onTrigger;
     public Seat seat;
-    internal WaitingQueue waitingQueue;
 
 
 
@@ -54,7 +53,7 @@ public class ReceptionManager : MonoBehaviour
     public GameObject[] unlockObjs;
     public GameObject[] lockedObjs;
     public ParticleSystem[] roundUpgradePartical;
-
+    public WaitingQueue waitingQueue;
     #region Initializers
 
     SaveManager saveManager;
@@ -87,7 +86,6 @@ public class ReceptionManager : MonoBehaviour
     public void Start()
     {
         currentCost = unlockPrice;
-        waitingQueue = GetComponent<WaitingQueue>();
         // seat = onTrigger.seat;
         if (PlayerPrefs.HasKey(Reception))
         {
@@ -203,13 +201,7 @@ public class ReceptionManager : MonoBehaviour
             StratProssesPatients();
         }
     }
-    public void OnTriggerStay(Collider other)
-    {
-        if (!bIsPlayerOnDesk)
-        {
 
-        }
-    }
 
     public void OnPlayerExit()
     {

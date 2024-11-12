@@ -7,28 +7,29 @@ public class PharmacyTable : Bed
 {
     public override void SetUpPlayer()
     {
+        //playerController.animationController.PlayAnimation(seat.idleAnim);
         base.SetUpPlayer();
-        playerController.animationController.PlayAnimation(AnimType.Idle);
     }
     public override void StartProcessPatients()
     {
         if (patient == null) return;
 
         var workingAnimation = seat.workingAnim;
+        var IdleAnimation = seat.idleAnim;
         var processTime = staffNPC.currentLevelData.processTime;
 
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
-            StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
+            StartPatientProcessing(staffNPC.animationController, workingAnimation, IdleAnimation, staffNPC.currentLevelData.processTime, () =>
             {
-                OnProcessComplite(null,staffNPC.animationController, AnimType.Idle);
+                OnProcessComplite(null,staffNPC.animationController, IdleAnimation);
             });
         }
         else if (bIsPlayerOnDesk)
         {
-            StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
+            StartPatientProcessing(playerController.animationController, workingAnimation, IdleAnimation, staffNPC.currentLevelData.processTime, () =>
             {
-                OnProcessComplite(null,playerController.animationController, AnimType.Idle);
+                OnProcessComplite(null,playerController.animationController, IdleAnimation);
             });
         }
     }
@@ -38,13 +39,10 @@ public class PharmacyTable : Bed
         worldProgresBar.fillAmount = 0;
 
         animationController.PlayAnimation(idleAnim);
-        patient.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(), () =>
-        {
-            Destroy(patient.gameObject);
-        });
-        patient.animal.SetPartical(hospitalManager.GetAnimalMood());
-        patient.MoveAnimal();
-        patient = null;
-       
+        patient.MoveToExit(hospitalManager.GetRandomExit());
+        patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+
+        MoveAnimal(patient.animal);
+
     }
 }

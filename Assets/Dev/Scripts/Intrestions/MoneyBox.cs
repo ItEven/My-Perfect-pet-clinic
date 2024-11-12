@@ -59,6 +59,14 @@ public class MoneyBox : MonoBehaviour
             //GiveMoney();
             StartGiveMoney();
         }
+    }   
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StopGiveMoney();
+        }
     }
 
     Coroutine giveMoneyCoroutine;
@@ -77,6 +85,7 @@ public class MoneyBox : MonoBehaviour
         {
             StopCoroutine(giveMoneyCoroutine);
             giveMoneyCoroutine = null;
+
         }
     }
 
@@ -98,7 +107,6 @@ public class MoneyBox : MonoBehaviour
             currntIndex--;
             AudioManager.i.OnMonenyCollect();
 
-            yield return new WaitForSeconds(moneyGivingSpeed);
 
             if (singleMoneybricks.Count <= 0)
             {
@@ -106,8 +114,8 @@ public class MoneyBox : MonoBehaviour
                 singleMoneybricks.Clear();
                 StopGiveMoney();
             }
+            yield return null;
         }
-
     }
     #endregion
 
@@ -130,7 +138,6 @@ public class MoneyBox : MonoBehaviour
             obj.transform.DOMove(randomDirection, spreadDuration).OnComplete(() =>
             {
                 obj.StartJump(gameManager.playerController.moneyCollectPoint);
-
                 currntIndex--;
             }).SetEase(Ease.OutQuad);
         }

@@ -65,6 +65,12 @@ public class SingleMoneybrick : MonoBehaviour
             Destroy(gameObject);
 
         });
+
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            Destroy(gameObject);
+        });
+        
     }
 
   

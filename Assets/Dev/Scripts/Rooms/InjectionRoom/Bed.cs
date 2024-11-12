@@ -65,6 +65,7 @@ public class Bed : MonoBehaviour
 
     public void UpdateInitializers()
     {
+        Collider = GetComponent<Collider>();
         saveManager = SaveManager.instance;
         gameManager = saveManager.gameManager;
         playerController = gameManager.playerController;
@@ -75,8 +76,7 @@ public class Bed : MonoBehaviour
 
     #region Starters
     private void Start()
-    { 
-        Collider = GetComponent<Collider>();
+    {
         seat = onTrigger.seat;
         worldProgresBar.fillAmount = 0;
         LoadData();
@@ -102,16 +102,17 @@ public class Bed : MonoBehaviour
                 }
             }
             gameManager.PlayParticles(roundUpgradePartical);
-            Destroy(upGrader.gameObject);
             LoadNpcData();
             staffNPC.gameObject.SetActive(true);
             staffNPC.loadData();
             Collider.enabled = true;
+            Destroy(upGrader.gameObject);
         }
         else
         {
             Collider.enabled = false;
             staffNPC.gameObject.SetActive(false);
+            gameObject.SetActive(false);
             gameManager.SetObjectsState(unlockObjs, false);
         }
     }
@@ -164,7 +165,7 @@ public class Bed : MonoBehaviour
 
     public virtual void OnPlayerExit()
     {
-        
+
         bIsPlayerOnDesk = false;
         if (!staffNPC.bIsUnlock)
         {
@@ -174,6 +175,7 @@ public class Bed : MonoBehaviour
 
     public virtual void SetUpPlayer()
     {
+        playerController.animationController.PlayAnimation(seat.idleAnim);
         StartProcessPatients();
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
@@ -205,12 +207,11 @@ public class Bed : MonoBehaviour
         var pharmacyRoom = hospitalManager.pharmacyRoom;
         var workingAnimation = seat.workingAnim;
         var processTime = staffNPC.currentLevelData.processTime;
-
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
             StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
-                OnProcessComplite(pharmacyRoom,staffNPC.animationController, AnimType.Idle);
+                OnProcessComplite(pharmacyRoom, staffNPC.animationController, AnimType.Idle);
             });
         }
         else if (bIsPlayerOnDesk)
@@ -232,6 +233,7 @@ public class Bed : MonoBehaviour
         {
             processTweenId = "ProcessTween_" + Guid.NewGuid().ToString();
         }
+        Debug.Log(workingAnim + "Anim Type" + animationController.gameObject.name);
 
         animationController.PlayAnimation(workingAnim);
 
@@ -248,21 +250,18 @@ public class Bed : MonoBehaviour
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
 
-        if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null)
+        if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
             animationController.PlayAnimation(idleAnim);
-            patient.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(), () =>
-            {
-                Destroy(patient.gameObject);
-            });
-            patient.animal.SetPartical(hospitalManager.GetAnimalMood());
+            patient.MoveToExit(hospitalManager.GetRandomExit());
+            patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
         }
         else
         {
             nextRoom.RegisterPatient(patient);
         }
-        patient.MoveAnimal();
-        patient = null;
+
+        MoveAnimal(patient.animal);
     }
 
     protected void BreakProcess()
@@ -285,20 +284,36 @@ public class Bed : MonoBehaviour
             playerController.SetItemState(itemsTyps, false);
         }
     }
+
+    public void MoveAnimal(Animal animal)
+    {
+        //animal.transform.position = patient.animalFollowPos.position;
+        //animal.transform.rotation = patient.animalFollowPos.rotation;
+        //animal.navmeshAgent.enabled = true;
+        //animal.enabled = true;
+        patient.MoveAnimal();
+        bIsOccupied = false;
+        patient = null;
+        room.RearngeQue();
+
+    }
     #endregion
 
     #region Some Call backs
     public void OnStaffUnlock()
     {
+
         staffNPC.bIsOnDesk = false;
-        staffNPC.transform.position = upGrader.transform.position;
-        staffNPC.transform.rotation = upGrader.transform.rotation;
+        staffNPC.transform.position = staffNPC.upGrader.transform.position;
+        staffNPC.transform.rotation = staffNPC.upGrader.transform.rotation;
+        staffNPC.nPCMovement.Init();
         staffNPC.nPCMovement.MoveToTarget(seat.transform, () =>
         {
-            staffNPC.transform.position = seat.transform.position;
-            staffNPC.transform.rotation = seat.transform.rotation;
             staffNPC.animationController.PlayAnimation(seat.idleAnim);
             staffNPC.bIsOnDesk = true;
+            staffNPC.transform.DORotate(seat.transform.rotation.eulerAngles, 0.2f);
+
+            staffNPC.nPCMovement.enabled = false;
             StartProcessPatients();
         });
     }

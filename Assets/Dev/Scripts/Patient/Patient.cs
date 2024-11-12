@@ -14,11 +14,19 @@ public class Patient : MonoBehaviour
     public Animal animal;
     public DiseaseType diseaseType;
     internal RegisterPos registerPos;
- 
+
     public void MoveAnimal()
     {
         animal.player = animalFollowPos;
         animal.startFollow();
     }
-
+    public void MoveToExit(Transform ExitPoint)
+    {
+        NPCMovement.MoveToTarget(ExitPoint, () =>
+        {
+            Destroy(animal.gameObject);
+            Destroy(gameObject);
+        });
+    }
+    
 }

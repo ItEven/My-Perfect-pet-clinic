@@ -15,6 +15,7 @@ public class HospitalManager : MonoBehaviour
 {
     //public RoomHandler[] roomHandlers;
     [Header("All Room")]
+    public ReceptionManager receptionManager;
     public ARoom[] InspectionRoom;
     public ARoom pharmacyRoom;
     public StorageRoom storageRoom;
@@ -58,10 +59,7 @@ public class HospitalManager : MonoBehaviour
 
     public void OnRoomHaveSpace()
     {
-        foreach (var item in InspectionRoom)
-        {
-           // item.StratProssesPatients();
-        }
+        receptionManager.StratProssesPatients();
     }
 
     #endregion

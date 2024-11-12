@@ -35,7 +35,7 @@ public class StaffNPC : MonoBehaviour
 
     [Tooltip("Indicates if the NPC's is on desk or not")]
     public bool bIsOnDesk;
-    
+
     [Tooltip("Indicates if the NPC's room is Moveable or not")]
     public bool bHaveIteam;
 
@@ -43,7 +43,7 @@ public class StaffNPC : MonoBehaviour
     public bool bIsUpgraderActive;
 
     [Tooltip("Reference to the Animation Controller for NPC animations")]
-    public Transform animalCarryPos; 
+    public Transform animalCarryPos;
     internal AnimationController animationController;
 
     [Tooltip("Reference to the Upgrader component to manage NPC upgrades")]
@@ -91,6 +91,7 @@ public class StaffNPC : MonoBehaviour
 
     public void UpdateInitializers()
     {
+        animationController = npcObj.GetComponent<AnimationController>();
         saveManager = SaveManager.instance;
         economyManager = saveManager.economyManager;
         gameManager = saveManager.gameManager;
@@ -102,7 +103,6 @@ public class StaffNPC : MonoBehaviour
 
     public void Start()
     {
-        animationController = npcObj.GetComponent<AnimationController>();
         nPCMovement = gameObject.GetComponent<NPCMovement>();
         currentCost = unlockPrice;
         //loadData();
@@ -159,12 +159,12 @@ public class StaffNPC : MonoBehaviour
 
             SetVisual();
             OnUnlockNpc.Invoke();
+            TaskManager.instance?.OnTaskComplete(currentLevelData.nextTask);
         }
         else
         {
             OnUpgrade();
         }
-        TaskManager.instance?.OnTaskComplete(currentLevelData.nextTask);
     }
 
     public void SetTakeMoneyData(int cost)
@@ -175,9 +175,12 @@ public class StaffNPC : MonoBehaviour
 
     public void OnUpgrade()
     {
+        bIsUpgraderActive = false;
+        SetUpgredeVisual();
         currentLevel++;
         currentLevelData = levels[currentLevel];
         roundUpgradePartical.ForEach(X => X.Play());
+        TaskManager.instance?.OnTaskComplete(currentLevelData.nextTask);
     }
 
     public void LoadNextUpgrade()

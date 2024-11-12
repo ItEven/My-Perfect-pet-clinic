@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
+
+[Serializable]
 
 public class ARoomData
 {
@@ -10,6 +13,8 @@ public class ARoomData
     public int currentCost;
     public List<BedData> bedDatas = new List<BedData>();
 }
+[Serializable]
+
 public class BedData
 {
     public bool bIsUnlock;
@@ -17,6 +22,8 @@ public class BedData
     public int currentCost;
     public StaffData staffData;
 }
+[Serializable]
+
 public class StaffData
 {
     public bool bIsUnlock;
@@ -211,7 +218,7 @@ public class ARoom : MonoBehaviour
             }
         }
     }
-    public void NextPatient()
+    public void NextPatientFromUnRegisterQ()
     {
         if (unRegisterPatientList.Count > 0)
         {
@@ -222,21 +229,28 @@ public class ARoom : MonoBehaviour
             hospitalManager.OnRoomHaveSpace();
         }
     }
+    public void RearngeQue()
+    {
+        waitingQueue.OnReachedQueueAction(waitingQueue.patientInQueue[0]);
+    }
     public void OnReachQueEnd()
     {
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
         {
+
             Patient patient = waitingQueue.patientInQueue[0];
             Bed bed = GetBed();
+
             if (bed != null)
             {
                 bed.bIsOccupied = true;
                 waitingQueue.RemoveFromQueue(patient);
-                NextPatient();
+                NextPatientFromUnRegisterQ();
                 patient.NPCMovement.MoveToTarget(bed.petOwnerSeat.transform, () =>
                 {
                     OnReachTable(bed, patient);
                 });
+                patient.MoveAnimal();
             }
         }
     }
@@ -255,29 +269,39 @@ public class ARoom : MonoBehaviour
     }
     public void OnReachTable(Bed bed, Patient patient)
     {
+
         DOVirtual.DelayedCall(0.2f, () =>
         {
-            if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
+            //if (patient.NPCMovement.bIsMoving)
+            //{
+            Animal animal = patient.animal;
+            animal.navmeshAgent.enabled = false;
+            // animal.enabled = false;
+
+            patient.transform.DORotate(bed.petOwnerSeat.transform.rotation.eulerAngles, 0.2f);
+
+            if (bed.petDignosPos != null)
             {
-                Animal animal = patient.animal;
-                animal.navmeshAgent.enabled = false;
-                patient.transform.rotation = Quaternion.identity;
 
-                if (bed.petDignosPos != null)
-                {
-                    animal.gameObject.transform.position = bed.petDignosPos.transform.position;
-                    animal.gameObject.transform.rotation = bed.petDignosPos.transform.rotation;
-                }
-                else
-                {
-                    Debug.LogError("bed.PetDignosPos Null");
-                }
-
-                animal.animator.PlayAnimation(bed.petDignosPos.idleAnim);
-                bed.patient = null;
-                bed.patient = patient;
-                bed.StartProcessPatients();
+                animal.gameObject.transform.position = bed.petDignosPos.transform.position;
+                animal.gameObject.transform.rotation = bed.petDignosPos.transform.rotation;
             }
+            else
+            {
+                Debug.LogError("bed.PetDignosPos Null");
+
+            }
+
+            animal.animator.PlayAnimation(bed.petDignosPos.idleAnim);
+            bed.patient = null;
+            bed.patient = patient;
+            bed.StartProcessPatients();
+            //}
+            //else
+            //{
+            //    Debug.LogError("Patient is moving ");
+
+            //}
         });
     }
     public bool bIsUnRegisterQueIsFull()
@@ -299,13 +323,19 @@ public class ARoom : MonoBehaviour
         ARoomData aRoomData = new ARoomData();
         aRoomData.bIsUnlock = bIsUnlock;
         aRoomData.bIsUpgraderActive = bIsUpgraderActive;
-        aRoomData.currentCost = currentCost;
+        if (upGrader != null)
+        {
+            aRoomData.currentCost = currentCost;
+        }
         for (int i = 0; i < bedsArr.Length; i++)
         {
             var bed = new BedData();
             bed.bIsUnlock = bedsArr[i].bIsUnlock;
             bed.bIsUpgraderActive = bedsArr[i].bIsUpgraderActive;
-            bed.currentCost = bedsArr[i].currentCost;
+            if (bedsArr[i].upGrader != null)
+            {
+                bed.currentCost = bedsArr[i].currentCost;
+            }
 
             bed.staffData = new StaffData
             {
@@ -341,6 +371,10 @@ public class ARoom : MonoBehaviour
             bed.currentCost = bedData.currentCost;
             bed.LoadData();
             bed.staffNPC.bIsUnlock = bedData.staffData.bIsUnlock;
+            if (bed.staffNPC.bIsUnlock)
+            {
+                bed.staffNPC.bIsOnDesk = true;
+            }
             bed.staffNPC.bIsUpgraderActive = bedData.staffData.bIsUpgraderActive;
             bed.staffNPC.currentCost = bedData.staffData.currentCost;
             bed.staffNPC.currentLevel = bedData.staffData.currentLevel;

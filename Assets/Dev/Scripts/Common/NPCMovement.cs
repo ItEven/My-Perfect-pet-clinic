@@ -23,37 +23,46 @@ public class NPCMovement : MonoBehaviour
         PatientUpdater.patientAIUpdate += PerformUpdate;
     }
 
+
     private void OnDisable()
     {
         PatientUpdater.patientAIUpdate -= PerformUpdate;
     }
-    public virtual void PerformUpdate()
+    public void PerformUpdate()
     {
         if (!navmeshAgent.enabled)
             return;
 
         if (navmeshAgent.isStopped)
         {
+
             animator.PlayAnimation(idleAnimType);
             return;
         }
+     
 
         if (!navmeshAgent.pathPending)
         {
+
+
             if (navmeshAgent.remainingDistance <= navmeshAgent.stoppingDistance)
             {
                 if (!navmeshAgent.hasPath || navmeshAgent.velocity.sqrMagnitude == 0f)
                 {
+  
                     if (navmeshAgent.isActiveAndEnabled)
                         navmeshAgent.ResetPath();
 
                     animator.PlayAnimation(idleAnimType);
                     StopNpc();
                     onCompleteAction?.Invoke();
+
                 }
             }
             else
             {
+
+
 
                 animator.PlayAnimation(walkingAnimType);
                 animator.controller.SetFloat("Velocity", GetVelocity());
@@ -61,6 +70,7 @@ public class NPCMovement : MonoBehaviour
 
             }
         }
+     
     }
     public float GetVelocity()
     {
@@ -82,6 +92,7 @@ public class NPCMovement : MonoBehaviour
                 animator.PlayAnimation(walkingAnimType);
 
                 navmeshAgent.SetDestination(target.position);
+
                 onCompleteAction = onComplete;
             }
             else

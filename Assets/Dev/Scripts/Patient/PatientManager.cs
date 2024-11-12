@@ -101,6 +101,11 @@ public class PatientManager : MonoBehaviour
     {
         while (true)
         {
+            if (!receptionManager.waitingQueue )
+            {
+                Debug.LogError("Reception manager or waiting queue is not properly initialized.");
+                yield break;
+            }
 
             if (!receptionManager.waitingQueue.bIsQueueFull())
             {

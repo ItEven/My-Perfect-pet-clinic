@@ -78,8 +78,8 @@ public class WaitingQueue : MonoBehaviour
     }
     public virtual void RemoveFromQueue(Patient customer)
     {
-        patientInQueue.Remove(customer);
         QueueIndex--;
+        patientInQueue.Remove(customer);
         ReOrderQueue();
     }
 
