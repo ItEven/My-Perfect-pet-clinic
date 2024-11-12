@@ -112,8 +112,8 @@ public class Bed : MonoBehaviour
         {
             Collider.enabled = false;
             staffNPC.gameObject.SetActive(false);
-            gameObject.SetActive(false);
             gameManager.SetObjectsState(unlockObjs, false);
+            gameObject.SetActive(false);
         }
     }
 
@@ -253,7 +253,7 @@ public class Bed : MonoBehaviour
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
             animationController.PlayAnimation(idleAnim);
-            patient.MoveToExit(hospitalManager.GetRandomExit());
+            patient.MoveToExit(hospitalManager.GetRandomExit(patient));
             patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
         }
         else
@@ -287,14 +287,18 @@ public class Bed : MonoBehaviour
 
     public void MoveAnimal(Animal animal)
     {
-        //animal.transform.position = patient.animalFollowPos.position;
-        //animal.transform.rotation = patient.animalFollowPos.rotation;
+        animal.animator.PlayAnimation(AnimType.Idle);
+        animal.transform.position = patient.RightFollowPos.position;
+        animal.transform.rotation = patient.RightFollowPos.rotation;
         //animal.navmeshAgent.enabled = true;
         //animal.enabled = true;
-        patient.MoveAnimal();
-        bIsOccupied = false;
-        patient = null;
-        room.RearngeQue();
+        DOVirtual.DelayedCall(0.3f, () =>
+        {
+            patient.MoveAnimal();
+            bIsOccupied = false;
+            patient = null;
+            room.RearngeQue();
+        });
 
     }
     #endregion
@@ -309,11 +313,12 @@ public class Bed : MonoBehaviour
         staffNPC.nPCMovement.Init();
         staffNPC.nPCMovement.MoveToTarget(seat.transform, () =>
         {
+            staffNPC.nPCMovement.enabled = false;
+            staffNPC.transform.position = seat.transform.position;
             staffNPC.animationController.PlayAnimation(seat.idleAnim);
             staffNPC.bIsOnDesk = true;
             staffNPC.transform.DORotate(seat.transform.rotation.eulerAngles, 0.2f);
 
-            staffNPC.nPCMovement.enabled = false;
             StartProcessPatients();
         });
     }

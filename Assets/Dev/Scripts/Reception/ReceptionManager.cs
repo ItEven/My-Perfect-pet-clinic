@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
@@ -236,8 +237,11 @@ public class ReceptionManager : MonoBehaviour
     }
 
 
+    [Button("StratProsses")]
     public void StratProssesPatients()
     {
+        Debug.LogError("NIga0");
+
         if (bIsPlayerOnDesk)
         {
             gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
@@ -285,7 +289,17 @@ public class ReceptionManager : MonoBehaviour
                         });
                 }
             }
+            else
+            {
+                Debug.LogError("NIga1");
+
+            }
             //}
+        }
+        else
+        {
+            Debug.LogError("NIga2");
+
         }
 
     }

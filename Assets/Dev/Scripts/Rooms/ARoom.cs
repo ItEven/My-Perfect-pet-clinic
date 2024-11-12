@@ -235,22 +235,30 @@ public class ARoom : MonoBehaviour
     }
     public void OnReachQueEnd()
     {
+
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
         {
 
-            Patient patient = waitingQueue.patientInQueue[0];
             Bed bed = GetBed();
+            Patient patient = waitingQueue.patientInQueue[0];
+
+          
 
             if (bed != null)
             {
+                if (bed.bIsOccupied) return;
+
                 bed.bIsOccupied = true;
                 waitingQueue.RemoveFromQueue(patient);
-                NextPatientFromUnRegisterQ();
+
+                patient.NPCMovement.navmeshAgent.enabled = enabled;
                 patient.NPCMovement.MoveToTarget(bed.petOwnerSeat.transform, () =>
                 {
+
                     OnReachTable(bed, patient);
                 });
                 patient.MoveAnimal();
+                NextPatientFromUnRegisterQ();
             }
         }
     }
@@ -260,7 +268,7 @@ public class ARoom : MonoBehaviour
         for (int i = 0; i < bedsArr.Length; i++)
         {
             var bed = bedsArr[i];
-            if (bed != null && !bed.bIsOccupied)
+            if (bed != null && !bed.bIsOccupied && bed.bIsUnlock)
             {
                 return bed;
             }

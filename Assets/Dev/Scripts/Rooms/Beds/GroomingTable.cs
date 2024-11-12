@@ -201,7 +201,7 @@ public class GroomingTable : Bed
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
             animationController.PlayAnimation(idleAnim);
-            patient.MoveToExit(hospitalManager.GetRandomExit());
+            patient.MoveToExit(hospitalManager.GetRandomExit(patient));
 
             patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
         }

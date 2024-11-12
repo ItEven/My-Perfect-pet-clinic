@@ -120,10 +120,10 @@ public class PatientManager : MonoBehaviour
                         GameObject randomAnimalPrefab = GetRandomAnimalObj();
                         if (randomAnimalPrefab != null)
                         {
-                            if (p.animalFollowPos != null)
+                            if (p.RightFollowPos != null)
                             {
 
-                                GameObject gameObject_2 = Instantiate(randomAnimalPrefab, p.animalFollowPos.position, Quaternion.identity, playerSpwanPos);
+                                GameObject gameObject_2 = Instantiate(randomAnimalPrefab, p.RightFollowPos.position, Quaternion.identity, playerSpwanPos);
 
                                 Animal a = gameObject_2.GetComponent<Animal>();
                                 if (a != null)

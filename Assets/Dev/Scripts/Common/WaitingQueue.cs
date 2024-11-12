@@ -85,11 +85,14 @@ public class WaitingQueue : MonoBehaviour
 
     public virtual void OnReachedQueueAction(Patient customer)
     {
-        if (customer != null)
+        if (patientInQueue.Count > 0)
         {
-            if (customer == patientInQueue[0])
+            if (customer != null && patientInQueue[0] != null)
             {
-                OnReachQueueEnd?.Invoke();
+                if (customer == patientInQueue[0])
+                {
+                    OnReachQueueEnd?.Invoke();
+                }
             }
         }
     }

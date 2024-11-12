@@ -38,7 +38,7 @@ public class PharmacyRoom : RoomManager
                         gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
                         moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
                         var p = waitingQueue.patientInQueue[0];
-                        p.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(), () =>
+                        p.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(p), () =>
                         {
                             Destroy(p.gameObject);
                         });
@@ -64,7 +64,7 @@ public class PharmacyRoom : RoomManager
 
                         moneyBox.TakeMoney(GetCustomerCost(waitingQueue.patientInQueue[0]));
                         var p = waitingQueue.patientInQueue[0];
-                        p.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(), () =>
+                        p.NPCMovement.MoveToTarget(hospitalManager.GetRandomExit(p), () =>
                         {
                             Destroy(p.gameObject);
                         });

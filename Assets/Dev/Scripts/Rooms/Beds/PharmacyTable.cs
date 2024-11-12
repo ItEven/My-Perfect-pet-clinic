@@ -39,7 +39,7 @@ public class PharmacyTable : Bed
         worldProgresBar.fillAmount = 0;
 
         animationController.PlayAnimation(idleAnim);
-        patient.MoveToExit(hospitalManager.GetRandomExit());
+        patient.MoveToExit(hospitalManager.GetRandomExit(patient));
         patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
 
         MoveAnimal(patient.animal);

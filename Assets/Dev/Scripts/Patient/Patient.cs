@@ -9,15 +9,17 @@ using UnityEngine.AI;
 public class Patient : MonoBehaviour
 {
     public GameObject patientMeshObj;
-    public Transform animalFollowPos;
+    public Transform RightFollowPos;
+    public Transform leftFollowPos;
     public NPCMovement NPCMovement;
     public Animal animal;
     public DiseaseType diseaseType;
     internal RegisterPos registerPos;
 
+
     public void MoveAnimal()
     {
-        animal.player = animalFollowPos;
+        animal.player = RightFollowPos;
         animal.startFollow();
     }
     public void MoveToExit(Transform ExitPoint)

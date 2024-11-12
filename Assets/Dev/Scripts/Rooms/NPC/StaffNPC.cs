@@ -92,6 +92,7 @@ public class StaffNPC : MonoBehaviour
     public void UpdateInitializers()
     {
         animationController = npcObj.GetComponent<AnimationController>();
+        nPCMovement = gameObject.GetComponent<NPCMovement>();
         saveManager = SaveManager.instance;
         economyManager = saveManager.economyManager;
         gameManager = saveManager.gameManager;
@@ -103,7 +104,6 @@ public class StaffNPC : MonoBehaviour
 
     public void Start()
     {
-        nPCMovement = gameObject.GetComponent<NPCMovement>();
         currentCost = unlockPrice;
         //loadData();
     }
@@ -117,7 +117,9 @@ public class StaffNPC : MonoBehaviour
     {
         if (bIsUnlock)
         {
-            gameManager.DropObj(npcObj);
+            //gameManager.DropObj(npcObj);
+            nPCMovement.navmeshAgent.enabled = false;
+            npcObj.SetActive(true);
             transform.position = seat.transform.position;
             transform.rotation = seat.transform.rotation;
             animationController.PlayAnimation(seat.idleAnim);

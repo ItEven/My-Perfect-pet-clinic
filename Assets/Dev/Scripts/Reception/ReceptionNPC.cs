@@ -83,7 +83,15 @@ public class ReceptionNPC : MonoBehaviour
     }
     public void SetVisual()
     {
-        currentLevelData = levels[currentLevel];
+        if (currentLevel >= levels.Length)
+        {
+            bIsUpgraderActive = false;
+            upGrader.gameObject.SetActive(false);
+        }
+        else
+        {
+            currentLevelData = levels[currentLevel];
+        }
 
         npcObj.transform.position = sitPos.position;
         npcObj.transform.rotation = sitPos.rotation;

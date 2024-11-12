@@ -64,9 +64,13 @@ public class HospitalManager : MonoBehaviour
 
     #endregion
 
-    public Transform GetRandomExit()
+    public Transform GetRandomExit(Patient patient)
     {
         int randomIndex = Random.Range(0, exitsPosses.Length);
+        if(randomIndex == 0)
+        {
+            patient.RightFollowPos = patient.leftFollowPos;
+        }
         return exitsPosses[randomIndex];
     }
 

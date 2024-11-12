@@ -50,8 +50,8 @@ public class MoneyBox : MonoBehaviour
             //GiveMoney();
             StartGiveMoney();
         }
-    } 
-    
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -59,7 +59,7 @@ public class MoneyBox : MonoBehaviour
             //GiveMoney();
             StartGiveMoney();
         }
-    }   
+    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -146,18 +146,22 @@ public class MoneyBox : MonoBehaviour
         economyManager.AddPetMoney(totalMoneyInBox);
         totalMoneyInBox = 0;
     }
-    
+
     [Button("TakeMoney")]
     public void TakeMoney(int amount)
     {
         totalMoneyInBox += amount;
-        for (int i = 0; i < GetHowManyBrickSpwan(amount); i++)
+        if (currntIndex < moneyBricksPos.Length)
         {
-            GameObject brickInstance = Instantiate(gameManager.singleMoneybrick, moneyBricksPos[currntIndex]);
-            var brick = brickInstance.GetComponent<SingleMoneybrick>();
-            singleMoneybricks.Add(brick);
-            currntIndex++;
+            for (int i = 0; i < GetHowManyBrickSpwan(amount); i++)
+            {
+                if (currntIndex >= moneyBricksPos.Length) return;
+                GameObject brickInstance = Instantiate(gameManager.singleMoneybrick, moneyBricksPos[currntIndex]);
+                var brick = brickInstance.GetComponent<SingleMoneybrick>();
+                singleMoneybricks.Add(brick);
+                currntIndex++;
 
+            }
         }
     }
 

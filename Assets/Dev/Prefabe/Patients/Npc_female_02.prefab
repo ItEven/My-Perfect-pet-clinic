@@ -32,6 +32,37 @@ Transform:
   - {fileID: 4955442053682635051}
   m_Father: {fileID: 4797921793760608569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &98909440600193134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3712401913318305012}
+  m_Layer: 0
+  m_Name: 'LeftFollowPoint '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3712401913318305012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98909440600193134}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.597, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4121973312937407853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &186943983774806311
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +549,37 @@ Transform:
   - {fileID: 2188057291495254672}
   m_Father: {fileID: 432496721652195594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3929275580992025733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7988618913546522292}
+  m_Layer: 0
+  m_Name: RightFollowPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7988618913546522292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929275580992025733}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.597, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4121973312937407853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4579512624517011566
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +645,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2499354453597843381}
-  - {fileID: 5607701347536903448}
+  - {fileID: 7988618913546522292}
+  - {fileID: 3712401913318305012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7822445762339563269
@@ -599,7 +662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patientMeshObj: {fileID: 3336700460619025622}
-  animalFollowPos: {fileID: 5607701347536903448}
+  RightFollowPos: {fileID: 7988618913546522292}
+  leftFollowPos: {fileID: 3712401913318305012}
   NPCMovement: {fileID: 5992573318730244091}
   animal: {fileID: 0}
   diseaseType: 0
@@ -626,7 +690,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4753505445743004100}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.16
+  m_Radius: 0.01
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -638,7 +702,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!1 &4894019486897450026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,37 +1317,6 @@ Transform:
   - {fileID: 8592583276102953863}
   - {fileID: 3603715500574718739}
   m_Father: {fileID: 9146697298406944875}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7158853529043330257
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5607701347536903448}
-  m_Layer: 0
-  m_Name: PetFollowPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5607701347536903448
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158853529043330257}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.597, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4121973312937407853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7493583250359108434
 GameObject:
