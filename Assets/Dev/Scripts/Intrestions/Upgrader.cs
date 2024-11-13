@@ -102,7 +102,7 @@ public class Upgrader : MonoBehaviour
         }
     }
 
-    private void StopTakeMoney()
+    public void StopTakeMoney()
     {
         if (takeMoneyCoroutine != null)
         {

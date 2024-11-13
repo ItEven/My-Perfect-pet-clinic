@@ -216,6 +216,8 @@ public class GroomingTable : Bed
                 onComplete?.Invoke();
             });
     }
+
+
     public override void OnProcessComplite(ARoom nextRoom, AnimationController animationController, AnimType idleAnim)
     {
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
@@ -236,8 +238,5 @@ public class GroomingTable : Bed
         bIsProcessing = false;
         bHasBathDone = false;
         MoveAnimal(patient.animal);
-
     }
-
-
 }

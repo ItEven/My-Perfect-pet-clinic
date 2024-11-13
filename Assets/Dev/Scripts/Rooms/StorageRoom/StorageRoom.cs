@@ -75,7 +75,7 @@ public class StorageRoom : MonoBehaviour
     {
         if (bIsUnlock)
         {
-            gameManager.SetObjectsState(lockedObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, false);
             foreach (var item in unlockObjs)
             {
                 gameManager.DropObj(item);
@@ -85,8 +85,8 @@ public class StorageRoom : MonoBehaviour
         }
         else
         {
-            gameManager.SetObjectsState(unlockObjs, false);
-            gameManager.SetObjectsState(lockedObjs, true);
+            gameManager.SetObjectsStates(unlockObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, true);
         }
     }
     #endregion

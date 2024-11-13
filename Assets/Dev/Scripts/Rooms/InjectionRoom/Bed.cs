@@ -71,12 +71,14 @@ public class Bed : MonoBehaviour
         playerController = gameManager.playerController;
         arrowController = playerController.arrowController;
         hospitalManager = saveManager.hospitalManager;
+        staffNPC.SetMainSeat(onTrigger.seat);
     }
     #endregion
 
     #region Starters
     private void Start()
     {
+        currentCost = unlockPrice;
         seat = onTrigger.seat;
         worldProgresBar.fillAmount = 0;
         LoadData();
@@ -86,8 +88,6 @@ public class Bed : MonoBehaviour
     {
         UpdateInitializers();
         SetVisual();
-        SetUpgradeVisual();
-
     }
 
     private void SetVisual()
@@ -101,28 +101,39 @@ public class Bed : MonoBehaviour
                     gameManager.DropObj(item);
                 }
             }
-            gameManager.PlayParticles(roundUpgradePartical);
             LoadNpcData();
-            staffNPC.gameObject.SetActive(true);
-            staffNPC.loadData();
+
+            gameManager.PlayParticles(roundUpgradePartical);
+
             Collider.enabled = true;
             if (upGrader)
             {
-                Destroy(upGrader.gameObject);
+                //Destroy(upGrader.gameObject);
             }
         }
         else
         {
             Collider.enabled = false;
             staffNPC.gameObject.SetActive(false);
-            gameManager.SetObjectsState(unlockObjs, false);
-            gameObject.SetActive(false);
+            gameManager.SetObjectsStates(unlockObjs, false);
+            //if (!bIsUpgraderActive)
+            //{
+            //    DOVirtual.DelayedCall(0.3f, () =>
+            //    {
+            //        gameObject.SetActive(false);
+            //    });
+            //}
         }
+        SetUpgradeVisual();
     }
 
     public void LoadNpcData()
     {
-        staffNPC.SetMainSeat(onTrigger.seat);
+        DOVirtual.DelayedCall(0.2f, () =>
+        {
+            staffNPC.gameObject.SetActive(true);
+            staffNPC.loadData();
+        });
     }
 
     #endregion

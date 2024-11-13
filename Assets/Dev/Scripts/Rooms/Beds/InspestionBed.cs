@@ -50,7 +50,16 @@ public class InspestionBed : Bed
 
         animationController.PlayAnimation(idleAnim);
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
-        {
+        {  
+            if (nextRoom == null)
+            {
+                Debug.LogError(room.gameObject.name + "room is null");
+            }
+            else
+            {
+
+                Debug.LogError(nextRoom.gameObject.name + "room is not null" + nextRoom.bIsUnRegisterQueIsFull() + "que is full" + nextRoom.waitingQueue.gameObject.name + nextRoom.bIsUnlock + "the was not unlock");
+            }
             // Debug.LogError("OnProcessComplite8");
             patient.MoveToExit(hospitalManager.GetRandomExit(patient));
             patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());

@@ -148,7 +148,9 @@ public class TaskManager : MonoBehaviour
                 GroomingRoom.LoadNextForStaff(0); break;
             case 24:
                 patientManager.AddDisease(DiseaseType.Allergies);
-                patientManager.AddDisease(DiseaseType.Skin_Infecction); break;
+                patientManager.AddDisease(DiseaseType.Skin_Infecction); 
+                InspectionRoom_2.LoadNextForStaff(0);
+                break;
             case 25:
                 OnTaskComplete(26);
                 break;
@@ -161,7 +163,8 @@ public class TaskManager : MonoBehaviour
                 InjectionRoom.LoadNextForStaff(0); break;
             case 31: InjectionRoom.LoadNextUpgrade(); break;
             case 32: GroomingRoom.LoadNextForStaff(0); break;
-            case 33: InjectionRoom.LoadNextForStaff(1); break;
+            case 33: InjectionRoom.LoadNextForStaff(1);
+                break;
             case 34: InspectionRoom_2.LoadNextForStaff(0); break;
             case 35: InjectionRoom.LoadNextForStaff(1); break;
             case 36:

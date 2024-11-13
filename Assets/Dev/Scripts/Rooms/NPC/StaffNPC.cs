@@ -105,7 +105,6 @@ public class StaffNPC : MonoBehaviour
 
     public void Start()
     {
-        currentCost = unlockPrice;
         //loadData();
     }
     public void loadData()
@@ -128,6 +127,8 @@ public class StaffNPC : MonoBehaviour
         }
         else
         {
+            currentCost = levels[currentLevel].upgradeCost;
+
             npcObj.SetActive(false);
         }
         currentLevelData = levels[currentLevel];

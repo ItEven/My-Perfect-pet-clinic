@@ -83,7 +83,7 @@ public class InjectionRoom : MonoBehaviour
     {
         if (bIsUnlock)
         {
-            gameManager.SetObjectsState(lockedObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, false);
             foreach (var item in unlockObjs)
             {
                 gameManager.DropObj(item);
@@ -95,8 +95,8 @@ public class InjectionRoom : MonoBehaviour
         }
         else
         {
-            gameManager.SetObjectsState(unlockObjs, false);
-            gameManager.SetObjectsState(lockedObjs, true);
+            gameManager.SetObjectsStates(unlockObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, true);
         }
 
     }

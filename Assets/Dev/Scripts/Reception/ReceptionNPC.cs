@@ -83,14 +83,11 @@ public class ReceptionNPC : MonoBehaviour
     }
     public void SetVisual()
     {
-        if (currentLevel > levels.Length - 1)
+        currentLevelData = levels[currentLevel];
+        if (currentLevel >= levels.Length - 1)
         {
             bIsUpgraderActive = false;
             upGrader.gameObject.SetActive(false);
-        }
-        else
-        {
-            currentLevelData = levels[currentLevel];
         }
 
         npcObj.transform.position = sitPos.position;

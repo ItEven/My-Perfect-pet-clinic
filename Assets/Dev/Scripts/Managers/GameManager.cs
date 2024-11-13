@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void SetObjectsState(GameObject[] objects, bool state)
+    public void SetObjectsStates(GameObject[] objects, bool state)
     {
         foreach (var obj in objects)
         {

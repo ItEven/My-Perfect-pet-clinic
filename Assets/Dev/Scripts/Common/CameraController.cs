@@ -22,9 +22,13 @@ public class CameraController : MonoBehaviour
     public void MoveToTarget(Transform target, Action onComplete = null)
     {
         Vector3 pos = target.position;
-        transform.DOMove(pos, .5f).OnComplete(() =>
+        DOVirtual.DelayedCall(1f, () =>
         {
-            onComplete?.Invoke();
+
+            transform.DOMove(pos, .5f).OnComplete(() =>
+            {
+                onComplete?.Invoke();
+            });
         });
 
 
@@ -35,9 +39,14 @@ public class CameraController : MonoBehaviour
         upGrader.transform.localScale = Vector3.zero;
         MoveToTarget(upGrader.transform, () =>
         {
+            upGrader.gameObject.SetActive(true);
+            Upgrader upgrader = upGrader.gameObject.GetComponent<Upgrader>();
+            if (upgrader != null)
+            {
+                upgrader.StopTakeMoney();
+            }
             upGrader.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
             {
-                upGrader.gameObject.SetActive(true);
                 DOVirtual.DelayedCall(0.5f, () => { transform.DOMove(transform.parent.position, .5f); });
 
             });
