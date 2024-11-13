@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ public class Patient : MonoBehaviour
     internal RegisterPos registerPos;
 
 
+    [Button("MoveAnimal")]
     public void MoveAnimal()
     {
         animal.player = RightFollowPos;

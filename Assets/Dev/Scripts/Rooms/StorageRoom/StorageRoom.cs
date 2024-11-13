@@ -94,10 +94,17 @@ public class StorageRoom : MonoBehaviour
     #region Upgrade Mechanics 
     public void SetUpgradeVisual()
     {
-        upGrader.gameObject.SetActive(bIsUpgraderActive);
 
         if (bIsUpgraderActive)
+        {
+            CameraController.Instance.FocusOnTarget(upGrader.transform);
+
             SetTakeMoneyData(currentCost);
+        }
+        else
+        {
+            upGrader.gameObject.SetActive(false);
+        }
     }
 
     public void OnUnlockAndUpgrade()

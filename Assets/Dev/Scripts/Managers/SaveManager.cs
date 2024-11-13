@@ -13,7 +13,7 @@ public class SaveManager : MonoBehaviour
     public GameManager gameManager;
     public UiManager uiManager;
     public HospitalManager hospitalManager;
-    
+    public CameraController cameraController;
 
     public GameData gameData = new GameData();
 

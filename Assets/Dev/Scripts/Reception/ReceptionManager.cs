@@ -152,7 +152,7 @@ public class ReceptionManager : MonoBehaviour
 
         if (bIsUpgraderActive)
         {
-            upGrader.gameObject.SetActive(true);
+            CameraController.Instance.FocusOnTarget(upGrader.transform);
 
             SetTakeMoneyData(currentCost);
         }
@@ -240,7 +240,7 @@ public class ReceptionManager : MonoBehaviour
     [Button("StratProsses")]
     public void StratProssesPatients()
     {
-        Debug.LogError("NIga0");
+
 
         if (bIsPlayerOnDesk)
         {
@@ -253,6 +253,10 @@ public class ReceptionManager : MonoBehaviour
             //if (!hospitalManager.CheckRegiterPosFull())
             //{
             var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
+            if (room == null) {
+
+                Debug.LogError(gameObject.name + "this is null");
+            }
             if (!room.bIsUnRegisterQueIsFull())
             {
 
@@ -291,14 +295,14 @@ public class ReceptionManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("NIga1");
+
 
             }
             //}
         }
         else
         {
-            Debug.LogError("NIga2");
+
 
         }
 

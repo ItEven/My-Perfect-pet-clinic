@@ -8,6 +8,7 @@ public class PatientManagerData
 {
     public bool bIsUnlock;
     public int curentUnlockDisease;
+    public List<DiseaseType> diseaseTypes = new List<DiseaseType>();
 }
 public class PatientManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class PatientManager : MonoBehaviour
 
 
     [Header("Disease Data")]
-    public List<DiseaseType> UnlocDiseases;
+    public List<DiseaseType> UnlocDiseases = new List<DiseaseType>();
     public int currntDiseaseIndex;
     public List<DiseaseType> Alldiseases;
 
@@ -236,6 +237,7 @@ public class PatientManager : MonoBehaviour
         PatientManagerData data = new PatientManagerData();
 
         data.bIsUnlock = bIsUnlock;
+        data.diseaseTypes.AddRange(UnlocDiseases);
         data.curentUnlockDisease = UnlocDiseases.Count;
 
         string JsonData = JsonUtility.ToJson(data);
@@ -252,7 +254,8 @@ public class PatientManager : MonoBehaviour
         PatientManagerData receivefile = JsonUtility.FromJson<PatientManagerData>(JsonData);
         bIsUnlock = receivefile.bIsUnlock;
         currntDiseaseIndex = receivefile.curentUnlockDisease;
-        UpdateDisease();
+        UnlocDiseases = new List<DiseaseType>(receivefile.diseaseTypes);
+        //UpdateDisease();
         LoadData();
 
     }

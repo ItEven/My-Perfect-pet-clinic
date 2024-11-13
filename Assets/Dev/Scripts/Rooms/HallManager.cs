@@ -128,7 +128,7 @@ public class HallManager : MonoBehaviour
 
         if (bIsUpgraderActive)
         {
-            upGrader.gameObject.SetActive(true);
+            CameraController.Instance.FocusOnTarget(upGrader.transform);
 
             SetTakeMoneyData(currentCost);
         }

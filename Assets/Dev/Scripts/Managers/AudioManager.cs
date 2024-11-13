@@ -144,7 +144,7 @@ public class AudioManager : MonoBehaviour
         if (SettingsPanel.gameObject.activeInHierarchy)
         {
             SettingsPanel.DOAnchorPosX(1500, .25f).OnComplete(() => { SettingsPanel.gameObject.SetActive(false); SettingsPanel.DOAnchorPosX(-1500, 0); });
-            CameraController.Instance.StopZooming = false;
+
 
             //settingsBtn.GetComponent<Image>().sprite = setting;
 
@@ -153,7 +153,7 @@ public class AudioManager : MonoBehaviour
         {
             SettingsPanel.gameObject.SetActive(true);
             SettingsPanel.DOAnchorPosX(0, .25f);
-            CameraController.Instance.StopZooming = true;
+
             //settingsBtn.GetComponent<Image>().sprite = _close;
         }
     }

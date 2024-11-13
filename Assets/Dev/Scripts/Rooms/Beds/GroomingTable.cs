@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 public class GroomingTable : Bed
 {
     [Header("New Grooming Dependencies")]
@@ -27,6 +28,7 @@ public class GroomingTable : Bed
                 playerController.transform.position = seat.transform.position;
                 playerController.playerControllerData.characterMovement.rotatingObj.rotation = seat.transform.rotation;
 
+                patient.animal.transform.SetParent(null);
 
                 DOVirtual.DelayedCall(.5f, () =>
                 {
@@ -39,6 +41,7 @@ public class GroomingTable : Bed
                 arrowController.gameObject.SetActive(false);
                 DropAnimalToDesk();
                 OnProcessComplite(hospitalManager.pharmacyRoom, playerController.animationController, AnimType.Idle);
+
             }
             else
             {
@@ -55,27 +58,43 @@ public class GroomingTable : Bed
         if (!staffNPC.bIsUnlock)
         {
             BreakProcess();
+            bIsProcessing = false;
+        }
+    }
+    public void OnExitFromBath()
+    {
+        if (!staffNPC.bIsUnlock)
+        {
+            bIsProcessing = true;
         }
     }
     public override void SetUpPlayer()
     {
-      //  playerController.animationController.PlayAnimation(AnimType.Idle);
+        // playerController.animationController.PlayAnimation(AnimType.Idle);
         base.SetUpPlayer();
     }
+
+    [Button("StratProsses")]
     public override void StartProcessPatients()
     {
         if (patient == null) return;
         if (bIsProcessing) return;
 
-        bIsProcessing = true;
         var workingAnimation = seat.workingAnim;
         var processTime = staffNPC.currentLevelData.processTime;
 
+        Debug.LogError("StartPatientProcessing + pplayer");
+
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
+            bIsProcessing = true;
+            Debug.LogError("StartPatientProcessing 2+ pplayer");
+
             StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
                 staffNPC.nPCMovement.walkingAnimType = AnimType.Walk_With_Object;
+                patient.animal.enabled = false;
+                patient.animal.transform.SetParent(staffNPC.animalCarryPos);
                 patient.animal.transform.position = staffNPC.animalCarryPos.position;
                 patient.animal.transform.rotation = staffNPC.animalCarryPos.rotation;
                 staffNPC.nPCMovement.MoveToTarget(bathOnTrigger.seat
@@ -87,10 +106,9 @@ public class GroomingTable : Bed
                         staffNPC.transform.rotation = bathOnTrigger.seat.transform.rotation;
 
                         StartGroomingProcess(staffNPC.animationController, bathOnTrigger.seat.workingAnim, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
-                        {  
+                        {
                             bHasBathDone = true;
                             BathProgresBar.fillAmount = 0;
-
 
                             staffNPC.nPCMovement.walkingAnimType = AnimType.Walk_With_Object;
                             patient.animal.transform.position = staffNPC.animalCarryPos.position;
@@ -102,30 +120,28 @@ public class GroomingTable : Bed
 
                         staffNPC.transform.position = onTrigger.seat.transform.position;
                         staffNPC.transform.rotation = onTrigger.seat.transform.rotation;
+                        patient.animal.transform.SetParent(null);
                         DropAnimalToDesk();
 
                         OnProcessComplite(hospitalManager.pharmacyRoom, staffNPC.animationController, AnimType.Idle);
                     });
-
-
-                            playerController.animationBools.bHasCarringItem = true;
-                            playerController.transform.SetParent(null);
-                            playerController.playerControllerData.joystick.gameObject.SetActive(true);
-                            playerController.playerControllerData.joystick.OnPointerUp(null);
-                            playerController.playerControllerData.characterMovement.enabled = true;
                         });
-
                     });
-
             });
         }
         else if (bIsPlayerOnDesk)
         {
+            bIsProcessing = true;
+
             StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
                 if (!arrowController.gameObject.activeInHierarchy && bIsOccupied) arrowController.gameObject.SetActive(true);
-                arrowController.SetTarget(bathOnTrigger.seat.transform, 0.5f);
-
+                arrowController.SetTarget(bathOnTrigger.seat.transform, 0.2f);
+                Debug.LogError("StartPatientProcessing 3 + pplayer");
+                playerController.bHaveItems = true;
+                playerController.animationBools.bHasCarringItem = true;
+                patient.animal.enabled = false;
+                patient.animal.transform.SetParent(playerController.itemsCarryhandler.itemsPostionArr[0]);
                 patient.animal.transform.position = playerController.itemsCarryhandler.itemsPostionArr[0].position;
                 patient.animal.transform.rotation = playerController.itemsCarryhandler.itemsPostionArr[0].rotation;
 
@@ -136,8 +152,12 @@ public class GroomingTable : Bed
 
     public void StartBathing()
     {
+        Debug.LogError("StartPatientProcessing 4 + pplayer");
+
         if (bIsPlayerOnDesk && !bHasBathDone)
         {
+            Debug.LogError("StartPatientProcessing 5 + pplayer");
+
             playerController.playerControllerData.characterMovement.enabled = false;
             playerController.enabled = false;
             playerController.playerControllerData.joystick.gameObject.SetActive(false);
@@ -150,15 +170,16 @@ public class GroomingTable : Bed
             StartGroomingProcess(playerController.animationController, bathOnTrigger.seat.workingAnim, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
                 BathProgresBar.fillAmount = 0;
+                Debug.LogError("StartPatientProcessing 6 + pplayer");
 
                 if (!arrowController.gameObject.activeInHierarchy && bIsOccupied) arrowController.gameObject.SetActive(true);
                 arrowController.SetTarget(onTrigger.seat.transform, 0.5f);
 
+                patient.animal.transform.SetParent(playerController.itemsCarryhandler.itemsPostionArr[0]);
                 patient.animal.transform.position = playerController.itemsCarryhandler.itemsPostionArr[0].position;
                 patient.animal.transform.rotation = playerController.itemsCarryhandler.itemsPostionArr[0].rotation;
 
                 playerController.animationBools.bHasCarringItem = true;
-                playerController.transform.SetParent(null);
                 playerController.playerControllerData.joystick.gameObject.SetActive(true);
                 playerController.playerControllerData.joystick.OnPointerUp(null);
                 playerController.playerControllerData.characterMovement.enabled = true;
@@ -170,9 +191,11 @@ public class GroomingTable : Bed
 
     public void DropAnimalToDesk()
     {
-        patient.animal.transform.position = petDignosPos.transform.position;
-        patient.animal.transform.rotation = petDignosPos.transform.rotation;
+        patient.animal.transform.SetParent(patient.RightFollowPos.transform);
+        patient.animal.transform.position = patient.RightFollowPos.transform.position;
         patient.animal.animator.PlayAnimation(petDignosPos.idleAnim);
+        patient.animal.enabled = true;
+        patient.animal.navmeshAgent.enabled = false;
     }
 
     protected string processTween;
@@ -198,9 +221,9 @@ public class GroomingTable : Bed
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
 
+        animationController.PlayAnimation(idleAnim);
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
-            animationController.PlayAnimation(idleAnim);
             patient.MoveToExit(hospitalManager.GetRandomExit(patient));
 
             patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
@@ -210,12 +233,11 @@ public class GroomingTable : Bed
             nextRoom.RegisterPatient(patient);
         }
 
-
         bIsProcessing = false;
         bHasBathDone = false;
         MoveAnimal(patient.animal);
 
-
-
     }
+
+
 }

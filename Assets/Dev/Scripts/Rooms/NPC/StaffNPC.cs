@@ -79,7 +79,7 @@ public class StaffNPC : MonoBehaviour
     EconomyManager economyManager;
     GameManager gameManager;
     UiManager uiManager;
-
+    CameraController cameraController;
     private void OnEnable()
     {
         UpdateInitializers();
@@ -97,6 +97,7 @@ public class StaffNPC : MonoBehaviour
         economyManager = saveManager.economyManager;
         gameManager = saveManager.gameManager;
         uiManager = saveManager.uiManager;
+        cameraController = saveManager.cameraController;
     }
 
     #endregion
@@ -139,7 +140,8 @@ public class StaffNPC : MonoBehaviour
     {
         if (bIsUpgraderActive)
         {
-            upGrader.gameObject.SetActive(true);
+            cameraController.FocusOnTarget(upGrader.transform);
+
             SetTakeMoneyData(currentCost);
         }
         else

@@ -8,6 +8,7 @@ public class TaskManager : MonoBehaviour
 {
     public static TaskManager instance;
     // public event Action<int> OnTaskComplite;
+    public CameraController cameraController;
     public PatientManager patientManager;
     public HallManager hallManager_01;
     public ReceptionManager receptionManager;

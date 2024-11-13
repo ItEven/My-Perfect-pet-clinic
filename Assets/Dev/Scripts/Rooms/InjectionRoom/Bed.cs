@@ -106,7 +106,10 @@ public class Bed : MonoBehaviour
             staffNPC.gameObject.SetActive(true);
             staffNPC.loadData();
             Collider.enabled = true;
-            Destroy(upGrader.gameObject);
+            if (upGrader)
+            {
+                Destroy(upGrader.gameObject);
+            }
         }
         else
         {
@@ -127,10 +130,17 @@ public class Bed : MonoBehaviour
     #region Upgrade Mechanics 
     public void SetUpgradeVisual()
     {
-        upGrader.gameObject.SetActive(bIsUpgraderActive);
 
         if (bIsUpgraderActive)
+        {
+            CameraController.Instance.FocusOnTarget(upGrader.transform);
+
             SetTakeMoneyData(currentCost);
+        }
+        else
+        {
+            upGrader.gameObject.SetActive(false);
+        }
     }
 
     public void OnUnlockAndUpgrade()
@@ -267,6 +277,7 @@ public class Bed : MonoBehaviour
     protected void BreakProcess()
     {
         worldProgresBar.fillAmount = 0;
+
         DOTween.Kill(processTweenId);
     }
     public void GetItemForProcess()
@@ -285,7 +296,7 @@ public class Bed : MonoBehaviour
         }
     }
 
-    public void MoveAnimal(Animal animal)
+    public virtual void MoveAnimal(Animal animal)
     {
         animal.animator.PlayAnimation(AnimType.Idle);
         animal.transform.position = patient.RightFollowPos.position;

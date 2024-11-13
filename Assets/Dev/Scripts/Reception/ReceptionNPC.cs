@@ -83,7 +83,7 @@ public class ReceptionNPC : MonoBehaviour
     }
     public void SetVisual()
     {
-        if (currentLevel >= levels.Length)
+        if (currentLevel > levels.Length - 1)
         {
             bIsUpgraderActive = false;
             upGrader.gameObject.SetActive(false);
@@ -112,9 +112,12 @@ public class ReceptionNPC : MonoBehaviour
 
         if (bIsUpgraderActive)
         {
-            upGrader.gameObject.SetActive(true);
+            if (upGrader)
+            {
+                CameraController.Instance.FocusOnTarget(upGrader.transform);
+                SetTakeMoneyData(currentCost);
 
-            SetTakeMoneyData(currentCost);
+            }
         }
         else
         {
