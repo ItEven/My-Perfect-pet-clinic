@@ -253,7 +253,8 @@ public class ReceptionManager : MonoBehaviour
             //if (!hospitalManager.CheckRegiterPosFull())
             //{
             var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
-            if (room == null) {
+            if (room == null)
+            {
 
                 Debug.LogError(gameObject.name + "this is null");
             }
@@ -328,6 +329,7 @@ public class ReceptionManager : MonoBehaviour
         aRoom.bIsUnlock = bIsUnlock;
         aRoom.bIsUpgraderActive = bIsUpgraderActive;
         aRoom.currentCost = currentCost;
+        aRoom.currnetMoney = moneyBox.totalMoneyInBox;
         var bed = new BedData();
         bed.staffData = new StaffData
         {
@@ -356,6 +358,7 @@ public class ReceptionManager : MonoBehaviour
         bIsUnlock = receivefile.bIsUnlock;
         bIsUpgraderActive = receivefile.bIsUpgraderActive;
         currentCost = receivefile.currentCost;
+        moneyBox.TakeMoney(receivefile.currnetMoney);
         LoadData();
 
         var bedData = receivefile.bedDatas[0];

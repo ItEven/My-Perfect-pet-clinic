@@ -4,14 +4,14 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using System;
-using static UnityEditor.PlayerSettings;
+using DG.Tweening.Core.Easing;
 
 public class CameraController : MonoBehaviour
 {
     private static CameraController cameraController;
     public static CameraController Instance => cameraController;
 
-
+    PlayerController playerController;
     private void Awake()
     {
         if (cameraController == null)
@@ -19,12 +19,20 @@ public class CameraController : MonoBehaviour
             cameraController = this;
         }
     }
+
+    private void Start()
+    {
+        playerController = gameObject.GetComponentInParent<PlayerController>();
+    }
     public void MoveToTarget(Transform target, Action onComplete = null)
     {
+        playerController.playerControllerData.characterMovement.enabled = false;
+        playerController.enabled = false;
+        playerController.playerControllerData.joystick.gameObject.SetActive(false);
+        playerController.animationController.PlayAnimation(AnimType.Idle);
         Vector3 pos = target.position;
         DOVirtual.DelayedCall(1f, () =>
         {
-
             transform.DOMove(pos, .5f).OnComplete(() =>
             {
                 onComplete?.Invoke();
@@ -47,7 +55,18 @@ public class CameraController : MonoBehaviour
             }
             upGrader.transform.DOScale(Vector3.one, 0.5f).OnComplete(() =>
             {
-                DOVirtual.DelayedCall(0.5f, () => { transform.DOMove(transform.parent.position, .5f); });
+                DOVirtual.DelayedCall(0.5f, () =>
+                {
+                    transform.DOMove(transform.parent.position, .5f).OnComplete(() =>
+                {
+                    playerController.playerControllerData.joystick.gameObject.SetActive(true);
+                    playerController.playerControllerData.joystick.OnPointerUp(null);
+                    playerController.playerControllerData.characterMovement.enabled = true;
+                    playerController.animationController.PlayAnimation(AnimType.Idle);
+
+
+                });
+                });
 
             });
         });

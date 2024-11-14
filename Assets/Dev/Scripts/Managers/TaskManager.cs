@@ -79,8 +79,10 @@ public class TaskManager : MonoBehaviour
                 patientManager.bIsUnlock = true;
                 patientManager.gameObject.SetActive(true);
                 patientManager.LoadData();
-                storageRoom.bIsUpgraderActive = true;
-                storageRoom.SetUpgradeVisual(); break;
+                //storageRoom.bIsUpgraderActive = true;
+                //storageRoom.SetUpgradeVisual();
+                OnTaskComplete(4);
+                break;
             case 4:
                 InspectionRoom.LoadNextForStaff(0);
                 break;
@@ -148,7 +150,7 @@ public class TaskManager : MonoBehaviour
                 GroomingRoom.LoadNextForStaff(0); break;
             case 24:
                 patientManager.AddDisease(DiseaseType.Allergies);
-                patientManager.AddDisease(DiseaseType.Skin_Infecction); 
+                patientManager.AddDisease(DiseaseType.Skin_Infecction);
                 InspectionRoom_2.LoadNextForStaff(0);
                 break;
             case 25:
@@ -163,7 +165,8 @@ public class TaskManager : MonoBehaviour
                 InjectionRoom.LoadNextForStaff(0); break;
             case 31: InjectionRoom.LoadNextUpgrade(); break;
             case 32: GroomingRoom.LoadNextForStaff(0); break;
-            case 33: InjectionRoom.LoadNextForStaff(1);
+            case 33:
+                InjectionRoom.LoadNextForStaff(1);
                 break;
             case 34: InspectionRoom_2.LoadNextForStaff(0); break;
             case 35: InjectionRoom.LoadNextForStaff(1); break;
@@ -203,7 +206,7 @@ public class TaskManager : MonoBehaviour
             case 47:
                 InspectionRoom_3.LoadNextForStaff(0); break;
             case 48:
-                MriRoom.LoadNextForStaff(0);break;
+                MriRoom.LoadNextForStaff(0); break;
             case 49: OpreationRoom.LoadNextForStaff(0); break;
             case 50:
                 IcuRoom.bIsUpgraderActive = true;
@@ -217,7 +220,7 @@ public class TaskManager : MonoBehaviour
             case 53:
                 MriRoom.LoadNextUpgrade(); break;
             case 54:
-                IcuRoom.LoadNextForStaff(0);break;
+                IcuRoom.LoadNextForStaff(0); break;
             case 55:
                 OpreationRoom.LoadNextForStaff(0); break;
             case 56:

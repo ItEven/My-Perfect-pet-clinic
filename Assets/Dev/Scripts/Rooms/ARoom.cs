@@ -12,7 +12,7 @@ public class ARoomData
     public bool bIsUpgraderActive;
     public int currentCost;
     public int currentOpneBed;
-
+    public int currnetMoney;
     public List<BedData> bedDatas = new List<BedData>();
 }
 [Serializable]
@@ -345,6 +345,9 @@ public class ARoom : MonoBehaviour
         aRoomData.bIsUnlock = bIsUnlock;
         aRoomData.bIsUpgraderActive = bIsUpgraderActive;
         aRoomData.currentOpneBed = currntOpenBeds;
+        aRoomData.currnetMoney = moneyBox.totalMoneyInBox;
+        
+
         if (upGrader != null)
         {
             aRoomData.currentCost = currentCost;
@@ -385,7 +388,8 @@ public class ARoom : MonoBehaviour
         bIsUpgraderActive = receivefile.bIsUpgraderActive;
         currentCost = receivefile.currentCost;
         currntOpenBeds = receivefile.currentOpneBed;
-        LoadData();
+        moneyBox.TakeMoney(receivefile.currnetMoney);
+
         for (int i = 0; i < receivefile.bedDatas.Count; i++)
         {
             var bedData = receivefile.bedDatas[i];
@@ -407,6 +411,7 @@ public class ARoom : MonoBehaviour
 
         }
         LoadBedData();
+        LoadData();
 
     }
 
