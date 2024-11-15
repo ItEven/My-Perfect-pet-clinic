@@ -14,7 +14,7 @@ public class UiManager : MonoBehaviour
 
     [Header("HUD")]
     public RectTransform hudPanel;
-    public Ease easeEase;
+ 
 
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class UiManager : MonoBehaviour
         {
             backgroundPanel.gameObject.SetActive(false);
         });
-        mainPanel.DOScale(Vector3.zero, commenDgDuraction).SetEase(easeEase).OnComplete(() =>
+        mainPanel.DOScale(Vector3.zero, commenDgDuraction).SetEase(Ease.OutSine).OnComplete(() =>
         {
             mainPanel.gameObject.SetActive(false);
             hudPanel.gameObject.SetActive(true);

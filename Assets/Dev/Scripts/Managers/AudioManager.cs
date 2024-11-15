@@ -120,39 +120,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
-    //internal void haptic(HapticPatterns.PresetType haptic)
-    //{
-    //    if (Vibrate != 1) return;
-    //    //MMVibrationManager.Haptic(haptic);
-    //    HapticPatterns.PlayPreset(haptic);
-    //}
-
-
-
-    //void hapticfx()
-    //{
-    //    if (Vibrate == 1)
-    //    {
-    //        PlayerPrefs.SetInt(VIBRATE, 0);
-    //        //MMVibrationManager.SetHapticsActive(false);
-    //        HapticController.hapticsEnabled = false;
-    //        Hapticimg.sprite = hapticoff;
-    //        HapticBtnImg.sprite = offImage;
-    //    }
-    //    else
-    //    {
-    //        PlayerPrefs.SetInt(VIBRATE, 1);
-    //        //MMVibrationManager.SetHapticsActive(true);
-    //        HapticController.hapticsEnabled = true;
-    //        Hapticimg.sprite = hapticon;
-    //        HapticBtnImg.sprite = OnImage;
-    //        haptic(HapticPatterns.PresetType.LightImpact);
-
-    //    }
-    //    SetData();
-    //}
-
     public void OnButtonClick(Image img, RectTransform circle, RectTransform onText, RectTransform OffText, bool bIsOn)
     {
         if (bIsOn)
