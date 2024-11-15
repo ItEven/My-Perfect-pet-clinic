@@ -268,6 +268,8 @@ public class ReceptionManager : MonoBehaviour
                     worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime).SetId("ProgressTween")
                        .OnComplete(() =>
                        {
+                           hospitalManager.OnPatientRegister();
+                           
                            gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
 
                            moneyBox.TakeMoney(npc.currentLevelData.customerCost);

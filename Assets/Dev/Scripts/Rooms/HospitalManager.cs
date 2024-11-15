@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,8 @@ public class RegisterPos
 public class HospitalManager : MonoBehaviour
 {
     //public RoomHandler[] roomHandlers;
+    public event Action OnPatientCountUpdate;
+
     [Header("All Room")]
     public ReceptionManager receptionManager;
     public ARoom[] InspectionRoom;
@@ -47,6 +50,7 @@ public class HospitalManager : MonoBehaviour
                 {
                     if (patient.diseaseType == room.diseaseTypes[j])
                     {
+                        OnPatientRegister();
                         return room;
                     }
                 }
@@ -105,6 +109,12 @@ public class HospitalManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void OnPatientRegister()
+    {
+        OnPatientCountUpdate?.Invoke();
+
     }
 
     public int GetCustomerCost(Patient patient, DiseaseData diseaseData, StaffExprinceType StaffExprinceType)

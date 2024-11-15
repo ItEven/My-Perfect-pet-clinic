@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Space(1)]
     [Header("Gloable Veriables")]
     public GameObject singleMoneybrick;
+    public float profitMultiplier;
 
 
     [Space(1)]

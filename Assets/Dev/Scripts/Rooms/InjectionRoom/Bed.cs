@@ -273,6 +273,8 @@ public class Bed : MonoBehaviour
 
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
+            hospitalManager.OnPatientRegister();
+
             animationController.PlayAnimation(idleAnim);
             patient.MoveToExit(hospitalManager.GetRandomExit(patient));
             patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
