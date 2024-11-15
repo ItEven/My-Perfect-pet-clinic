@@ -1,75 +1,50 @@
 using DG.Tweening;
-//using MoreMountains.NiceVibrations;
 using Lofelt.NiceVibrations;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+
+[System.Serializable]
+public class SettingData
+{
+    public bool bIsSoundOn;
+    public bool bIsMusicOn;
+}
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager i;
-    [SerializeField] internal AudioSource AudioSource;
+    [SerializeField] internal AudioSource musicAudioSource;
+    [SerializeField] internal AudioSource soundAudioSource;
 
-
-    // public GameAudio BtnPress;
+    public SettingData settingData = new SettingData();
     public AudioClip upgradeClip;
     public AudioClip whoohClip;
     public AudioClip moneyCollectClip;
     public AudioClip moneyDropClip;
 
 
-    [Header("Settings Panel")]
-    [SerializeField] RectTransform SettingsPanel;
-    [SerializeField] Button settingsBtn;
-    [SerializeField] Button SoundBtn;
-    [SerializeField] Button MusicBtn;
-    [SerializeField] Button vibrateBtn;
-    [SerializeField] Button CloseBTn;
-
-    [Header("setting sprites")]
-
-
-
-    public Sprite setting;
-    public Sprite _close;
-
-    public int Sound;
-    public int Music;
-    public int Vibrate;
-
-
-    public static string MUSIC = "Gr_Music";
-    public static string VIBRATE = "Gr_Virate";
-    public static string SOUND = "Gr_Sound";
-
-    [Header("uiCHANGES")]
-    public Sprite OnImage;
-    public Sprite offImage;
-
+    [Header("Setting Panel")]
+    public RectTransform settingBackgroundPanel;
+    public RectTransform settingPanel;
+    public Image settingPanelBgImagel;
+    public Button settingBtn;
+    public Button settingCloseBtn;
 
 
     [Header("Sound")]
-    public Sprite soundon;
-    public Sprite soundoff;
-    public Image Soundimg;
-    public Image SoundBtnImg;
-    public Text SoundText;
-
+    public Button soundBtn;
+    public Image soundImg;
+    public RectTransform soundCircleImg;
+    public RectTransform soundOnText;
+    public RectTransform soundOffText;
 
     [Header("Music")]
-    public Sprite musicon;
-    public Sprite musicoff;
-    public Image Musicimg;
-    public Image MusicBtnImg;
-    public Text musictext;
-
-
-    [Header("Haptic")]
-    public Sprite hapticon;
-    public Sprite hapticoff;
-    public Image Hapticimg;
-    public Image HapticBtnImg;
-    public Text haptictext;
-
+    public Button musicBtn;
+    public Image musicImg;
+    public RectTransform musicCircleImg;
+    public RectTransform musicOnText;
+    public RectTransform musicOffText;
 
 
     private void Awake()
@@ -82,197 +57,210 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+    
     }
-    // Start is called before the first frame update
+
     void Start()
-    {  
-        //BtnPress.Play();
-       // SetData();
-        Check();
-        //MMVibrationManager.SetHapticsActive(true);
-        //settingsBtn.onClick.AddListener(() => { settingsPan(); BtnPress.Play(); haptic(HapticPatterns.PresetType.LightImpact); });
-        //SoundBtn.onClick.AddListener(() => { BgSoundSeting(); BtnPress.Play(); haptic(HapticPatterns.PresetType.LightImpact); });
-        //MusicBtn.onClick.AddListener(() => { Musicseting(); BtnPress.Play(); haptic(HapticPatterns.PresetType.LightImpact); });
-        //vibrateBtn.onClick.AddListener(() => { hapticfx(); BtnPress.Play(); });
-        //CloseBTn.onClick.AddListener(() => { settingsPan(); BtnPress.Play(); haptic(HapticPatterns.PresetType.LightImpact); });
+    {
+        if (PlayerPrefs.HasKey("GameData"))
+        {
+            LoadData();
+        }
+        else
+        {
+            settingData.bIsSoundOn = true;
+            settingData.bIsMusicOn = true;
+        }
+        settingBtn.onClick.AddListener(OpneSettingPanel);
+        settingCloseBtn.onClick.AddListener(OpneSettingPanel);
+        soundBtn.onClick.AddListener(OnSoundButtunClick);
+        musicBtn.onClick.AddListener(OnMusicButtunClick);
+        SetData();
     }
-
+    public void SetData()
+    {
+        SetSoundSetting();
+        SetMusicSetting();
+    }
     public void Play(AudioClip clip)
     {
-        // if (Sound != 1) return;
-        
-        AudioSource.PlayOneShot(clip);
+
+        musicAudioSource.PlayOneShot(clip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
     }
     public void OnUpgrade()
     {
-        AudioSource.PlayOneShot(upgradeClip);
-        //AudioSource.PlayOneShot(whoohClip);
+        if (!settingData.bIsSoundOn) return;
+        musicAudioSource.PlayOneShot(upgradeClip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
     }
     public void OnMonenyCollect()
     {
-        AudioSource.PlayOneShot(moneyCollectClip);
+        if (!settingData.bIsSoundOn) return;
+        musicAudioSource.PlayOneShot(moneyCollectClip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
-    } 
+    }
     public void OnMoneyDrop()
     {
-        AudioSource.PlayOneShot(moneyDropClip);
+        if (!settingData.bIsSoundOn) return;
+        musicAudioSource.PlayOneShot(moneyDropClip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
     }
 
-
-
-    void SetData()
+    public void OpneSettingPanel()
     {
-        Sound = PlayerPrefs.GetInt(SOUND, 1);
-        Music = PlayerPrefs.GetInt(MUSIC, 1);
-        Vibrate = PlayerPrefs.GetInt(VIBRATE, 1);
-
-    }
-    internal void haptic(HapticPatterns.PresetType haptic)
-    {
-        if (Vibrate != 1) return;
-        //MMVibrationManager.Haptic(haptic);
-        HapticPatterns.PlayPreset(haptic);
-    }
-
-    void settingsPan()
-    {
-       
-        if (SettingsPanel.gameObject.activeInHierarchy)
+        if (settingBackgroundPanel.gameObject.activeInHierarchy)
         {
-            SettingsPanel.DOAnchorPosX(1500, .25f).OnComplete(() => { SettingsPanel.gameObject.SetActive(false); SettingsPanel.DOAnchorPosX(-1500, 0); });
-
-
-            //settingsBtn.GetComponent<Image>().sprite = setting;
-
+            UiManager.instance.ClosePanel(settingBackgroundPanel, settingPanelBgImagel, settingPanel);
         }
         else
         {
-            SettingsPanel.gameObject.SetActive(true);
-            SettingsPanel.DOAnchorPosX(0, .25f);
 
-            //settingsBtn.GetComponent<Image>().sprite = _close;
+            UiManager.instance.OpenPanel(settingBackgroundPanel, settingPanelBgImagel, settingPanel);
         }
     }
-    void Musicseting()
+
+
+    //internal void haptic(HapticPatterns.PresetType haptic)
+    //{
+    //    if (Vibrate != 1) return;
+    //    //MMVibrationManager.Haptic(haptic);
+    //    HapticPatterns.PlayPreset(haptic);
+    //}
+
+
+
+    //void hapticfx()
+    //{
+    //    if (Vibrate == 1)
+    //    {
+    //        PlayerPrefs.SetInt(VIBRATE, 0);
+    //        //MMVibrationManager.SetHapticsActive(false);
+    //        HapticController.hapticsEnabled = false;
+    //        Hapticimg.sprite = hapticoff;
+    //        HapticBtnImg.sprite = offImage;
+    //    }
+    //    else
+    //    {
+    //        PlayerPrefs.SetInt(VIBRATE, 1);
+    //        //MMVibrationManager.SetHapticsActive(true);
+    //        HapticController.hapticsEnabled = true;
+    //        Hapticimg.sprite = hapticon;
+    //        HapticBtnImg.sprite = OnImage;
+    //        haptic(HapticPatterns.PresetType.LightImpact);
+
+    //    }
+    //    SetData();
+    //}
+
+    public void OnButtonClick(Image img, RectTransform circle, RectTransform onText, RectTransform OffText, bool bIsOn)
     {
-
-        if (Music == 0)
+        if (bIsOn)
         {
-            PlayerPrefs.SetInt(MUSIC, 1);
-            AudioSource.Play();
-
-            MusicBtnImg.sprite = OnImage;
-            Musicimg.sprite = musicon;
-            ////  musictext.text = "ON";
-            //  musictext.alignment = TextAnchor.MiddleLeft;
-
+            img.DOFillAmount(1, 0.2f).SetEase(Ease.InOutBounce);
+            circle.DOLocalMoveX(50f, 0.2f).SetEase(Ease.InOutBounce);
+            onText.DOScale(1, 0.2f).SetEase(Ease.OutBounce);
+            OffText.DOScale(0, 0.2f).SetEase(Ease.InBounce);
         }
         else
         {
-            PlayerPrefs.SetInt(MUSIC, 0);
-            AudioSource.Stop();
-
-
-            MusicBtnImg.sprite = offImage;
-            Musicimg.sprite = musicoff;
-            //musictext.alignment = TextAnchor.MiddleRight;
-            //musictext.text = "OFF";
-
-
+            img.DOFillAmount(0, 0.2f).SetEase(Ease.InOutBounce);
+            circle.DOLocalMoveX(-50f, 0.2f).SetEase(Ease.InOutBounce);
+            onText.DOScale(0, 0.2f).SetEase(Ease.InBounce);
+            OffText.DOScale(1, 0.2f).SetEase(Ease.OutBounce);
         }
+    }
+
+    #region Sound Setting
+    void SetSoundSetting()
+    {
+        if (settingData.bIsSoundOn)
+        {
+            OnButtonClick(soundImg, soundCircleImg, soundOnText, soundOffText, true);
+            soundAudioSource.Play();
+        }
+        else
+        {
+            OnButtonClick(soundImg, soundCircleImg, soundOnText, soundOffText, false);
+            soundAudioSource.Stop();
+        }
+    }
+
+    void OnSoundButtunClick()
+    {
+        if (settingData.bIsSoundOn)
+        {
+            settingData.bIsSoundOn = false;
+            SetSoundSetting();
+        }
+        else
+        {
+            settingData.bIsSoundOn = true;
+            SetSoundSetting();
+        }
+    }
+    #endregion
+
+    #region Music Setting
+
+    void SetMusicSetting()
+    {
+        if (settingData.bIsMusicOn)
+        {
+            OnButtonClick(musicImg, musicCircleImg, musicOnText, musicOffText, true);
+            musicAudioSource.Play();
+        }
+        else
+        {
+            OnButtonClick(musicImg, musicCircleImg, musicOnText, musicOffText, false);
+            musicAudioSource.Stop();
+        }
+    }
+
+    void OnMusicButtunClick()
+    {
+        if (settingData.bIsMusicOn)
+        {
+            settingData.bIsMusicOn = false;
+            SetMusicSetting();
+        }
+        else
+        {
+            settingData.bIsMusicOn = true;
+            SetMusicSetting();
+        }
+    }
+
+    #endregion
+
+    #region Data Functions
+    public void SaveData()
+    {
+
+        string JsonData = JsonUtility.ToJson(settingData);
+        PlayerPrefs.SetString("Setting", JsonData);
+
+    }
+    public void LoadData()
+    {
+        string JsonData = PlayerPrefs.GetString("Setting");
+        settingData = JsonUtility.FromJson<SettingData>(JsonData);
         SetData();
     }
 
-    void hapticfx()
+    void OnApplicationQuit()
     {
-        if (Vibrate == 1)
-        {
-            PlayerPrefs.SetInt(VIBRATE, 0);
-            //MMVibrationManager.SetHapticsActive(false);
-            HapticController.hapticsEnabled = false;
-            Hapticimg.sprite = hapticoff;
-            HapticBtnImg.sprite = offImage;
-        }
-        else
-        {
-            PlayerPrefs.SetInt(VIBRATE, 1);
-            //MMVibrationManager.SetHapticsActive(true);
-            HapticController.hapticsEnabled = true;
-            Hapticimg.sprite = hapticon;
-            HapticBtnImg.sprite = OnImage;
-            haptic(HapticPatterns.PresetType.LightImpact);
-
-        }
-        SetData();
+        SaveData();
     }
-
-
-    void BgSoundSeting()
+    void OnApplicationPause(bool pause)
     {
-        if (Sound == 0)
+        if (pause)
         {
-            PlayerPrefs.SetInt(SOUND, 1);
-            Sound = PlayerPrefs.GetInt(SOUND);
-            Soundimg.sprite = soundon;
-            SoundBtnImg.sprite = OnImage;
-        }
-        else
-        {
-            PlayerPrefs.SetInt(SOUND, 0);
-            Sound = PlayerPrefs.GetInt(SOUND);
-            Soundimg.sprite = soundoff;
-            SoundBtnImg.sprite = offImage;
-        }
-        SetData();
-
-    }
-
-    void Check()
-    {
-        if (Music == 0)
-        {
-           // AudioSource.Stop();
-           // Musicimg.sprite = musicoff;
-            //MusicBtnImg.sprite = offImage;
-        }
-        if (Sound == 0)
-        {
-           // Soundimg.sprite = soundoff;
-           // SoundBtnImg.sprite = offImage;
-        }
-        if (Vibrate == 0)
-        {
-            //MMVibrationManager.SetHapticsActive(false);
-           // HapticController.hapticsEnabled = false;
-           // Hapticimg.sprite = hapticoff;
-           // HapticBtnImg.sprite = offImage;
+            SaveData();
         }
     }
-
+    #endregion
 
 }
 
 
-[System.Serializable]
-public class GameAudio
-{
-    public AudioClip clip;
-    bool isBeingUsed = false;
-
-    public bool IsFree => !isBeingUsed;
-
-    public void Play()
-    {
-        AudioManager.i.Play(clip);
-        isBeingUsed = true;
-    }
-
-    public void Release()
-    {
-        isBeingUsed = false;
-    }
-}

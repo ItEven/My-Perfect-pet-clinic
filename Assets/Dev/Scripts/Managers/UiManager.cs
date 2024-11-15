@@ -2,18 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class UiManager : MonoBehaviour
 {
     public static UiManager instance;
+    public static bool bIsUiOn;
+    public float commenDgDuraction;
 
+
+    [Header("HUD")]
+    public RectTransform hudPanel;
+    public Ease easeEase;
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+    public void Start()
+    {
+        //settingBtn.onClick.AddListener
     }
 
+    public void OpenPanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)
+    {
+        if (bIsUiOn) return;
+        hudPanel.gameObject.SetActive(false);
+        backgroundPanel.gameObject.SetActive(true);
 
+        //Material material = bgImg.material;
+        //material.color = new Color(material.color.r, material.color.g, material.color.b, 0);
+        bgImg.DOFade(0.9f, commenDgDuraction * 2);
+        mainPanel.localScale = Vector3.zero;
+        mainPanel.gameObject.SetActive(true);
+        mainPanel.DOScale(Vector3.one, commenDgDuraction).SetEase(Ease.OutBounce);
+        bIsUiOn = true;
+    }
+
+    public void ClosePanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)
+    {
+        //Material material = bgImg.material;
+        bgImg.DOFade(0f, commenDgDuraction).OnComplete(() =>
+        {
+            backgroundPanel.gameObject.SetActive(false);
+        });
+        mainPanel.DOScale(Vector3.zero, commenDgDuraction).SetEase(easeEase).OnComplete(() =>
+        {
+            mainPanel.gameObject.SetActive(false);
+            hudPanel.gameObject.SetActive(true);
+            bIsUiOn = false;
+        });
+    }
     public string ScoreShow(double Score)
     {
         string result;

@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
     #region Movement
     public void HandleMovement()
     {
+        if (UiManager.bIsUiOn) return;
         horizontal = playerControllerData.joystick.Horizontal;
         vertical = playerControllerData.joystick.Vertical;
 
