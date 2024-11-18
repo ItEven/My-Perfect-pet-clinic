@@ -11,7 +11,9 @@ public enum AnimType
     Walk_With_Object,
     Idle_With_Object,
     Pet_Diagnos,
-    Injection  
+    StrartInjecting,
+    StopInjecting
+
 }
 
 

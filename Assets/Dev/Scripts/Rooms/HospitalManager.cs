@@ -35,7 +35,7 @@ public class HospitalManager : MonoBehaviour
     public Transform[] exitsPosses;
 
     [Header("Sprade Poses List")]
-    public RegisterPos[] registerPoses;
+    public List<RegisterPos> registerPoses = new List<RegisterPos>();
 
 
     #region InspectionRoom Machenics
@@ -82,7 +82,7 @@ public class HospitalManager : MonoBehaviour
 
     public bool CheckRegiterPosFull()
     {
-        for (int i = 0; i < registerPoses.Length; i++)
+        for (int i = 0; i < registerPoses.Count; i++)
         {
             RegisterPos pos = registerPoses[i];
             if (!pos.bIsRegiseter)
@@ -98,7 +98,7 @@ public class HospitalManager : MonoBehaviour
 
     public Transform GetRandomPos(Patient patient)
     {
-        for (int i = 0; i < registerPoses.Length; i++)
+        for (int i = 0; i < registerPoses.Count; i++)
         {
             var p = registerPoses[i];
             if (!p.bIsRegiseter)

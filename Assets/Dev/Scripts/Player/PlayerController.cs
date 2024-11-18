@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
     {
         switch (items)
         {
-            case ItemsTyps.injection:
+            case ItemsTyps.injection:                         
                 playerEquipments.injection.SetActive(state);
                 animationBools.bHasInjection = state;
                 break;

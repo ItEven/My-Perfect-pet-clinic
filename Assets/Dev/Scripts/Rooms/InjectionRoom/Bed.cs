@@ -11,6 +11,7 @@ public class Bed : MonoBehaviour
     public int currentTask;
 
     [Header("Inspection Room Details")]
+    public ItemsTyps needIteam;
     public int unlockPrice;
     internal int currentCost
     {
@@ -105,24 +106,13 @@ public class Bed : MonoBehaviour
 
             gameManager.PlayParticles(roundUpgradePartical);
 
-            Collider.enabled = true;
-            if (upGrader)
-            {
-                //Destroy(upGrader.gameObject);
-            }
+            Collider.enabled = true;       
         }
         else
         {
             Collider.enabled = false;
             staffNPC.gameObject.SetActive(false);
             gameManager.SetObjectsStates(unlockObjs, false);
-            //if (!bIsUpgraderActive)
-            //{
-            //    DOVirtual.DelayedCall(0.3f, () =>
-            //    {
-            //        gameObject.SetActive(false);
-            //    });
-            //}
         }
         SetUpgradeVisual();
     }
@@ -346,14 +336,6 @@ public class Bed : MonoBehaviour
             StartProcessPatients();
         });
     }
-
-    //public virtual void TakeIteam(AnimType animType)
-    //{
-    //    switch (animType)
-    //    {
-
-    //    }
-    //}
 
     #endregion
 }

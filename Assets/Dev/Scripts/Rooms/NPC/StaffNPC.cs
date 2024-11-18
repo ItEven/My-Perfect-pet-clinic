@@ -105,7 +105,7 @@ public class StaffNPC : MonoBehaviour
 
     public void Start()
     {
-        //loadData();
+
     }
     public void loadData()
     {
@@ -117,7 +117,7 @@ public class StaffNPC : MonoBehaviour
     {
         if (bIsUnlock)
         {
-            //gameManager.DropObj(npcObj);
+
             nPCMovement.navmeshAgent.enabled = false;
             npcObj.SetActive(true);
             transform.position = seat.transform.position;
@@ -211,18 +211,22 @@ public class StaffNPC : MonoBehaviour
 
     #region MoveAble Thing
 
-    //public void GoToTragetPostion()
-    //{
-    //    if (Seat != null)
-    //    {
-
-
-    //    }
-    //}
-
     public void SetMainSeat(Seat seat)
     {
         this.seat = seat;
+    }
+
+    #endregion
+
+    #region Items Interaction
+    public void SetItemState(ItemsTyps items, bool state)
+    {
+        switch (items)
+        {
+            case ItemsTyps.injection:
+                playerEquipments.injection.SetActive(state);
+                break;
+        }
     }
 
     #endregion

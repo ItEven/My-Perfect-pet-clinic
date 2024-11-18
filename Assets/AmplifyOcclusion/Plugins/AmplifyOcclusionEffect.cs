@@ -38,7 +38,7 @@ public class AmplifyOcclusionEffect : MonoBehaviour
 	}
 
 	[Header( "Ambient Occlusion" )]
-	[Tooltip( "How to inject the occlusion: Post Effect = Overlay, Deferred = Deferred Injection, Debug - Vizualize." )]
+	[Tooltip( "How to inject the occlusion: Post Effect = Overlay, Deferred = Deferred StrartInjecting, Debug - Vizualize." )]
 	public ApplicationMethod ApplyMethod = ApplicationMethod.PostEffect;
 
 	[Tooltip( "Number of samples per pass." )]

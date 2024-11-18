@@ -32,7 +32,8 @@ public class HallManager : MonoBehaviour
 
     public Upgrader upGrader;
 
-
+    [Header("New Watting Posses")]
+    public List<RegisterPos> registerPos = new List<RegisterPos>();
     [Header(" Visuals Details")]
     public GameObject[] unlockObjs;
     public GameObject[] lockedObjs;
@@ -42,7 +43,7 @@ public class HallManager : MonoBehaviour
 
     SaveManager saveManager;
     GameManager gameManager;
-
+    HospitalManager hospitalManager;
 
     private void OnEnable()
     {
@@ -57,7 +58,7 @@ public class HallManager : MonoBehaviour
     {
         saveManager = SaveManager.instance;
         gameManager = saveManager.gameManager;
-
+        hospitalManager = saveManager.hospitalManager;
     }
 
     #endregion

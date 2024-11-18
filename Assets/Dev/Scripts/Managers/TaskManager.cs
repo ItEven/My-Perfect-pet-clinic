@@ -8,21 +8,33 @@ public class TaskManager : MonoBehaviour
 {
     public static TaskManager instance;
     // public event Action<int> OnTaskComplite;
+    [Header("Other Scripts")]
     public CameraController cameraController;
     public PatientManager patientManager;
+
+    [Header("Halls")]
     public HallManager hallManager_01;
-    public ReceptionManager receptionManager;
-    public ARoom InspectionRoom;
-    public ARoom pharmacyRoom;
-    public StorageRoom storageRoom;
     public HallManager hallManager_02;
-    public ARoom InjectionRoom;
+    public HallManager hallManager_03;
+    public HallManager hallManager_04;
+    public HallManager hallManager_05;
+    public HallManager hallManager_06;
+
+    [Header("Reseption")]
+    public ReceptionManager receptionManager;
+
+    [Header("Rooms")]
+    public ARoom InspectionRoom;
     public ARoom InspectionRoom_2;
-    public ARoom GroomingRoom;
     public ARoom InspectionRoom_3;
+    public ARoom pharmacyRoom;
+    public ARoom pharmacyRoom_2;
+    public ARoom InjectionRoom;
+    public ARoom GroomingRoom;
     public ARoom OpreationRoom;
     public ARoom MriRoom;
     public ARoom IcuRoom;
+    public StorageRoom storageRoom;
 
     #region Initializers
     SaveManager saveManager;
@@ -70,7 +82,6 @@ public class TaskManager : MonoBehaviour
                 InspectionRoom.bIsUpgraderActive = true;
                 InspectionRoom.SetUpgradeVisual(); break;
             case 2:
-
                 pharmacyRoom.bIsUpgraderActive = true;
                 pharmacyRoom.SetUpgradeVisual();
                 break;

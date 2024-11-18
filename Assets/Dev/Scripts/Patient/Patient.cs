@@ -3,12 +3,12 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Patient : MonoBehaviour
 {
+
     public GameObject patientMeshObj;
     public Transform RightFollowPos;
     public Transform leftFollowPos;
@@ -32,5 +32,7 @@ public class Patient : MonoBehaviour
             Destroy(gameObject);
         });
     }
-    
+
+
+
 }
