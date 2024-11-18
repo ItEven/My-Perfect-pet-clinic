@@ -6,8 +6,6 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-
-
 [System.Serializable]
 public class RegisterPos
 {

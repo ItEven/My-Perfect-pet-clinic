@@ -98,6 +98,10 @@ public class HallManager : MonoBehaviour
                 gameManager.DropObj(item);
             }
 
+            if (registerPos.Count > 0)
+            {
+                hospitalManager.registerPoses.AddRange(registerPos);
+            }
 
             roundUpgradePartical.ForEach(X => X.Play());
         }

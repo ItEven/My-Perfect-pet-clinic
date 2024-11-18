@@ -8151,6 +8151,7 @@ MonoBehaviour:
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 1645198165}
+  registerPos: []
   unlockObjs:
   - {fileID: 398025539}
   - {fileID: 1716025946}
@@ -12126,10 +12127,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HallName: Hall_03_Data
   currentTask: 16
-  unlockPrice: 620
+  unlockPrice: 30000
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 920632924}
+  registerPos: []
   unlockObjs:
   - {fileID: 1850991475}
   - {fileID: 1419642991}
@@ -18104,10 +18106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HallName: Hall_02_Data
   currentTask: 16
-  unlockPrice: 620
+  unlockPrice: 1000
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 982404807}
+  registerPos: []
   unlockObjs:
   - {fileID: 283071647}
   - {fileID: 1004418401}
@@ -18175,6 +18178,7 @@ MonoBehaviour:
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 1035166952}
+  registerPos: []
   unlockObjs:
   - {fileID: 41750201}
   - {fileID: 1079994186}
@@ -26612,8 +26616,8 @@ Transform:
   - {fileID: 1462932771}
   - {fileID: 1720426169}
   - {fileID: 808856600}
-  - {fileID: 495126743}
   - {fileID: 1460131398}
+  - {fileID: 495126743}
   - {fileID: 49769381}
   - {fileID: 165994086}
   m_Father: {fileID: 43604996}
@@ -30713,6 +30717,7 @@ MonoBehaviour:
   bIsUnlock: 0
   bIsUpgraderActive: 1
   upGrader: {fileID: 1143806181}
+  registerPos: []
   unlockObjs:
   - {fileID: 300584089}
   - {fileID: 1100541161}
@@ -31369,10 +31374,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HallName: Hall_03_Data
   currentTask: 16
-  unlockPrice: 620
+  unlockPrice: 5000
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 305372851}
+  registerPos: []
   unlockObjs:
   - {fileID: 329742866}
   - {fileID: 1989406486}
@@ -36726,7 +36732,7 @@ GameObject:
   - component: {fileID: 1689134788}
   - component: {fileID: 1689134789}
   m_Layer: 0
-  m_Name: Pharmacy_Room_2
+  m_Name: Store_Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36764,12 +36770,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8723a3ee01bf8d4c96d71bce9bac7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ROOMNAME: Pharmacy_Room_2
+  ROOMNAME: Store_Room
   currentTask: 38
-  unlockPrice: 5000
+  unlockPrice: 2240
   bIsUnlock: 0
   bIsUpgraderActive: 0
-  diseaseTypes: 0b0000000c0000000d0000000e0000000f000000
+  diseaseTypes: 
   diseaseData: {fileID: 11400000, guid: c71afbfb6080fbd4289a3c337197eaab, type: 2}
   upGrader: {fileID: 1632687081}
   moneyBox: {fileID: 546009760}
