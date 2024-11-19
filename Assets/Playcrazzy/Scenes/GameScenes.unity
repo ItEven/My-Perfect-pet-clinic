@@ -3770,7 +3770,7 @@ MonoBehaviour:
     processTime: 8
     StaffExprinceType: 0
   - levelNum: 1
-    upgradeCost: 31500
+    upgradeCost: 31400
     nextTask: 64
     processTime: 6
     StaffExprinceType: 1
@@ -17144,6 +17144,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4e438a685c5bbf549a88fa3107c47703,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4e438a685c5bbf549a88fa3107c47703,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.27001572
       objectReference: {fileID: 0}
@@ -27815,12 +27820,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cda9b57391993dc4a9078e5b1da764ac,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cda9b57391993dc4a9078e5b1da764ac,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cda9b57391993dc4a9078e5b1da764ac,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cda9b57391993dc4a9078e5b1da764ac,
         type: 3}
@@ -27835,7 +27845,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cda9b57391993dc4a9078e5b1da764ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.255
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cda9b57391993dc4a9078e5b1da764ac,
         type: 3}
@@ -27871,6 +27881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cda9b57391993dc4a9078e5b1da764ac,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: cda9b57391993dc4a9078e5b1da764ac,
         type: 3}
@@ -32954,9 +32969,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0bdc23ab5fc5248ac03d9118ce0e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 81
+  currentTask: 85
   needIteam: 0
-  unlockPrice: 45700
+  unlockPrice: 49000
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -33029,9 +33044,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68710af69061d6040be7f98feac32881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 68
+  currentTask: 66
   needIteam: 0
-  unlockPrice: 34100
+  unlockPrice: 32740
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -40613,8 +40628,8 @@ MonoBehaviour:
     processTime: 8
     StaffExprinceType: 0
   - levelNum: 1
-    upgradeCost: 38150
-    nextTask: 73
+    upgradeCost: 39800
+    nextTask: 75
     processTime: 6
     StaffExprinceType: 1
   - levelNum: 2
@@ -50631,7 +50646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTask: 35
   needIteam: 6
-  unlockPrice: 4102
+  unlockPrice: 4100
   bIsUnlock: 0
   bIsUpgraderActive: 0
   bIsOccupied: 0
@@ -79043,12 +79058,12 @@ MonoBehaviour:
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 55500
-    nextTask: 90
+    nextTask: 91
     processTime: 2
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 58950
-    nextTask: 93
+    nextTask: 94
     processTime: 1.5
     StaffExprinceType: 3
   npcObj: {fileID: 751157038}
@@ -79170,7 +79185,7 @@ MonoBehaviour:
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 53200
-    nextTask: 88
+    nextTask: 89
     processTime: 1.5
     StaffExprinceType: 3
   npcObj: {fileID: 553031804}
@@ -79215,7 +79230,7 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - levelNum: 0
-    upgradeCost: 6505
+    upgradeCost: 6500
     nextTask: 40
     processTime: 6
     StaffExprinceType: 0
@@ -79226,7 +79241,7 @@ MonoBehaviour:
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 11690
-    nextTask: 47
+    nextTask: 46
     processTime: 4.5
     StaffExprinceType: 2
   - levelNum: 3
@@ -79277,22 +79292,22 @@ MonoBehaviour:
   levels:
   - levelNum: 0
     upgradeCost: 42630
-    nextTask: 77
+    nextTask: 78
     processTime: 8
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 52200
-    nextTask: 87
+    nextTask: 88
     processTime: 7
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 56680
-    nextTask: 91
+    nextTask: 92
     processTime: 6
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 57800
-    nextTask: 92
+    nextTask: 93
     processTime: 5
     StaffExprinceType: 3
   npcObj: {fileID: 1566335389}
@@ -79536,7 +79551,7 @@ MonoBehaviour:
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 51000
-    nextTask: 86
+    nextTask: 87
     processTime: 1.5
     StaffExprinceType: 3
   npcObj: {fileID: 203410996}
@@ -79597,7 +79612,7 @@ MonoBehaviour:
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 61200
-    nextTask: 95
+    nextTask: 96
     processTime: 5
     StaffExprinceType: 3
   npcObj: {fileID: 1258598415}
@@ -79718,7 +79733,7 @@ MonoBehaviour:
     processTime: 6
     StaffExprinceType: 2
   - levelNum: 3
-    upgradeCost: 62000
+    upgradeCost: 62400
     nextTask: 100
     processTime: 5
     StaffExprinceType: 3
@@ -79830,7 +79845,7 @@ MonoBehaviour:
     processTime: 3
     StaffExprinceType: 1
   - levelNum: 2
-    upgradeCost: 2803
+    upgradeCost: 2800
     nextTask: 31
     processTime: 2
     StaffExprinceType: 2
