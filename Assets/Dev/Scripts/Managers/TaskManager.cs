@@ -149,154 +149,190 @@ public class TaskManager : MonoBehaviour
                 patientManager.AddDisease(DiseaseType.Vomitting);
                 InjectionRoom.LoadNextForStaff(0); break;
             case 20:
-                GroomingRoom.bIsUpgraderActive = true;
-                GroomingRoom.SetUpgradeVisual(); break;
+                InspectionRoom_2.LoadNextForStaff(0);
+                 break;
             case 21:
                 patientManager.AddDisease(DiseaseType.Fleas_and_Ticks);
                 patientManager.AddDisease(DiseaseType.Ear_Infection);
-                InspectionRoom_2.LoadNextForStaff(0); break;
+                InjectionRoom.LoadNextForStaff(0);
+                break;
             case 22:
-                InjectionRoom.LoadNextForStaff(0); break;
+                GroomingRoom.bIsUpgraderActive = true;
+                GroomingRoom.SetUpgradeVisual();
+                 break;
+
             case 23:
-                GroomingRoom.LoadNextForStaff(0); break;
+                InjectionRoom.LoadNextForStaff(0);
+                break;
             case 24:
+                GroomingRoom.LoadNextForStaff(0);
                 patientManager.AddDisease(DiseaseType.Allergies);
                 patientManager.AddDisease(DiseaseType.Skin_Infecction);
-                InspectionRoom_2.LoadNextForStaff(0);
+                
                 break;
             case 25:
-                OnTaskComplete(26);
+                InspectionRoom_2.LoadNextForStaff(0);
                 break;
-            case 26: InjectionRoom.LoadNextForStaff(0); break;
-            case 27: GroomingRoom.LoadNextForStaff(0); break;
-            case 28: InspectionRoom_2.LoadNextForStaff(0); break;
+            case 26: 
+                OnTaskComplete(26);
+                 break;
+            case 27:
+                hallManager_03.bIsUpgraderActive = true;
+                hallManager_03.SetUpgredeVisual(); break;
+            case 28:
+                StoreRoom.bIsUpgraderActive = true;
+                StoreRoom.SetUpgradeVisual(); break;
             case 29:
                 GroomingRoom.LoadNextForStaff(0); break;
             case 30:
-                InjectionRoom.LoadNextForStaff(0); break;
-            case 31: InjectionRoom.LoadNextUpgrade(); break;
-            case 32: GroomingRoom.LoadNextForStaff(0); break;
+                InspectionRoom_2.LoadNextForStaff(0);
+                break;
+            case 31: GroomingRoom.LoadNextForStaff(0); break;
+            case 32: StoreRoom.LoadNextForStaff(0); break;
             case 33:
-                InjectionRoom.LoadNextForStaff(1);
+                InjectionRoom.LoadNextForStaff(0);
                 break;
-            case 34: InspectionRoom_2.LoadNextForStaff(0); break;
-            case 35: InjectionRoom.LoadNextForStaff(1); break;
+            case 34: InjectionRoom.LoadNextUpgrade(); ; break;
+            case 35:
+                hallManager_04.bIsUpgraderActive = true;
+                hallManager_04.SetUpgredeVisual(); break;
             case 36:
-                MriRoom.bIsUpgraderActive = true;
-                MriRoom.SetUpgradeVisual();
-                break;
-            case 37:
                 InspectionRoom_3.bIsUpgraderActive = true;
                 InspectionRoom_3.SetUpgradeVisual();
                 break;
+            case 37:
+                GroomingRoom.LoadNextForStaff(0);
+                break;
             case 38:
                 patientManager.AddDisease(DiseaseType.Bloat);
-                InjectionRoom.LoadNextForStaff(1);
+                StoreRoom.LoadNextForStaff(0); 
                 break;
             case 39:
-                MriRoom.LoadNextForStaff(0);
+                InjectionRoom.LoadNextForStaff(1);
                 break;
             case 40:
-                InspectionRoom_3.LoadNextForStaff(0); break;
-            case 41: InjectionRoom.LoadNextForStaff(1); break;
+                StoreRoom.LoadNextForStaff(0); break;
+            case 41: InspectionRoom_2.LoadNextForStaff(0); break;
             case 42:
-                OpreationRoom.bIsUpgraderActive = true;
-                OpreationRoom.SetUpgradeVisual();
+                InjectionRoom.LoadNextForStaff(1);
                 break;
             case 43:
                 patientManager.AddDisease(DiseaseType.Bladder_Stones);
                 patientManager.AddDisease(DiseaseType.Fractures);
-                MriRoom.LoadNextForStaff(0);
+                StoreRoom.LoadNextForStaff(0);
                 break;
             case 44:
-                OpreationRoom.LoadNextForStaff(0); break;
+                InspectionRoom_3.LoadNextForStaff(0); break;
             case 45:
-                InspectionRoom_3.LoadNextForStaff(0); break;
+                InjectionRoom.LoadNextForStaff(1); break;
             case 46:
-                OpreationRoom.LoadNextForStaff(0); break;
+                hallManager_05.bIsUpgraderActive = true;
+                hallManager_05.SetUpgredeVisual();  break;
             case 47:
-                InspectionRoom_3.LoadNextForStaff(0); break;
+                MriRoom.bIsUpgraderActive = true;
+                MriRoom.SetUpgradeVisual(); break;
             case 48:
-                MriRoom.LoadNextForStaff(0); break;
-            case 49: OpreationRoom.LoadNextForStaff(0); break;
+                InjectionRoom.LoadNextForStaff(1); break;
+            case 49: MriRoom.LoadNextForStaff(0); break;
             case 50:
-                IcuRoom.bIsUpgraderActive = true;
-                IcuRoom.SetUpgradeVisual(); break;
+                InspectionRoom_3.LoadNextForStaff(0); break;
             case 51:
                 patientManager.AddDisease(DiseaseType.Kidney_Disease);
                 patientManager.AddDisease(DiseaseType.Asthma);
-                InspectionRoom_3.LoadNextForStaff(0); break;
-            case 52:
                 MriRoom.LoadNextForStaff(0); break;
+            case 52:
+                hallManager_06.bIsUpgraderActive = true;
+                hallManager_06.SetUpgredeVisual(); break; 
             case 53:
-                MriRoom.LoadNextUpgrade(); break;
+                OpreationRoom.bIsUpgraderActive = true;
+                OpreationRoom.SetUpgradeVisual(); 
+                break;
             case 54:
-                IcuRoom.LoadNextForStaff(0); break;
+                InspectionRoom_3.LoadNextForStaff(0); break;
             case 55:
                 OpreationRoom.LoadNextForStaff(0); break;
             case 56:
-                OpreationRoom.LoadNextUpgrade(); break;
+                InspectionRoom_3.LoadNextForStaff(0); break;
             case 57:
-                IcuRoom.LoadNextForStaff(0); break;
+                MriRoom.LoadNextUpgrade(); break;
             case 58:
-                OpreationRoom.LoadNextForStaff(1); break;
+                OpreationRoom.LoadNextForStaff(0); break;
             case 59:
-                MriRoom.LoadNextForStaff(1); break;
+                MriRoom.LoadNextForStaff(0); break;
             case 60:
-                OpreationRoom.LoadNextForStaff(1); break;
+                IcuRoom.bIsUpgraderActive = true;
+                IcuRoom.SetUpgradeVisual(); break;
             case 61:
-                IcuRoom.LoadNextForStaff(0); break;
+                MriRoom.LoadNextForStaff(1); break;
             case 62:
-                MriRoom.LoadNextForStaff(1); break;
+                OpreationRoom.LoadNextForStaff(0); break;
             case 63:
-                IcuRoom.LoadNextForStaff(0); break;
-            case 64:
-                OpreationRoom.LoadNextForStaff(1); break;
-            case 65:
                 MriRoom.LoadNextForStaff(1); break;
+            case 64:
+                OpreationRoom.LoadNextUpgrade(); break;
+            case 65:
+                MriRoom.LoadNextUpgrade(); break;
             case 66:
                 OpreationRoom.LoadNextForStaff(1); break;
             case 67:
-                MriRoom.LoadNextForStaff(1); break;
+                MriRoom.LoadNextForStaff(2); break;
             case 68:
                 IcuRoom.LoadNextUpgrade(); break;
             case 69:
-                MriRoom.LoadNextUpgrade(); break;
+                OpreationRoom.LoadNextForStaff(1); break;
             case 70:
-                OpreationRoom.LoadNextUpgrade(); break;
+                MriRoom.LoadNextForStaff(1); break;
             case 71:
-                IcuRoom.LoadNextForStaff(1); break;
+                IcuRoom.LoadNextUpgrade(); break;
             case 72:
-                MriRoom.LoadNextForStaff(2); break;
+                MriRoom.LoadNextForStaff(0); break;
             case 73:
-                OpreationRoom.LoadNextForStaff(2); break;
+                OpreationRoom.LoadNextUpgrade(); break;
             case 74:
-                IcuRoom.LoadNextForStaff(1); break;
-            case 75:
-                OpreationRoom.LoadNextForStaff(2); break;
-            case 76:
-                IcuRoom.LoadNextForStaff(1); break;
-            case 77:
                 MriRoom.LoadNextForStaff(2); break;
-            case 78:
+            case 75:
+                IcuRoom.LoadNextForStaff(0); break;
+            case 76:
+                MriRoom.LoadNextForStaff(2); break;
+            case 77:
                 IcuRoom.LoadNextForStaff(1); break;
+            case 78:
+                MriRoom.LoadNextForStaff(1); break;
             case 79:
                 OpreationRoom.LoadNextForStaff(2); break;
             case 80:
-                IcuRoom.LoadNextUpgrade(); break;
+                OpreationRoom.LoadNextUpgrade(); break;
             case 81:
-                MriRoom.LoadNextForStaff(2); break;
+                IcuRoom.LoadNextForStaff(0); break;
             case 82:
-                IcuRoom.LoadNextForStaff(2); break;
-            case 83:
-                IcuRoom.LoadNextForStaff(2); break;
-            case 84:
                 MriRoom.LoadNextForStaff(2); break;
+            case 83:
+                OpreationRoom.LoadNextForStaff(2); break;
+            case 84:
+                IcuRoom.LoadNextUpgrade(); break;
             case 85:
                 IcuRoom.LoadNextForStaff(2); break;
             case 86:
-                OpreationRoom.LoadNextForStaff(2); break;
+                OpreationRoom.LoadNextForStaff(1); break;
             case 87:
+                IcuRoom.LoadNextForStaff(1); break;
+            case 88:
+                OpreationRoom.LoadNextForStaff(0); break;
+            case 89:
+                IcuRoom.LoadNextForStaff(2); break;
+            case 90:
+                OpreationRoom.LoadNextForStaff(2); break;
+            case 91:
+                IcuRoom.LoadNextForStaff(1); break;
+            case 92:
+                IcuRoom.LoadNextForStaff(1); break;
+            case 93:
+                OpreationRoom.LoadNextForStaff(2); break;
+            case 94:
+                IcuRoom.LoadNextForStaff(2); break;
+            case 95:
+                IcuRoom.LoadNextForStaff(0); break;
+            case 96:
                 IcuRoom.LoadNextForStaff(2); break;
 
             default: break;
