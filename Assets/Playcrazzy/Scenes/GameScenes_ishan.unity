@@ -7140,7 +7140,7 @@ MonoBehaviour:
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 308614825}
   unlockObjs:
-  - {fileID: 1013580138}
+  - {fileID: 0}
   - {fileID: 280391233}
   - {fileID: 320979416}
   - {fileID: 1922735218184880983}
@@ -18262,6 +18262,74 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &830440179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c058abecf016e9a43bf2fd9c3f8b4121,
+        type: 3}
+      propertyPath: m_Name
+      value: Injection_room_interior
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c058abecf016e9a43bf2fd9c3f8b4121, type: 3}
 --- !u!1 &830565383
 GameObject:
   m_ObjectHideFlags: 0
@@ -21968,12 +22036,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012016866}
   m_Mesh: {fileID: 2494185979427425891, guid: 36ba5185035afe44782a569a3ddf7d56, type: 3}
---- !u!1 &1013580138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4972085716706654227, guid: c058abecf016e9a43bf2fd9c3f8b4121,
-    type: 3}
-  m_PrefabInstance: {fileID: 659536881}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1019281478
 GameObject:
   m_ObjectHideFlags: 0
@@ -23020,6 +23082,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1091816281828168380, guid: be0ce12e284659f42b345493b069850b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 44.2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: be0ce12e284659f42b345493b069850b,
         type: 3}
@@ -26254,12 +26321,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
     type: 3}
   m_PrefabInstance: {fileID: 5833180937749545231}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1192520730 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -2171047140281090165, guid: c058abecf016e9a43bf2fd9c3f8b4121,
-    type: 3}
-  m_PrefabInstance: {fileID: 659536881}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1192700052 stripped
 GameObject:
@@ -44366,7 +44427,7 @@ MonoBehaviour:
   ItemGiver: {fileID: 0}
   worldProgresBar: {fileID: 2059715212}
   unlockObjs:
-  - {fileID: 1192520730}
+  - {fileID: 0}
   - {fileID: 730426713}
   - {fileID: 705054161}
   - {fileID: 1922735216450525042}
@@ -85937,3 +85998,4 @@ SceneRoots:
   - {fileID: 856323502}
   - {fileID: 57548534}
   - {fileID: 1047115328}
+  - {fileID: 830440179}
