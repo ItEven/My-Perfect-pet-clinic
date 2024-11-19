@@ -28,7 +28,7 @@ public class TaskManager : MonoBehaviour
     public ARoom InspectionRoom_2;
     public ARoom InspectionRoom_3;
     public ARoom pharmacyRoom;
-    public ARoom pharmacyRoom_2;
+    public ARoom StoreRoom;
     public ARoom InjectionRoom;
     public ARoom GroomingRoom;
     public ARoom OpreationRoom;
