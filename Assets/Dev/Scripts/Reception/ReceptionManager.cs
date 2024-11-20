@@ -66,6 +66,7 @@ public class ReceptionManager : MonoBehaviour
     UiManager uiManager;
     HospitalManager hospitalManager;
     FloatingJoystick floatingJoystick;
+    CameraController cameraController;
     private void OnEnable()
     {
         UpdateInitializers();
@@ -81,6 +82,7 @@ public class ReceptionManager : MonoBehaviour
         economyManager = saveManager.economyManager;
         gameManager = saveManager.gameManager;
         uiManager = saveManager.uiManager;
+        cameraController = saveManager.cameraController;
         hospitalManager = saveManager.hospitalManager;
         floatingJoystick = gameManager.playerController.playerControllerData.joystick;
         floatingJoystick.OnHoldOff += OnHoldUp;
@@ -341,13 +343,13 @@ public class ReceptionManager : MonoBehaviour
             else
             {
 
-
             }
             //}
         }
         else
         {
             warnningTextBox.gameObject.SetActive(true);
+            cameraController.MoveToRecption(seat.transform);
 
         }
 

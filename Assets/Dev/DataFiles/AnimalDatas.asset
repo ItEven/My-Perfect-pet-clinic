@@ -35,3 +35,111 @@ MonoBehaviour:
   - animalType: 3
     Animal:
     - {fileID: 7658580455364019920, guid: f46583688bf46564abf41c406fa58eff, type: 3}
+  animalNameData:
+  - animalType: 1
+    animalNames:
+    - CAT
+    - KITTY
+    - SNOWBALL
+    - SMOKEY
+    - BELLA
+    - MIDNIGHT
+  - animalType: 0
+    animalNames:
+    - TOMMY
+    - MAX
+    - BUDDY
+    - CHARLIE
+    - DOG
+  - animalType: 2
+    animalNames:
+    - ROCKY
+    - RACCON
+    - ZORRO
+    - RUSTY
+    - SHADOW
+  - animalType: 3
+    animalNames:
+    - SIMBA
+    - PANDA
+  diseaseSloganDatas:
+  - diseaseType: 0
+    slogans:
+    - IS COUGHING, NEEDS HELP FAST
+    - IS COUGHING, NEED RELIEF
+    - IS UNCOMFORTABLE WITH THE COUGH
+  - diseaseType: 1
+    slogans:
+    - FEELS COLD, NEEDS RECOVERY SOON
+    - LOOKS TIRED, NEEDS HELP FAST
+    - FEELS COLD AND NEEDS CARE
+  - diseaseType: 2
+    slogans:
+    - FEELS HOT, NEEDS TO COOL DOWN
+    - HAS A FEVER, NEEDS CARE
+    - FEELS FEVERISH, NEEDS RELIEF
+  - diseaseType: 9
+    slogans:
+    - IS WEAK, NEEDS HEART CARE NOW
+    - IS TIRED, NEEDS HEART PROTECTION
+    - IS EXHAUSTED, NEEDS HELP NOW
+  - diseaseType: 3
+    slogans:
+    - "\u2019S EARS HURT, NEEDS QUICK RELIEF"
+    - IS SHAKING HEAD, NEEDS CARE
+    - IS SCRATCHING THEIR EARS A LOT
+  - diseaseType: 4
+    slogans:
+    - "CAN\u2019T STOP SCRATCHING, NEEDS RELIEF"
+    - IS SCRATCHING, NEEDS FLEA CONTROL
+    - IS IRRITATED, NEEDS PEST RELIEF
+  - diseaseType: 5
+    slogans:
+    - "\u2019S ALLERGIES ARE TROUBLING THEM"
+    - IS SNEEZING, NEEDS ALLERGY RELIEF
+    - IS ITCHING AND SNEEZING A LOT
+  - diseaseType: 6
+    slogans:
+    - "\u2019S TEETH HURT, NEEDS IMMEDIATE CARE"
+    - IS IN PAIN, NEEDS DENTAL HELP
+    - STRUGGLES TO CHEW, NEEDS CARE
+  - diseaseType: 7
+    slogans:
+    - IS SCRATCHING CONSTANTLY, NEEDS HELP
+    - "\u2019S SKIN IS RED, NEEDS TREATMENT"
+    - "\u2019S SKIN IS IRRITATED, NEEDS CARE"
+  - diseaseType: 10
+    slogans:
+    - IS ACTING ODDLY, NEEDS ATTENTION
+    - S BEHAVIOR IS STRANGE, NEEDS HELP
+    - IS ACTING STRANGELY, NEEDS A VET
+  - diseaseType: 8
+    slogans:
+    - FEELS LIKE VOMITING, NEEDS HELP
+    - IS VOMITING, NEEDS QUICK RELIEF
+    - "\u2019S STOMACH IS UPSET, NEEDS CARE"
+  - diseaseType: 11
+    slogans:
+    - "\u2019S BELLY IS SWOLLEN, NEEDS HELP FAST"
+    - "\u2019S BELLY IS TIGHT, NEEDS RELIEF"
+    - HAS A SWOLLEN BELLY, NEEDS CARE
+  - diseaseType: 12
+    slogans:
+    - "CAN\u2019T PEE, NEEDS MEDICAL HELP"
+    - IS IN PAIN WHILE PEEING, NEEDS CARE
+    - "CAN\u2019T PEE PROPERLY, NEEDS RELIEF"
+  - diseaseType: 13
+    slogans:
+    - IS LIMPING, NEEDS VET ATTENTION
+    - "CAN\u2019T WALK, NEEDS BONE CARE"
+    - IS LIMPING, NEEDS URGENT HELP
+  - diseaseType: 14
+    slogans:
+    - "\u2019S TUMMY HURTS, NEEDS HELP NOW"
+    - HAS STOMACH PAINS, NEEDS CARE
+    - "\u2019S KIDNEYS ARE HURTING, NEEDS A VET"
+  - diseaseType: 15
+    slogans:
+    - STRUGGLES TO BREATHE, NEEDS HELP
+    - IS WHEEZING, NEEDS ASTHMA RELIEF
+    - HAS TROUBLE BREATHING, NEEDS HELP

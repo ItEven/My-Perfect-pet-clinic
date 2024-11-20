@@ -57,6 +57,7 @@ public class Bed : MonoBehaviour
     internal PlayerController playerController;
     protected ArrowController arrowController;
     internal HospitalManager hospitalManager;
+    internal CameraController cameraController;
     internal FloatingJoystick floatingJoystick;
 
 
@@ -79,6 +80,7 @@ public class Bed : MonoBehaviour
         playerController = gameManager.playerController;
         arrowController = playerController.arrowController;
         hospitalManager = saveManager.hospitalManager;
+        cameraController = saveManager.cameraController;
         staffNPC.SetMainSeat(onTrigger.seat);
         floatingJoystick = gameManager.playerController.playerControllerData.joystick;
         floatingJoystick.OnHoldOff += OnHoldUp;
@@ -305,7 +307,7 @@ public class Bed : MonoBehaviour
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
             hospitalManager.OnPatientRegister();
-
+            cameraController.FollowPatient(patient.transform);
             animationController.PlayAnimation(idleAnim);
             patient.MoveToExit(hospitalManager.GetRandomExit(patient));
             patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());

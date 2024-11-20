@@ -19451,6 +19451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followDelay: 300
   followDurtion: 4
+  rectionTime: 1
 --- !u!4 &721863809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2104042960861942581, guid: 8d0198f84b757cd47bf8e3ba32fdf425,
@@ -26410,7 +26411,7 @@ PrefabInstance:
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.38
+      value: -5.17
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
@@ -26420,7 +26421,7 @@ PrefabInstance:
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.17
+      value: 9.36
       objectReference: {fileID: 0}
     - target: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}

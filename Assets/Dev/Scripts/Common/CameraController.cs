@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
 
     public float followDelay = 300f;
     public float followDurtion = 4f;
+    public float rectionTime = 1f;
 
 
     bool bCanCameraMove = true;
@@ -96,6 +97,9 @@ public class CameraController : MonoBehaviour
 
     public void FollowPatient(Transform target)
     {
+        if (!bCanCameraMove) return;
+        StopCoroutine(ManageCameraTrems());
+        bCanCameraMove = false;
         bIsMoveingToPatient = true;
         MoveToTarget(target, () =>
         {
@@ -105,7 +109,14 @@ public class CameraController : MonoBehaviour
     }
     public void MoveToRecption(Transform target)
     {
-
+        if (!bCanCameraMove) return;
+        StopCoroutine(ManageCameraTrems());
+        bCanCameraMove = false;
+        bIsMoveingToPatient = true;
+        MoveToTarget(target, () =>
+        {
+            DOVirtual.DelayedCall(rectionTime, () => { bIsMoveingToPatient = false; MoveToPlayer(); });
+        });
     }
     IEnumerator ManageCameraTrems()
     {
