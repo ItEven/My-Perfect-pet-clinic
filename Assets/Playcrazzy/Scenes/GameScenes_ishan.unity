@@ -734,6 +734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commenDgDuraction: 0.2
   hudPanel: {fileID: 1360766295}
+  loderPnael: {fileID: 0}
 --- !u!114 &49313744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +748,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 574426166}
-  playerPos: {x: 0.5, y: 0.5, z: -3.5}
+  playerPosOnLock: {x: 0, y: 0, z: 0}
+  playerPosOnUnlock: {x: 0, y: 0, z: 0}
+  hall_01: {fileID: 0}
   singleMoneybrick: {fileID: 2221736062232325856, guid: 78effe5661a670d4b951b8a07f7341cb,
     type: 3}
   profitMultiplier: 0
@@ -14922,7 +14925,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15088,7 +15091,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16206,6 +16209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66da5576bd9b1c64d9e00985bdf5ac7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followDelay: 300
+  followDurtion: 4
 --- !u!4 &721863809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2104042960861942581, guid: 8d0198f84b757cd47bf8e3ba32fdf425,
@@ -16400,7 +16405,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17667,7 +17672,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18209,6 +18214,7 @@ MonoBehaviour:
   - {fileID: 498342881}
   - {fileID: 618056590}
   waitingQueue: {fileID: 822428935}
+  warnningTextBox: {fileID: 0}
 --- !u!114 &822428935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18405,7 +18411,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19105,7 +19111,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: d3cf471f6521ce94bab5fd2a33f211ea, type: 2}
   m_sharedMaterial: {fileID: -1398936496680906608, guid: d3cf471f6521ce94bab5fd2a33f211ea,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -1398936496680906608, guid: d3cf471f6521ce94bab5fd2a33f211ea, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -19525,7 +19532,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23520,7 +23527,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31760,7 +31767,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32554,7 +32561,7 @@ MonoBehaviour:
   InspectionRoom_2: {fileID: 216651187}
   InspectionRoom_3: {fileID: 1689134788}
   pharmacyRoom: {fileID: 1647067005}
-  pharmacyRoom_2: {fileID: 0}
+  StoreRoom: {fileID: 0}
   InjectionRoom: {fileID: 1359212157}
   GroomingRoom: {fileID: 2139393868}
   OpreationRoom: {fileID: 49769382}
@@ -33312,7 +33319,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34585,30 +34592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992431905ddc02f49b6359ff3f5eea76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundPanel: {fileID: 1116074773}
-  panel: {fileID: 126237651}
-  panelBgImagel: {fileID: 1116074774}
-  btn: {fileID: 0}
-  closeBtn: {fileID: 88500214}
-  ratingImage: {fileID: 1573720581}
-  currnetPatientCountText: {fileID: 764927586}
-  successRatePatientCountText: {fileID: 592071061}
-  maxSpeedLevel: 4
-  speedMultiplair: 0.35
-  UpgradeSpeedCost: 0
-  upgradeSpeedCostMultiplair: 0
-  speedImage: {fileID: 1356671409}
-  speedMax: {fileID: 0}
-  currentUpgraderCostText: {fileID: 1788490123}
-  speedBtn: {fileID: 1122435738}
-  maxProfitLevel: 0
-  profitMultiplair: 0
-  UpgradeProfitCost: 0
-  profitUpgradeCostMultiplair: 0
-  profitImage: {fileID: 0}
-  profitMax: {fileID: 0}
-  currentProfitUpgraderCostText: {fileID: 0}
-  profitBtn: {fileID: 0}
 --- !u!4 &1631380039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2104042960861942581, guid: 8d0198f84b757cd47bf8e3ba32fdf425,
@@ -37688,7 +37671,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -41646,7 +41629,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -43866,7 +43849,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -45392,30 +45375,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f04f575947d45ec4ab771c2139b244b0, type: 3}
---- !u!114 &2100340598 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5275173183719031459, guid: f04f575947d45ec4ab771c2139b244b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2100340597}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2100340599 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2100340597}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c917c182fc971e4896d02d4a0e39d07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2100340600 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
@@ -45756,18 +45715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c917c182fc971e4896d02d4a0e39d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2110937315 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2399909360664832352, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4911018023475042440}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631007f99e8d2374190cb19b267f5ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2110937317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45810,27 +45757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38dfea5f1f4417458b0e1c182956b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTask: 0
-  needIteam: 0
-  unlockPrice: 0
-  bIsUnlock: 1
-  bIsUpgraderActive: 0
-  bIsOccupied: 0
-  room: {fileID: 2139393868}
-  upGrader: {fileID: 2110937315}
-  onTrigger: {fileID: 2110937314}
-  petDignosPos: {fileID: 3903765350368006496}
-  petOwnerSeat: {fileID: 8501171644993829033}
-  staffNPC: {fileID: 6756749390881811703}
-  itemsTyps: 0
-  ItemGiver: {fileID: 0}
-  worldProgresBar: {fileID: 2110937313}
-  unlockObjs: []
-  groundCanvas: {fileID: 0}
-  roundUpgradePartical: {fileID: 2110937308}
-  BathProgresBar: {fileID: 2100340598}
-  bathPos: {fileID: 2100593857}
-  bathOnTrigger: {fileID: 2100340599}
 --- !u!4 &2110937321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
@@ -46001,7 +45927,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

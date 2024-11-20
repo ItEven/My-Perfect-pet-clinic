@@ -99,8 +99,12 @@ public class CameraController : MonoBehaviour
         bIsMoveingToPatient = true;
         MoveToTarget(target, () =>
         {
-            DOVirtual.DelayedCall(followDurtion, () => { MoveToPlayer(); });
+            DOVirtual.DelayedCall(followDurtion, () => { bIsMoveingToPatient = false; MoveToPlayer(); });
         });
+
+    }
+    public void MoveToRecption(Transform target)
+    {
 
     }
     IEnumerator ManageCameraTrems()
@@ -114,3 +118,4 @@ public class CameraController : MonoBehaviour
 
     #endregion
 }
+ 
