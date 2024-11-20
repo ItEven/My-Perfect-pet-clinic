@@ -14,7 +14,10 @@ public class UiManager : MonoBehaviour
 
     [Header("HUD")]
     public RectTransform hudPanel;
- 
+
+
+    [Header("Loder Panel")]
+    public RectTransform loderPnael;
 
     private void Awake()
     {
@@ -25,7 +28,12 @@ public class UiManager : MonoBehaviour
     }
     public void Start()
     {
+        //DOVirtual.DelayedCall(2f, () =>
+        //{
+        //    loderPnael.gameObject.SetActive(false);
+        //});
         //settingBtn.onClick.AddListener
+        loderPnael.gameObject.SetActive(false);
     }
 
     public void OpenPanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)

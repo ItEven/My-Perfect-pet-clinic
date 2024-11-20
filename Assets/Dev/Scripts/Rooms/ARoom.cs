@@ -132,11 +132,34 @@ public class ARoom : MonoBehaviour
         if (bIsUnlock)
         {
             gameManager.SetObjectsStates(lockedObjs, false);
+            gameManager.SetObjectsStates(unlockObjs, true);
+           // foreach (var item in unlockObjs)
+           // {
+           //     gameManager.DropObj(item);
+           // }
+           //// LoadBedData();
+           // gameManager.PlayParticles(roundUpgradePartical);
+           // //  Destroy(upGrader.gameObject);
+
+        }
+        else
+        {
+            gameManager.SetObjectsStates(unlockObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, true);
+        }
+
+    }
+
+    public void OnUnlock()
+    {
+        if (bIsUnlock)
+        {
+            gameManager.SetObjectsStates(lockedObjs, false);
             foreach (var item in unlockObjs)
             {
                 gameManager.DropObj(item);
             }
-           // LoadBedData();
+            // LoadBedData();
             gameManager.PlayParticles(roundUpgradePartical);
             //  Destroy(upGrader.gameObject);
 
@@ -146,7 +169,6 @@ public class ARoom : MonoBehaviour
             gameManager.SetObjectsStates(unlockObjs, false);
             gameManager.SetObjectsStates(lockedObjs, true);
         }
-
     }
     #endregion
 
@@ -173,7 +195,7 @@ public class ARoom : MonoBehaviour
         {
             bIsUnlock = true;
             bIsUpgraderActive = false;
-            SetVisual();
+            OnUnlock();
             TaskManager.instance?.OnTaskComplete(currentTask);
         }
     }

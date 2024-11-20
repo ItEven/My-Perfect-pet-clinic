@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class FloatingJoystick : Joystick
 {
-    //  internal bool bIsOnSeat;
+    public event Action OnHoldOff;
+    internal bool bIsOnHold;
+
     protected override void Start()
     {
         base.Start();
@@ -14,7 +17,7 @@ public class FloatingJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        
+        bIsOnHold = true;
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
 
@@ -27,7 +30,8 @@ public class FloatingJoystick : Joystick
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        // bIsOnSeat = false;
+        bIsOnHold = false;
+        OnHoldOff.Invoke();
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
     }

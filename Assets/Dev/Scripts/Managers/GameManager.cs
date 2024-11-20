@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public PlayerController playerController;
 
-    public Vector3 playerPos;
+    public Vector3 playerPosOnLock;
+    public Vector3 playerPosOnUnlock;
 
     [Space(1)]
     [Header("Gloable Veriables")]
+    public HallManager hall_01;
     public GameObject singleMoneybrick;
     public float profitMultiplier;
 
@@ -36,7 +38,19 @@ public class GameManager : MonoBehaviour
     }
     public void SetPlayerPos()
     {
-        playerController.transform.position = playerPos;
+
+        if (hall_01.bIsUnlock)
+        {
+            playerController.playerControllerData.characterMovement.rotatingObj.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+            playerController.transform.position = playerPosOnUnlock;
+
+
+        }
+        else
+        {
+
+            playerController.transform.position = playerPosOnLock;
+        }
     }
 
 

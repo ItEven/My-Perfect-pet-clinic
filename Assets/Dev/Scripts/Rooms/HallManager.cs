@@ -86,43 +86,43 @@ public class HallManager : MonoBehaviour
     {
         if (bIsUnlock)
         {
-            foreach (var item in lockedObjs)
-            {
-                if (item.activeInHierarchy)
-                {
-                    item.SetActive(false);
-                }
-            }
+            gameManager.SetObjectsStates(lockedObjs, false);
+            gameManager.SetObjectsStates(unlockObjs, true);
+            // foreach (var item in unlockObjs)
+            // {
+            //     gameManager.DropObj(item);
+            // }
+            //// LoadBedData();
+            // gameManager.PlayParticles(roundUpgradePartical);
+            // //  Destroy(upGrader.gameObject);
+
+        }
+        else
+        {
+            gameManager.SetObjectsStates(unlockObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, true);
+        }
+
+    }
+
+    public void OnUnlock()
+    {
+        if (bIsUnlock)
+        {
+            gameManager.SetObjectsStates(lockedObjs, false);
             foreach (var item in unlockObjs)
             {
                 gameManager.DropObj(item);
             }
+            // LoadBedData();
+            gameManager.PlayParticles(roundUpgradePartical);
+            //  Destroy(upGrader.gameObject);
 
-            if (registerPos.Count > 0)
-            {
-                hospitalManager.registerPoses.AddRange(registerPos);
-            }
-
-            roundUpgradePartical.ForEach(X => X.Play());
         }
         else
         {
-            foreach (var item in unlockObjs)
-            {
-                if (item.activeInHierarchy)
-                {
-                    item.SetActive(false);
-                }
-            }
-            foreach (var item in lockedObjs)
-            {
-                if (!item.activeInHierarchy)
-                {
-                    item.SetActive(true);
-                }
-            }
-
-
+            gameManager.SetObjectsStates(unlockObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, true);
         }
     }
 
@@ -151,7 +151,8 @@ public class HallManager : MonoBehaviour
         {
             bIsUnlock = true;
             bIsUpgraderActive = false;
-            SetVisual();
+            OnUnlock();
+
             if (TaskManager.instance != null)
             {
                 TaskManager.instance.OnTaskComplete(currentTask);
@@ -185,6 +186,7 @@ public class HallManager : MonoBehaviour
         bIsUnlock = receivefile.bIsUnlock;
         bIsUpgraderActive = receivefile.bIsUpgraderActive;
         currentCost = receivefile.currentCost;
+        gameManager.SetPlayerPos();
         LoadData();
 
     }

@@ -62,14 +62,14 @@ public class ReceptionManager : MonoBehaviour
     GameManager gameManager;
     UiManager uiManager;
     HospitalManager hospitalManager;
-
+    FloatingJoystick floatingJoystick;
     private void OnEnable()
     {
         UpdateInitializers();
     }
     private void OnDisable()
     {
-        UpdateInitializers();
+        floatingJoystick.OnHoldOff -= OnHoldUp;
     }
 
     public void UpdateInitializers()
@@ -79,6 +79,8 @@ public class ReceptionManager : MonoBehaviour
         gameManager = saveManager.gameManager;
         uiManager = saveManager.uiManager;
         hospitalManager = saveManager.hospitalManager;
+        floatingJoystick = gameManager.playerController.playerControllerData.joystick;
+        floatingJoystick.OnHoldOff += OnHoldUp;
     }
 
     #endregion
@@ -86,6 +88,8 @@ public class ReceptionManager : MonoBehaviour
 
     public void Start()
     {
+        worldProgresBar.fillAmount = 0;
+
         currentCost = unlockPrice;
         // seat = onTrigger.seat;
         if (PlayerPrefs.HasKey(Reception))
@@ -107,44 +111,45 @@ public class ReceptionManager : MonoBehaviour
     {
         if (bIsUnlock)
         {
-            worldProgresBar.fillAmount = 0;
+            gameManager.SetObjectsStates(lockedObjs, false);
+            gameManager.SetObjectsStates(unlockObjs, true);
+            // foreach (var item in unlockObjs)
+            // {
+            //     gameManager.DropObj(item);
+            // }
+            //// LoadBedData();
+            // gameManager.PlayParticles(roundUpgradePartical);
+            // //  Destroy(upGrader.gameObject);
 
-            foreach (var item in lockedObjs)
-            {
-                if (item.activeInHierarchy)
-                {
-                    item.SetActive(false);
-                }
-            }
+        }
+        else
+        {
+            gameManager.SetObjectsStates(unlockObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, true);
+        }
+
+    }
+
+    public void OnUnlock()
+    {
+        if (bIsUnlock)
+        {
+            gameManager.SetObjectsStates(lockedObjs, false);
             foreach (var item in unlockObjs)
             {
                 gameManager.DropObj(item);
             }
+            // LoadBedData();
+            gameManager.PlayParticles(roundUpgradePartical);
+            //  Destroy(upGrader.gameObject);
 
-
-            roundUpgradePartical.ForEach(X => X.Play());
         }
         else
         {
-            foreach (var item in unlockObjs)
-            {
-                if (item.activeInHierarchy)
-                {
-                    item.SetActive(false);
-                }
-            }
-            foreach (var item in lockedObjs)
-            {
-                if (!item.activeInHierarchy)
-                {
-                    item.SetActive(true);
-                }
-            }
-
-
+            gameManager.SetObjectsStates(unlockObjs, false);
+            gameManager.SetObjectsStates(lockedObjs, true);
         }
     }
-
 
     #region Upgrade Mechanics 
     public void SetUpgredeVisual()
@@ -170,7 +175,7 @@ public class ReceptionManager : MonoBehaviour
         {
             bIsUnlock = true;
             bIsUpgraderActive = false;
-            SetVisual();
+            OnUnlock();
             if (TaskManager.instance != null)
             {
                 TaskManager.instance.OnTaskComplete(currentTask);
@@ -203,6 +208,30 @@ public class ReceptionManager : MonoBehaviour
         }
     }
 
+    bool bIsProcessing;
+    bool bIsSfitedOnece;
+    public void OnPlayerStay()
+    {
+        if (bIsPlayerOnDesk && !gameManager.playerController.playerControllerData.joystick.bIsOnHold && !bIsSfitedOnece)
+        {
+            bIsSfitedOnece = true;
+            if (!bIsProcessing)
+            {
+
+                gameManager.playerController.animationController.PlayAnimation(AnimType.Sti_Idle);
+            }
+            else
+            {
+                gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
+            }
+            gameManager.playerController.transform.position = seat.transform.position;
+            gameManager.playerController.playerControllerData.characterMovement.rotatingObj.rotation = seat.transform.rotation;
+        }
+    }
+    public void OnHoldUp()
+    {
+          bIsSfitedOnece = false;
+    }
 
     public void OnPlayerExit()
     {
@@ -263,13 +292,14 @@ public class ReceptionManager : MonoBehaviour
 
                 if (bIsPlayerOnDesk)
                 {
+                    bIsProcessing = true;
                     gameManager.playerController.animationController.PlayAnimation(seat.workingAnim);
 
                     worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime).SetId("ProgressTween")
                        .OnComplete(() =>
                        {
                            hospitalManager.OnPatientRegister();
-                           
+
                            gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
 
                            moneyBox.TakeMoney(npc.currentLevelData.customerCost);
@@ -277,6 +307,7 @@ public class ReceptionManager : MonoBehaviour
 
                            waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
                            worldProgresBar.fillAmount = 0;
+                           bIsProcessing = false;
                        });
 
                 }
