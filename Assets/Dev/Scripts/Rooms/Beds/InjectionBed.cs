@@ -30,6 +30,7 @@ public class InjectionBed : Bed
         else if (bIsPlayerOnDesk)
         {
             playerController.SetItemState(needIteam, true);
+            bIsProcessing = true;
 
             StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {

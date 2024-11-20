@@ -57,6 +57,8 @@ public class Bed : MonoBehaviour
     internal PlayerController playerController;
     protected ArrowController arrowController;
     internal HospitalManager hospitalManager;
+    internal FloatingJoystick floatingJoystick;
+
 
 
     private void OnEnable()
@@ -64,6 +66,11 @@ public class Bed : MonoBehaviour
         UpdateInitializers();
     }
 
+    private void OnDisable()
+    {
+        floatingJoystick.OnHoldOff -= OnHoldUp;
+
+    }
     public void UpdateInitializers()
     {
         Collider = GetComponent<Collider>();
@@ -73,6 +80,8 @@ public class Bed : MonoBehaviour
         arrowController = playerController.arrowController;
         hospitalManager = saveManager.hospitalManager;
         staffNPC.SetMainSeat(onTrigger.seat);
+        floatingJoystick = gameManager.playerController.playerControllerData.joystick;
+        floatingJoystick.OnHoldOff += OnHoldUp;
     }
     #endregion
 
@@ -106,7 +115,7 @@ public class Bed : MonoBehaviour
 
             gameManager.PlayParticles(roundUpgradePartical);
 
-            Collider.enabled = true;       
+            Collider.enabled = true;
         }
         else
         {
@@ -183,6 +192,34 @@ public class Bed : MonoBehaviour
             BreakProcess();
         }
     }
+    internal bool bIsProcessing;
+    bool bIsSfitedOnece;
+    public void OnPlayerStay()
+    {
+        if (bIsPlayerOnDesk && !gameManager.playerController.playerControllerData.joystick.bIsOnHold && !bIsSfitedOnece)
+        {
+            bIsSfitedOnece = true;
+            if (!bIsProcessing)
+            {
+
+                gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
+            }
+            else
+            {
+                gameManager.playerController.animationController.PlayAnimation(seat.workingAnim);
+            }
+
+            gameManager.playerController.playerControllerData.characterMovement.enabled = false;
+            gameManager.playerController.enabled = false;
+            gameManager.playerController.transform.position = seat.transform.position;
+            gameManager.playerController.playerControllerData.characterMovement.rotatingObj.rotation = seat.transform.rotation;
+
+        }
+    }
+    public void OnHoldUp()
+    {
+        bIsSfitedOnece = false;
+    }
 
     public virtual void SetUpPlayer()
     {
@@ -227,6 +264,8 @@ public class Bed : MonoBehaviour
         }
         else if (bIsPlayerOnDesk)
         {
+            bIsProcessing = true;
+
             StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
                 OnProcessComplite(pharmacyRoom, playerController.animationController, AnimType.Idle);
@@ -260,6 +299,8 @@ public class Bed : MonoBehaviour
     {
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
+        bIsProcessing = false;
+
 
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {

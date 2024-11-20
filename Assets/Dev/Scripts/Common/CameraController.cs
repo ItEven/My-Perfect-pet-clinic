@@ -5,11 +5,19 @@ using Cinemachine;
 using DG.Tweening;
 using System;
 using DG.Tweening.Core.Easing;
+using Unity.VisualScripting;
 
 public class CameraController : MonoBehaviour
 {
     private static CameraController cameraController;
     public static CameraController Instance => cameraController;
+
+    public float followDelay = 300f;
+    public float followDurtion = 4f;
+
+
+    bool bCanCameraMove = true;
+    bool bIsMoveingToPatient = false;
 
     PlayerController playerController;
     private void Awake()
@@ -24,26 +32,47 @@ public class CameraController : MonoBehaviour
     {
         playerController = gameObject.GetComponentInParent<PlayerController>();
     }
+
+    #region ForUpgr
     public void MoveToTarget(Transform target, Action onComplete = null)
     {
+        bCanCameraMove = false;
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
         playerController.animationController.PlayAnimation(AnimType.Idle);
-        Vector3 pos = target.position;
+        transform.SetParent(target);
         DOVirtual.DelayedCall(1f, () =>
         {
-            transform.DOMove(pos, .5f).OnComplete(() =>
+            transform.DOMove(Vector3.zero, .5f).OnComplete(() =>
             {
                 onComplete?.Invoke();
             });
         });
+    }
 
-
+    public void MoveToPlayer()
+    {
+        transform.SetParent(playerController.transform);
+        transform.DOMove(playerController.playerControllerData.characterMovement.rotatingObj.position, .5f).OnComplete(() =>
+        {
+            StartCoroutine(ManageCameraTrems());
+            playerController.playerControllerData.joystick.gameObject.SetActive(true);
+            playerController.playerControllerData.joystick.OnPointerUp(null);
+            playerController.playerControllerData.characterMovement.enabled = true;
+            playerController.animationController.PlayAnimation(AnimType.Idle);
+        });
     }
 
     public void FocusOnTarget(Transform upGrader)
     {
+        StartCoroutine(MoveToUpgrade(upGrader));
+    }
+
+    IEnumerator MoveToUpgrade(Transform upGrader)
+    {
+        yield return new WaitUntil(() => !bIsMoveingToPatient);
+        StopCoroutine(ManageCameraTrems());
         upGrader.transform.localScale = Vector3.zero;
         MoveToTarget(upGrader.transform, () =>
         {
@@ -57,18 +86,31 @@ public class CameraController : MonoBehaviour
             {
                 DOVirtual.DelayedCall(0.5f, () =>
                 {
-                    transform.DOMove(transform.parent.position, .5f).OnComplete(() =>
-                {
-                    playerController.playerControllerData.joystick.gameObject.SetActive(true);
-                    playerController.playerControllerData.joystick.OnPointerUp(null);
-                    playerController.playerControllerData.characterMovement.enabled = true;
-                    playerController.animationController.PlayAnimation(AnimType.Idle);
-
-
-                });
+                    MoveToPlayer();
                 });
 
             });
         });
+        yield return null;
     }
+
+    public void FollowPatient(Transform target)
+    {
+        bIsMoveingToPatient = true;
+        MoveToTarget(target, () =>
+        {
+            DOVirtual.DelayedCall(followDurtion, () => { MoveToPlayer(); });
+        });
+
+    }
+    IEnumerator ManageCameraTrems()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(followDelay);
+            bCanCameraMove = true;
+        }
+    }
+
+    #endregion
 }

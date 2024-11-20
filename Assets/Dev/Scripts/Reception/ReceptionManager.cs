@@ -55,8 +55,11 @@ public class ReceptionManager : MonoBehaviour
     public GameObject[] lockedObjs;
     public ParticleSystem[] roundUpgradePartical;
     public WaitingQueue waitingQueue;
-    #region Initializers
 
+    [Header("Ui Things")]
+    public RectTransform warnningTextBox;
+
+    #region Initializers
     SaveManager saveManager;
     EconomyManager economyManager;
     GameManager gameManager;
@@ -88,6 +91,8 @@ public class ReceptionManager : MonoBehaviour
 
     public void Start()
     {
+        warnningTextBox.gameObject.SetActive(false);
+
         worldProgresBar.fillAmount = 0;
 
         currentCost = unlockPrice;
@@ -224,8 +229,12 @@ public class ReceptionManager : MonoBehaviour
             {
                 gameManager.playerController.animationController.PlayAnimation(AnimType.Typing);
             }
+
+            gameManager.playerController.playerControllerData.characterMovement.enabled = false;
+            gameManager.playerController.enabled = false;
             gameManager.playerController.transform.position = seat.transform.position;
             gameManager.playerController.playerControllerData.characterMovement.rotatingObj.rotation = seat.transform.rotation;
+
         }
     }
     public void OnHoldUp()
@@ -279,6 +288,8 @@ public class ReceptionManager : MonoBehaviour
 
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
         {
+            warnningTextBox.gameObject.SetActive(false);
+
             //if (!hospitalManager.CheckRegiterPosFull())
             //{
             var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
@@ -336,7 +347,7 @@ public class ReceptionManager : MonoBehaviour
         }
         else
         {
-
+            warnningTextBox.gameObject.SetActive(true);
 
         }
 

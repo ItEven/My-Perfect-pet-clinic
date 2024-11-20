@@ -27,8 +27,11 @@ public class PharmacyTable : Bed
         }
         else if (bIsPlayerOnDesk)
         {
+
+                bIsProcessing = true;
             StartPatientProcessing(playerController.animationController, workingAnimation, IdleAnimation, staffNPC.currentLevelData.processTime, () =>
             {
+
                 OnProcessComplite(null,playerController.animationController, IdleAnimation);
             });
         }
@@ -37,6 +40,7 @@ public class PharmacyTable : Bed
     {
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
+        bIsProcessing = false;
 
         animationController.PlayAnimation(idleAnim);
         patient.MoveToExit(hospitalManager.GetRandomExit(patient));

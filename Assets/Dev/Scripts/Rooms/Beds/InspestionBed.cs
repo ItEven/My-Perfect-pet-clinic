@@ -34,6 +34,8 @@ public class InspestionBed : Bed
         else if (bIsPlayerOnDesk)
         {
             //  Debug.LogError("OnProcessComplite4");
+            bIsProcessing = true;
+
             StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
                 //  Debug.LogError("OnProcessComplite5");
@@ -47,6 +49,7 @@ public class InspestionBed : Bed
         // Debug.LogError("OnProcessComplite6");
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
+        bIsProcessing = false;
 
         animationController.PlayAnimation(idleAnim);
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
