@@ -95,6 +95,10 @@ public class HallManager : MonoBehaviour
             //// LoadBedData();
             // gameManager.PlayParticles(roundUpgradePartical);
             // //  Destroy(upGrader.gameObject);
+            if(registerPos.Count > 0)
+            {
+                hospitalManager.registerPoses.AddRange(registerPos);
+            }
 
         }
         else
@@ -115,6 +119,10 @@ public class HallManager : MonoBehaviour
                 gameManager.DropObj(item);
             }
             // LoadBedData();
+            if (registerPos.Count > 0)
+            {
+                hospitalManager.registerPoses.AddRange(registerPos);
+            }
             gameManager.PlayParticles(roundUpgradePartical);
             //  Destroy(upGrader.gameObject);
 

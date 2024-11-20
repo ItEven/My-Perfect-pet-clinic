@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -277,15 +278,20 @@ public class ReceptionManager : MonoBehaviour
     }
 
 
+    protected string processTweenId;
+    bool bIsRunning = false;
+
     [Button("StratProsses")]
     public void StratProssesPatients()
     {
-
+        if (bIsRunning) return;
+       
 
         if (bIsPlayerOnDesk)
         {
             gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
         }
+
 
 
         if (waitingQueue.patientInQueue.Count > 0 && !waitingQueue.patientInQueue[0].NPCMovement.bIsMoving)
@@ -305,10 +311,15 @@ public class ReceptionManager : MonoBehaviour
 
                 if (bIsPlayerOnDesk)
                 {
+                    bIsRunning = true;
                     bIsProcessing = true;
                     gameManager.playerController.animationController.PlayAnimation(seat.workingAnim);
 
-                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime).SetId("ProgressTween")
+                    if (string.IsNullOrEmpty(processTweenId))
+                    {
+                        processTweenId = "ProcessTween_" + Guid.NewGuid().ToString();
+                    }
+                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime).SetId(processTweenId)
                        .OnComplete(() =>
                        {
                            hospitalManager.OnPatientRegister();
@@ -321,35 +332,42 @@ public class ReceptionManager : MonoBehaviour
                            waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
                            worldProgresBar.fillAmount = 0;
                            bIsProcessing = false;
+                           bIsRunning = false;
+
                        });
 
                 }
                 else if (npc.bIsUnlock)
                 {
+                    bIsRunning = true;
                     npc.animationController.PlayAnimation(seat.workingAnim);
-
-                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime)
+                    if (string.IsNullOrEmpty(processTweenId))
+                    {
+                        processTweenId = "ProcessTween_" + Guid.NewGuid().ToString();
+                    }
+                    worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime).SetId(processTweenId)
                         .OnComplete(() =>
                         {
                             npc.animationController.PlayAnimation(seat.idleAnim);
                             moneyBox.TakeMoney(npc.currentLevelData.customerCost);
                             room.RegisterPatient(waitingQueue.patientInQueue[0]);
-
                             waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
                             worldProgresBar.fillAmount = 0;
+                            bIsRunning = false;
+
+                            DOTween.Kill(processTweenId);
                         });
                 }
             }
             else
             {
-
+                warnningTextBox.gameObject.SetActive(true);
+                cameraController.MoveToRecption(seat.transform);
             }
             //}
         }
         else
         {
-            warnningTextBox.gameObject.SetActive(true);
-            cameraController.MoveToRecption(seat.transform);
 
         }
 

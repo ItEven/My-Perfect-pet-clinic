@@ -11,19 +11,20 @@ public class MriBed : Bed
     {
         if (patient == null) return;
 
-
+       
         var pharmacyRoom = hospitalManager.pharmacyRoom;
+
         var workingAnimation = seat.workingAnim;
         var processTime = staffNPC.currentLevelData.processTime;
-        Vector3 bedOldPos = bedSeat.position;
+        Vector3 bedOldPos = bedSeat.localPosition;
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
             patient.animal.transform.SetParent(bedSeat);
-            bedSeat.DOMoveZ(0f, 1f).OnComplete(() =>
+            bedSeat.DOLocalMoveZ(0f, 1f).OnComplete(() =>
             {
                 StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
                 {
-                    bedSeat.DOMoveZ(bedOldPos.z, 1f).OnComplete(() =>
+                    bedSeat.DOLocalMoveZ(bedOldPos.z, 1f).OnComplete(() =>
                     {
                         OnProcessComplite(pharmacyRoom, staffNPC.animationController, AnimType.Idle);
                     });
@@ -35,11 +36,11 @@ public class MriBed : Bed
         {
             bIsProcessing = true;       
             patient.animal.transform.SetParent(bedSeat);
-            bedSeat.DOMoveZ(0f, 1f).OnComplete(() =>
+            bedSeat.DOLocalMoveZ(0f, 1f).OnComplete(() =>
             {
                 StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
                 {
-                    bedSeat.DOMoveZ(bedOldPos.z, 1f).OnComplete(() =>
+                    bedSeat.DOLocalMoveZ(bedOldPos.z, 1f).OnComplete(() =>
                     {
                         OnProcessComplite(pharmacyRoom, playerController.animationController, AnimType.Idle);
                     });

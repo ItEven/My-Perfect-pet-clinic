@@ -174,7 +174,7 @@ public class TaskManager : MonoBehaviour
                 InspectionRoom_2.LoadNextForStaff(0);
                 break;
             case 26: 
-                OnTaskComplete(26);
+                OnTaskComplete(27);
                  break;
             case 27:
                 hallManager_03.bIsUpgraderActive = true;
@@ -183,6 +183,7 @@ public class TaskManager : MonoBehaviour
                 StoreRoom.bIsUpgraderActive = true;
                 StoreRoom.SetUpgradeVisual(); break;
             case 29:
+                patientManager.AddDisease(DiseaseType.Toy);
                 GroomingRoom.LoadNextForStaff(0); break;
             case 30:
                 InspectionRoom_2.LoadNextForStaff(0);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -21,6 +22,7 @@ public class HospitalManager : MonoBehaviour
     public ReceptionManager receptionManager;
     public ARoom[] InspectionRoom;
     public ARoom pharmacyRoom;
+    public ARoom storeRoom;
     public StorageRoom storageRoom;
     public ARoom InjectionRoom;
     public ARoom GroomingRoom;
@@ -96,17 +98,22 @@ public class HospitalManager : MonoBehaviour
 
     public Transform GetRandomPos(Patient patient)
     {
-        for (int i = 0; i < registerPoses.Count; i++)
-        {
-            var p = registerPoses[i];
-            if (!p.bIsRegiseter)
-            {
-                p.bIsRegiseter = true;
-                patient.registerPos = p;
-                return p.pos;
-            }
-        }
-        return null;
+
+        var availablePositions = registerPoses.Where(p => !p.bIsRegiseter).ToList();
+
+
+        if (availablePositions.Count == 0)
+            return null;
+
+
+        int randomIndex = Random.Range(0, availablePositions.Count);
+        var randomPos = availablePositions[randomIndex];
+
+    
+        randomPos.bIsRegiseter = true;
+        patient.registerPos = randomPos;
+
+        return randomPos.pos;
     }
 
     public void OnPatientRegister()
@@ -157,6 +164,7 @@ public class HospitalManager : MonoBehaviour
             case DiseaseType.Fractures: return OpreationRoom;
             case DiseaseType.Kidney_Disease: return IcuRoom;
             case DiseaseType.Asthma: return IcuRoom;
+            case DiseaseType.Toy: return pharmacyRoom;
             default:
                 return null;
         }

@@ -25,10 +25,10 @@ public class InspestionBed : Bed
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
             //  Debug.LogError("OnProcessComplite1");
-            StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
+            StartPatientProcessing(staffNPC.animationController, workingAnimation, seat.idleAnim, staffNPC.currentLevelData.processTime, () =>
             {
                 //  Debug.LogError("OnProcessComplite3");
-                OnProcessComplite(nextRoom, staffNPC.animationController, AnimType.Idle);
+                OnProcessComplite(nextRoom, staffNPC.animationController, seat.idleAnim);
             });
         }
         else if (bIsPlayerOnDesk)
@@ -36,10 +36,10 @@ public class InspestionBed : Bed
             //  Debug.LogError("OnProcessComplite4");
             bIsProcessing = true;
 
-            StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
+            StartPatientProcessing(playerController.animationController, workingAnimation, seat.idleAnim, staffNPC.currentLevelData.processTime, () =>
             {
                 //  Debug.LogError("OnProcessComplite5");
-                OnProcessComplite(nextRoom, playerController.animationController, AnimType.Idle);
+                OnProcessComplite(nextRoom, playerController.animationController, seat.idleAnim);
             });
         }
     }

@@ -133,13 +133,13 @@ public class ARoom : MonoBehaviour
         {
             gameManager.SetObjectsStates(lockedObjs, false);
             gameManager.SetObjectsStates(unlockObjs, true);
-           // foreach (var item in unlockObjs)
-           // {
-           //     gameManager.DropObj(item);
-           // }
-           //// LoadBedData();
-           // gameManager.PlayParticles(roundUpgradePartical);
-           // //  Destroy(upGrader.gameObject);
+            // foreach (var item in unlockObjs)
+            // {
+            //     gameManager.DropObj(item);
+            // }
+            //// LoadBedData();
+            // gameManager.PlayParticles(roundUpgradePartical);
+            // //  Destroy(upGrader.gameObject);
 
         }
         else
@@ -162,7 +162,7 @@ public class ARoom : MonoBehaviour
             // LoadBedData();
             gameManager.PlayParticles(roundUpgradePartical);
             //  Destroy(upGrader.gameObject);
-
+            //AddAllUnregisterPatient();
         }
         else
         {
@@ -251,6 +251,19 @@ public class ARoom : MonoBehaviour
                 patients.MoveAnimal();
 
             }
+        }
+    }
+    public void AddAllUnregisterPatient()
+    {
+        if (unRegisterPatientList.Count > 0)
+        {
+            foreach (Patient patient in unRegisterPatientList)
+            {
+                RegisterPatient(patient);
+                patient.registerPos.bIsRegiseter = false;
+            }
+            unRegisterPatientList.Clear();
+            hospitalManager.OnRoomHaveSpace();
         }
     }
     public void NextPatientFromUnRegisterQ()
@@ -368,7 +381,7 @@ public class ARoom : MonoBehaviour
         aRoomData.bIsUpgraderActive = bIsUpgraderActive;
         aRoomData.currentOpneBed = currntOpenBeds;
         aRoomData.currnetMoney = moneyBox.totalMoneyInBox;
-        
+
 
         if (upGrader != null)
         {
@@ -391,7 +404,7 @@ public class ARoom : MonoBehaviour
                 currentCost = bedsArr[i].staffNPC.currentCost,
                 currentLevel = bedsArr[i].staffNPC.currentLevel,
                 nextLevel = bedsArr[i].staffNPC.nextLevel
-                
+
             };
 
             aRoomData.bedDatas.Add(bed);
@@ -420,7 +433,7 @@ public class ARoom : MonoBehaviour
             bed.bIsUpgraderActive = bedData.bIsUpgraderActive;
             bed.currentCost = bedData.currentCost;
 
-         
+
             bed.staffNPC.bIsUnlock = bedData.staffData.bIsUnlock;
             if (bed.staffNPC.bIsUnlock)
             {

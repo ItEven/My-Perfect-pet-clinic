@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Random = UnityEngine.Random;
+
 public class Bed : MonoBehaviour
 {
     [Header("Task Details")]
@@ -47,6 +49,7 @@ public class Bed : MonoBehaviour
     public GameObject[] unlockObjs;
     public SpriteRenderer groundCanvas;
     public ParticleSystem roundUpgradePartical;
+    public ParticleSystem processParticals;
 
     protected Seat seat;
     internal Patient patient;
@@ -280,7 +283,11 @@ public class Bed : MonoBehaviour
 
     protected void StartPatientProcessing(AnimationController animationController, AnimType workingAnim, AnimType idleAnim, float processTime, Action onComplete)
     {
-
+        if (processParticals != null)
+        {
+           // processParticals.gameObject.SetActive(true);
+            processParticals.Play();
+        }
         if (string.IsNullOrEmpty(processTweenId))
         {
             processTweenId = "ProcessTween_" + Guid.NewGuid().ToString();
@@ -292,6 +299,13 @@ public class Bed : MonoBehaviour
         worldProgresBar.DOFillAmount(1, processTime).SetId(processTweenId)
             .OnComplete(() =>
             {
+                if (processParticals != null)
+                {
+
+                    processParticals.Stop();
+                }
+
+
                 animationController.PlayAnimation(idleAnim);
                 onComplete?.Invoke();
             });
@@ -302,8 +316,6 @@ public class Bed : MonoBehaviour
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
         bIsProcessing = false;
-
-
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
             hospitalManager.OnPatientRegister();

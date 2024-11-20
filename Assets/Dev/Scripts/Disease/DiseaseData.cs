@@ -34,7 +34,8 @@ public enum DiseaseType
     Bladder_Stones,
     Fractures,
     Kidney_Disease,
-    Asthma
+    Asthma,
+    Toy
 }
 
 [System.Serializable]

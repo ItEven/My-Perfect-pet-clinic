@@ -42,10 +42,25 @@ public class CameraController : MonoBehaviour
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
         playerController.animationController.PlayAnimation(AnimType.Idle);
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            transform.DOMove(target.position, 1f).OnComplete(() =>
+            {
+                onComplete?.Invoke();
+            });
+        });
+    }
+    public void MoveToTargetPatient(Transform target, Action onComplete = null)
+    {
+        bCanCameraMove = false;
+        playerController.playerControllerData.characterMovement.enabled = false;
+        playerController.enabled = false;
+        playerController.playerControllerData.joystick.gameObject.SetActive(false);
+        playerController.animationController.PlayAnimation(AnimType.Idle);
         transform.SetParent(target);
         DOVirtual.DelayedCall(1f, () =>
         {
-            transform.DOMove(Vector3.zero, .5f).OnComplete(() =>
+            transform.DOMove(Vector3.zero, 1f).OnComplete(() =>
             {
                 onComplete?.Invoke();
             });
@@ -101,7 +116,7 @@ public class CameraController : MonoBehaviour
         StopCoroutine(ManageCameraTrems());
         bCanCameraMove = false;
         bIsMoveingToPatient = true;
-        MoveToTarget(target, () =>
+        MoveToTargetPatient(target, () =>
         {
             DOVirtual.DelayedCall(followDurtion, () => { bIsMoveingToPatient = false; MoveToPlayer(); });
         });
@@ -129,4 +144,3 @@ public class CameraController : MonoBehaviour
 
     #endregion
 }
- 

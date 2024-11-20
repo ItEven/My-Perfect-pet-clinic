@@ -42,14 +42,21 @@ public class AnimalData : ScriptableObject
 
     public string GetSlogan(AnimalType animalType, DiseaseType diseaseType)
     {
-        return "MY" + GetAnimalName(animalType) + " " + GetRandomSlogan(diseaseType);
+        if (GetRandomSlogan(diseaseType) == DiseaseType.Toy.ToString())
+        {
+            return GetRandomSlogan(diseaseType);
+        }
+        else
+        {
+            return "MY" + GetAnimalName(animalType) + " " + GetRandomSlogan(diseaseType);
+        }
     }
 
     public string GetAnimalName(AnimalType animalType)
     {
         foreach (var data in animalNameData)
         {
-            if(data.animalType == animalType)
+            if (data.animalType == animalType)
             {
                 int random = Random.Range(0, data.animalNames.Length);
                 return data.animalNames[random];
