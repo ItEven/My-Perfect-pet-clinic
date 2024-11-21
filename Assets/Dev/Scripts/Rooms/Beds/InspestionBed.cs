@@ -24,21 +24,21 @@ public class InspestionBed : Bed
 
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
-            //  Debug.LogError("OnProcessComplite1");
+
             StartPatientProcessing(staffNPC.animationController, workingAnimation, seat.idleAnim, staffNPC.currentLevelData.processTime, () =>
             {
-                //  Debug.LogError("OnProcessComplite3");
+
                 OnProcessComplite(nextRoom, staffNPC.animationController, seat.idleAnim);
             });
         }
         else if (bIsPlayerOnDesk)
         {
-            //  Debug.LogError("OnProcessComplite4");
+
             bIsProcessing = true;
 
             StartPatientProcessing(playerController.animationController, workingAnimation, seat.idleAnim, staffNPC.currentLevelData.processTime, () =>
             {
-                //  Debug.LogError("OnProcessComplite5");
+                
                 OnProcessComplite(nextRoom, playerController.animationController, seat.idleAnim);
             });
         }

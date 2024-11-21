@@ -72,7 +72,7 @@ public class CameraController : MonoBehaviour
         transform.SetParent(playerController.transform);
         transform.DOMove(playerController.playerControllerData.characterMovement.rotatingObj.position, .5f).OnComplete(() =>
         {
-            StartCoroutine(ManageCameraTrems());
+
             playerController.playerControllerData.joystick.gameObject.SetActive(true);
             playerController.playerControllerData.joystick.OnPointerUp(null);
             playerController.playerControllerData.characterMovement.enabled = true;
@@ -88,7 +88,6 @@ public class CameraController : MonoBehaviour
     IEnumerator MoveToUpgrade(Transform upGrader)
     {
         yield return new WaitUntil(() => !bIsMoveingToPatient);
-        StopCoroutine(ManageCameraTrems());
         upGrader.transform.localScale = Vector3.zero;
         MoveToTarget(upGrader.transform, () =>
         {
@@ -113,7 +112,7 @@ public class CameraController : MonoBehaviour
     public void FollowPatient(Transform target)
     {
         if (!bCanCameraMove) return;
-        StopCoroutine(ManageCameraTrems());
+
         bCanCameraMove = false;
         bIsMoveingToPatient = true;
         MoveToTargetPatient(target, () =>
@@ -122,25 +121,37 @@ public class CameraController : MonoBehaviour
         });
 
     }
-    public void MoveToRecption(Transform target)
+    //public void MoveToRecption(Transform target)
+    //{
+    //    if (bCanCameraMove)
+    //    {
+
+    //        bCanCameraMove = false;
+    //        bIsMoveingToPatient = true;
+    //        MoveToTarget(target, () =>
+    //        {
+    //            DOVirtual.DelayedCall(rectionTime, () => { bIsMoveingToPatient = false; MoveToPlayer(); });
+    //        });
+    //    }
+    //}
+    protected string processTweenId;
+    public void ManageCamera()
     {
-        if (!bCanCameraMove) return;
-        StopCoroutine(ManageCameraTrems());
-        bCanCameraMove = false;
-        bIsMoveingToPatient = true;
-        MoveToTarget(target, () =>
+        if (string.IsNullOrEmpty(processTweenId))
         {
-            DOVirtual.DelayedCall(rectionTime, () => { bIsMoveingToPatient = false; MoveToPlayer(); });
-        });
-    }
-    IEnumerator ManageCameraTrems()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(followDelay);
-            bCanCameraMove = true;
+            processTweenId = "ProcessTween_" + Guid.NewGuid().ToString();
         }
+        DOVirtual.DelayedCall(followDelay, () =>
+        {
+
+            bCanCameraMove = true;
+        }).SetId(processTweenId);
     }
 
+    public void stopManageCamera()
+    {
+        DOTween.Kill(processTweenId);
+    }
+  
     #endregion
 }

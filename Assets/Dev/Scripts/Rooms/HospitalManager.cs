@@ -73,7 +73,7 @@ public class HospitalManager : MonoBehaviour
 
     public void OnRoomHaveSpace()
     {
-        Debug.LogError("yoyoooyo");
+      //  Debug.LogError("yoyoooyo");
         receptionManager.StratProssesPatients();
     }
 

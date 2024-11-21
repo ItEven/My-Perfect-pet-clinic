@@ -304,8 +304,6 @@ public class Bed : MonoBehaviour
 
                     processParticals.Stop();
                 }
-
-
                 animationController.PlayAnimation(idleAnim);
                 onComplete?.Invoke();
             });

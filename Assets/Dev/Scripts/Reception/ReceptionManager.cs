@@ -367,7 +367,7 @@ public class ReceptionManager : MonoBehaviour
             else
             {
                 warnningTextBox.gameObject.SetActive(true);
-                cameraController.MoveToRecption(seat.transform);
+                //cameraController.MoveToRecption(seat.transform);
 
             }
             //}

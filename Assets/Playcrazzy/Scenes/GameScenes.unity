@@ -17716,7 +17716,7 @@ PrefabInstance:
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.61
+      value: -6.65
       objectReference: {fileID: 0}
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -17726,7 +17726,7 @@ PrefabInstance:
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 31.19
       objectReference: {fileID: 0}
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -20343,7 +20343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66da5576bd9b1c64d9e00985bdf5ac7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followDelay: 300
+  followDelay: 20
   followDurtion: 4
   rectionTime: 1
 --- !u!4 &721863809 stripped
@@ -25721,7 +25721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aba9139c6f1fd64b9a9fc6f042fd3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockPrice: 500
+  unlockPrice: 290
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 1114231397}
