@@ -2124,6 +2124,7 @@ MonoBehaviour:
   - {fileID: 1922735218432706031}
   groundCanvas: {fileID: 79597599}
   roundUpgradePartical: {fileID: 79597595}
+  processParticals: {fileID: 0}
 --- !u!1 &84745577
 GameObject:
   m_ObjectHideFlags: 0
@@ -8403,17 +8404,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b82fc5d0c0252e741b2a74bfb67c04c1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.26532316
+      value: -0.2653222
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b82fc5d0c0252e741b2a74bfb67c04c1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0191238
+      value: 1.0191252
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b82fc5d0c0252e741b2a74bfb67c04c1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.47136116
+      value: -0.49488604
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b82fc5d0c0252e741b2a74bfb67c04c1,
         type: 3}
@@ -8458,7 +8459,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b82fc5d0c0252e741b2a74bfb67c04c1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10524,6 +10525,7 @@ MonoBehaviour:
   - {fileID: 211829594}
   groundCanvas: {fileID: 681851229}
   roundUpgradePartical: {fileID: 1035766581}
+  processParticals: {fileID: 0}
 --- !u!208 &388733829
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -15223,6 +15225,7 @@ MonoBehaviour:
   - {fileID: 1922735217956116391}
   groundCanvas: {fileID: 537281112}
   roundUpgradePartical: {fileID: 537281108}
+  processParticals: {fileID: 0}
 --- !u!4 &537281120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
@@ -15424,6 +15427,7 @@ MonoBehaviour:
   - {fileID: 5833180937943674478}
   groundCanvas: {fileID: 543161394}
   roundUpgradePartical: {fileID: 543161389}
+  processParticals: {fileID: 0}
 --- !u!1001 &544801851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19716,6 +19720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followDelay: 300
   followDurtion: 4
+  rectionTime: 1
 --- !u!4 &721863809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2104042960861942581, guid: 8d0198f84b757cd47bf8e3ba32fdf425,
@@ -24169,6 +24174,7 @@ MonoBehaviour:
   - {fileID: 1922735217585368132}
   groundCanvas: {fileID: 63582494}
   roundUpgradePartical: {fileID: 63582493}
+  processParticals: {fileID: 0}
 --- !u!4 &908147133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
@@ -27433,6 +27439,7 @@ MonoBehaviour:
   - {fileID: 1922735217473472191}
   groundCanvas: {fileID: 1036899151}
   roundUpgradePartical: {fileID: 1036899147}
+  processParticals: {fileID: 0}
 --- !u!4 &1036899157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
@@ -28732,17 +28739,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 091c214cc8e0f1440b28ae1938a1ad4d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2653227
+      value: -0.26532078
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 091c214cc8e0f1440b28ae1938a1ad4d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0191238
+      value: 1.0191243
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 091c214cc8e0f1440b28ae1938a1ad4d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.17019749
+      value: -0.37015486
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 091c214cc8e0f1440b28ae1938a1ad4d,
         type: 3}
@@ -28787,7 +28794,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 091c214cc8e0f1440b28ae1938a1ad4d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35414,6 +35421,7 @@ MonoBehaviour:
   - {fileID: 1922735217150169380}
   groundCanvas: {fileID: 1345357016}
   roundUpgradePartical: {fileID: 1345357012}
+  processParticals: {fileID: 0}
 --- !u!4 &1345357023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
@@ -35489,6 +35497,7 @@ MonoBehaviour:
   - {fileID: 1669159130}
   groundCanvas: {fileID: 482686184}
   roundUpgradePartical: {fileID: 1223193523}
+  processParticals: {fileID: 0}
   bedSeat: {fileID: 1823373425}
   InOutTime: 1
 --- !u!208 &1346861305
@@ -36451,6 +36460,7 @@ MonoBehaviour:
   - {fileID: 1922735217078559893}
   groundCanvas: {fileID: 1417146730}
   roundUpgradePartical: {fileID: 1417146725}
+  processParticals: {fileID: 0}
 --- !u!4 &1417146738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
@@ -41651,6 +41661,7 @@ MonoBehaviour:
   - {fileID: 216651187}
   - {fileID: 1689134788}
   pharmacyRoom: {fileID: 1647067005}
+  storeRoom: {fileID: 0}
   storageRoom: {fileID: 735813334}
   InjectionRoom: {fileID: 1359212157}
   GroomingRoom: {fileID: 2139393868}
@@ -41866,18 +41877,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2ae3414393ba36745b03d219a4538205,
         type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0389
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2ae3414393ba36745b03d219a4538205,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.525537
+      value: 15.530645
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ae3414393ba36745b03d219a4538205,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.35154796
+      value: 0.3515489
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ae3414393ba36745b03d219a4538205,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.10497798
+      value: 0.033934288
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ae3414393ba36745b03d219a4538205,
         type: 3}
@@ -42218,6 +42234,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.093585
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.370671
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.8025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.00013571234
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 179.984
       objectReference: {fileID: 0}
     - target: {fileID: 8616562853047217044, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
         type: 3}
@@ -46183,6 +46234,7 @@ MonoBehaviour:
   - {fileID: 141069633}
   groundCanvas: {fileID: 1291853558}
   roundUpgradePartical: {fileID: 104196726}
+  processParticals: {fileID: 0}
   bedSeat: {fileID: 190998120}
   InOutTime: 1
 --- !u!208 &1759126168
@@ -47232,6 +47284,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8327760821621430068, guid: f5e81b574bd7e754781dfd2381111309,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0025
+      objectReference: {fileID: 0}
+    - target: {fileID: -8327760821621430068, guid: f5e81b574bd7e754781dfd2381111309,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.254492
+      objectReference: {fileID: 0}
     - target: {fileID: -6414349995887994918, guid: f5e81b574bd7e754781dfd2381111309,
         type: 3}
       propertyPath: m_IsActive
@@ -47241,6 +47303,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1914490198355925791, guid: f5e81b574bd7e754781dfd2381111309,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9948
+      objectReference: {fileID: 0}
+    - target: {fileID: -1914490198355925791, guid: f5e81b574bd7e754781dfd2381111309,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.888058
       objectReference: {fileID: 0}
     - target: {fileID: -611734670744390075, guid: f5e81b574bd7e754781dfd2381111309,
         type: 3}
@@ -47266,6 +47338,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: f5e81b574bd7e754781dfd2381111309,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.853798
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: f5e81b574bd7e754781dfd2381111309,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0191236
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927832980891649060, guid: f5e81b574bd7e754781dfd2381111309,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.828552
       objectReference: {fileID: 0}
     - target: {fileID: 5676518024889975371, guid: f5e81b574bd7e754781dfd2381111309,
         type: 3}
@@ -50156,7 +50243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1901229266
 Transform:
   m_ObjectHideFlags: 0
@@ -50615,6 +50702,7 @@ MonoBehaviour:
   - {fileID: 1922735216588990614}
   groundCanvas: {fileID: 1921367398}
   roundUpgradePartical: {fileID: 1921367394}
+  processParticals: {fileID: 0}
 --- !u!4 &1921367407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2927697374249182364, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
@@ -54732,6 +54820,7 @@ MonoBehaviour:
   - {fileID: 1922735216670451347}
   groundCanvas: {fileID: 0}
   roundUpgradePartical: {fileID: 1839772522}
+  processParticals: {fileID: 0}
 --- !u!1 &2098424710
 GameObject:
   m_ObjectHideFlags: 0
@@ -54891,6 +54980,7 @@ MonoBehaviour:
   - {fileID: 1922735216393595437}
   groundCanvas: {fileID: 2099789793}
   roundUpgradePartical: {fileID: 2099789789}
+  processParticals: {fileID: 0}
 --- !u!4 &2099789799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
@@ -55322,17 +55412,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6697d3cc108407e45be9295e98212358,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14532137
+      value: -0.14021873
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6697d3cc108407e45be9295e98212358,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0191238
+      value: 1.0191243
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6697d3cc108407e45be9295e98212358,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.58309937
+      value: 0.5595754
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6697d3cc108407e45be9295e98212358,
         type: 3}
@@ -55512,6 +55602,7 @@ MonoBehaviour:
   unlockObjs: []
   groundCanvas: {fileID: 0}
   roundUpgradePartical: {fileID: 2110937308}
+  processParticals: {fileID: 0}
 --- !u!114 &2110937318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63879,7 +63970,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f173b02aa7ba8df489811ce59aecc004,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.2953763
+      value: 2.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f173b02aa7ba8df489811ce59aecc004,
         type: 3}
@@ -70826,13 +70917,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0f3f23e5a58e4d24d965e3050b72a933,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0051
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0f3f23e5a58e4d24d965e3050b72a933,
+        type: 3}
       propertyPath: m_LocalScale.z
       value: 0.95238084
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f3f23e5a58e4d24d965e3050b72a933,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5182123
+      value: 0.48801446
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f3f23e5a58e4d24d965e3050b72a933,
         type: 3}
@@ -70842,7 +70938,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0f3f23e5a58e4d24d965e3050b72a933,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.41927
+      value: -18.419266
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f3f23e5a58e4d24d965e3050b72a933,
         type: 3}
@@ -94305,6 +94401,7 @@ MonoBehaviour:
   - {fileID: 1922735217504562811}
   groundCanvas: {fileID: 990919571}
   roundUpgradePartical: {fileID: 990919567}
+  processParticals: {fileID: 0}
   bedSeat: {fileID: 1070020417}
   InOutTime: 1
 --- !u!4 &8860888432228589648
@@ -94422,6 +94519,7 @@ MonoBehaviour:
   - {fileID: 1922735218184880983}
   groundCanvas: {fileID: 308614824}
   roundUpgradePartical: {fileID: 308614820}
+  processParticals: {fileID: 0}
 --- !u!4 &8860888433148109568
 Transform:
   m_ObjectHideFlags: 0
@@ -94489,6 +94587,7 @@ MonoBehaviour:
   - {fileID: 1922735216450525042}
   groundCanvas: {fileID: 2059715211}
   roundUpgradePartical: {fileID: 2059715206}
+  processParticals: {fileID: 0}
 --- !u!4 &8860888433300990912
 Transform:
   m_ObjectHideFlags: 0
@@ -94834,6 +94933,7 @@ MonoBehaviour:
   - {fileID: 6999230021584268315}
   groundCanvas: {fileID: 8902683946432182772}
   roundUpgradePartical: {fileID: 8902683946432182767}
+  processParticals: {fileID: 0}
 --- !u!4 &8902683946432182780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
