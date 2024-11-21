@@ -3,6 +3,8 @@ using Lofelt.NiceVibrations;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Random = UnityEngine.Random;
+
 
 [System.Serializable]
 public class SettingData
@@ -18,6 +20,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] internal AudioSource soundAudioSource;
 
     public SettingData settingData = new SettingData();
+    public AudioClip[] bgAudioClips;
     public AudioClip upgradeClip;
     public AudioClip whoohClip;
     public AudioClip moneyCollectClip;
@@ -76,11 +79,19 @@ public class AudioManager : MonoBehaviour
         soundBtn.onClick.AddListener(OnSoundButtunClick);
         musicBtn.onClick.AddListener(OnMusicButtunClick);
         SetData();
+        musicAudioSource.Stop();
+        Play(GetRandomClip());
     }
     public void SetData()
     {
         SetSoundSetting();
         SetMusicSetting();
+    }
+
+    public AudioClip GetRandomClip()
+    {
+        int index = Random.Range(0, bgAudioClips.Length);
+        return bgAudioClips[index];
     }
     public void Play(AudioClip clip)
     {
@@ -175,7 +186,7 @@ public class AudioManager : MonoBehaviour
         if (settingData.bIsMusicOn)
         {
             OnButtonClick(musicImg, musicCircleImg, musicOnText, musicOffText, true);
-            musicAudioSource.Play();
+            Play(GetRandomClip());
         }
         else
         {

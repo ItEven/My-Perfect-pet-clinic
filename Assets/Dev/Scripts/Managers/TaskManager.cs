@@ -158,7 +158,7 @@ public class TaskManager : MonoBehaviour
                  break;
             case 21:
                 patientManager.AddDisease(DiseaseType.Fleas_and_Ticks);
-                patientManager.AddDisease(DiseaseType.Ear_Infection);
+                patientManager.AddDisease(DiseaseType.Allergies);
                 InjectionRoom.LoadNextForStaff(0);
                 break;
             case 22:
@@ -171,14 +171,14 @@ public class TaskManager : MonoBehaviour
                 break;
             case 24:
                 GroomingRoom.LoadNextForStaff(0);
-                patientManager.AddDisease(DiseaseType.Allergies);
-                patientManager.AddDisease(DiseaseType.Skin_Infecction);
+               
                 
                 break;
             case 25:
                 InspectionRoom_2.LoadNextForStaff(0);
                 break;
-            case 26: 
+            case 26:
+                patientManager.AddDisease(DiseaseType.Toy);
                 OnTaskComplete(27);
                  break;
             case 27:
@@ -188,7 +188,7 @@ public class TaskManager : MonoBehaviour
                 StoreRoom.bIsUpgraderActive = true;
                 StoreRoom.SetUpgradeVisual(); break;
             case 29:
-                patientManager.AddDisease(DiseaseType.Toy);
+                patientManager.AddDisease(DiseaseType.Vomitting);
                 GroomingRoom.LoadNextForStaff(0); break;
             case 30:
                 InspectionRoom_2.LoadNextForStaff(0);
@@ -198,9 +198,12 @@ public class TaskManager : MonoBehaviour
             case 33:
                 InjectionRoom.LoadNextForStaff(0);
                 break;
-            case 34: InjectionRoom.LoadNextUpgrade(); ; break;
+            case 34: InjectionRoom.LoadNextUpgrade(); 
+                patientManager.AddDisease(DiseaseType.Dental_Disease);
+                ; break;
             case 35:
                 hallManager_04.bIsUpgraderActive = true;
+                patientManager.AddDisease(DiseaseType.Bloat);
                 hallManager_04.SetUpgredeVisual(); break;
             case 36:
                 InspectionRoom_3.bIsUpgraderActive = true;
@@ -210,21 +213,21 @@ public class TaskManager : MonoBehaviour
                 GroomingRoom.LoadNextForStaff(0);
                 break;
             case 38:
-                patientManager.AddDisease(DiseaseType.Bloat);
+
                 StoreRoom.LoadNextForStaff(0); 
                 break;
             case 39:
                 InjectionRoom.LoadNextForStaff(1);
                 break;
             case 40:
-                StoreRoom.LoadNextForStaff(0); break;
+                StoreRoom.LoadNextForStaff(0);
+                patientManager.AddDisease(DiseaseType.Rabies); break;
             case 41: InspectionRoom_2.LoadNextForStaff(0); break;
             case 42:
                 InjectionRoom.LoadNextForStaff(1);
                 break;
             case 43:
                 patientManager.AddDisease(DiseaseType.Bladder_Stones);
-                patientManager.AddDisease(DiseaseType.Fractures);
                 StoreRoom.LoadNextForStaff(0);
                 break;
             case 44:
@@ -235,6 +238,8 @@ public class TaskManager : MonoBehaviour
                 hallManager_05.bIsUpgraderActive = true;
                 hallManager_05.SetUpgredeVisual();  break;
             case 47:
+                patientManager.AddDisease(DiseaseType.Fractures);
+
                 MriRoom.bIsUpgraderActive = true;
                 MriRoom.SetUpgradeVisual(); break;
             case 48:
@@ -243,10 +248,9 @@ public class TaskManager : MonoBehaviour
             case 50:
                 InspectionRoom_3.LoadNextForStaff(0); break;
             case 51:
-                patientManager.AddDisease(DiseaseType.Kidney_Disease);
-                patientManager.AddDisease(DiseaseType.Asthma);
                 MriRoom.LoadNextForStaff(0); break;
             case 52:
+                patientManager.AddDisease(DiseaseType.Kidney_Disease);
                 hallManager_06.bIsUpgraderActive = true;
                 hallManager_06.SetUpgredeVisual(); break; 
             case 53:
@@ -258,7 +262,9 @@ public class TaskManager : MonoBehaviour
             case 55:
                 OpreationRoom.LoadNextForStaff(0); break;
             case 56:
-                InspectionRoom_3.LoadNextForStaff(0); break;
+                InspectionRoom_3.LoadNextForStaff(0);
+                patientManager.AddDisease(DiseaseType.Asthma);
+                 break;
             case 57:
                 MriRoom.LoadNextUpgrade(); break;
             case 58:

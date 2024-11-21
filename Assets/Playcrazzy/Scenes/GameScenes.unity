@@ -1211,7 +1211,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f153d753793419439765194ba17f600, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
@@ -1314,6 +1314,10 @@ MonoBehaviour:
   settingData:
     bIsSoundOn: 1
     bIsMusicOn: 1
+  bgAudioClips:
+  - {fileID: 8300000, guid: 5f153d753793419439765194ba17f600, type: 3}
+  - {fileID: 8300000, guid: b5e48a954d96d4143b63aa8acf9d12d4, type: 3}
+  - {fileID: 8300000, guid: 90c55f2d6cacb8a44999a48fbc9da88d, type: 3}
   upgradeClip: {fileID: 8300000, guid: 3ff721a73ca7a33498a60e0b6324ca6b, type: 3}
   whoohClip: {fileID: 8300000, guid: d652d443be5b6244cb820ef3ff7be3f3, type: 3}
   moneyCollectClip: {fileID: 8300000, guid: 85880de05f9087040b423ec7ff2e99f7, type: 3}
@@ -53604,7 +53608,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 85880de05f9087040b423ec7ff2e99f7, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
