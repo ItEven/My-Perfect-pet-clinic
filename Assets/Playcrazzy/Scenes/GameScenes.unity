@@ -16519,7 +16519,7 @@ MonoBehaviour:
   playerControllerData:
     joystick: {fileID: 8170153791829913699}
     rotationRate: 540
-    maxSpeed: 2.8
+    maxSpeed: 3.4
     customAngle: -45
     sensitivity: 80.75
     acceleration: 20
@@ -65268,7 +65268,7 @@ GameObject:
   - component: {fileID: 4931218026238115735}
   - component: {fileID: 4931218026238115734}
   - component: {fileID: 4931218026238115733}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
