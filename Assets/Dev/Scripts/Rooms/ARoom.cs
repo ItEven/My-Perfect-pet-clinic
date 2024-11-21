@@ -237,7 +237,7 @@ public class ARoom : MonoBehaviour
     {
         if (patients != null)
         {
-            if (!waitingQueue.bIsQueueFull())
+            if (!waitingQueue.bIsQueueFull() && bIsUnlock)
             {
                 waitingQueue.AddInQueue(patients);
                 patients.MoveAnimal();
@@ -266,6 +266,8 @@ public class ARoom : MonoBehaviour
             hospitalManager.OnRoomHaveSpace();
         }
     }
+
+   
     public void NextPatientFromUnRegisterQ()
     {
         if (unRegisterPatientList.Count > 0)

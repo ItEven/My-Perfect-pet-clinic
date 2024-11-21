@@ -19,7 +19,7 @@ public class PlayerAnimation : MonoBehaviour
           
             if (playerController.IsMoving())
             {
-                _PlayerAnimator.Play(AnimType.Walk.ToString());
+                _PlayerAnimator.Play(AnimType.Run.ToString());
                 HandleMovementAnimation();
             }
             else

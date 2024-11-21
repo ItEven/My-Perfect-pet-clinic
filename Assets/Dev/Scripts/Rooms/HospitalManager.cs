@@ -39,24 +39,32 @@ public class HospitalManager : MonoBehaviour
 
 
     #region InspectionRoom Machenics
-    public ARoom GetInspectionRoom(Patient patient)
+    public ARoom GetInspectionRoom()
     {
-        for (int i = 0; i < InspectionRoom.Length; i++)
-        {
-            var room = InspectionRoom[i];
-            if (room != null && room.bIsUnlock)
-            {
-                for (int j = 0; j < room.diseaseTypes.Length; j++)
-                {
-                    if (patient.diseaseType == room.diseaseTypes[j])
-                    {
-                        OnPatientRegister();
-                        return room;
-                    }
-                }
-            }
-        }
-        return null;
+
+        var avaiableRooms = InspectionRoom.Where(r => r.bIsUnlock).ToList();
+        if(avaiableRooms.Count == 0)
+            return null;
+        int randomIndex = Random.Range(0, avaiableRooms.Count);
+        var randomPos = avaiableRooms[randomIndex];
+        return avaiableRooms[randomIndex];
+
+        //for (int i = 0; i < InspectionRoom.Length; i++)
+        //{
+        //    var room = InspectionRoom[i];
+        //    if (room != null && room.bIsUnlock)
+        //    {
+        //        for (int j = 0; j < room.diseaseTypes.Length; j++)
+        //        {
+        //            if (patient.diseaseType == room.diseaseTypes[j])
+        //            {
+        //                OnPatientRegister();
+        //                return room;
+        //            }
+        //        }
+        //    }
+        //}
+        //return null;
     }
 
     #endregion

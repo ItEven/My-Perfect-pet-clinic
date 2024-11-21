@@ -87,8 +87,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Npc_Walk
-  m_Speed: 0
+  m_Name: Walk
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -175,13 +175,13 @@ AnimatorStateMachine:
     m_Position: {x: 140, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2056293815426031253}
-    m_Position: {x: 140, y: 330, z: 0}
+    m_Position: {x: 140, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1336460390401254073}
-    m_Position: {x: 140, y: 390, z: 0}
+    m_Position: {x: 140, y: 450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4384774759547740194}
-    m_Position: {x: 140, y: 450, z: 0}
+    m_Position: {x: 140, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5274498761573804604}
     m_Position: {x: 140, y: 510, z: 0}
@@ -326,8 +326,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Walk
-  m_Speed: 1
+  m_Name: Run
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -339,8 +339,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -6387704050532320474, guid: 48ddd57f79bc0cc45b0ece79d45579bf,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 82aeb433efb1ea74bba0b56712242d94, type: 2}
   m_Tag: 
   m_SpeedParameter: Velocity
   m_MirrorParameter: 

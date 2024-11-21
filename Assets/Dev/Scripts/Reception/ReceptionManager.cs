@@ -300,7 +300,9 @@ public class ReceptionManager : MonoBehaviour
 
             //if (!hospitalManager.CheckRegiterPosFull())
             //{
-            var room = hospitalManager.GetInspectionRoom(waitingQueue.patientInQueue[0]);
+            var room = hospitalManager.GetInspectionRoom();
+            
+
             if (room == null)
             {
 
@@ -363,14 +365,11 @@ public class ReceptionManager : MonoBehaviour
             {
                 warnningTextBox.gameObject.SetActive(true);
                 cameraController.MoveToRecption(seat.transform);
+
             }
             //}
         }
-        else
-        {
-
-        }
-
+      
     }
 
     public void StopProsses()

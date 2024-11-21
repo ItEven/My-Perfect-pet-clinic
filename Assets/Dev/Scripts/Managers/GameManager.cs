@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 using Unity.AI.Navigation;
+using Unity.Collections;
+
 
 
 public class GameManager : MonoBehaviour
@@ -29,6 +31,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        NativeLeakDetection.Mode = NativeLeakDetectionMode.EnabledWithStackTrace;
+
     }
     private void Start()
     {

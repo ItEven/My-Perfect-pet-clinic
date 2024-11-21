@@ -52,28 +52,35 @@ public class InspestionBed : Bed
         bIsProcessing = false;
 
         animationController.PlayAnimation(idleAnim);
-        if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
-        {  
-            if (nextRoom == null)
+        if (nextRoom != null)
+        {
+            if (nextRoom.bIsUnRegisterQueIsFull())
             {
-                Debug.LogError(room.gameObject.name + "room is null");
+                if (nextRoom != null)
+                {
+                    Debug.LogError(nextRoom.gameObject.name + "room is not null" + nextRoom.bIsUnRegisterQueIsFull() + "que is full" + nextRoom.waitingQueue.gameObject.name + nextRoom.bIsUnlock + "the was not unlock");
+
+                }
+                else
+                {
+                    Debug.LogError(room.gameObject.name + "room is null");
+                }
+                hospitalManager.OnPatientRegister();
+                patient.MoveToExit(hospitalManager.GetRandomExit(patient));
+                patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+
             }
             else
             {
-
-                Debug.LogError(nextRoom.gameObject.name + "room is not null" + nextRoom.bIsUnRegisterQueIsFull() + "que is full" + nextRoom.waitingQueue.gameObject.name + nextRoom.bIsUnlock + "the was not unlock");
+                nextRoom.RegisterPatient(patient);
             }
-            hospitalManager.OnPatientRegister();
-
-            // Debug.LogError("OnProcessComplite8");
-            patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-            patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
-
         }
         else
         {
-            // Debug.LogError("OnProcessComplite9");
-            nextRoom.RegisterPatient(patient);
+            hospitalManager.OnPatientRegister();
+
+            patient.MoveToExit(hospitalManager.GetRandomExit(patient));
+            patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
         }
 
         MoveAnimal(patient.animal);

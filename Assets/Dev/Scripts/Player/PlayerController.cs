@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                animationController.PlayAnimation(AnimType.Walk);
+                animationController.PlayAnimation(AnimType.Run);
                 animationController.controller.SetFloat("Velocity", GetVelocity());
             }
         }

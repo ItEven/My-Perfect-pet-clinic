@@ -2,8 +2,8 @@
 public enum AnimType
 {
     Idle,
+    Run,
     Walk,
-    Npc_Walk,
     Diagnosing,
     Typing,
     Sti_Idle,
