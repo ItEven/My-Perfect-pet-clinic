@@ -86,25 +86,25 @@ public class AudioManager : MonoBehaviour
     {
 
         musicAudioSource.PlayOneShot(clip);
-        HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+        HapticPatterns.PlayPreset(HapticPatterns.PresetType.SoftImpact);
     }
     public void OnUpgrade()
     {
         if (!settingData.bIsSoundOn) return;
         musicAudioSource.PlayOneShot(upgradeClip);
-        HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+        HapticPatterns.PlayPreset(HapticPatterns.PresetType.SoftImpact);
     }
     public void OnMonenyCollect()
     {
         if (!settingData.bIsSoundOn) return;
         musicAudioSource.PlayOneShot(moneyCollectClip);
-        HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+        HapticPatterns.PlayPreset(HapticPatterns.PresetType.SoftImpact);
     }
     public void OnMoneyDrop()
     {
         if (!settingData.bIsSoundOn) return;
         musicAudioSource.PlayOneShot(moneyDropClip);
-        HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+        HapticPatterns.PlayPreset(HapticPatterns.PresetType.SoftImpact);
     }
 
     public void OpneSettingPanel()

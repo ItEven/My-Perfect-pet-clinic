@@ -87,6 +87,7 @@ public class TaskManager : MonoBehaviour
                 break;
             case 3:
                 patientManager.AddDisease(DiseaseType.Cough);
+                patientManager.AddDisease(DiseaseType.Cold);
                 patientManager.bIsUnlock = true;
                 patientManager.gameObject.SetActive(true);
                 patientManager.LoadData();
@@ -108,7 +109,7 @@ public class TaskManager : MonoBehaviour
                 receptionManager.LoadNextUpgrade();
                 break;
             case 8:
-                patientManager.AddDisease(DiseaseType.Heartworm_Disease);
+                patientManager.AddDisease(DiseaseType.Fever);
                 pharmacyRoom.LoadNextForStaff(0);
                 break;
             case 9:
@@ -125,6 +126,8 @@ public class TaskManager : MonoBehaviour
                 pharmacyRoom.LoadNextForStaff(0);
                 break;
             case 13:
+                patientManager.AddDisease(DiseaseType.Heartworm_Disease);
+
                 receptionManager.LoadNextUpgrade();
                 break;
             case 14:
@@ -134,10 +137,12 @@ public class TaskManager : MonoBehaviour
                 hallManager_02.bIsUpgraderActive = true;
                 hallManager_02.SetUpgredeVisual(); break;
             case 16:
+                patientManager.AddDisease(DiseaseType.Ear_Infection);
+
                 InjectionRoom.bIsUpgraderActive = true;
                 InjectionRoom.SetUpgradeVisual(); break;
             case 17:
-                patientManager.AddDisease(DiseaseType.Fever);
+                patientManager.AddDisease(DiseaseType.Fleas_and_Ticks);
                 OnTaskComplete(18); break;
             case 18:
                 InspectionRoom_2.bIsUpgraderActive = true;

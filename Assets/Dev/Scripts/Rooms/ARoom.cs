@@ -70,6 +70,7 @@ public class ARoom : MonoBehaviour
     public MoneyBox moneyBox;
     internal WaitingQueue waitingQueue;
     public int unRegisterLimit;
+    public float unregisterQueShuffleTimer = 15f;
     public List<Patient> unRegisterPatientList;
 
     [Header("Bed Details")]
@@ -239,16 +240,29 @@ public class ARoom : MonoBehaviour
         {
             if (!waitingQueue.bIsQueueFull() && bIsUnlock)
             {
+                patients.markForFull.gameObject.SetActive(false);
+                patients.markForLock.gameObject.SetActive(false);
                 waitingQueue.AddInQueue(patients);
                 patients.MoveAnimal();
+
             }
             else
             {
-
+                if (bIsUnlock)
+                {
+                    patients.markForFull.gameObject.SetActive(true);
+                    patients.markForLock.gameObject.SetActive(false);
+                }
+                else
+                {
+                    patients.markForFull.gameObject.SetActive(false);
+                    patients.markForLock.gameObject.SetActive(true);
+                }
                 unRegisterPatientList.Add(patients);
                 Transform transform = hospitalManager.GetRandomPos(patients);
                 patients.NPCMovement.MoveToTarget(transform, null);
                 patients.MoveAnimal();
+                StartStuffle();
 
             }
         }
@@ -261,13 +275,14 @@ public class ARoom : MonoBehaviour
             {
                 RegisterPatient(patient);
                 patient.registerPos.bIsRegiseter = false;
+                patient.BrakeDally();
             }
             unRegisterPatientList.Clear();
             hospitalManager.OnRoomHaveSpace();
         }
     }
 
-   
+
     public void NextPatientFromUnRegisterQ()
     {
         if (unRegisterPatientList.Count > 0)
@@ -275,8 +290,8 @@ public class ARoom : MonoBehaviour
             Patient patient = unRegisterPatientList[0];
             RegisterPatient(patient);
             patient.registerPos.bIsRegiseter = false;
+            patient.BrakeDally();
             unRegisterPatientList.RemoveAt(0);
-            hospitalManager.OnRoomHaveSpace();
         }
     }
     public void RearngeQue()
@@ -307,6 +322,7 @@ public class ARoom : MonoBehaviour
 
                     OnReachTable(bed, patient);
                 });
+                hospitalManager.OnRoomHaveSpace();
                 patient.MoveAnimal();
                 NextPatientFromUnRegisterQ();
             }
@@ -330,11 +346,10 @@ public class ARoom : MonoBehaviour
 
         DOVirtual.DelayedCall(0.2f, () =>
         {
-            //if (patient.NPCMovement.bIsMoving)
-            //{
+
             Animal animal = patient.animal;
             animal.navmeshAgent.enabled = false;
-            // animal.enabled = false;
+
 
             patient.transform.DORotate(bed.petOwnerSeat.transform.rotation.eulerAngles, 0.2f);
 
@@ -354,12 +369,6 @@ public class ARoom : MonoBehaviour
             bed.patient = null;
             bed.patient = patient;
             bed.StartProcessPatients();
-            //}
-            //else
-            //{
-            //    Debug.LogError("Patient is moving ");
-
-            //}
         });
     }
     public bool bIsUnRegisterQueIsFull()
@@ -464,4 +473,43 @@ public class ARoom : MonoBehaviour
         }
     }
     #endregion
+
+    public void StartStuffle()
+    {
+        if(shuffle == null)
+        {
+            shuffle = StartCoroutine(ShuffleUnresgisterPatient());
+        }
+    }
+    public void StopStuffle()
+    {
+        if( shuffle != null)
+        {
+            StopCoroutine(shuffle);
+            shuffle = null;
+        }
+    }
+
+    Coroutine shuffle;
+    IEnumerator ShuffleUnresgisterPatient()
+    {
+        while (unRegisterPatientList.Count > 0)
+        {
+            yield return new WaitForSeconds(unregisterQueShuffleTimer);
+            if (unRegisterPatientList.Count > 0)
+            {
+                foreach (var p in unRegisterPatientList)
+                {
+                    p.registerPos.bIsRegiseter = false;
+                    p.BrakeDally();
+                    Transform transform = hospitalManager.GetRandomPos(p);
+                    p.MoveNewShufflePos(transform);
+                }
+            }
+            else
+            {
+                StopStuffle();
+            }
+        }
+    }
 }

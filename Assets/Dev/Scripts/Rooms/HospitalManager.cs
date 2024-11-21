@@ -43,7 +43,7 @@ public class HospitalManager : MonoBehaviour
     {
 
         var avaiableRooms = InspectionRoom.Where(r => r.bIsUnlock).ToList();
-        if(avaiableRooms.Count == 0)
+        if (avaiableRooms.Count == 0)
             return null;
         int randomIndex = Random.Range(0, avaiableRooms.Count);
         var randomPos = avaiableRooms[randomIndex];
@@ -73,6 +73,7 @@ public class HospitalManager : MonoBehaviour
 
     public void OnRoomHaveSpace()
     {
+        Debug.LogError("yoyoooyo");
         receptionManager.StratProssesPatients();
     }
 
@@ -81,7 +82,7 @@ public class HospitalManager : MonoBehaviour
     public Transform GetRandomExit(Patient patient)
     {
         int randomIndex = Random.Range(0, exitsPosses.Length);
-        if(randomIndex == 0)
+        if (randomIndex == 0)
         {
             patient.RightFollowPos = patient.leftFollowPos;
         }
@@ -117,7 +118,7 @@ public class HospitalManager : MonoBehaviour
         int randomIndex = Random.Range(0, availablePositions.Count);
         var randomPos = availablePositions[randomIndex];
 
-    
+
         randomPos.bIsRegiseter = true;
         patient.registerPos = randomPos;
 
@@ -152,27 +153,109 @@ public class HospitalManager : MonoBehaviour
         return 0;
     }
 
+    int indexDes;
     public ARoom GetRoom(DiseaseType diseaseType)
     {
+        indexDes = Random.Range(0, 1);
         switch (diseaseType)
         {
             case DiseaseType.Cough: return pharmacyRoom;
-            case DiseaseType.Cold: return InjectionRoom;
-            case DiseaseType.Heartworm_Disease: return pharmacyRoom;
-            case DiseaseType.Fever: return InjectionRoom;
-            case DiseaseType.Ear_Infection: return GroomingRoom;
+            case DiseaseType.Cold: return pharmacyRoom;
+            case DiseaseType.Fever:
+                if (indexDes == 0)
+                {
+                    return pharmacyRoom;
+                }
+                else
+                {
+                    return InjectionRoom;
+                }
+            case DiseaseType.Heartworm_Disease:
+                if (indexDes == 0)
+                {
+                    return pharmacyRoom;
+                }
+                else
+                {
+                    return InjectionRoom;
+                }
+            case DiseaseType.Ear_Infection:
+                if (indexDes == 0)
+                {
+                    return InjectionRoom;
+                }
+                else
+                {
+                    return GroomingRoom;
+                }
             case DiseaseType.Fleas_and_Ticks: return GroomingRoom;
-            case DiseaseType.Allergies: return GroomingRoom;
-            case DiseaseType.Dental_Disease: return InjectionRoom;
+            case DiseaseType.Allergies:
+                if (indexDes == 0)
+                {
+                    return InjectionRoom;
+                }
+                else
+                {
+                    return GroomingRoom;
+                }
+            case DiseaseType.Dental_Disease:
+                if (indexDes == 0)
+                {
+                    return InjectionRoom;
+                }
+                else
+                {
+                    return GroomingRoom;
+                }
             case DiseaseType.Skin_Infecction: return GroomingRoom;
-            case DiseaseType.Rabies: return InjectionRoom;
-            case DiseaseType.Vomitting: return InjectionRoom;
-            case DiseaseType.Bloat: return MriRoom;
-            case DiseaseType.Bladder_Stones: return OpreationRoom;
-            case DiseaseType.Fractures: return OpreationRoom;
-            case DiseaseType.Kidney_Disease: return IcuRoom;
+            case DiseaseType.Rabies:
+                if (indexDes == 0)
+                {
+                    return InjectionRoom;
+                }
+                else
+                {
+                    return GroomingRoom;
+                }
+            case DiseaseType.Vomitting:
+                if (indexDes == 0)
+                {
+                    return InjectionRoom;
+                }
+                else
+                {
+                    return GroomingRoom;
+                }
+            case DiseaseType.Bloat: return InjectionRoom;
+            case DiseaseType.Bladder_Stones:
+                if (indexDes == 0)
+                {
+                    return MriRoom;
+                }
+                else
+                {
+                    return pharmacyRoom;
+                }
+            case DiseaseType.Fractures:
+                if (indexDes == 0)
+                {
+                    return MriRoom;
+                }
+                else
+                {
+                    return pharmacyRoom;
+                }
+            case DiseaseType.Kidney_Disease:
+                if (indexDes == 0)
+                {
+                    return IcuRoom;
+                }
+                else
+                {
+                    return MriRoom;
+                }
             case DiseaseType.Asthma: return IcuRoom;
-            case DiseaseType.Toy: return pharmacyRoom;
+            case DiseaseType.Toy: return storeRoom;
             default:
                 return null;
         }
@@ -185,7 +268,7 @@ public class HospitalManager : MonoBehaviour
             case 1: return MoodType.Angry;
             case 2: return MoodType.Sad;
             case 3: return MoodType.Happy;
-            case 4: return MoodType.GlassHappy;
+            case 4: return MoodType.CuteHappy;
             default:
                 return MoodType.Happy;
         }

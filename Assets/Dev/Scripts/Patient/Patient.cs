@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
+
 
 public class Patient : MonoBehaviour
 {
@@ -16,6 +18,13 @@ public class Patient : MonoBehaviour
     public Animal animal;
     public DiseaseType diseaseType;
     internal RegisterPos registerPos;
+
+    [Header("Exclamation mark")]
+    public Transform markForLock;
+    public Transform markForFull;
+
+    [Header("Emojie Controller")]
+    public EmojisController emojisController;
 
 
     [Button("MoveAnimal")]
@@ -33,6 +42,30 @@ public class Patient : MonoBehaviour
         });
     }
 
+    protected string processTweenId;
 
+    public void MoveNewShufflePos(Transform traget)
+    {
+        if (string.IsNullOrEmpty(processTweenId))
+        {
+            processTweenId = "ProcessTween_" + Guid.NewGuid().ToString();
+        }
+
+        int index = Random.Range(0, 5);
+        DOVirtual.DelayedCall(index, () =>
+        {
+
+            NPCMovement.MoveToTarget(traget, null);
+            MoveAnimal();
+        }).SetId(processTweenId);
+
+    }
+
+    public void BrakeDally()
+    {
+        DOTween.Kill(processTweenId);
+    }
+
+    
 
 }

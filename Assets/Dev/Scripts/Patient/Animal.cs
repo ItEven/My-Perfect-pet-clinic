@@ -11,7 +11,8 @@ public class Animal : MonoBehaviour
     public NavMeshAgent navmeshAgent;
     public AnimationController animator;
     public Transform player;
-    public EmojisController emojisController;
+    public AnimType idleAnim = AnimType.Idle;
+    public AnimType walkAnim = AnimType.Walk;
 
     //private void Start()
     //{
@@ -37,7 +38,7 @@ public class Animal : MonoBehaviour
 
         if (navmeshAgent.isStopped)
         {
-            animator.PlayAnimation(AnimType.Idle);
+            animator.PlayAnimation(idleAnim);
             return;
         }
         if (player != null)
@@ -56,7 +57,7 @@ public class Animal : MonoBehaviour
             }
             else
             {
-                animator.PlayAnimation(AnimType.Walk);
+                animator.PlayAnimation(walkAnim);
             }
 
         }
@@ -75,12 +76,12 @@ public class Animal : MonoBehaviour
         {
             navmeshAgent.enabled = true;
             navmeshAgent.isStopped = false;
-            animator.PlayAnimation(AnimType.Walk);
+            animator.PlayAnimation(walkAnim);
         });
     }
     public void StopAnimal()
     {
-        animator.PlayAnimation(AnimType.Idle);
+        animator.PlayAnimation(idleAnim);
         navmeshAgent.isStopped = true;
         //navmeshAgent.enabled = false;
     }

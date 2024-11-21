@@ -322,7 +322,7 @@ public class Bed : MonoBehaviour
             cameraController.FollowPatient(patient.transform);
             animationController.PlayAnimation(idleAnim);
             patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-            patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+            patient.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
         }
         else
         {
@@ -330,6 +330,7 @@ public class Bed : MonoBehaviour
         }
 
         MoveAnimal(patient.animal);
+        hospitalManager.OnRoomHaveSpace();
     }
 
     protected void BreakProcess()

@@ -96,7 +96,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9066780490080043665}
-  - {fileID: 6078196950652509487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5554161047766679827
@@ -114,7 +113,8 @@ MonoBehaviour:
   navmeshAgent: {fileID: 3553748005806285251}
   animator: {fileID: 1543174445941035405}
   player: {fileID: 0}
-  emojisController: {fileID: 8693965381549578365}
+  idleAnim: 0
+  walkAnim: 2
 --- !u!195 &3553748005806285251
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2353,89 +2353,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7911020809766599836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4916801661379994276
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8461763730028552418}
-    m_Modifications:
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1278221692858494634, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-        type: 3}
-      propertyPath: m_Name
-      value: EmojisController
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0c83eefe5fcc69e4a94be9443d7d6894, type: 3}
---- !u!4 &6078196950652509487 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1180482841500958603, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-    type: 3}
-  m_PrefabInstance: {fileID: 4916801661379994276}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8693965381549578365 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4367601567668681433, guid: 0c83eefe5fcc69e4a94be9443d7d6894,
-    type: 3}
-  m_PrefabInstance: {fileID: 4916801661379994276}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17f2c2f7143a15499e750be90d029be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

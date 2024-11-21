@@ -67,7 +67,7 @@ public class InspestionBed : Bed
                 }
                 hospitalManager.OnPatientRegister();
                 patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-                patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+                patient.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
 
             }
             else
@@ -80,9 +80,11 @@ public class InspestionBed : Bed
             hospitalManager.OnPatientRegister();
 
             patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-            patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+            patient.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
         }
 
         MoveAnimal(patient.animal);
+        hospitalManager.OnRoomHaveSpace();
+
     }
 }

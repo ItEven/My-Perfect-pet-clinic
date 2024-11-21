@@ -12,7 +12,8 @@ public enum AnimType
     Idle_With_Object,
     Pet_Diagnos,
     StrartInjecting,
-    StopInjecting
+    StopInjecting,
+    Operation
 
 }
 

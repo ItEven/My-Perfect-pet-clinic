@@ -44,7 +44,7 @@ public class PharmacyTable : Bed
 
         animationController.PlayAnimation(idleAnim);
         patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-        patient.animal.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+        patient.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
 
         MoveAnimal(patient.animal);
 

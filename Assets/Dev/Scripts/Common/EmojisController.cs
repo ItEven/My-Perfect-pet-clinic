@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MoodType { GlassHappy, Happy, Lovely, Vomaite, Sad, Shok, Angry }
+public enum MoodType { CuteHappy, Happy, Sad, Angry }
 public class EmojisController : MonoBehaviour
 {
 
-    public ParticleSystem[] emojis;
+    public Transform[] emojis;
 
     public void PlayEmoji(MoodType mood)
     {
@@ -19,12 +19,12 @@ public class EmojisController : MonoBehaviour
 
         if (index >= 0 && index < emojis.Length)
         {
-            ParticleSystem selectedEmoji = emojis[index];
-            selectedEmoji.gameObject.SetActive(true);
+            Transform selectedEmoji = emojis[index];
 
             if (selectedEmoji != null)
             {
-                selectedEmoji.Play();
+                selectedEmoji.gameObject.SetActive(true);
+
             }
             else
             {

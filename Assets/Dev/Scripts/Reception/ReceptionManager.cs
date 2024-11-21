@@ -242,7 +242,7 @@ public class ReceptionManager : MonoBehaviour
     }
     public void OnHoldUp()
     {
-          bIsSfitedOnece = false;
+        bIsSfitedOnece = false;
     }
 
     public void OnPlayerExit()
@@ -284,8 +284,12 @@ public class ReceptionManager : MonoBehaviour
     [Button("StratProsses")]
     public void StratProssesPatients()
     {
-        if (bIsRunning) return;
-       
+
+        if (bIsRunning)
+        {
+            return;
+        }
+
 
         if (bIsPlayerOnDesk)
         {
@@ -301,14 +305,13 @@ public class ReceptionManager : MonoBehaviour
             //if (!hospitalManager.CheckRegiterPosFull())
             //{
             var room = hospitalManager.GetInspectionRoom();
-            
+
 
             if (room == null)
             {
-
                 Debug.LogError(gameObject.name + "this is null");
             }
-            if (!room.bIsUnRegisterQueIsFull())
+            if (!room.waitingQueue.bIsQueueFull())
             {
 
                 if (bIsPlayerOnDesk)
@@ -369,17 +372,17 @@ public class ReceptionManager : MonoBehaviour
             }
             //}
         }
-      
+
     }
 
     public void StopProsses()
     {
 
-        DOTween.Kill("ProgressTween");
 
+        DOTween.Kill(processTweenId);
         gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
+        bIsRunning = false;
         bIsPlayerOnDesk = false;
-
 
     }
 
