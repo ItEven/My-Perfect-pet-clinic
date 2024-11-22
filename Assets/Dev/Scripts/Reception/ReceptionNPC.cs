@@ -154,6 +154,7 @@ public class ReceptionNPC : MonoBehaviour
     public void SetTakeMoneyData(int cost)
     {
         DOVirtual.DelayedCall(0.5f, () => upGrader.SetData(cost));
+        if (bIsUnlock) upGrader.SetUpgraderSprite();
     }
 
     public void OnUpgrade()

@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     #region  Visual Drop Effects
 
-    public void DropObj(GameObject obj)
+    public void DropObjj(GameObject obj)
     {
         if (!obj.activeInHierarchy)
         {
@@ -82,6 +82,19 @@ public class GameManager : MonoBehaviour
                            });
         }
 
+    }
+
+    public void DropObj(GameObject obj)
+    {
+        if (!obj.activeInHierarchy)
+        {
+            obj.SetActive(true);
+            var Scale = obj.transform.localScale;
+            obj.transform.localScale = Vector3.zero;
+            obj.transform.DOScale(Scale, 0.5f);
+
+
+        }
     }
 
 
