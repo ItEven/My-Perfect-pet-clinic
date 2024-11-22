@@ -201,7 +201,7 @@ public class Bed : MonoBehaviour
     bool bIsSfitedOnece;
     public void OnPlayerStay()
     {
-        if (bIsPlayerOnDesk && !gameManager.playerController.playerControllerData.joystick.bIsOnHold && !bIsSfitedOnece)
+        if (bIsPlayerOnDesk && !gameManager.playerController.playerControllerData.joystick.bIsOnHold && !bIsSfitedOnece && !staffNPC.bIsUnlock)
         {
             bIsSfitedOnece = true;
             if (!bIsProcessing)
@@ -319,8 +319,8 @@ public class Bed : MonoBehaviour
             hospitalManager.OnPatientRegister();
             cameraController.FollowPatient(patient.transform);
             animationController.PlayAnimation(idleAnim);
-            patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-            patient.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+            patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+
         }
         else
         {

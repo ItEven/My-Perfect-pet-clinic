@@ -24,6 +24,7 @@ public class InspestionBed : Bed
 
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
+            patient.StopWatting();
 
             StartPatientProcessing(staffNPC.animationController, workingAnimation, seat.idleAnim, staffNPC.currentLevelData.processTime, () =>
             {
@@ -36,9 +37,9 @@ public class InspestionBed : Bed
 
             bIsProcessing = true;
 
+            patient.StopWatting();
             StartPatientProcessing(playerController.animationController, workingAnimation, seat.idleAnim, staffNPC.currentLevelData.processTime, () =>
             {
-                
                 OnProcessComplite(nextRoom, playerController.animationController, seat.idleAnim);
             });
         }
@@ -66,8 +67,8 @@ public class InspestionBed : Bed
                     Debug.LogError(room.gameObject.name + "room is null");
                 }
                 hospitalManager.OnPatientRegister();
-                patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-                patient.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+                patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+
 
             }
             else
@@ -79,8 +80,8 @@ public class InspestionBed : Bed
         {
             hospitalManager.OnPatientRegister();
 
-            patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-            patient.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+            patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+
         }
 
         MoveAnimal(patient.animal);

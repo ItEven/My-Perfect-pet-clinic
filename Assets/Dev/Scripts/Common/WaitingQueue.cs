@@ -51,45 +51,49 @@ public class WaitingQueue : MonoBehaviour
 
     public virtual void ReOrderQueue()
     {
-
         QueueIndex = 0;
-
 
         for (int i = 0; i < patientInQueue.Count; i++)
         {
             var patient = patientInQueue[i];
 
-
+            // Skip if the patient is null
+            if (patient == null)
+            {
+                continue;
+            }
 
             patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
                 patient.transform.rotation = queue[i].rotation;
                 OnReachedQueueAction(patient);
-
             });
             patient.MoveAnimal();
 
-
             QueueIndex++;
         }
+
         PatientManager.instance.StartSpwanPatinet();
-
-
     }
-    public virtual void RemoveFromQueue(Patient customer)
+    public virtual void RemoveFromQueue(Patient patient)
     {
         QueueIndex--;
-        patientInQueue.Remove(customer);
-        ReOrderQueue();
+        if (patientInQueue.Contains(patient))
+        {
+            patientInQueue.Remove(patient);
+            ReOrderQueue();
+        }
     }
 
-    public virtual void OnReachedQueueAction(Patient customer)
+    public virtual void OnReachedQueueAction(Patient patient)
     {
+        patient.StartWatting();
+        patient.waitingQueue = this;
         if (patientInQueue.Count > 0)
         {
-            if (customer != null && patientInQueue[0] != null)
+            if (patient != null && patientInQueue[0] != null)
             {
-                if (customer == patientInQueue[0])
+                if (patient == patientInQueue[0])
                 {
                     OnReachQueueEnd?.Invoke();
                 }

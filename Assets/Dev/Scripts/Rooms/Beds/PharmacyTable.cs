@@ -20,6 +20,8 @@ public class PharmacyTable : Bed
 
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
+            patient.StopWatting();
+
             StartPatientProcessing(staffNPC.animationController, workingAnimation, IdleAnimation, staffNPC.currentLevelData.processTime, () =>
             {
                 OnProcessComplite(null,staffNPC.animationController, IdleAnimation);
@@ -27,8 +29,9 @@ public class PharmacyTable : Bed
         }
         else if (bIsPlayerOnDesk)
         {
+            patient.StopWatting();
 
-                bIsProcessing = true;
+            bIsProcessing = true;
             StartPatientProcessing(playerController.animationController, workingAnimation, IdleAnimation, staffNPC.currentLevelData.processTime, () =>
             {
 
@@ -43,8 +46,8 @@ public class PharmacyTable : Bed
         bIsProcessing = false;
 
         animationController.PlayAnimation(idleAnim);
-        patient.MoveToExit(hospitalManager.GetRandomExit(patient));
-        patient.emojisController.PlayEmoji(hospitalManager.GetAnimalMood());
+        patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+
 
         MoveAnimal(patient.animal);
 

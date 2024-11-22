@@ -17,6 +17,7 @@ public class InjectionBed : Bed
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
             staffNPC.SetItemState(needIteam, true);
+            patient.StopWatting();
             StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
                 staffNPC.animationController.PlayAnimation(AnimType.StopInjecting);
@@ -31,7 +32,7 @@ public class InjectionBed : Bed
         {
             playerController.SetItemState(needIteam, true);
             bIsProcessing = true;
-
+            patient.StopWatting();
             StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
                 playerController.animationController.PlayAnimation(AnimType.StopInjecting);

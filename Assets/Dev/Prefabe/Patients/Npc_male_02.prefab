@@ -1089,9 +1089,13 @@ MonoBehaviour:
   NPCMovement: {fileID: 8567763208807028011}
   animal: {fileID: 0}
   diseaseType: 0
+  wattingTime: 200
+  waitStandTime: 1.2
   markForLock: {fileID: 4982388794058131768}
   markForFull: {fileID: 410127567602851260}
   emojisController: {fileID: 1864452890305519285}
+  sloganTextBox: {fileID: 0}
+  sloganText: {fileID: 0}
 --- !u!114 &8567763208807028011
 MonoBehaviour:
   m_ObjectHideFlags: 0

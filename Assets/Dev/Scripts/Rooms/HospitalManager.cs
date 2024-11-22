@@ -153,16 +153,16 @@ public class HospitalManager : MonoBehaviour
         return 0;
     }
 
-    int indexDes;
+    float indexDes;
     public ARoom GetRoom(DiseaseType diseaseType)
     {
-        indexDes = Random.Range(0, 1);
+        indexDes = Random.Range(0, 10);
         switch (diseaseType)
         {
             case DiseaseType.Cough: return pharmacyRoom;
             case DiseaseType.Cold: return pharmacyRoom;
             case DiseaseType.Fever:
-                if (indexDes == 0)
+                if (indexDes >= 5)
                 {
                     return pharmacyRoom;
                 }
@@ -171,7 +171,7 @@ public class HospitalManager : MonoBehaviour
                     return InjectionRoom;
                 }
             case DiseaseType.Heartworm_Disease:
-                if (indexDes == 0)
+                if (indexDes >= 5)
                 {
                     return pharmacyRoom;
                 }
@@ -180,7 +180,7 @@ public class HospitalManager : MonoBehaviour
                     return InjectionRoom;
                 }
             case DiseaseType.Ear_Infection:
-                if (indexDes == 0)
+                if (indexDes <= 3)
                 {
                     return InjectionRoom;
                 }
@@ -190,7 +190,7 @@ public class HospitalManager : MonoBehaviour
                 }
             case DiseaseType.Fleas_and_Ticks: return GroomingRoom;
             case DiseaseType.Allergies:
-                if (indexDes == 0)
+                if (indexDes >= 4)
                 {
                     return InjectionRoom;
                 }
@@ -199,7 +199,7 @@ public class HospitalManager : MonoBehaviour
                     return GroomingRoom;
                 }
             case DiseaseType.Dental_Disease:
-                if (indexDes == 0)
+                if (indexDes >= 3)
                 {
                     return InjectionRoom;
                 }
@@ -209,7 +209,7 @@ public class HospitalManager : MonoBehaviour
                 }
             case DiseaseType.Skin_Infecction: return GroomingRoom;
             case DiseaseType.Rabies:
-                if (indexDes == 0)
+                if (indexDes >= 3)
                 {
                     return InjectionRoom;
                 }
@@ -218,7 +218,7 @@ public class HospitalManager : MonoBehaviour
                     return GroomingRoom;
                 }
             case DiseaseType.Vomitting:
-                if (indexDes == 0)
+                if (indexDes >= 4)
                 {
                     return InjectionRoom;
                 }
@@ -228,7 +228,7 @@ public class HospitalManager : MonoBehaviour
                 }
             case DiseaseType.Bloat: return InjectionRoom;
             case DiseaseType.Bladder_Stones:
-                if (indexDes == 0)
+                if (indexDes >= 5)
                 {
                     return MriRoom;
                 }
@@ -237,7 +237,7 @@ public class HospitalManager : MonoBehaviour
                     return pharmacyRoom;
                 }
             case DiseaseType.Fractures:
-                if (indexDes == 0)
+                if (indexDes >= 5)
                 {
                     return MriRoom;
                 }
@@ -246,7 +246,7 @@ public class HospitalManager : MonoBehaviour
                     return pharmacyRoom;
                 }
             case DiseaseType.Kidney_Disease:
-                if (indexDes == 0)
+                if (indexDes >= 5)
                 {
                     return IcuRoom;
                 }

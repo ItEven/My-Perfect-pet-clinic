@@ -13,7 +13,10 @@ public enum AnimType
     Pet_Diagnos,
     StrartInjecting,
     StopInjecting,
-    Operation
+    Operation,
+    Angry,
+    Angry_Walk,
+    Happy_Walk
 
 }
 

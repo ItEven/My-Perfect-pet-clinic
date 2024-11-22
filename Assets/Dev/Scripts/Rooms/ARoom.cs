@@ -244,7 +244,6 @@ public class ARoom : MonoBehaviour
                 patients.markForLock.gameObject.SetActive(false);
                 waitingQueue.AddInQueue(patients);
                 patients.MoveAnimal();
-
             }
             else
             {
@@ -263,6 +262,10 @@ public class ARoom : MonoBehaviour
                 patients.NPCMovement.MoveToTarget(transform, null);
                 patients.MoveAnimal();
                 StartStuffle();
+                patients.StartWatting(() =>
+                {
+                    RemovePatientFromUnRegisterQ(patients);
+                });
 
             }
         }
@@ -273,6 +276,7 @@ public class ARoom : MonoBehaviour
         {
             foreach (Patient patient in unRegisterPatientList)
             {
+                patient.StopWatting();
                 RegisterPatient(patient);
                 patient.registerPos.bIsRegiseter = false;
                 patient.BrakeDally();
@@ -289,9 +293,19 @@ public class ARoom : MonoBehaviour
         {
             Patient patient = unRegisterPatientList[0];
             RegisterPatient(patient);
-            patient.registerPos.bIsRegiseter = false;
-            patient.BrakeDally();
-            unRegisterPatientList.RemoveAt(0);
+            RemovePatientFromUnRegisterQ(patient);
+        }
+    }
+
+ 
+    public void RemovePatientFromUnRegisterQ(Patient patient)
+    {
+        hospitalManager.OnRoomHaveSpace();
+        patient.registerPos.bIsRegiseter = false;
+        patient.BrakeDally();
+        if (unRegisterPatientList.Contains(patient))
+        {
+            unRegisterPatientList.Remove(patient);
         }
     }
     public void RearngeQue()
@@ -319,11 +333,16 @@ public class ARoom : MonoBehaviour
                 patient.NPCMovement.navmeshAgent.enabled = enabled;
                 patient.NPCMovement.MoveToTarget(bed.petOwnerSeat.transform, () =>
                 {
-
                     OnReachTable(bed, patient);
+                    patient.StartWatting(() =>
+                    {
+                        patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+                        bed.MoveAnimal(patient.animal);
+                    });
                 });
                 hospitalManager.OnRoomHaveSpace();
                 patient.MoveAnimal();
+
                 NextPatientFromUnRegisterQ();
             }
         }
@@ -382,6 +401,8 @@ public class ARoom : MonoBehaviour
             return false;
         }
     }
+
+  
     #endregion
 
     #region Data Functions
@@ -476,14 +497,14 @@ public class ARoom : MonoBehaviour
 
     public void StartStuffle()
     {
-        if(shuffle == null)
+        if (shuffle == null)
         {
             shuffle = StartCoroutine(ShuffleUnresgisterPatient());
         }
     }
     public void StopStuffle()
     {
-        if( shuffle != null)
+        if (shuffle != null)
         {
             StopCoroutine(shuffle);
             shuffle = null;

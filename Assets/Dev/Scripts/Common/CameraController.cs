@@ -12,12 +12,12 @@ public class CameraController : MonoBehaviour
     private static CameraController cameraController;
     public static CameraController Instance => cameraController;
 
-    public float followDelay = 300f;
-    public float followDurtion = 4f;
+    public float followDelay = 200f;
+    public float followDurtion = 7f;
     public float rectionTime = 1f;
 
 
-    bool bCanCameraMove = true;
+    public bool bCanCameraMove = true;
     bool bIsMoveingToPatient = false;
 
     PlayerController playerController;
@@ -58,13 +58,11 @@ public class CameraController : MonoBehaviour
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
         playerController.animationController.PlayAnimation(AnimType.Idle);
         transform.SetParent(target);
-        DOVirtual.DelayedCall(1f, () =>
+        transform.DOMove(target.position, 0.5f).OnComplete(() =>
         {
-            transform.DOMove(Vector3.zero, 1f).OnComplete(() =>
-            {
-                onComplete?.Invoke();
-            });
+            onComplete?.Invoke();
         });
+
     }
 
     public void MoveToPlayer()
@@ -77,6 +75,7 @@ public class CameraController : MonoBehaviour
             playerController.playerControllerData.joystick.OnPointerUp(null);
             playerController.playerControllerData.characterMovement.enabled = true;
             playerController.animationController.PlayAnimation(AnimType.Idle);
+            ManageCamera();
         });
     }
 
@@ -109,14 +108,13 @@ public class CameraController : MonoBehaviour
         yield return null;
     }
 
-    public void FollowPatient(Transform target)
+    public void FollowPatient(Transform target, Action onComplite = null)
     {
-        if (!bCanCameraMove) return;
-
-        bCanCameraMove = false;
+        stopManageCamera();
         bIsMoveingToPatient = true;
         MoveToTargetPatient(target, () =>
         {
+            onComplite?.Invoke();
             DOVirtual.DelayedCall(followDurtion, () => { bIsMoveingToPatient = false; MoveToPlayer(); });
         });
 
@@ -141,6 +139,7 @@ public class CameraController : MonoBehaviour
         {
             processTweenId = "ProcessTween_" + Guid.NewGuid().ToString();
         }
+
         DOVirtual.DelayedCall(followDelay, () =>
         {
 
@@ -150,8 +149,11 @@ public class CameraController : MonoBehaviour
 
     public void stopManageCamera()
     {
-        DOTween.Kill(processTweenId);
+        if (processTweenId != null)
+        {
+            DOTween.Kill(processTweenId);
+        }
     }
-  
+
     #endregion
 }

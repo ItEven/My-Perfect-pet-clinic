@@ -305,17 +305,19 @@ public class ReceptionManager : MonoBehaviour
             //if (!hospitalManager.CheckRegiterPosFull())
             //{
             var room = hospitalManager.GetInspectionRoom();
-
+            Patient patient = waitingQueue.patientInQueue[0];
 
             if (room == null)
             {
                 Debug.LogError(gameObject.name + "this is null");
             }
             if (!room.waitingQueue.bIsQueueFull())
-            {
+            {  
+
 
                 if (bIsPlayerOnDesk)
                 {
+                    patient.StopWatting();
                     bIsRunning = true;
                     bIsProcessing = true;
                     gameManager.playerController.animationController.PlayAnimation(seat.workingAnim);
@@ -335,6 +337,7 @@ public class ReceptionManager : MonoBehaviour
                            room.RegisterPatient(waitingQueue.patientInQueue[0]);
 
                            waitingQueue.RemoveFromQueue(waitingQueue.patientInQueue[0]);
+
                            worldProgresBar.fillAmount = 0;
                            bIsProcessing = false;
                            bIsRunning = false;
@@ -344,6 +347,8 @@ public class ReceptionManager : MonoBehaviour
                 }
                 else if (npc.bIsUnlock)
                 {
+                    patient.StopWatting();
+
                     bIsRunning = true;
                     npc.animationController.PlayAnimation(seat.workingAnim);
                     if (string.IsNullOrEmpty(processTweenId))

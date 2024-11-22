@@ -22,6 +22,8 @@ public class MriBed : Bed
             patient.animal.transform.SetParent(bedSeat);
             bedSeat.DOLocalMoveZ(0f, 1f).OnComplete(() =>
             {
+                patient.StopWatting();
+
                 StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
                 {
                     bedSeat.DOLocalMoveZ(bedOldPos.z, 1f).OnComplete(() =>
@@ -38,6 +40,8 @@ public class MriBed : Bed
             patient.animal.transform.SetParent(bedSeat);
             bedSeat.DOLocalMoveZ(0f, 1f).OnComplete(() =>
             {
+                patient.StopWatting();
+
                 StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
                 {
                     bedSeat.DOLocalMoveZ(bedOldPos.z, 1f).OnComplete(() =>
