@@ -15,7 +15,8 @@ public class FpsCounter : MonoBehaviour
     }
 
     private void OnGUI() {
-        Rect location = new Rect(5, 5, 230, 90);
+        Rect location = new Rect(5,500
+            , 230, 90);
         string text = $"FPS: {Mathf.Round(count)}";
         Texture black = Texture2D.linearGrayTexture;
         GUI.DrawTexture(location, black, ScaleMode.StretchToFill);

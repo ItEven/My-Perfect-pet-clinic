@@ -15,9 +15,9 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.22249693}
   midtones:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: -0.1377275}
   highlights:
     m_OverrideState: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   components:
   - {fileID: 1181432160915369399}
   - {fileID: -1202326855354547922}
+  - {fileID: 7807675145943236932}
 --- !u!114 &1181432160915369399
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -153,8 +154,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.37339056
-          value: 0.3716814
+          time: 0.36823106
+          value: 0.3671875
           inSlope: 1
           outSlope: 1
           tangentMode: 0
@@ -202,8 +203,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.77968526
-          value: 0.78625053
+          time: 0.63898915
+          value: 0.734375
           inSlope: 0.9480539
           outSlope: 0.9480539
           tangentMode: 0
@@ -274,3 +275,19 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+--- !u!114 &7807675145943236932
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 0
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0
