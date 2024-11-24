@@ -40,11 +40,15 @@ public class ARoom : MonoBehaviour
     //private ARoomData _save = new ARoomData();
     public string ROOMNAME;
 
+
     /*
      * 
      * 
      * 
      * */
+    [Header("Room Datiles")]
+    public string roomName;
+    public Sprite roomIcon;
 
     [Header("Task Details")]
     public int currentTask;
@@ -134,6 +138,7 @@ public class ARoom : MonoBehaviour
         {
             gameManager.SetObjectsStates(lockedObjs, false);
             gameManager.SetObjectsStates(unlockObjs, true);
+            uiManager.AddRoomUi(roomIcon, roomName, bIsUnlock.ToString(), upGrader.transform);
             // foreach (var item in unlockObjs)
             // {
             //     gameManager.DropObj(item);
@@ -160,6 +165,8 @@ public class ARoom : MonoBehaviour
             {
                 gameManager.DropObj(item);
             }
+            uiManager.AddRoomUi(roomIcon, roomName, bIsUnlock.ToString(), upGrader.transform);
+
             // LoadBedData();
             gameManager.PlayParticles(roundUpgradePartical);
             //  Destroy(upGrader.gameObject);
@@ -238,6 +245,7 @@ public class ARoom : MonoBehaviour
     {
         if (patients != null)
         {
+          
             if (!waitingQueue.bIsQueueFull() && bIsUnlock)
             {
                 patients.markForFull.gameObject.SetActive(false);

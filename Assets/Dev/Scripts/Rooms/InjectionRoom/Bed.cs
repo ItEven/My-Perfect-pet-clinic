@@ -111,6 +111,26 @@ public class Bed : MonoBehaviour
         {
             if (unlockObjs != null)
             {
+                gameManager.SetObjectsStates(unlockObjs, true);
+
+            }
+            LoadNpcData();
+            Collider.enabled = true;
+        }
+        else
+        {
+            Collider.enabled = false;
+            staffNPC.gameObject.SetActive(false);
+            gameManager.SetObjectsStates(unlockObjs, false);
+        }
+        SetUpgradeVisual();
+    }
+    public void OnUnlock()
+    {
+        if (bIsUnlock)
+        {
+            if (unlockObjs != null)
+            {
                 foreach (var item in unlockObjs)
                 {
                     gameManager.DropObj(item);
@@ -130,7 +150,6 @@ public class Bed : MonoBehaviour
         }
         SetUpgradeVisual();
     }
-
     public void LoadNpcData()
     {
         DOVirtual.DelayedCall(0.2f, () =>
@@ -166,7 +185,7 @@ public class Bed : MonoBehaviour
         {
             bIsUnlock = true;
             bIsUpgraderActive = false;
-            SetVisual();
+            OnUnlock();
             TaskManager.instance?.OnTaskComplete(currentTask);
         }
     }
@@ -285,7 +304,7 @@ public class Bed : MonoBehaviour
     {
         if (processParticals != null)
         {
-           // processParticals.gameObject.SetActive(true);
+            // processParticals.gameObject.SetActive(true);
             processParticals.Play();
         }
         if (string.IsNullOrEmpty(processTweenId))

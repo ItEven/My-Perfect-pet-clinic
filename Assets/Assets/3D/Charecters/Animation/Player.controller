@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc57c651bb28e80469d686300e536d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minTimeBored: 10
-  _maxTimeBored: 15
+  _minTimeBored: 5
+  _maxTimeBored: 10
   _numberOfBoredAnimations: 8
 --- !u!1102 &-6462124664263844367
 AnimatorState:

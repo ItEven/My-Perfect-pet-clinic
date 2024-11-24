@@ -26,6 +26,8 @@ public class Patient : MonoBehaviour
 
     [Header("Watting Duration")]
     public float wattingTime = 10f;
+    public float SloganDuration = 100f;
+    public float sloganVisibalTime = 10f;
     public float waitStandTime = 2f;
 
     [Header("Exclamation mark")]
@@ -39,7 +41,13 @@ public class Patient : MonoBehaviour
     public RectTransform sloganTextBox;
     public TextMeshProUGUI sloganText;
 
+
+    private void Start()
+    {
+        sloganTextBox.gameObject.SetActive(false);
+    }
     [Button("MoveAnimal")]
+
     public void MoveAnimal()
     {
         animal.player = RightFollowPos;
@@ -48,7 +56,7 @@ public class Patient : MonoBehaviour
     public void MoveToExit(Transform ExitPoint, MoodType moodType)
     {
         emojisController.PlayEmoji(moodType);
-        if(moodType == MoodType.Happy)
+        if (moodType == MoodType.Happy)
         {
             NPCMovement.walkingAnimType = AnimType.Happy_Walk;
             if (CameraController.Instance.bCanCameraMove)
@@ -79,7 +87,6 @@ public class Patient : MonoBehaviour
             NPCMovement.MoveToTarget(traget, null);
             MoveAnimal();
         }).SetId(processTweenId);
-
     }
 
     public void BrakeDally()
@@ -91,6 +98,7 @@ public class Patient : MonoBehaviour
 
     public void StartWatting(Action onCompliet = null)
     {
+        StartPlayingSalogan();
         if (string.IsNullOrEmpty(WattingTweenId))
         {
             WattingTweenId = "WattingTween" + Guid.NewGuid().ToString();
@@ -119,6 +127,33 @@ public class Patient : MonoBehaviour
 
         }).SetId(WattingTweenId);
     }
+    protected string SaloganTweenId;
+    public void StartPlayingSalogan()
+    {
+        int index = (int)Random.Range(SloganDuration - 50, SloganDuration);
+        if (string.IsNullOrEmpty(SaloganTweenId))
+        {
+            SaloganTweenId = "SaloganTween_" + Guid.NewGuid().ToString();
+        }
+        StopSlogan();
+        DOVirtual.DelayedCall(index, () =>
+        {
+            if (animal != null)
+            {
+                sloganTextBox.gameObject.SetActive(true);
+                DOVirtual.DelayedCall(sloganVisibalTime, () =>
+                {
+                    sloganTextBox.gameObject.SetActive(false);
+                });
+            }
+        }).SetId(SaloganTweenId);
+    }
+
+    public void StopSlogan()
+    {
+        DOTween.Kill(SaloganTweenId);
+
+    }
 
     public void MoveFromQ()
     {
@@ -131,6 +166,7 @@ public class Patient : MonoBehaviour
     }
     public void StopWatting()
     {
+        StopSlogan();
         DOTween.Kill(WattingTweenId);
     }
 

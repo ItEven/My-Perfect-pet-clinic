@@ -76,6 +76,9 @@ public class TaskManager : MonoBehaviour
         switch (taskNum)
         {
             case 0:
+                patientManager.bIsUnlock = true;
+                patientManager.gameObject.SetActive(true);
+                patientManager.LoadData();
                 receptionManager.bIsUpgraderActive = true;
                 receptionManager.SetUpgredeVisual(); break;
             case 1:
@@ -88,9 +91,8 @@ public class TaskManager : MonoBehaviour
             case 3:
                 patientManager.AddDisease(DiseaseType.Cough);
                 patientManager.AddDisease(DiseaseType.Cold);
-                patientManager.bIsUnlock = true;
-                patientManager.gameObject.SetActive(true);
-                patientManager.LoadData();
+                patientManager.bCanSendPatient = true;
+                patientManager.StartSendingPatinet();
                 //storageRoom.bIsUpgraderActive = true;
                 //storageRoom.SetUpgradeVisual();
                 OnTaskComplete(4);

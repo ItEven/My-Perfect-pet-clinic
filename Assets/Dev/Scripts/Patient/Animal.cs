@@ -8,6 +8,7 @@ using DG.Tweening;
 
 public class Animal : MonoBehaviour
 {
+    public AnimalType animalType;
     public NavMeshAgent navmeshAgent;
     public AnimationController animator;
     public Transform player;

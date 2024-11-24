@@ -95,10 +95,6 @@ public class NPCMovement : MonoBehaviour
 
                 onCompleteAction = onComplete;
             }
-            else
-            {
-                Debug.LogError(navmeshAgent);
-            }
         });
     }
 

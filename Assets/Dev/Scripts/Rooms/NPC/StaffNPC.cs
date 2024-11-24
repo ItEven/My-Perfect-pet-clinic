@@ -123,7 +123,6 @@ public class StaffNPC : MonoBehaviour
             transform.position = seat.transform.position;
             transform.rotation = seat.transform.rotation;
             animationController.PlayAnimation(seat.idleAnim);
-            roundUpgradePartical.ForEach(X => X.Play());
         }
         else
         {
@@ -161,8 +160,9 @@ public class StaffNPC : MonoBehaviour
             bIsUpgraderActive = false;
             currentLevel = 0;
             currentLevelData = levels[currentLevel];
-
             SetVisual();
+            roundUpgradePartical.ForEach(X => X.Play());
+
             OnUnlockNpc.Invoke();
             TaskManager.instance?.OnTaskComplete(currentLevelData.nextTask);
         }

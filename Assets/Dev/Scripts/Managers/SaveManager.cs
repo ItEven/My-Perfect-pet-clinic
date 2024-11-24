@@ -14,6 +14,7 @@ public class SaveManager : MonoBehaviour
     public UiManager uiManager;
     public HospitalManager hospitalManager;
     public CameraController cameraController;
+    public TaskManager taskManager;
 
     public GameData gameData = new GameData();
 
@@ -29,7 +30,7 @@ public class SaveManager : MonoBehaviour
 
     public void SaveData()
     {
- 
+        if (!taskManager.hallManager_01.bIsUnlock) return;
         string jsonData = JsonUtility.ToJson(gameData);
         PlayerPrefs.SetString("GameData", jsonData);
     }

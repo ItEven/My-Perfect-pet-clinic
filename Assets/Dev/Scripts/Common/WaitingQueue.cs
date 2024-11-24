@@ -73,7 +73,7 @@ public class WaitingQueue : MonoBehaviour
             QueueIndex++;
         }
 
-        PatientManager.instance.StartSpwanPatinet();
+        PatientManager.instance.SendPatientToHospital();
     }
     public virtual void RemoveFromQueue(Patient patient)
     {
@@ -88,6 +88,7 @@ public class WaitingQueue : MonoBehaviour
     public virtual void OnReachedQueueAction(Patient patient)
     {
         patient.StartWatting();
+    
         patient.waitingQueue = this;
         if (patientInQueue.Count > 0)
         {

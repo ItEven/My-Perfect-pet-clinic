@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9308d38d2cb152143a9fa476a246f2e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animalType: 1
   navmeshAgent: {fileID: 1382087107485015823}
   animator: {fileID: 589268074373834865}
   player: {fileID: 0}

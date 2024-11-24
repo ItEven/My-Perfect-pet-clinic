@@ -15,6 +15,14 @@ public class UiManager : MonoBehaviour
     [Header("HUD")]
     public RectTransform hudPanel;
 
+    [Header("RoomUI")]
+    public GameObject roomUIPrefab;
+    public RectTransform roombackgroundPanel;
+    public RectTransform roomPanel;
+    public Image roomPanelBgImagel;
+    public RectTransform roomContentBox;
+    public Button roombtn;
+    public Button roomcloseBtn;
 
     [Header("Loder Panel")]
     public RectTransform loderPnael;
@@ -34,7 +42,38 @@ public class UiManager : MonoBehaviour
         //});
         //settingBtn.onClick.AddListener
         loderPnael.gameObject.SetActive(false);
+        BtnLissnerts();
     }
+    public void BtnLissnerts()
+    {
+        roombtn.onClick.RemoveAllListeners();
+        roombtn.onClick.AddListener(OpneRoomPanel);
+        roomcloseBtn.onClick.AddListener(OpneRoomPanel);
+    }
+
+    #region Room
+    public void OpneRoomPanel()
+    {
+
+        if (roombackgroundPanel.gameObject.activeInHierarchy)
+        {
+            ClosePanel(roombackgroundPanel, roomPanelBgImagel, roomPanel);
+        }
+        else
+        {
+            OpenPanel(roombackgroundPanel, roomPanelBgImagel, roomPanel);
+        }
+    }
+
+    public void AddRoomUi(Sprite sprite, string dataTitleText, string dataText, Transform DataTransform)
+    {
+        GameObject gameObject = Instantiate(roomUIPrefab, roomContentBox.position, Quaternion.identity, roomContentBox);
+        gameObject.transform.SetSiblingIndex(roomContentBox.childCount - 1);
+        RoomUiContentBox roomUiContent = gameObject.GetComponent<RoomUiContentBox>();
+        roomUiContent.SetRoomData(sprite, dataTitleText, dataText, DataTransform);
+    }
+    #endregion
+
 
     public void OpenPanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)
     {

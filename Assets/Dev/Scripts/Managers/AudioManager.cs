@@ -95,7 +95,6 @@ public class AudioManager : MonoBehaviour
     }
     public void Play(AudioClip clip)
     {
-
         musicAudioSource.clip = clip;
         musicAudioSource.Play();
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);

@@ -37,6 +37,7 @@ public class CameraController : MonoBehaviour
     #region ForUpgr
     public void MoveToTarget(Transform target, Action onComplete = null)
     {
+        stopManageCamera();
         bCanCameraMove = false;
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
@@ -52,6 +53,7 @@ public class CameraController : MonoBehaviour
     }
     public void MoveToTargetPatient(Transform target, Action onComplete = null)
     {
+        stopManageCamera();
         bCanCameraMove = false;
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
@@ -67,6 +69,7 @@ public class CameraController : MonoBehaviour
 
     public void MoveToPlayer()
     {
+
         transform.SetParent(playerController.transform);
         transform.DOMove(playerController.playerControllerData.characterMovement.rotatingObj.position, .5f).OnComplete(() =>
         {

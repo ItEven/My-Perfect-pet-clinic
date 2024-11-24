@@ -96,7 +96,7 @@ public class ReceptionNPC : MonoBehaviour
         if (bIsUnlock)
         {
             gameManager.DropObj(npcObj);
-            roundUpgradePartical.ForEach(X => X.Play());
+    
         }
         else
         {
@@ -104,6 +104,7 @@ public class ReceptionNPC : MonoBehaviour
         }
         // gameManager.ReBuildNavmesh();
     }
+
     public void SetUpgredeVisual()
     {
 
@@ -135,8 +136,8 @@ public class ReceptionNPC : MonoBehaviour
             currentLevel = 0;
             currentLevelData = levels[currentLevel];
             SetVisual();
+            roundUpgradePartical.ForEach(X => X.Play());
             OnUnlockNpc.Invoke();
-
         }
         else
         {
