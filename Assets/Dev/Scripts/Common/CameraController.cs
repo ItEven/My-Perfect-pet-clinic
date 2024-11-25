@@ -32,12 +32,13 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         playerController = gameObject.GetComponentInParent<PlayerController>();
+        ManageCamera();
     }
 
     #region ForUpgr
     public void MoveToTarget(Transform target, Action onComplete = null, float delay = 1f)
     {
-        stopManageCamera();
+ 
         bCanCameraMove = false;
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
@@ -53,7 +54,7 @@ public class CameraController : MonoBehaviour
     }
     public void MoveToTargetPatient(Transform target, Action onComplete = null)
     {
-        stopManageCamera();
+        
         bCanCameraMove = false;
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
@@ -78,7 +79,6 @@ public class CameraController : MonoBehaviour
             playerController.playerControllerData.joystick.OnPointerUp(null);
             playerController.playerControllerData.characterMovement.enabled = true;
             playerController.animationController.PlayAnimation(AnimType.Idle);
-            ManageCamera();
         });
     }
 
@@ -118,7 +118,8 @@ public class CameraController : MonoBehaviour
         MoveToTargetPatient(target, () =>
         {
             onComplite?.Invoke();
-            DOVirtual.DelayedCall(followDurtion, () => { bIsMoveingToPatient = false; MoveToPlayer(); });
+            
+            DOVirtual.DelayedCall(followDurtion, () => { bIsMoveingToPatient = false; MoveToPlayer(); ManageCamera(); ; });
         });
 
     }
@@ -142,12 +143,13 @@ public class CameraController : MonoBehaviour
         {
             processTweenId = "ProcessTween_" + Guid.NewGuid().ToString();
         }
+        bCanCameraMove = false;
 
         DOVirtual.DelayedCall(followDelay, () =>
         {
 
             bCanCameraMove = true;
-        }).SetId(processTweenId);
+        }).SetId(processTweenId).SetLoops(-1, LoopType.Yoyo);
     }
 
     public void stopManageCamera()

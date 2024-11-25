@@ -62,7 +62,7 @@ public class NPCMovement : MonoBehaviour
             else
             {
 
-
+             
 
                 animator.PlayAnimation(walkingAnimType);
                 animator.controller.SetFloat("Velocity", GetVelocity());
@@ -78,7 +78,7 @@ public class NPCMovement : MonoBehaviour
         return Mathf.Clamp01(velocity);
     }
 
-
+    Transform tragetYO;
     public void MoveToTarget(Transform target, Action onComplete = null)
     {
         DOVirtual.DelayedCall(0.2f, () =>
@@ -90,8 +90,8 @@ public class NPCMovement : MonoBehaviour
                 navmeshAgent.enabled = true;
                 navmeshAgent.isStopped = false;
                 animator.PlayAnimation(walkingAnimType);
-
-                navmeshAgent.SetDestination(target.position);
+                tragetYO = target;
+               navmeshAgent.SetDestination(target.position);
 
                 onCompleteAction = onComplete;
             }

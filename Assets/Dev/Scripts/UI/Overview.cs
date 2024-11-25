@@ -166,8 +166,8 @@ public class Overview : MonoBehaviour
         }
         else
         {
-            btn.gameObject.SetActive(false);
-            speedMax.gameObject.SetActive(true);
+            //btn.gameObject.SetActive(false);
+            //speedMax.gameObject.SetActive(true);
         }
     }
 
