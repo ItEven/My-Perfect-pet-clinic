@@ -1832,8 +1832,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Operation_Room
-  roomName: 
-  roomIcon: {fileID: 0}
+  roomName: Operation Room
+  roomIcon: {fileID: 21300000, guid: 3bca0e1c183422e428c7477cbd498270, type: 3}
   currentTask: 54
   unlockPrice: 25040
   bIsUnlock: 0
@@ -6139,8 +6139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Icu _Room
-  roomName: 
-  roomIcon: {fileID: 0}
+  roomName: Icu Room
+  roomIcon: {fileID: 21300000, guid: 700f2ffe4bc9a864ead3551ca471bb1e, type: 3}
   currentTask: 61
   unlockPrice: 30000
   bIsUnlock: 0
@@ -7272,7 +7272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 236.26}
+  m_AnchoredPosition: {x: 0, y: 236.25977}
   m_SizeDelta: {x: 300, y: 750}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &198352859
@@ -8121,8 +8121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Inspection_Room_2
-  roomName: 
-  roomIcon: {fileID: 0}
+  roomName: Infirmary Room
+  roomIcon: {fileID: 21300000, guid: a7dc3b2b136c287478f1d69fd6b3ad8f, type: 3}
   currentTask: 19
   unlockPrice: 890
   bIsUnlock: 0
@@ -26055,10 +26055,10 @@ MonoBehaviour:
   - bIsRegiseter: 0
     pos: {fileID: 1873842698}
   unlockObjs:
+  - {fileID: 2109259894}
   - {fileID: 283071647}
   - {fileID: 1004418401}
   - {fileID: 1038706055}
-  - {fileID: 2109259894}
   - {fileID: 796455862}
   - {fileID: 1192700052}
   lockedObjs:
@@ -36984,7 +36984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 236.26}
+  m_AnchoredPosition: {x: 0, y: 236.25977}
   m_SizeDelta: {x: 300, y: 750}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &1165523542
@@ -42802,8 +42802,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Injection_Room
-  roomName: General Dr 2 Room
-  roomIcon: {fileID: 0}
+  roomName: Injection Room
+  roomIcon: {fileID: 21300000, guid: 944ee1aca69178d42835b3e03a719ac6, type: 3}
   currentTask: 17
   unlockPrice: 740
   bIsUnlock: 0
@@ -45156,8 +45156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Mri_Room
-  roomName: 
-  roomIcon: {fileID: 0}
+  roomName: Mri Room
+  roomIcon: {fileID: 21300000, guid: 1d09f30528724c944b64bd3e49084629, type: 3}
   currentTask: 48
   unlockPrice: 14000
   bIsUnlock: 0
@@ -52267,8 +52267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Store_Room
-  roomName: 
-  roomIcon: {fileID: 0}
+  roomName: Pet Shop
+  roomIcon: {fileID: 21300000, guid: 4cae8a827adef8d468c533c7bf9fb5c5, type: 3}
   currentTask: 29
   unlockPrice: 2240
   bIsUnlock: 0
@@ -53119,8 +53119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Inspection_Room_3
-  roomName: 
-  roomIcon: {fileID: 0}
+  roomName: Sanctuary Room
+  roomIcon: {fileID: 21300000, guid: a7dc3b2b136c287478f1d69fd6b3ad8f, type: 3}
   currentTask: 37
   unlockPrice: 4960
   bIsUnlock: 0
@@ -60044,7 +60044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Inspection_Room
-  roomName: General Dr Room
+  roomName: Clinic Room
   roomIcon: {fileID: 21300000, guid: a7dc3b2b136c287478f1d69fd6b3ad8f, type: 3}
   currentTask: 2
   unlockPrice: 160
@@ -66177,8 +66177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ROOMNAME: Grooming_Room
-  roomName: 
-  roomIcon: {fileID: 0}
+  roomName: 'Grooming Room '
+  roomIcon: {fileID: 21300000, guid: 9ca473cf72c21a14daf5aef7980d7e31, type: 3}
   currentTask: 23
   unlockPrice: 1250
   bIsUnlock: 0

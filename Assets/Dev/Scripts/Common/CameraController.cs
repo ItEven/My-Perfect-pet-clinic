@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
     }
 
     #region ForUpgr
-    public void MoveToTarget(Transform target, Action onComplete = null)
+    public void MoveToTarget(Transform target, Action onComplete = null, float delay = 1f)
     {
         stopManageCamera();
         bCanCameraMove = false;
@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
         playerController.animationController.PlayAnimation(AnimType.Idle);
-        DOVirtual.DelayedCall(1f, () =>
+        DOVirtual.DelayedCall(delay, () =>
         {
             transform.DOMove(target.position, 1f).OnComplete(() =>
             {

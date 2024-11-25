@@ -138,7 +138,7 @@ public class ARoom : MonoBehaviour
         {
             gameManager.SetObjectsStates(lockedObjs, false);
             gameManager.SetObjectsStates(unlockObjs, true);
-            uiManager.AddRoomUi(roomIcon, roomName, bIsUnlock.ToString(), upGrader.transform);
+            uiManager.AddRoomUi(roomIcon, roomName, bIsUnlock.ToString(), unlockObjs[0].transform);
             // foreach (var item in unlockObjs)
             // {
             //     gameManager.DropObj(item);

@@ -14,27 +14,28 @@ public class RoomUiContentBox : MonoBehaviour
     public Transform targetPos;
     CameraController controller;
     private void Start()
-    { 
-        btn.interactable = false;
-        controller = SaveManager.instance.cameraController; 
+    {
+        //btn.interactable = false;
+        controller = SaveManager.instance.cameraController;
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(MoveToTarget);
     }
 
     public void MoveToTarget()
     {
-        if(targetPos != null)
+        if (targetPos != null)
         {
+            UiManager.instance.OpneRoomPanel();
             controller.MoveToTarget(targetPos, () =>
             {
                 DOVirtual.DelayedCall(2f, () =>
                 {
                     controller.MoveToPlayer();
                 });
-            });
+            }, 0f);
         }
     }
-    public void SetRoomData(Sprite sprite, string dataTitleText ,string dataText, Transform DataTransform)
+    public void SetRoomData(Sprite sprite, string dataTitleText, string dataText, Transform DataTransform)
     {
         icon.sprite = sprite;
         titleText.text = dataTitleText;
