@@ -16,7 +16,8 @@ public enum AnimType
     Operation,
     Angry,
     Angry_Walk,
-    Happy_Walk
+    Happy_Walk,
+    Standing_Typing
 
 }
 

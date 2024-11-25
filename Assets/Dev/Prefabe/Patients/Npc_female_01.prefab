@@ -91,6 +91,8 @@ MonoBehaviour:
   animal: {fileID: 0}
   diseaseType: 0
   wattingTime: 200
+  SloganDuration: 100
+  sloganVisibalTime: 10
   waitStandTime: 1.2
   markForLock: {fileID: 8678231996920018382}
   markForFull: {fileID: 1583999189804512801}

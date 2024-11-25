@@ -59,12 +59,12 @@ public class InspestionBed : Bed
             {
                 if (nextRoom != null)
                 {
-                    Debug.LogError(nextRoom.gameObject.name + "room is not null" + nextRoom.bIsUnRegisterQueIsFull() + "que is full" + nextRoom.waitingQueue.gameObject.name + nextRoom.bIsUnlock + "the was not unlock");
+                    //Debug.LogError(nextRoom.gameObject.name + "room is not null" + nextRoom.bIsUnRegisterQueIsFull() + "que is full" + nextRoom.waitingQueue.gameObject.name + nextRoom.bIsUnlock + "the was not unlock");
 
                 }
                 else
                 {
-                    Debug.LogError(room.gameObject.name + "room is null");
+                    //Debug.LogError(room.gameObject.name + "room is null");
                 }
                 hospitalManager.OnPatientRegister();
                 patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());

@@ -272,6 +272,7 @@ public class ARoom : MonoBehaviour
                 StartStuffle();
                 patients.StartWatting(() =>
                 {
+                    patients.MarkOff();
                     RemovePatientFromUnRegisterQ(patients);
                 });
 

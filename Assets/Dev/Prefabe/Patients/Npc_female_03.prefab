@@ -1019,6 +1019,8 @@ MonoBehaviour:
   animal: {fileID: 0}
   diseaseType: 0
   wattingTime: 200
+  SloganDuration: 100
+  sloganVisibalTime: 10
   waitStandTime: 1.2
   markForLock: {fileID: 2397585861649072661}
   markForFull: {fileID: 2591457954653033364}
@@ -2041,7 +2043,7 @@ PrefabInstance:
     - target: {fileID: 6644465968988636718, guid: 116af7374df869644ac9c32e5c14658c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8456937237904884417, guid: 116af7374df869644ac9c32e5c14658c,
         type: 3}

@@ -59,6 +59,7 @@ public class Patient : MonoBehaviour
         if (moodType == MoodType.Happy)
         {
             NPCMovement.walkingAnimType = AnimType.Happy_Walk;
+            animal.walkAnim = AnimType.Happy_Walk;
             if (CameraController.Instance.bCanCameraMove)
             {
                 CameraController.Instance.FollowPatient(transform);
@@ -98,12 +99,12 @@ public class Patient : MonoBehaviour
 
     public void StartWatting(Action onCompliet = null)
     {
-        StartPlayingSalogan();
         if (string.IsNullOrEmpty(WattingTweenId))
         {
             WattingTweenId = "WattingTween" + Guid.NewGuid().ToString();
         }
         StopWatting();
+        StartPlayingSalogan();
         int index = (int)Random.Range(wattingTime - 50, wattingTime);
         DOVirtual.DelayedCall(index, () =>
         {
@@ -146,9 +147,10 @@ public class Patient : MonoBehaviour
                     sloganTextBox.gameObject.SetActive(false);
                 });
             }
-        }).SetId(SaloganTweenId);
+        }).SetId(SaloganTweenId).SetLoops(-1, LoopType.Restart);
     }
 
+    [Button("niga")]
     public void StopSlogan()
     {
         DOTween.Kill(SaloganTweenId);
@@ -192,5 +194,14 @@ public class Patient : MonoBehaviour
         {
             Debug.LogError("WattingQ is Null");
         }
+    }
+
+    public void MarkOff()
+    {
+        StopSlogan();
+        StopWatting();
+        sloganTextBox.gameObject.SetActive(false);
+        markForFull.gameObject.SetActive(false);
+        markForLock.gameObject.SetActive(false);
     }
 }
