@@ -73,8 +73,9 @@ public class MriBed : Bed
                 {
                     Debug.LogError(room.gameObject.name + "room is null");
                 }
-                hospitalManager.OnPatientRegister();
+                //hospitalManager.OnPatientRegister();
                 patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+                saveManager.gameData.hospitalData.failedPatientCount++;
 
 
             }
@@ -85,7 +86,7 @@ public class MriBed : Bed
         }
         else
         {
-            hospitalManager.OnPatientRegister();
+            //hospitalManager.OnPatientRegister();
 
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
 

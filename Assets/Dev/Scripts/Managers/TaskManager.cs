@@ -3,11 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
+using AssetKits.ParticleImage;
+using DG.Tweening;
 
 public class TaskManager : MonoBehaviour
 {
     public static TaskManager instance;
     // public event Action<int> OnTaskComplite;
+
+    [Header("Ui Things")]
+    public Text taskProgressText;
+    public Slider taskProgressSlider;
+    public ParticleImage particle;
+
+    public Button campassBtn;
+    internal Transform target;
+    public int curentTask
+    {
+        get { return saveManager.gameData.taskDataData.curentTask; }
+        set { saveManager.gameData.taskDataData.curentTask = value;
+            UpdateUI();
+        }
+    }
+    public int MaxTask;
+
     [Header("Other Scripts")]
     public CameraController cameraController;
     public PatientManager patientManager;
@@ -49,14 +69,10 @@ public class TaskManager : MonoBehaviour
     private void OnEnable()
     {
         UpdateInitializers();
-        // OnTaskComplite += OnChcekTask;
-
     }
     private void OnDisable()
     {
         UpdateInitializers();
-        //  OnTaskComplite -= OnChcekTask;
-
     }
 
     public void UpdateInitializers()
@@ -65,6 +81,10 @@ public class TaskManager : MonoBehaviour
         economyManager = saveManager.economyManager;
         gameManager = saveManager.gameManager;
         uiManager = saveManager.uiManager;
+        UpdateUI();
+        campassBtn.onClick.RemoveAllListeners();
+        campassBtn.onClick.AddListener(MovelastTarget);
+       
     }
 
     #endregion
@@ -73,6 +93,7 @@ public class TaskManager : MonoBehaviour
     [Button("On Task Complite")]
     public void OnTaskComplete(int taskNum)
     {
+        curentTask = taskNum;
         switch (taskNum)
         {
             case 0:
@@ -85,10 +106,12 @@ public class TaskManager : MonoBehaviour
                 InspectionRoom.bIsUpgraderActive = true;
                 InspectionRoom.SetUpgradeVisual(); break;
             case 2:
+                particle.Play();
                 pharmacyRoom.bIsUpgraderActive = true;
                 pharmacyRoom.SetUpgradeVisual();
                 break;
             case 3:
+                particle.Play();
                 patientManager.AddDisease(DiseaseType.Cough);
                 patientManager.AddDisease(DiseaseType.Cold);
                 patientManager.bCanSendPatient = true;
@@ -139,25 +162,27 @@ public class TaskManager : MonoBehaviour
                 hallManager_02.bIsUpgraderActive = true;
                 hallManager_02.SetUpgredeVisual(); break;
             case 16:
+                particle.Play();
                 patientManager.AddDisease(DiseaseType.Ear_Infection);
 
                 InjectionRoom.bIsUpgraderActive = true;
                 InjectionRoom.SetUpgradeVisual(); break;
             case 17:
+                particle.Play();
                 patientManager.AddDisease(DiseaseType.Fleas_and_Ticks);
                 OnTaskComplete(18); break;
             case 18:
                 InspectionRoom_2.bIsUpgraderActive = true;
                 InspectionRoom_2.SetUpgradeVisual(); break;
             case 19:
-
+                particle.Play();
                 patientManager.AddDisease(DiseaseType.Rabies);
                 patientManager.AddDisease(DiseaseType.Dental_Disease);
                 patientManager.AddDisease(DiseaseType.Vomitting);
                 InjectionRoom.LoadNextForStaff(0); break;
             case 20:
                 InspectionRoom_2.LoadNextForStaff(0);
-                 break;
+                break;
             case 21:
                 patientManager.AddDisease(DiseaseType.Fleas_and_Ticks);
                 patientManager.AddDisease(DiseaseType.Allergies);
@@ -166,15 +191,16 @@ public class TaskManager : MonoBehaviour
             case 22:
                 GroomingRoom.bIsUpgraderActive = true;
                 GroomingRoom.SetUpgradeVisual();
-                 break;
+                break;
 
             case 23:
+                particle.Play();
                 InjectionRoom.LoadNextForStaff(0);
                 break;
             case 24:
                 GroomingRoom.LoadNextForStaff(0);
-               
-                
+
+
                 break;
             case 25:
                 InspectionRoom_2.LoadNextForStaff(0);
@@ -182,14 +208,16 @@ public class TaskManager : MonoBehaviour
             case 26:
                 patientManager.AddDisease(DiseaseType.Toy);
                 OnTaskComplete(27);
-                 break;
+                break;
             case 27:
                 hallManager_03.bIsUpgraderActive = true;
                 hallManager_03.SetUpgredeVisual(); break;
             case 28:
+                particle.Play();
                 StoreRoom.bIsUpgraderActive = true;
                 StoreRoom.SetUpgradeVisual(); break;
             case 29:
+                particle.Play();
                 patientManager.AddDisease(DiseaseType.Vomitting);
                 GroomingRoom.LoadNextForStaff(0); break;
             case 30:
@@ -200,7 +228,8 @@ public class TaskManager : MonoBehaviour
             case 33:
                 InjectionRoom.LoadNextForStaff(0);
                 break;
-            case 34: InjectionRoom.LoadNextUpgrade(); 
+            case 34:
+                InjectionRoom.LoadNextUpgrade();
                 patientManager.AddDisease(DiseaseType.Dental_Disease);
                 ; break;
             case 35:
@@ -208,15 +237,17 @@ public class TaskManager : MonoBehaviour
                 patientManager.AddDisease(DiseaseType.Bloat);
                 hallManager_04.SetUpgredeVisual(); break;
             case 36:
+                particle.Play();
                 InspectionRoom_3.bIsUpgraderActive = true;
                 InspectionRoom_3.SetUpgradeVisual();
                 break;
             case 37:
+                particle.Play();
                 GroomingRoom.LoadNextForStaff(0);
                 break;
             case 38:
 
-                StoreRoom.LoadNextForStaff(0); 
+                StoreRoom.LoadNextForStaff(0);
                 break;
             case 39:
                 InjectionRoom.LoadNextForStaff(1);
@@ -238,13 +269,15 @@ public class TaskManager : MonoBehaviour
                 InjectionRoom.LoadNextForStaff(1); break;
             case 46:
                 hallManager_05.bIsUpgraderActive = true;
-                hallManager_05.SetUpgredeVisual();  break;
+                hallManager_05.SetUpgredeVisual(); break;
             case 47:
+                particle.Play();
                 patientManager.AddDisease(DiseaseType.Fractures);
 
                 MriRoom.bIsUpgraderActive = true;
                 MriRoom.SetUpgradeVisual(); break;
             case 48:
+                particle.Play();
                 InjectionRoom.LoadNextForStaff(1); break;
             case 49: MriRoom.LoadNextForStaff(0); break;
             case 50:
@@ -254,19 +287,21 @@ public class TaskManager : MonoBehaviour
             case 52:
                 patientManager.AddDisease(DiseaseType.Kidney_Disease);
                 hallManager_06.bIsUpgraderActive = true;
-                hallManager_06.SetUpgredeVisual(); break; 
+                hallManager_06.SetUpgredeVisual(); break;
             case 53:
+                particle.Play();
                 OpreationRoom.bIsUpgraderActive = true;
-                OpreationRoom.SetUpgradeVisual(); 
+                OpreationRoom.SetUpgradeVisual();
                 break;
             case 54:
+                particle.Play();
                 InspectionRoom_3.LoadNextForStaff(0); break;
             case 55:
                 OpreationRoom.LoadNextForStaff(0); break;
             case 56:
                 InspectionRoom_3.LoadNextForStaff(0);
                 patientManager.AddDisease(DiseaseType.Asthma);
-                 break;
+                break;
             case 57:
                 MriRoom.LoadNextUpgrade(); break;
             case 58:
@@ -277,6 +312,7 @@ public class TaskManager : MonoBehaviour
                 IcuRoom.bIsUpgraderActive = true;
                 IcuRoom.SetUpgradeVisual(); break;
             case 61:
+                particle.Play();
                 MriRoom.LoadNextForStaff(1); break;
             case 62:
                 OpreationRoom.LoadNextForStaff(0); break;
@@ -353,4 +389,30 @@ public class TaskManager : MonoBehaviour
 
         }
     }
+
+    public void UpdateUI()
+    {
+        
+        taskProgressText.text = curentTask.ToString("00") + "/" + MaxTask.ToString();
+        taskProgressSlider.value = curentTask;
+   
+    }
+
+    public void MovelastTarget()
+    {
+        if(target != null)
+        {
+            cameraController.MoveToTarget(target, () =>
+            {
+                DOVirtual.DelayedCall(0.5f, () =>
+                {
+                    cameraController.MoveToPlayer();
+                });
+            }, 0.2f);
+        }
+        else
+        {
+            Debug.LogError("target is null");
+        }
+    } 
 }

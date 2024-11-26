@@ -49,7 +49,25 @@ public class PatientManager : MonoBehaviour
     {
         instance = this;
     }
+    #region Initializers
 
+    SaveManager saveManager;
+    UiManager uiManager;
+
+    private void OnEnable()
+    {
+        UpdateInitializers();
+    }
+
+    public void UpdateInitializers()
+    {
+
+        saveManager = SaveManager.instance;
+       
+        uiManager = saveManager.uiManager;
+    }
+
+    #endregion
     private void Start()
     {
         if (PlayerPrefs.HasKey("PatientManager"))
@@ -289,6 +307,7 @@ public class PatientManager : MonoBehaviour
     {
         if (!UnlocDiseases.Contains(disease))
         {
+            uiManager.AddIllnessesUi(disease.ToString());
             UnlocDiseases.Add(disease);
         }
     }
@@ -337,6 +356,10 @@ public class PatientManager : MonoBehaviour
         bCanSendPatient = receivefile.bCanSendPatient;
         currntDiseaseIndex = receivefile.curentUnlockDisease;
         UnlocDiseases = new List<DiseaseType>(receivefile.diseaseTypes);
+        foreach (var item in UnlocDiseases)
+        {
+            uiManager.AddIllnessesUi(item.ToString());
+        }
         //UpdateDisease();
         LoadData();
 

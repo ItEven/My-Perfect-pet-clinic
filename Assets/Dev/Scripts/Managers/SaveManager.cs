@@ -63,6 +63,7 @@ public class GameData
     public EconomyDatas economyDatas;
     public PlayerData playerData;
     public HospitalData hospitalData;
+    public TaskDataData taskDataData;
   
 }
 
@@ -91,7 +92,11 @@ public class PlayerData
 
 
 
-
+[Serializable]
+public class TaskDataData
+{
+    public int curentTask;
+}
 
 
 

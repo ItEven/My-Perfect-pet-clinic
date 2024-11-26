@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,17 @@ public class Overview : MonoBehaviour
     public Text successRatePatientCountText;
     public float ratingAndSuccesRate
     {
-        get { return (hospitalData.failedPatientCount / hospitalData.patientCount) * 100; }
+        get
+        {
+            if (hospitalData.patientCount > 0)
+            {
+                return (hospitalData.failedPatientCount / hospitalData.patientCount) * 100;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 
     [Header("Player Speed")]
@@ -30,8 +41,8 @@ public class Overview : MonoBehaviour
     public float UpgradeSpeedCost;
     public float upgradeSpeedCost
     {
-        get { return UpgradeProfitCost; }
-        set { UpgradeProfitCost = value; currentUpgraderCostText.text = uiManager.ScoreShow(UpgradeProfitCost); }
+        get { return UpgradeSpeedCost; }
+        set { UpgradeSpeedCost = value; }
     }
     public float upgradeSpeedCostMultiplair;
     public Image speedImage;
@@ -46,7 +57,7 @@ public class Overview : MonoBehaviour
     public float upgradeProfitCost
     {
         get { return UpgradeProfitCost; }
-        set { UpgradeProfitCost = value; currentProfitUpgraderCostText.text = uiManager.ScoreShow(UpgradeProfitCost); }
+        set { UpgradeProfitCost = value; }
     }
     public float profitUpgradeCostMultiplair;
     public Image profitImage;
@@ -71,7 +82,8 @@ public class Overview : MonoBehaviour
     private void OnDisable()
     {
         hospitalManager.OnPatientCountUpdate -= UpdateHospitlData;
-        UpdateInitializers();
+        economyManager.OnPetMoneyChanged -= UpdateButtons;
+
     }
 
     public void UpdateInitializers()
@@ -84,6 +96,7 @@ public class Overview : MonoBehaviour
         playerData = saveManager.gameData.playerData;
         hospitalData = saveManager.gameData.hospitalData;
         hospitalManager.OnPatientCountUpdate += UpdateHospitlData;
+        economyManager.OnPetMoneyChanged += UpdateButtons;
     }
 
     #endregion
@@ -106,10 +119,13 @@ public class Overview : MonoBehaviour
 
         UpdateHospitlData();
         UpdateButtons();
+        SetData();
+
+
     }
     public void OpneOverviewPanel()
-    {  
-        
+    {
+     
         if (backgroundPanel.gameObject.activeInHierarchy)
         {
             UiManager.instance.ClosePanel(backgroundPanel, panelBgImagel, panel);
@@ -128,47 +144,111 @@ public class Overview : MonoBehaviour
 
     private void UpdateButtons()
     {
-        speedBtn.interactable = economyManager.bCanWeSpendPetMoney(upgradeSpeedCost);
-        profitBtn.interactable = economyManager.bCanWeSpendPetMoney(UpgradeProfitCost);
+        if (playerData.speedLevel > 0)
+        {
+            speedBtn.interactable = economyManager.bCanWeSpendPetMoney(upgradeSpeedCost);
+        }
+
+        if(playerData.profitLevel > 0)
+        {
+            profitBtn.interactable = economyManager.bCanWeSpendPetMoney(UpgradeProfitCost);
+        }
     }
 
+    public void UpdateUi()
+    {
+        speedImage.fillAmount = (float)playerData.speedLevel / 4;
+        profitImage.fillAmount = (float)playerData.profitLevel / 4;
+
+        if (playerData.speedLevel > 0)
+        {
+            currentUpgraderCostText.text = uiManager.ScoreShow(upgradeSpeedCost);
+        }
+        else
+        {
+            currentUpgraderCostText.text = "Free";
+            speedBtn.interactable = true;
+        }
+
+        if (playerData.profitLevel > 0)
+        {
+            currentProfitUpgraderCostText.text = uiManager.ScoreShow(upgradeProfitCost);
+        }
+        else
+        {
+            currentProfitUpgraderCostText.text = "Free";
+            profitBtn.interactable = true;
+        }
+        UpdateButtons();
+    }
     private void UpgradeSpeed()
     {
-        if (economyManager.bCanWeSpendPetMoney(upgradeSpeedCost) && playerData.speedLevel < maxSpeedLevel)
+        if (playerData.speedLevel > 0)
         {
-            playerData.speedLevel++;
-            gameManager.playerController.playerControllerData.maxSpeed += speedMultiplair;
-            economyManager.bCanWeSpendPetMoney(upgradeSpeedCost);
-            if (playerData.speedLevel >= maxSpeedLevel)
+
+            if (economyManager.bCanWeSpendPetMoney(upgradeSpeedCost) && playerData.speedLevel < maxSpeedLevel)
             {
-                btn.gameObject.SetActive(false);
-                speedMax.gameObject.SetActive(true);
+                playerData.speedLevel++;
+                gameManager.playerController.playerControllerData.maxSpeed += speedMultiplair;
+                economyManager.bCanWeSpendPetMoney(upgradeSpeedCost);
+                upgradeSpeedCost *= upgradeSpeedCostMultiplair;
+                if (playerData.speedLevel >= maxSpeedLevel)
+                {
+                    speedBtn.gameObject.SetActive(false);
+                    speedMax.gameObject.SetActive(true);
+                }
+                UpdateUi();
             }
         }
         else
         {
-            btn.gameObject.SetActive(false);
-            speedMax.gameObject.SetActive(true);
+            playerData.speedLevel++;
+            gameManager.playerController.playerControllerData.maxSpeed += speedMultiplair;
+            UpdateUi();
+
         }
     }
     private void UpgradeProfit()
     {
-        if (economyManager.bCanWeSpendPetMoney(upgradeProfitCost) && playerData.profitLevel < maxProfitLevel)
+        if (playerData.profitLevel > 0)
         {
-            playerData.profitLevel++;
-            gameManager.playerController.playerControllerData.maxSpeed += speedMultiplair;
-            economyManager.bCanWeSpendPetMoney(upgradeSpeedCost);
-            if (playerData.speedLevel >= maxSpeedLevel)
+            if (economyManager.bCanWeSpendPetMoney(upgradeProfitCost) && playerData.profitLevel < maxProfitLevel)
             {
-                btn.gameObject.SetActive(false);
-                speedMax.gameObject.SetActive(true);
+                playerData.profitLevel++;
+                gameManager.profitMultiplier += profitMultiplair;
+                economyManager.bCanWeSpendPetMoney(upgradeProfitCost);
+                upgradeProfitCost *= profitUpgradeCostMultiplair;
+                if (playerData.profitLevel >= maxProfitLevel)
+                {
+                    profitBtn.gameObject.SetActive(false);
+                    profitMax.gameObject.SetActive(true);
+                }
+                UpdateUi();
             }
         }
         else
         {
-            //btn.gameObject.SetActive(false);
-            //speedMax.gameObject.SetActive(true);
+            playerData.profitLevel++;
+            gameManager.profitMultiplier += profitMultiplair;
+            UpdateUi();
+
         }
+    }
+
+    public void SetData()
+    {
+        for (int i = 1; i < playerData.profitLevel; i++)
+        {
+            upgradeProfitCost *= profitUpgradeCostMultiplair;
+
+        }
+
+        for (int i = 1; i < playerData.speedLevel; i++)
+        {
+            upgradeSpeedCost *= upgradeSpeedCostMultiplair;
+
+        }
+        UpdateUi();
     }
 
 

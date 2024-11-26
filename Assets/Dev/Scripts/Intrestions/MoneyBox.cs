@@ -7,13 +7,13 @@ using UnityEngine;
 
 public class MoneyBox : MonoBehaviour
 {
+    public bool bIsStartMoneyBox = false;
     public float moneyGivingSpeed;
     public int totalMoneyInBox;
     public float spreadRadius = 5f;
     public float spreadDuration = 0.5f;
     public Transform[] moneyBricksPos;
     public List<SingleMoneybrick> singleMoneybricks = new List<SingleMoneybrick>();
-
     int currntIndex;
 
     SaveManager saveManager;
@@ -151,16 +151,35 @@ public class MoneyBox : MonoBehaviour
     public void TakeMoney(int amount)
     {
         totalMoneyInBox += amount;
-        if (currntIndex < moneyBricksPos.Length)
+        if (!bIsStartMoneyBox)
         {
-            for (int i = 0; i < GetHowManyBrickSpwan(amount); i++)
+            totalMoneyInBox += (amount * (int)gameManager.profitMultiplier);
+            if (currntIndex < moneyBricksPos.Length)
             {
-                if (currntIndex >= moneyBricksPos.Length) return;
-                GameObject brickInstance = Instantiate(gameManager.singleMoneybrick, moneyBricksPos[currntIndex]);
-                var brick = brickInstance.GetComponent<SingleMoneybrick>();
-                singleMoneybricks.Add(brick);
-                currntIndex++;
+                for (int i = 0; i < GetHowManyBrickSpwan(amount); i++)
+                {
+                    if (currntIndex >= moneyBricksPos.Length) return;
+                    GameObject brickInstance = Instantiate(gameManager.singleMoneybrick, moneyBricksPos[currntIndex]);
+                    var brick = brickInstance.GetComponent<SingleMoneybrick>();
+                    singleMoneybricks.Add(brick);
+                    currntIndex++;
 
+                }
+            }
+        }
+        else
+        {
+            if (currntIndex < moneyBricksPos.Length)
+            {
+                for (int i = 0; i < GetHowManyBrickSpwan(3000); i++)
+                {
+                    if (currntIndex >= moneyBricksPos.Length) return;
+                    GameObject brickInstance = Instantiate(gameManager.singleMoneybrick, moneyBricksPos[currntIndex]);
+                    var brick = brickInstance.GetComponent<SingleMoneybrick>();
+                    singleMoneybricks.Add(brick);
+                    currntIndex++;
+
+                }
             }
         }
     }

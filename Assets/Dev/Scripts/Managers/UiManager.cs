@@ -24,6 +24,18 @@ public class UiManager : MonoBehaviour
     public Button roombtn;
     public Button roomcloseBtn;
 
+
+    [Header("RoomUI")]
+    public GameObject illnessesUIPrefab;
+    public RectTransform illnessesbackgroundPanel;
+    public RectTransform illnessesPanel;
+    public Image illnessesPanelBgImagel;
+    public RectTransform illnessesContentBox;
+    public Button illnessesbtn;
+    public Button illnessescloseBtn;
+
+
+
     [Header("Loder Panel")]
     public RectTransform loderPnael;
 
@@ -49,6 +61,9 @@ public class UiManager : MonoBehaviour
         roombtn.onClick.RemoveAllListeners();
         roombtn.onClick.AddListener(OpneRoomPanel);
         roomcloseBtn.onClick.AddListener(OpneRoomPanel);
+        illnessesbtn.onClick.RemoveAllListeners();
+        illnessesbtn.onClick.AddListener(OpneIllnessesPanel);
+        illnessescloseBtn.onClick.AddListener(OpneIllnessesPanel);
     }
 
     #region Room
@@ -74,6 +89,29 @@ public class UiManager : MonoBehaviour
     }
     #endregion
 
+    #region Illnesses
+    public void OpneIllnessesPanel()
+    {
+
+        if (illnessesbackgroundPanel.gameObject.activeInHierarchy)
+        {
+            ClosePanel(illnessesbackgroundPanel, illnessesPanelBgImagel, roomPanel);
+        }
+        else
+        {
+            OpenPanel(illnessesbackgroundPanel, illnessesPanelBgImagel, illnessesPanel);
+        }
+    }
+
+    public void AddIllnessesUi(string dataTitleText)
+    {
+        GameObject gameObject = Instantiate(illnessesUIPrefab, illnessesContentBox.position, Quaternion.identity, illnessesContentBox);
+        gameObject.transform.SetSiblingIndex(illnessesContentBox.childCount - 1);
+
+        RoomUiContentBox illnessesUiContent = gameObject.GetComponent<RoomUiContentBox>();
+        illnessesUiContent.SetIllnessesData(dataTitleText);
+    }
+    #endregion
 
     public void OpenPanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)
     {

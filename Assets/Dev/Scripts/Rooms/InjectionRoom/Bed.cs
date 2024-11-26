@@ -167,6 +167,7 @@ public class Bed : MonoBehaviour
 
         if (bIsUpgraderActive)
         {
+            TaskManager.instance.target = upGrader.transform;
             CameraController.Instance.FocusOnTarget(upGrader.transform);
 
             SetTakeMoneyData(currentCost);
@@ -338,7 +339,9 @@ public class Bed : MonoBehaviour
         bIsProcessing = false;
         if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
         {
-            hospitalManager.OnPatientRegister();
+            // hospitalManager.OnPatientRegister();
+            saveManager.gameData.hospitalData.failedPatientCount++;
+
             cameraController.FollowPatient(patient.transform);
             animationController.PlayAnimation(idleAnim);
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());

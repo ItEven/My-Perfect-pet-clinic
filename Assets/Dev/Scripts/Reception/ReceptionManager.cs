@@ -329,6 +329,7 @@ public class ReceptionManager : MonoBehaviour
                     worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime).SetId(processTweenId)
                        .OnComplete(() =>
                        {
+                           saveManager.gameData.hospitalData.patientCount++;
                            hospitalManager.OnPatientRegister();
 
                            gameManager.playerController.animationController.PlayAnimation(seat.idleAnim);
@@ -358,6 +359,8 @@ public class ReceptionManager : MonoBehaviour
                     worldProgresBar.DOFillAmount(1, npc.currentLevelData.processTime).SetId(processTweenId)
                         .OnComplete(() =>
                         {
+                            saveManager.gameData.hospitalData.patientCount++;
+                            hospitalManager.OnPatientRegister();
                             npc.animationController.PlayAnimation(seat.idleAnim);
                             moneyBox.TakeMoney(npc.currentLevelData.customerCost);
                             room.RegisterPatient(waitingQueue.patientInQueue[0]);

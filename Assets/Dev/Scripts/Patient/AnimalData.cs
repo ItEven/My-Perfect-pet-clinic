@@ -48,7 +48,7 @@ public class AnimalData : ScriptableObject
         }
         else
         {
-            return "MY" + GetAnimalName(animalType) + " " + GetRandomSlogan(diseaseType);
+            return "MY" + " " + GetAnimalName(animalType) + " " + GetRandomSlogan(diseaseType);
         }
     }
 

@@ -6,19 +6,31 @@ using DG.Tweening;
 using System;
 using DG.Tweening.Core.Easing;
 using Unity.VisualScripting;
+using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 public class CameraController : MonoBehaviour
 {
     private static CameraController cameraController;
     public static CameraController Instance => cameraController;
 
+
     public float followDelay = 200f;
     public float followDurtion = 7f;
     public float rectionTime = 1f;
-
-
     public bool bCanCameraMove = true;
     bool bIsMoveingToPatient = false;
+
+    [Header("Zoom Things")]
+    public Camera mainCamera;
+    [SerializeField] bool zoomedRecently;
+    [SerializeField] CinemachineVirtualCamera cinemachineVirtualCamera;
+    public Transform joystic;
+    float previousZoom;
+
+    public float pinchZoomSpeed = 0.5f;
+    public float mouseScrollSpeed = 0.5f;
+    public float minFOV = 10f;
+    public float maxFOV = 60f;
 
     PlayerController playerController;
     private void Awake()
@@ -35,6 +47,61 @@ public class CameraController : MonoBehaviour
         ManageCamera();
     }
 
+    private void Update()
+    {
+       // ManageZoom();
+    }
+
+
+    #region Zoom
+
+    void ManageZoom()
+    {
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+
+        //if (pointerOverUIChecker.IsPointerOverUIElement() == false)
+        //{
+        if (Input.touchCount == 2)
+        {
+
+            joystic.gameObject.SetActive(false);
+            Touch touch0 = Input.GetTouch(0);
+            Touch touch1 = Input.GetTouch(1);
+
+            Vector2 touch0PrevPos = touch0.position - touch0.deltaPosition;
+            Vector2 touch1PrevPos = touch1.position - touch1.deltaPosition;
+
+            float prevTouchDeltaMag = (touch0PrevPos - touch1PrevPos).magnitude;
+            float touchDeltaMag = (touch0.position - touch1.position).magnitude;
+
+            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+            ZoomCamera(deltaMagnitudeDiff * pinchZoomSpeed * Time.deltaTime);
+        }
+        else if (scrollInput != 0)
+        {
+            ZoomCamera(-scrollInput * mouseScrollSpeed * Time.deltaTime);
+
+        }
+        else
+        {
+            joystic.gameObject.SetActive(true);
+
+        }
+        //}
+    }
+
+    private void ZoomCamera(float deltaFOV)
+    {
+        zoomedRecently = true;
+        //  mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize + deltaFOV, minFOV, maxFOV);
+        float zoom = Mathf.Clamp(mainCamera.orthographicSize + deltaFOV, minFOV, maxFOV);
+        cinemachineVirtualCamera.m_Lens.OrthographicSize = zoom;
+        previousZoom = zoom;
+    }
+
+    #endregion
+    
     #region ForUpgr
     public void MoveToTarget(Transform target, Action onComplete = null, float delay = 1f)
     {
@@ -123,19 +190,7 @@ public class CameraController : MonoBehaviour
         });
 
     }
-    //public void MoveToRecption(Transform target)
-    //{
-    //    if (bCanCameraMove)
-    //    {
 
-    //        bCanCameraMove = false;
-    //        bIsMoveingToPatient = true;
-    //        MoveToTarget(target, () =>
-    //        {
-    //            DOVirtual.DelayedCall(rectionTime, () => { bIsMoveingToPatient = false; MoveToPlayer(); });
-    //        });
-    //    }
-    //}
     protected string processTweenId;
     public void ManageCamera()
     {

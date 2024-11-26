@@ -140,6 +140,8 @@ public class StaffNPC : MonoBehaviour
     {
         if (bIsUpgraderActive)
         {
+            TaskManager.instance.target = upGrader.transform;
+
             cameraController.FocusOnTarget(upGrader.transform);
 
             SetTakeMoneyData(currentCost);

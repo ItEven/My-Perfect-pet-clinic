@@ -128,6 +128,7 @@ public class HospitalManager : MonoBehaviour
     public void OnPatientRegister()
     {
         OnPatientCountUpdate?.Invoke();
+        Debug.LogError("uritiureyituer");
 
     }
 

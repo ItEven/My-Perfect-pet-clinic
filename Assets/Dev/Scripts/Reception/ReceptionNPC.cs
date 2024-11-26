@@ -112,6 +112,8 @@ public class ReceptionNPC : MonoBehaviour
         {
             if (upGrader)
             {
+                TaskManager.instance.target = upGrader.transform;
+
                 CameraController.Instance.FocusOnTarget(upGrader.transform);
                 SetTakeMoneyData(currentCost);
 

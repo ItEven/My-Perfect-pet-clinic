@@ -183,9 +183,9 @@ public class ARoom : MonoBehaviour
     #region Upgrade Mechanics 
     public void SetUpgradeVisual()
     {
-
         if (bIsUpgraderActive)
         {
+        TaskManager.instance.target = upGrader.transform;
             CameraController.Instance.FocusOnTarget(upGrader.transform);
             SetTakeMoneyData(currentCost);
         }
@@ -235,7 +235,8 @@ public class ARoom : MonoBehaviour
     }
 
     public void LoadNextForStaff(int index)
-    {
+    {   
+
         bedsArr[index].staffNPC.LoadNextUpgrade();
     }
     #endregion

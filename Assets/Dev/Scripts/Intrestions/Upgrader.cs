@@ -16,6 +16,7 @@ public class Upgrader : MonoBehaviour
     public float fadeInTime = 0.001f;
     public TMP_Text needMoneyText;
     public SpriteRenderer indicationIcon;
+    public Transform arrow;
 
     bool bIsPlayerStay;
     public GameObject SingleMoneybrick;
