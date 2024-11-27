@@ -71,9 +71,31 @@ public class HospitalManager : MonoBehaviour
 
     #region Pharmacy Room Machenics
 
+    public ARoom GetRandomPharmacy()
+    {
+        if (storeRoom.bIsUnlock)
+        {
+            float index = Random.Range(0.1f, 1.1f);
+            Debug.LogError(index);
+            if (index > 0.6)
+            {
+                return pharmacyRoom;
+            }
+            else
+            {
+                return storeRoom;
+
+            }
+        }
+        else
+        {
+            return pharmacyRoom;
+        }
+
+    }
     public void OnRoomHaveSpace()
     {
-      //  Debug.LogError("yoyoooyo");
+        //  Debug.LogError("yoyoooyo");
         receptionManager.StratProssesPatients();
     }
 
@@ -155,111 +177,129 @@ public class HospitalManager : MonoBehaviour
     }
 
     float indexDes;
+    //public ARoom GetRoom(DiseaseType diseaseType)
+    //{
+    //    indexDes = Random.Range(0, 10);
+    //    switch (diseaseType)
+    //    {
+    //        case DiseaseType.Cough: return pharmacyRoom;
+    //        case DiseaseType.Cold: return pharmacyRoom;
+    //        case DiseaseType.Fever:
+
+
+    //            return InjectionRoom;
+
+    //        case DiseaseType.Heartworm_Disease:
+
+    //            return InjectionRoom;
+
+    //        case DiseaseType.Ear_Infection:
+    //            if (indexDes <= 3)
+    //            {
+    //                return InjectionRoom;
+    //            }
+    //            else
+    //            {
+    //                return GroomingRoom;
+    //            }
+    //        case DiseaseType.Fleas_and_Ticks: return GroomingRoom;
+    //        case DiseaseType.Allergies:
+    //            if (indexDes >= 4)
+    //            {
+    //                return InjectionRoom;
+    //            }
+    //            else
+    //            {
+    //                return GroomingRoom;
+    //            }
+    //        case DiseaseType.Dental_Disease:
+    //            if (indexDes >= 3)
+    //            {
+    //                return InjectionRoom;
+    //            }
+    //            else
+    //            {
+    //                return GroomingRoom;
+    //            }
+    //        case DiseaseType.Skin_Infecction: return GroomingRoom;
+    //        case DiseaseType.Rabies:
+    //            if (indexDes >= 3)
+    //            {
+    //                return InjectionRoom;
+    //            }
+    //            else
+    //            {
+    //                return GroomingRoom;
+    //            }
+    //        case DiseaseType.Vomitting:
+    //            if (indexDes >= 4)
+    //            {
+    //                return InjectionRoom;
+    //            }
+    //            else
+    //            {
+    //                return GroomingRoom;
+    //            }
+    //        case DiseaseType.Bloat: return InjectionRoom;
+    //        case DiseaseType.Bladder_Stones:
+    //            return MriRoom;
+    //        case DiseaseType.Fractures:
+    //            return MriRoom;
+
+    //        case DiseaseType.Kidney_Disease:
+    //            if (indexDes >= 5)
+    //            {
+    //                return IcuRoom;
+    //            }
+    //            else
+    //            {
+    //                return MriRoom;
+    //            }
+    //        case DiseaseType.Asthma: return IcuRoom;
+    //        case DiseaseType.Toy: return storeRoom;
+    //        default:
+    //            return null;
+    //    }
+    //}
+
     public ARoom GetRoom(DiseaseType diseaseType)
     {
-        indexDes = Random.Range(0, 10);
-        switch (diseaseType)
+        List<ARoom> roomsToCheck = diseaseType switch
         {
-            case DiseaseType.Cough: return pharmacyRoom;
-            case DiseaseType.Cold: return pharmacyRoom;
-            case DiseaseType.Fever:
-                if (indexDes >= 5)
-                {
-                    return pharmacyRoom;
-                }
-                else
-                {
-                    return InjectionRoom;
-                }
-            case DiseaseType.Heartworm_Disease:
-                if (indexDes >= 5)
-                {
-                    return pharmacyRoom;
-                }
-                else
-                {
-                    return InjectionRoom;
-                }
-            case DiseaseType.Ear_Infection:
-                if (indexDes <= 3)
-                {
-                    return InjectionRoom;
-                }
-                else
-                {
-                    return GroomingRoom;
-                }
-            case DiseaseType.Fleas_and_Ticks: return GroomingRoom;
-            case DiseaseType.Allergies:
-                if (indexDes >= 4)
-                {
-                    return InjectionRoom;
-                }
-                else
-                {
-                    return GroomingRoom;
-                }
-            case DiseaseType.Dental_Disease:
-                if (indexDes >= 3)
-                {
-                    return InjectionRoom;
-                }
-                else
-                {
-                    return GroomingRoom;
-                }
-            case DiseaseType.Skin_Infecction: return GroomingRoom;
-            case DiseaseType.Rabies:
-                if (indexDes >= 3)
-                {
-                    return InjectionRoom;
-                }
-                else
-                {
-                    return GroomingRoom;
-                }
-            case DiseaseType.Vomitting:
-                if (indexDes >= 4)
-                {
-                    return InjectionRoom;
-                }
-                else
-                {
-                    return GroomingRoom;
-                }
-            case DiseaseType.Bloat: return InjectionRoom;
-            case DiseaseType.Bladder_Stones:
-                if (indexDes >= 5)
-                {
-                    return MriRoom;
-                }
-                else
-                {
-                    return pharmacyRoom;
-                }
-            case DiseaseType.Fractures:
-                if (indexDes >= 5)
-                {
-                    return MriRoom;
-                }
-                else
-                {
-                    return pharmacyRoom;
-                }
-            case DiseaseType.Kidney_Disease:
-                if (indexDes >= 5)
-                {
-                    return IcuRoom;
-                }
-                else
-                {
-                    return MriRoom;
-                }
-            case DiseaseType.Asthma: return IcuRoom;
-            case DiseaseType.Toy: return storeRoom;
-            default:
-                return null;
-        }
+            DiseaseType.Cough => new List<ARoom> { pharmacyRoom, MriRoom },
+            DiseaseType.Cold => new List<ARoom> { pharmacyRoom, IcuRoom },
+            DiseaseType.Fever => new List<ARoom> { InjectionRoom, IcuRoom },
+            DiseaseType.Heartworm_Disease => new List<ARoom> { InjectionRoom, MriRoom },
+            DiseaseType.Ear_Infection => new List<ARoom> { InjectionRoom, GroomingRoom, OpreationRoom },
+            DiseaseType.Fleas_and_Ticks => new List<ARoom> { GroomingRoom, InjectionRoom },
+            DiseaseType.Allergies => new List<ARoom> { InjectionRoom, GroomingRoom, IcuRoom },
+            DiseaseType.Dental_Disease => new List<ARoom> { InjectionRoom, GroomingRoom, OpreationRoom },
+            DiseaseType.Skin_Infecction => new List<ARoom> { GroomingRoom, IcuRoom },
+            DiseaseType.Rabies => new List<ARoom> { InjectionRoom, GroomingRoom, IcuRoom },
+            DiseaseType.Vomitting => new List<ARoom> { InjectionRoom, GroomingRoom, MriRoom },
+            DiseaseType.Bloat => new List<ARoom> { MriRoom, InjectionRoom },
+            DiseaseType.Bladder_Stones => new List<ARoom> { MriRoom, OpreationRoom },
+            DiseaseType.Fractures => new List<ARoom> { MriRoom, IcuRoom },
+            DiseaseType.Kidney_Disease => new List<ARoom> { MriRoom, IcuRoom },
+            DiseaseType.Asthma => new List<ARoom> { OpreationRoom, IcuRoom },
+            DiseaseType.Toy => new List<ARoom> { storeRoom },
+            _ => null,
+        };
+         
+        return GetRandomRoom(roomsToCheck);
+    }
+
+    public ARoom GetRandomRoom(List<ARoom> rooms)
+    {
+        if (rooms == null || rooms.Count == 0)
+            return null;
+
+        var availableRooms = rooms.Where(r => r != null && r.bIsUnlock).ToList();
+        if (availableRooms.Count == 0)
+            return null;
+
+        int randomIndex = Random.Range(0, availableRooms.Count);
+        return availableRooms[randomIndex];
     }
 
     public MoodType GetAnimalMood()

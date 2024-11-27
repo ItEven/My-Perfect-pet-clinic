@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diseases:
   - Type: 11
-    juniorVeterinarianFee: 33
-    VeterinarianFee: 41
-    seniorVeterinarianFee: 49
-    chiefVeterinarianFee: 66
-  - Type: 12
-    juniorVeterinarianFee: 39
-    VeterinarianFee: 47
-    seniorVeterinarianFee: 55
-    chiefVeterinarianFee: 72
-  - Type: 13
-    juniorVeterinarianFee: 55
-    VeterinarianFee: 69
-    seniorVeterinarianFee: 85
-    chiefVeterinarianFee: 110
-  - Type: 14
-    juniorVeterinarianFee: 44
-    VeterinarianFee: 55
+    InternFee: 33
+    juniorVeterinarianFee: 49
     seniorVeterinarianFee: 66
-    chiefVeterinarianFee: 88
+    chiefVeterinarianFee: 90
+  - Type: 12
+    InternFee: 39
+    juniorVeterinarianFee: 55
+    seniorVeterinarianFee: 72
+    chiefVeterinarianFee: 90
+  - Type: 13
+    InternFee: 55
+    juniorVeterinarianFee: 85
+    seniorVeterinarianFee: 110
+    chiefVeterinarianFee: 130
+  - Type: 14
+    InternFee: 44
+    juniorVeterinarianFee: 68
+    seniorVeterinarianFee: 88
+    chiefVeterinarianFee: 100
   - Type: 15
-    juniorVeterinarianFee: 25
-    VeterinarianFee: 30
-    seniorVeterinarianFee: 38
-    chiefVeterinarianFee: 49
+    InternFee: 25
+    juniorVeterinarianFee: 38
+    seniorVeterinarianFee: 49
+    chiefVeterinarianFee: 55

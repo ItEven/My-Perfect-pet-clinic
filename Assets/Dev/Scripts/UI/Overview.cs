@@ -146,10 +146,10 @@ public class Overview : MonoBehaviour
     }
     private void UpdateHospitlData()
     {
-        Debug.LogError(RatingAndSuccesRate);
+
         ratingAndSuccesRate = 100f - RatingAndSuccesRate;
         ratingImage.fillAmount = Mathf.Clamp01(ratingAndSuccesRate / 100f);
-        Debug.LogError(ratingAndSuccesRate);
+
         // Update success rate text with formatted percentage
         successRatePatientCountText.text = ratingAndSuccesRate.ToString("F1") + "%";
 

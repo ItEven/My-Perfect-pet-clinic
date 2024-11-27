@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c42df6e9e68dc4e9fc000010f5db59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimeDelay: 8
+  spawnTimeDelay: 5
   animalData: {fileID: 11400000, guid: 1b5375afe18e1b848b94ddafa78a9f97, type: 2}
   receptionManager: {fileID: 822428934}
   trafficBehavior: {fileID: 406029206}
@@ -1500,7 +1500,7 @@ MonoBehaviour:
   - {fileID: 5189658552941449280, guid: 3973bb545c5396841bca420e9b2aee0e, type: 3}
   patients: []
   hospitalEntryPoint: {fileID: 1513302853}
-  spwanDalay: 3
+  spwanDalay: 1
   UnlocDiseases: 
   currntDiseaseIndex: 0
   Alldiseases: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000
@@ -6138,22 +6138,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 30000
     nextTask: 62
-    processTime: 8
+    processTime: 10
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 31400
     nextTask: 64
-    processTime: 6
+    processTime: 8
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 36500
     nextTask: 71
-    processTime: 5
+    processTime: 7
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 43500
     nextTask: 79
-    processTime: 4
+    processTime: 6
     StaffExprinceType: 3
   npcObj: {fileID: 873508735}
   roundUpgradePartical:
@@ -10855,6 +10855,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283071647}
   m_Mesh: {fileID: 4463815235033114424, guid: ce3236c9e69d7bc48b1c9ce8c1085565, type: 3}
+--- !u!4 &283615436 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -862557578684176770, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1070020415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284899438 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3742631083956984346, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
@@ -18619,6 +18625,7 @@ MonoBehaviour:
   - {fileID: 1931000578}
   - {fileID: 1419642991}
   - {fileID: 537436613}
+  - {fileID: 1469927127}
   lockedObjs:
   - {fileID: 2107156114}
   - {fileID: 432897094}
@@ -24249,7 +24256,7 @@ PrefabInstance:
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: totalMoneyInBox
-      value: 305
+      value: 20000000
       objectReference: {fileID: 0}
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -26087,6 +26094,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752791879}
   m_CullTransparentMesh: 1
+--- !u!4 &756753524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -862557578684176770, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+    type: 3}
+  m_PrefabInstance: {fileID: 190998118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &759046481
 GameObject:
   m_ObjectHideFlags: 0
@@ -38638,7 +38651,7 @@ PrefabInstance:
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.28
+      value: 8.63
       objectReference: {fileID: 0}
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -38648,7 +38661,7 @@ PrefabInstance:
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 27.31
+      value: 30.4
       objectReference: {fileID: 0}
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -43431,7 +43444,7 @@ MonoBehaviour:
   groundCanvas: {fileID: 482686184}
   roundUpgradePartical: {fileID: 1223193523}
   processParticals: {fileID: 0}
-  bedSeat: {fileID: 0}
+  bedSeat: {fileID: 2000142059}
   InOutTime: 1
 --- !u!208 &1346861305
 NavMeshObstacle:
@@ -44678,54 +44691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c917c182fc971e4896d02d4a0e39d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1417146733 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2399909360664832352, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4911018023082586418}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4911018023082586419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631007f99e8d2374190cb19b267f5ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1417146735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6651811178868232432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 578ca20ab46d7b144bb5d4d54199ef0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTask: 0
-  needIteam: 0
-  unlockPrice: 0
-  bIsUnlock: 1
-  bIsUpgraderActive: 0
-  bIsOccupied: 0
-  room: {fileID: 1689134788}
-  upGrader: {fileID: 1417146733}
-  onTrigger: {fileID: 1417146732}
-  petDignosPos: {fileID: 3903765349955041498}
-  petOwnerSeat: {fileID: 8501171644346093843}
-  staffNPC: {fileID: 6756749390187939149}
-  itemsTyps: 0
-  ItemGiver: {fileID: 0}
-  worldProgresBar: {fileID: 1417146731}
-  unlockObjs:
-  - {fileID: 5833180937069683494}
-  - {fileID: 5689346577271064640}
-  - {fileID: 4911018023082586419}
-  - {fileID: 1922735217078559893}
-  groundCanvas: {fileID: 1417146730}
-  roundUpgradePartical: {fileID: 1417146725}
-  processParticals: {fileID: 0}
-  bCanFindNextRoom: 0
 --- !u!4 &1417146738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
@@ -50658,7 +50623,6 @@ MonoBehaviour:
   - {fileID: 1944709399}
   - {fileID: 216651187}
   - {fileID: 1720426170}
-  - {fileID: 1689134788}
   pharmacyRoom: {fileID: 1647067005}
   storeRoom: {fileID: 1689134788}
   storageRoom: {fileID: 735813334}
@@ -51030,7 +50994,7 @@ Transform:
   m_GameObject: {fileID: 1634425608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.54, y: 0, z: 23.09}
+  m_LocalPosition: {x: 7.54, y: 0, z: 26.29}
   m_LocalScale: {x: 3.5071065, y: 1, z: 1.5209862}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52428,22 +52392,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 34180
     nextTask: 68
-    processTime: 8
+    processTime: 10
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 39800
     nextTask: 75
-    processTime: 6
+    processTime: 8
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 41600
     nextTask: 77
-    processTime: 5
+    processTime: 7
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 47600
     nextTask: 83
-    processTime: 4
+    processTime: 6
     StaffExprinceType: 3
   npcObj: {fileID: 15360178}
   roundUpgradePartical:
@@ -52973,7 +52937,7 @@ MonoBehaviour:
   unRegisterPatientList: []
   currntOpenBeds: 1
   bedsArr:
-  - {fileID: 1417146735}
+  - {fileID: 8860888433965417083}
   unlockObjs:
   - {fileID: 740290978}
   - {fileID: 6651811178868232432}
@@ -55022,7 +54986,7 @@ MonoBehaviour:
   groundCanvas: {fileID: 1291853558}
   roundUpgradePartical: {fileID: 104196726}
   processParticals: {fileID: 0}
-  bedSeat: {fileID: 0}
+  bedSeat: {fileID: 756753524}
   InOutTime: 1
 --- !u!208 &1759126168
 NavMeshObstacle:
@@ -62447,6 +62411,12 @@ CapsuleCollider:
   m_Height: 5.453712
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0.05}
+--- !u!4 &2000142059 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -862557578684176770, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1823373423}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2000230555
 GameObject:
   m_ObjectHideFlags: 0
@@ -82815,7 +82785,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnUpgradeFinish.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1417146735}
+      objectReference: {fileID: 8860888433965417083}
     - target: {fileID: 2399909360664832352, guid: 2ccf7316a8e43cd4782245ba09be2b5c,
         type: 3}
       propertyPath: OnUpgradeFinish.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -89113,17 +89083,17 @@ PrefabInstance:
         type: 3}
       propertyPath: onTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1417146735}
+      objectReference: {fileID: 8860888433965417083}
     - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: onTriggerStay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1417146735}
+      objectReference: {fileID: 8860888433965417083}
     - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1417146735}
+      objectReference: {fileID: 8860888433965417083}
     - target: {fileID: 6807530629780289160, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: onTriggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -93166,7 +93136,7 @@ Transform:
   m_GameObject: {fileID: 8854706827094842712}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -5.058, y: 0, z: -0.5810957}
+  m_LocalPosition: {x: -5.61, y: 0, z: -0.58}
   m_LocalScale: {x: 0.952381, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93618,7 +93588,7 @@ GameObject:
   - component: {fileID: 8860888433965417082}
   - component: {fileID: 1991691398794879483}
   - component: {fileID: 7508115340643256792}
-  - component: {fileID: 1417146735}
+  - component: {fileID: 8860888433965417083}
   m_Layer: 0
   m_Name: 'Bed '
   m_TagString: Untagged
@@ -94410,22 +94380,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 45700
     nextTask: 81
-    processTime: 4
+    processTime: 10
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 48700
     nextTask: 84
-    processTime: 3
+    processTime: 8
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 55500
     nextTask: 91
-    processTime: 2
+    processTime: 6
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 58950
     nextTask: 94
-    processTime: 1.5
+    processTime: 5
     StaffExprinceType: 3
   npcObj: {fileID: 751157038}
   roundUpgradePartical:
@@ -94454,7 +94424,7 @@ MonoBehaviour:
   OnUnlockNpc:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1417146735}
+      - m_Target: {fileID: 8860888433965417083}
         m_TargetAssemblyTypeName: Bed, Assembly-CSharp
         m_MethodName: OnStaffUnlock
         m_Mode: 1
@@ -94532,22 +94502,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 26500
     nextTask: 56
-    processTime: 4
+    processTime: 10
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 28200
     nextTask: 59
-    processTime: 3
+    processTime: 8
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 30600
     nextTask: 63
-    processTime: 2
+    processTime: 6
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 53200
     nextTask: 89
-    processTime: 1.5
+    processTime: 5
     StaffExprinceType: 3
   npcObj: {fileID: 553031804}
   roundUpgradePartical:
@@ -94654,22 +94624,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 42630
     nextTask: 78
-    processTime: 8
+    processTime: 15
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 52200
     nextTask: 88
-    processTime: 7
+    processTime: 12
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 56680
     nextTask: 92
-    processTime: 6
+    processTime: 10
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 57800
     nextTask: 93
-    processTime: 5
+    processTime: 8
     StaffExprinceType: 3
   npcObj: {fileID: 1566335389}
   roundUpgradePartical:
@@ -94898,22 +94868,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 33400
     nextTask: 67
-    processTime: 4
+    processTime: 10
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 35700
     nextTask: 70
-    processTime: 3
+    processTime: 8
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 44500
     nextTask: 80
-    processTime: 2
+    processTime: 6
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 51000
     nextTask: 87
-    processTime: 1.5
+    processTime: 5
     StaffExprinceType: 3
   npcObj: {fileID: 203410996}
   roundUpgradePartical:
@@ -94959,22 +94929,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 34950
     nextTask: 69
-    processTime: 8
+    processTime: 15
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 40700
     nextTask: 76
-    processTime: 7
+    processTime: 12
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 46615
     nextTask: 82
-    processTime: 6
+    processTime: 10
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 61200
     nextTask: 96
-    processTime: 5
+    processTime: 8
     StaffExprinceType: 3
   npcObj: {fileID: 1258598415}
   roundUpgradePartical:
@@ -95020,22 +94990,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 17000
     nextTask: 50
-    processTime: 8
+    processTime: 10
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 20800
     nextTask: 52
-    processTime: 6
+    processTime: 8
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 28800
     nextTask: 60
-    processTime: 5
+    processTime: 7
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 38100
     nextTask: 73
-    processTime: 4
+    processTime: 6
     StaffExprinceType: 3
   npcObj: {fileID: 1743985619}
   roundUpgradePartical:
@@ -95081,22 +95051,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 49800
     nextTask: 86
-    processTime: 8
+    processTime: 15
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 54500
     nextTask: 90
-    processTime: 7
+    processTime: 12
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 60000
     nextTask: 95
-    processTime: 6
+    processTime: 10
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 62400
     nextTask: 100
-    processTime: 5
+    processTime: 8
     StaffExprinceType: 3
   npcObj: {fileID: 1497900747}
   roundUpgradePartical:
@@ -105353,7 +105323,7 @@ MonoBehaviour:
   groundCanvas: {fileID: 990919571}
   roundUpgradePartical: {fileID: 990919567}
   processParticals: {fileID: 0}
-  bedSeat: {fileID: 0}
+  bedSeat: {fileID: 283615436}
   InOutTime: 1
 --- !u!4 &8860888432228589648
 Transform:
@@ -105635,6 +105605,41 @@ Transform:
   - {fileID: 6771686278943288873}
   m_Father: {fileID: 1689134787}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &8860888433965417083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6651811178868232432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc99c74dbe0da2e43973fa678e78e0bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTask: 0
+  needIteam: 0
+  unlockPrice: 0
+  bIsUnlock: 1
+  bIsUpgraderActive: 0
+  bIsOccupied: 0
+  room: {fileID: 1689134788}
+  upGrader: {fileID: 1632687081}
+  onTrigger: {fileID: 1417146732}
+  petDignosPos: {fileID: 3903765349955041498}
+  petOwnerSeat: {fileID: 8501171644346093843}
+  staffNPC: {fileID: 6756749390187939149}
+  itemsTyps: 0
+  ItemGiver: {fileID: 0}
+  worldProgresBar: {fileID: 1417146731}
+  unlockObjs:
+  - {fileID: 5833180937069683494}
+  - {fileID: 5689346577271064640}
+  - {fileID: 4911018023082586419}
+  - {fileID: 1922735217078559893}
+  groundCanvas: {fileID: 1417146730}
+  roundUpgradePartical: {fileID: 1417146725}
+  processParticals: {fileID: 0}
 --- !u!23 &8861157125619986360
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -113,7 +113,7 @@ public class TaskManager : MonoBehaviour
             case 3:
                 particle.Play();
                 patientManager.AddDisease(DiseaseType.Cough);
-                patientManager.AddDisease(DiseaseType.Cold);
+
                 patientManager.bCanSendPatient = true;
                 patientManager.StartSendingPatinet();
                 //storageRoom.bIsUpgraderActive = true;
@@ -176,16 +176,15 @@ public class TaskManager : MonoBehaviour
                 InspectionRoom_2.SetUpgradeVisual(); break;
             case 19:
                 particle.Play();
-                patientManager.AddDisease(DiseaseType.Rabies);
-                patientManager.AddDisease(DiseaseType.Dental_Disease);
-                patientManager.AddDisease(DiseaseType.Vomitting);
+
                 InjectionRoom.LoadNextForStaff(0); break;
             case 20:
                 InspectionRoom_2.LoadNextForStaff(0);
                 break;
             case 21:
-                patientManager.AddDisease(DiseaseType.Fleas_and_Ticks);
+
                 patientManager.AddDisease(DiseaseType.Allergies);
+                patientManager.AddDisease(DiseaseType.Skin_Infecction);
                 InjectionRoom.LoadNextForStaff(0);
                 break;
             case 22:
@@ -327,7 +326,7 @@ public class TaskManager : MonoBehaviour
             case 67:
                 MriRoom.LoadNextForStaff(2); break;
             case 68:
-                IcuRoom.LoadNextUpgrade(); break;
+                IcuRoom.LoadNextForStaff(0); break;
             case 69:
                 OpreationRoom.LoadNextForStaff(1); break;
             case 70:
@@ -349,9 +348,9 @@ public class TaskManager : MonoBehaviour
             case 78:
                 MriRoom.LoadNextForStaff(1); break;
             case 79:
-                OpreationRoom.LoadNextForStaff(2); break;
+                OpreationRoom.LoadNextForStaff(1); break;
             case 80:
-                OpreationRoom.LoadNextUpgrade(); break;
+                OpreationRoom.LoadNextForStaff(2); break;
             case 81:
                 IcuRoom.LoadNextForStaff(0); break;
             case 82:

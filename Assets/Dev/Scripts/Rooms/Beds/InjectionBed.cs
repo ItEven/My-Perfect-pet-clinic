@@ -11,7 +11,7 @@ public class InjectionBed : Bed
     {
         if (patient == null) return;
 
-        var pharmacyRoom = hospitalManager.pharmacyRoom;
+        var pharmacyRoom = hospitalManager.GetRandomPharmacy();
         var workingAnimation = seat.workingAnim;
         var processTime = staffNPC.currentLevelData.processTime;
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)

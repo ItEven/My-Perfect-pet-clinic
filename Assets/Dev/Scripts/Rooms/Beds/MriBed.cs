@@ -12,23 +12,23 @@ public class MriBed : Bed
         if (patient == null) return;
 
        
-        var pharmacyRoom = hospitalManager.MriRoom;
+        var opreationRoom = hospitalManager.OpreationRoom;
 
         var workingAnimation = seat.workingAnim;
         var processTime = staffNPC.currentLevelData.processTime;
         Vector3 bedOldPos = bedSeat.localPosition;
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
+            patient.StopWatting();
             patient.animal.transform.SetParent(bedSeat);
             bedSeat.DOLocalMoveZ(0f, 1f).OnComplete(() =>
             {
-                patient.StopWatting();
 
                 StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
                 {
                     bedSeat.DOLocalMoveZ(bedOldPos.z, 1f).OnComplete(() =>
                     {
-                        OnProcessComplite(pharmacyRoom, staffNPC.animationController, AnimType.Idle);
+                        OnProcessComplite(opreationRoom, staffNPC.animationController, AnimType.Idle);
                     });
                 });
             });
@@ -37,15 +37,15 @@ public class MriBed : Bed
         {
             bIsProcessing = true;       
             patient.animal.transform.SetParent(bedSeat);
+                patient.StopWatting();
             bedSeat.DOLocalMoveZ(0f, 1f).OnComplete(() =>
             {
-                patient.StopWatting();
 
                 StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
                 {
                     bedSeat.DOLocalMoveZ(bedOldPos.z, 1f).OnComplete(() =>
                     {
-                        OnProcessComplite(pharmacyRoom, playerController.animationController, AnimType.Idle);
+                        OnProcessComplite(opreationRoom, playerController.animationController, AnimType.Idle);
                     });
                 });
             });

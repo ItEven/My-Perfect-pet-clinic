@@ -280,7 +280,7 @@ public class Bed : MonoBehaviour
         if (patient == null) return;
 
 
-        var pharmacyRoom = hospitalManager.pharmacyRoom;
+        var pharmacyRoom = hospitalManager.GetRandomPharmacy();
         var workingAnimation = seat.workingAnim;
         var processTime = staffNPC.currentLevelData.processTime;
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
@@ -341,8 +341,10 @@ public class Bed : MonoBehaviour
         {
             // hospitalManager.OnPatientRegister();
             saveManager.gameData.hospitalData.failedPatientCount++;
-
-            cameraController.FollowPatient(patient.transform);
+            if (cameraController.bCanCameraMove)
+            {
+                cameraController.FollowPatient(patient.transform);
+            }
             animationController.PlayAnimation(idleAnim);
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
 

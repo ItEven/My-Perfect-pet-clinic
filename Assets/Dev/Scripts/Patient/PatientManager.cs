@@ -11,6 +11,7 @@ public class PatientManagerData
     public int curentUnlockDisease;
     public List<DiseaseType> diseaseTypes = new List<DiseaseType>();
 }
+
 public class PatientManager : MonoBehaviour
 {
     public static PatientManager instance;
@@ -63,7 +64,7 @@ public class PatientManager : MonoBehaviour
     {
 
         saveManager = SaveManager.instance;
-       
+
         uiManager = saveManager.uiManager;
     }
 
@@ -222,6 +223,7 @@ public class PatientManager : MonoBehaviour
 
     public void SendPatientToHospital()
     {
+
         Patient patient = GetPatient();
         if (patient != null)
         {
@@ -312,18 +314,36 @@ public class PatientManager : MonoBehaviour
         }
     }
 
+    int diseaseIndex;
     public DiseaseType GetRandomDisease()
     {
-        if (UnlocDiseases.Count > 0)
+        if (diseaseIndex < UnlocDiseases.Count)
         {
-            int randomIndex = Random.Range(0, UnlocDiseases.Count);
-            return UnlocDiseases[randomIndex];
+            diseaseIndex++;
+            if (diseaseIndex >= UnlocDiseases.Count)
+            {
+                diseaseIndex = 0;
+                return UnlocDiseases[diseaseIndex];
+
+            }
+            else
+            {
+
+                return UnlocDiseases[diseaseIndex];
+            }
+
         }
         else
         {
+            diseaseIndex = 0;
             AddDisease(DiseaseType.Cough);
             return DiseaseType.Cough;
         }
+        //if (UnlocDiseases.Count > 0)
+        //{
+        //    int randomIndex = Random.Range(0, UnlocDiseases.Count);
+        //    return UnlocDiseases[randomIndex];
+        //}
     }
 
     #endregion

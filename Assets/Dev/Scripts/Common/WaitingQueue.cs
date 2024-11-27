@@ -73,7 +73,7 @@ public class WaitingQueue : MonoBehaviour
             QueueIndex++;
         }
 
-        PatientManager.instance.SendPatientToHospital();
+        PatientManager.instance.StartSendingPatinet();
     }
     public virtual void RemoveFromQueue(Patient patient)
     {
