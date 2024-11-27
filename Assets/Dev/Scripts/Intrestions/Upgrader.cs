@@ -94,12 +94,18 @@ public class Upgrader : MonoBehaviour
         indicationIcon.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
     }
     private void StartTakeMoney()
-    {
+    {   
         if (takeMoneyCoroutine == null)
         {
             StartCoroutine(MoneySpwaing());
             takeMoneyCoroutine = StartCoroutine(TakingMoney());
+        }
 
+        if(currentNeedMoney == 0)
+        {
+            OnUpgradeFinish.Invoke();
+            StopTakeMoney();
+            gameObject.SetActive(false);
         }
     }
 

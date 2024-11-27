@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,18 +21,23 @@ public class Overview : MonoBehaviour
     public Image ratingImage;
     public Text currnetPatientCountText;
     public Text successRatePatientCountText;
-    public float ratingAndSuccesRate
+    internal float ratingAndSuccesRate;
+    public float RatingAndSuccesRate
     {
         get
         {
             if (hospitalData.patientCount > 0)
             {
-                return (hospitalData.failedPatientCount / hospitalData.patientCount) * 100;
+                return (float)((float)hospitalData.failedPatientCount / hospitalData.patientCount) * 100;
             }
             else
             {
                 return 0;
             }
+        }
+        set
+        {
+            ratingAndSuccesRate = value;
         }
     }
 
@@ -116,16 +122,19 @@ public class Overview : MonoBehaviour
 
     public void SetUpData()
     {
+        DOVirtual.DelayedCall(2f, () =>
+        {
 
-        UpdateHospitlData();
-        UpdateButtons();
-        SetData();
+            UpdateHospitlData();
+            UpdateButtons();
+            SetData();
+        });
 
 
     }
     public void OpneOverviewPanel()
     {
-     
+
         if (backgroundPanel.gameObject.activeInHierarchy)
         {
             UiManager.instance.ClosePanel(backgroundPanel, panelBgImagel, panel);
@@ -137,8 +146,14 @@ public class Overview : MonoBehaviour
     }
     private void UpdateHospitlData()
     {
-        ratingImage.fillAmount = Mathf.Clamp(ratingAndSuccesRate, 0, 5);
-        successRatePatientCountText.text = ratingAndSuccesRate.ToString() + "%";
+        Debug.LogError(RatingAndSuccesRate);
+        ratingAndSuccesRate = 100f - RatingAndSuccesRate;
+        ratingImage.fillAmount = Mathf.Clamp01(ratingAndSuccesRate / 100f);
+        Debug.LogError(ratingAndSuccesRate);
+        // Update success rate text with formatted percentage
+        successRatePatientCountText.text = ratingAndSuccesRate.ToString("F1") + "%";
+
+        // Update patient count text
         currnetPatientCountText.text = hospitalData.patientCount.ToString();
     }
 
@@ -149,7 +164,7 @@ public class Overview : MonoBehaviour
             speedBtn.interactable = economyManager.bCanWeSpendPetMoney(upgradeSpeedCost);
         }
 
-        if(playerData.profitLevel > 0)
+        if (playerData.profitLevel > 0)
         {
             profitBtn.interactable = economyManager.bCanWeSpendPetMoney(UpgradeProfitCost);
         }

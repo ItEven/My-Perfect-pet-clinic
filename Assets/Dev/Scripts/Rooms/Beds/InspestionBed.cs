@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class InspestionBed : Bed
 {
+    public bool bCanFindNextRoom = false;
     public override void SetUpPlayer()
     {
         //   playerController.animationController.PlayAnimation(AnimType.Idle);
@@ -53,7 +54,7 @@ public class InspestionBed : Bed
         bIsProcessing = false;
 
         animationController.PlayAnimation(idleAnim);
-        if (nextRoom != null)
+        if (nextRoom != null && bCanFindNextRoom)
         {
             if (nextRoom.bIsUnRegisterQueIsFull())
             {

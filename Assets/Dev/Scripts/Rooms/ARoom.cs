@@ -169,6 +169,7 @@ public class ARoom : MonoBehaviour
 
             // LoadBedData();
             gameManager.PlayParticles(roundUpgradePartical);
+            AddAllUnregisterPatient();
             //  Destroy(upGrader.gameObject);
             //AddAllUnregisterPatient();
         }
@@ -221,7 +222,6 @@ public class ARoom : MonoBehaviour
             rek.gameObject.SetActive(true);
         }
     }
-
 
     public void LoadNextUpgrade()
     {
