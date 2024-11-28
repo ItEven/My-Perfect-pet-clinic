@@ -7,13 +7,4 @@ public class TutorialManager : MonoBehaviour
     public static TutorialManager instance;
 
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

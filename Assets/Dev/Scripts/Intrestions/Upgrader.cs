@@ -16,7 +16,6 @@ public class Upgrader : MonoBehaviour
     public float fadeInTime = 0.001f;
     public TMP_Text needMoneyText;
     public SpriteRenderer indicationIcon;
-    public Transform arrow;
 
     bool bIsPlayerStay;
     public GameObject SingleMoneybrick;
@@ -31,6 +30,9 @@ public class Upgrader : MonoBehaviour
     public Sprite addSprtie;
     public Sprite arrowSprtie;
 
+    [Header("Arrow")]
+    public bool bCanArrowWork = false;
+    public Transform arrow;
 
     internal int needMoney
     {
@@ -54,6 +56,13 @@ public class Upgrader : MonoBehaviour
         economyManager = saveManager.economyManager;
         uiManager = saveManager.uiManager;
         //needMoney = currentNeedMoney;
+         if (bCanArrowWork)
+        {
+            if (!arrow.gameObject.activeInHierarchy)
+            {
+                arrow.gameObject.SetActive(true);
+            }
+        }
     }
 
 
@@ -66,6 +75,14 @@ public class Upgrader : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (bCanArrowWork)
+        {
+            if (arrow.gameObject.activeInHierarchy)
+            {
+                arrow.gameObject.SetActive(false);
+            }
+        }
+
         if (other.CompareTag("Player"))
         {
             if (needMoney > 0 && (float)economyManager.PetMoneyCount > 0)
@@ -83,6 +100,14 @@ public class Upgrader : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (bCanArrowWork)
+        {
+            if (!arrow.gameObject.activeInHierarchy)
+            {
+                arrow.gameObject.SetActive(true);
+            }
+        }
+
         if (other.CompareTag("Player"))
         {
             bIsPlayerStay = false;

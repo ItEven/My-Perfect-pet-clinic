@@ -21,6 +21,7 @@ public class HospitalManager : MonoBehaviour
     [Header("All Room")]
     public ReceptionManager receptionManager;
     public ARoom[] InspectionRoom;
+    public ARoom[] RadomExitsRoom;
     public ARoom pharmacyRoom;
     public ARoom storeRoom;
     public StorageRoom storageRoom;
@@ -264,14 +265,16 @@ public class HospitalManager : MonoBehaviour
 
     public ARoom GetRoom(DiseaseType diseaseType)
     {
+
+
         List<ARoom> roomsToCheck = diseaseType switch
         {
             DiseaseType.Cough => new List<ARoom> { pharmacyRoom, MriRoom },
             DiseaseType.Cold => new List<ARoom> { pharmacyRoom, IcuRoom },
             DiseaseType.Fever => new List<ARoom> { InjectionRoom, IcuRoom },
             DiseaseType.Heartworm_Disease => new List<ARoom> { InjectionRoom, MriRoom },
-            DiseaseType.Ear_Infection => new List<ARoom> { InjectionRoom, GroomingRoom, OpreationRoom },
-            DiseaseType.Fleas_and_Ticks => new List<ARoom> { GroomingRoom, InjectionRoom },
+            DiseaseType.Ear_Infection => new List<ARoom> { GroomingRoom, OpreationRoom },
+            DiseaseType.Fleas_and_Ticks => new List<ARoom> { GroomingRoom },
             DiseaseType.Allergies => new List<ARoom> { InjectionRoom, GroomingRoom, IcuRoom },
             DiseaseType.Dental_Disease => new List<ARoom> { InjectionRoom, GroomingRoom, OpreationRoom },
             DiseaseType.Skin_Infecction => new List<ARoom> { GroomingRoom, IcuRoom },
@@ -285,8 +288,10 @@ public class HospitalManager : MonoBehaviour
             DiseaseType.Toy => new List<ARoom> { storeRoom },
             _ => null,
         };
-         
+
         return GetRandomRoom(roomsToCheck);
+
+
     }
 
     public ARoom GetRandomRoom(List<ARoom> rooms)

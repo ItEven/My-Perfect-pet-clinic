@@ -317,33 +317,33 @@ public class PatientManager : MonoBehaviour
     int diseaseIndex;
     public DiseaseType GetRandomDisease()
     {
-        if (diseaseIndex < UnlocDiseases.Count)
+        //if (diseaseIndex < UnlocDiseases.Count)
+        //{
+        //    diseaseIndex++;
+        //    if (diseaseIndex >= UnlocDiseases.Count)
+        //    {
+        //        diseaseIndex = 0;
+        //        return UnlocDiseases[diseaseIndex];
+
+            //    }
+            //    else
+            //    {
+
+            //        return UnlocDiseases[diseaseIndex];
+            //    }
+
+            //}
+        if (UnlocDiseases.Count > 0)
         {
-            diseaseIndex++;
-            if (diseaseIndex >= UnlocDiseases.Count)
-            {
-                diseaseIndex = 0;
-                return UnlocDiseases[diseaseIndex];
-
-            }
-            else
-            {
-
-                return UnlocDiseases[diseaseIndex];
-            }
-
+            int randomIndex = Random.Range(0, UnlocDiseases.Count);
+            return UnlocDiseases[randomIndex];
         }
         else
         {
-            diseaseIndex = 0;
+            //diseaseIndex = 0;
             AddDisease(DiseaseType.Cough);
             return DiseaseType.Cough;
         }
-        //if (UnlocDiseases.Count > 0)
-        //{
-        //    int randomIndex = Random.Range(0, UnlocDiseases.Count);
-        //    return UnlocDiseases[randomIndex];
-        //}
     }
 
     #endregion
