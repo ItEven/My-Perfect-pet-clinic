@@ -46,15 +46,20 @@ public class Patient : MonoBehaviour
     {
         sloganTextBox.gameObject.SetActive(false);
     }
+
+
     [Button("MoveAnimal")]
 
     public void MoveAnimal()
     {
         animal.player = RightFollowPos;
-        animal.startFollow();
+        animal.startFollow(); 
     }
     public void MoveToExit(Transform ExitPoint, MoodType moodType)
     {
+        StopSlogan();
+        sloganTextBox.gameObject.SetActive(false);
+
         emojisController.PlayEmoji(moodType);
         if (moodType == MoodType.Happy)
         {
@@ -150,7 +155,6 @@ public class Patient : MonoBehaviour
         }).SetId(SaloganTweenId).SetLoops(-1, LoopType.Restart);
     }
 
-    [Button("niga")]
     public void StopSlogan()
     {
         DOTween.Kill(SaloganTweenId);

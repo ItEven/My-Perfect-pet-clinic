@@ -146,7 +146,6 @@ public class ARoom : MonoBehaviour
             //// LoadBedData();
             // gameManager.PlayParticles(roundUpgradePartical);
             // //  Destroy(upGrader.gameObject);
-
         }
         else
         {
@@ -199,7 +198,6 @@ public class ARoom : MonoBehaviour
     public void OnUnlockAndUpgrade()
     {
         AudioManager.i.OnUpgrade();
-
         if (!bIsUnlock)
         {
             bIsUnlock = true;

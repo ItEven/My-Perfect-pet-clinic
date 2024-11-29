@@ -376,14 +376,17 @@ public class TaskManager : MonoBehaviour
             case 92:
                 IcuRoom.LoadNextForStaff(1); break;
             case 93:
-                OpreationRoom.LoadNextForStaff(2); break;
+                OpreationRoom.LoadNextForStaff(2); break; 
             case 94:
                 IcuRoom.LoadNextForStaff(2); break;
             case 95:
                 IcuRoom.LoadNextForStaff(0); break;
             case 96:
                 IcuRoom.LoadNextForStaff(2); break;
-
+            case 100:
+                IcuRoom.bedsArr[2].staffNPC.bIsUpgraderActive = false;
+                IcuRoom.bedsArr[2].staffNPC.gameObject.SetActive(false);
+                break;
             default: break;
 
         }
@@ -400,9 +403,9 @@ public class TaskManager : MonoBehaviour
     public void MovelastTarget()
     {
         if(target != null)
-        {
+        {  
             cameraController.MoveToTarget(target, () =>
-            {
+            {              
                 DOVirtual.DelayedCall(0.5f, () =>
                 {
                     cameraController.MoveToPlayer();

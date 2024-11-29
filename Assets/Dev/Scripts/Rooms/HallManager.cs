@@ -63,7 +63,6 @@ public class HallManager : MonoBehaviour
 
     #endregion
 
-
     public void Start()
     {
         currentCost = unlockPrice;
@@ -108,7 +107,6 @@ public class HallManager : MonoBehaviour
         }
 
     }
-
     public void OnUnlock()
     {
         if (bIsUnlock)
@@ -134,7 +132,6 @@ public class HallManager : MonoBehaviour
         }
     }
 
-
     #region Upgrade Mechanics 
     public void SetUpgredeVisual()
     {
@@ -142,6 +139,7 @@ public class HallManager : MonoBehaviour
         if (bIsUpgraderActive)
         {
             CameraController.Instance.FocusOnTarget(upGrader.transform);
+            TaskManager.instance.target = upGrader.transform;
 
             SetTakeMoneyData(currentCost);
         }
@@ -174,6 +172,7 @@ public class HallManager : MonoBehaviour
     }
 
     #endregion
+
     #region Data Functions
     public void SaveData()
     {

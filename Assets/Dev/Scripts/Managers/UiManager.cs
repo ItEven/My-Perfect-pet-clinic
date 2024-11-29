@@ -92,7 +92,7 @@ public class UiManager : MonoBehaviour
     #region Illnesses
     public void OpneIllnessesPanel()
     {
-
+        
         if (illnessesbackgroundPanel.gameObject.activeInHierarchy)
         {
             ClosePanel(illnessesbackgroundPanel, illnessesPanelBgImagel, roomPanel);
@@ -116,6 +116,7 @@ public class UiManager : MonoBehaviour
     public void OpenPanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)
     {
         if (bIsUiOn) return;
+        AudioManager.i.OnMoneyDrop();
         hudPanel.gameObject.SetActive(false);
         backgroundPanel.gameObject.SetActive(true);
 
@@ -130,6 +131,7 @@ public class UiManager : MonoBehaviour
 
     public void ClosePanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)
     {
+        AudioManager.i.OnMoneyDrop();
         //Material material = bgImg.material;
         bgImg.DOFade(0f, commenDgDuraction).OnComplete(() =>
         {

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -32,7 +33,9 @@ public class Upgrader : MonoBehaviour
 
     [Header("Arrow")]
     public bool bCanArrowWork = false;
+    public bool bCanUsePLayerArrow = false;
     public Transform arrow;
+    public Transform newArrow;
 
     internal int needMoney
     {
@@ -56,7 +59,7 @@ public class Upgrader : MonoBehaviour
         economyManager = saveManager.economyManager;
         uiManager = saveManager.uiManager;
         //needMoney = currentNeedMoney;
-         if (bCanArrowWork)
+        if (bCanArrowWork)
         {
             if (!arrow.gameObject.activeInHierarchy)
             {
@@ -65,7 +68,16 @@ public class Upgrader : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Arrow();
+        if (bCanUsePLayerArrow)
+        {
+            saveManager.gameManager.playerController.arrowController.gameObject.SetActive(true);
+            saveManager.gameManager.playerController.arrowController.SetTarget(transform, 2f);
+        }
 
+    }
     public void SetData(int val)
     {
         needMoney = val;
@@ -73,18 +85,22 @@ public class Upgrader : MonoBehaviour
         currentNeedMoney = needMoney;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (bCanArrowWork)
+        if (other.CompareTag("Player"))
         {
-            if (arrow.gameObject.activeInHierarchy)
+            if (bCanArrowWork)
             {
                 arrow.gameObject.SetActive(false);
             }
         }
-
+    }
+    private void OnTriggerStay(Collider other)
+    {
         if (other.CompareTag("Player"))
         {
+            arrow.gameObject.SetActive(false);
+
             if (needMoney > 0 && (float)economyManager.PetMoneyCount > 0)
             {
                 player = other.gameObject.GetComponent<PlayerController>();
@@ -94,39 +110,36 @@ public class Upgrader : MonoBehaviour
                     StartTakeMoney();
                 }
             }
-
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (bCanArrowWork)
+        if (other.CompareTag("Player"))
         {
-            if (!arrow.gameObject.activeInHierarchy)
+            if (bCanArrowWork)
             {
                 arrow.gameObject.SetActive(true);
             }
-        }
-
-        if (other.CompareTag("Player"))
-        {
             bIsPlayerStay = false;
         }
     }
+
     public void SetUpgraderSprite()
     {
         indicationIcon.sprite = arrowSprtie;
         indicationIcon.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
     }
+
     private void StartTakeMoney()
-    {   
+    {
         if (takeMoneyCoroutine == null)
         {
             StartCoroutine(MoneySpwaing());
             takeMoneyCoroutine = StartCoroutine(TakingMoney());
         }
 
-        if(currentNeedMoney == 0)
+        if (currentNeedMoney == 0)
         {
             OnUpgradeFinish.Invoke();
             StopTakeMoney();
@@ -149,6 +162,7 @@ public class Upgrader : MonoBehaviour
     float lastSub = 0f;
     private IEnumerator TakingMoney()
     {
+
         if (needMoney <= 0) yield break;
         if (economyManager.PetMoneyCount <= 0) yield break;
 
@@ -156,14 +170,13 @@ public class Upgrader : MonoBehaviour
 
         while (needMoney > 0)
         {
+            arrow.gameObject.SetActive(false);
             if (!bIsPlayerStay || (float)economyManager.PetMoneyCount <= 0)
             {
                 StopTakeMoney();
                 yield break;
 
             }
-
-
             elapsedTime += Time.deltaTime;
             float percentageComplete = Mathf.Clamp01(elapsedTime / totalTime);
 
@@ -190,6 +203,7 @@ public class Upgrader : MonoBehaviour
 
                 if (needMoney <= 0)
                 {
+                    arrow.gameObject.SetActive(false);
                     OnUpgradeFinish.Invoke();
                     StopTakeMoney();
                     gameObject.SetActive(false);
@@ -215,10 +229,12 @@ public class Upgrader : MonoBehaviour
 
     IEnumerator MoneySpwaing()
     {
+
         while (true)
         {
             if (!bIsPlayerStay) yield break;
             if (economyManager.PetMoneyCount <= 0) yield break;
+            arrow.gameObject.SetActive(false);
 
 
             yield return new WaitForSeconds(spwanBetweenTime);
@@ -228,12 +244,16 @@ public class Upgrader : MonoBehaviour
             brick.jumpHight = jumpHight;
             brick.fadeInTime = fadeInTime;
             brick.fadeOutTime = fadeOutTime;
-
             if (brick != null)
             {
                 brick.StartJump(moneyCollectPonit);
             }
             AudioManager.i.OnMoneyDrop();
         }
+    }
+
+    public void Arrow()
+    {
+        arrow.DOMoveY(2.0f, 0.7f).SetLoops(-1, LoopType.Yoyo);
     }
 }

@@ -198,6 +198,7 @@ public class Overview : MonoBehaviour
     }
     private void UpgradeSpeed()
     {
+        AudioManager.i.OnMoneyDrop();
         if (playerData.speedLevel > 0)
         {
 
@@ -225,6 +226,7 @@ public class Overview : MonoBehaviour
     }
     private void UpgradeProfit()
     {
+        AudioManager.i.OnMoneyDrop();
         if (playerData.profitLevel > 0)
         {
             if (economyManager.bCanWeSpendPetMoney(upgradeProfitCost) && playerData.profitLevel < maxProfitLevel)
