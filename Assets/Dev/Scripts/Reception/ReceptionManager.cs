@@ -142,6 +142,7 @@ public class ReceptionManager : MonoBehaviour
     {
         if (bIsUnlock)
         {
+            AudioManager.i.OnUpgrade();
             gameManager.SetObjectsStates(lockedObjs, false);
             foreach (var item in unlockObjs)
             {
@@ -342,6 +343,8 @@ public class ReceptionManager : MonoBehaviour
                            worldProgresBar.fillAmount = 0;
                            bIsProcessing = false;
                            bIsRunning = false;
+                           gameManager.playerController.arrowController.target = null;
+
 
                        });
 

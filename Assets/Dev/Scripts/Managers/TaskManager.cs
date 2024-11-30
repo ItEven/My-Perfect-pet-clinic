@@ -122,6 +122,8 @@ public class TaskManager : MonoBehaviour
                 break;
             case 4:
                 InspectionRoom.LoadNextForStaff(0);
+                gameManager.playerController.arrowController.target = null;
+                gameManager.playerController.arrowController.target = receptionManager.seat.transform;
                 break;
             case 5:
                 patientManager.AddDisease(DiseaseType.Cold);

@@ -32,10 +32,10 @@ public class Upgrader : MonoBehaviour
     public Sprite arrowSprtie;
 
     [Header("Arrow")]
-    public bool bCanArrowWork = false;
-    public bool bCanUsePLayerArrow = false;
+    public bool bCanArrowWork;
+    public bool bCanUsePLayerArrow;
     public Transform arrow;
-    public Transform newArrow;
+
 
     internal int needMoney
     {
@@ -58,30 +58,17 @@ public class Upgrader : MonoBehaviour
         saveManager = SaveManager.instance;
         economyManager = saveManager.economyManager;
         uiManager = saveManager.uiManager;
-        //needMoney = currentNeedMoney;
-        if (bCanArrowWork)
-        {
-            if (!arrow.gameObject.activeInHierarchy)
-            {
-                arrow.gameObject.SetActive(true);
-            }
-        }
+        //needMoney = currentNeedMoney; 
     }
 
     private void Start()
     {
-        Arrow();
-        if (bCanUsePLayerArrow)
-        {
-            saveManager.gameManager.playerController.arrowController.gameObject.SetActive(true);
-            saveManager.gameManager.playerController.arrowController.SetTarget(transform, 2f);
-        }
-
+        SetupPlayerArrow();
     }
     public void SetData(int val)
     {
+        SetupPlayerArrow();
         needMoney = val;
-
         currentNeedMoney = needMoney;
     }
 
@@ -89,17 +76,13 @@ public class Upgrader : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (bCanArrowWork)
-            {
-                arrow.gameObject.SetActive(false);
-            }
+            HideArrow();
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            arrow.gameObject.SetActive(false);
 
             if (needMoney > 0 && (float)economyManager.PetMoneyCount > 0)
             {
@@ -117,10 +100,7 @@ public class Upgrader : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (bCanArrowWork)
-            {
-                arrow.gameObject.SetActive(true);
-            }
+            ShowArrow();
             bIsPlayerStay = false;
         }
     }
@@ -170,7 +150,7 @@ public class Upgrader : MonoBehaviour
 
         while (needMoney > 0)
         {
-            arrow.gameObject.SetActive(false);
+
             if (!bIsPlayerStay || (float)economyManager.PetMoneyCount <= 0)
             {
                 StopTakeMoney();
@@ -203,7 +183,7 @@ public class Upgrader : MonoBehaviour
 
                 if (needMoney <= 0)
                 {
-                    arrow.gameObject.SetActive(false);
+                    HideArrow();
                     OnUpgradeFinish.Invoke();
                     StopTakeMoney();
                     gameObject.SetActive(false);
@@ -234,7 +214,6 @@ public class Upgrader : MonoBehaviour
         {
             if (!bIsPlayerStay) yield break;
             if (economyManager.PetMoneyCount <= 0) yield break;
-            arrow.gameObject.SetActive(false);
 
 
             yield return new WaitForSeconds(spwanBetweenTime);
@@ -251,9 +230,32 @@ public class Upgrader : MonoBehaviour
             AudioManager.i.OnMoneyDrop();
         }
     }
+    public void SetupPlayerArrow()
+    {
+        Arrow();
+        ShowArrow();
+        if (bCanUsePLayerArrow)
+        {
+            saveManager.gameManager.playerController.arrowController.gameObject.SetActive(true);
+            saveManager.gameManager.playerController.arrowController.SetTarget(transform, 3f);
+        }
+    }
+    public void ShowArrow()
+    {
+        if (bCanArrowWork)
+        {
+            Debug.Log("YOYO");
+            arrow.gameObject.SetActive(true);
+        }
+    }
 
+    public void HideArrow()
+    {
+        arrow.gameObject.SetActive(false);
+    }
     public void Arrow()
     {
+
         arrow.DOMoveY(2.0f, 0.7f).SetLoops(-1, LoopType.Yoyo);
     }
 }
