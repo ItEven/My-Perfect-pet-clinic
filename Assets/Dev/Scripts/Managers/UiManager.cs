@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class UiManager : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class UiManager : MonoBehaviour
     public RectTransform illnessesContentBox;
     public Button illnessesbtn;
     public Button illnessescloseBtn;
+
 
 
 
@@ -112,6 +114,9 @@ public class UiManager : MonoBehaviour
         illnessesUiContent.SetIllnessesData(dataTitleText);
     }
     #endregion
+
+
+ 
 
     public void OpenPanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)
     {

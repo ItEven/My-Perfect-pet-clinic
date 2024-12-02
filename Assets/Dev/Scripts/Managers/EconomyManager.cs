@@ -50,7 +50,7 @@ public class EconomyManager : MonoBehaviour
     {
         saveManager = SaveManager.instance;
         uiManager = UiManager.instance;
-        economyDatas = saveManager.gameData.economyDatas;
+        economyDatas = saveManager.gameData.economyDatas;     
         UpdatePetMoneyCountUI();
         UpdateGemsCountUI();
     }
