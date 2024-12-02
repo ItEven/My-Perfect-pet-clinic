@@ -26104,6 +26104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2de6a92731942c45a48607af9cb44e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joyStick: {fileID: 8170153791829913702}
   moneyBoxRect: {fileID: 114934184}
   taskBoxRect: {fileID: 153235767}
   settingBoxRect: {fileID: 405016712}

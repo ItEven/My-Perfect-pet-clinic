@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     public static TutorialManager instance;
 
     [Header("UI recfs")]
+    public RectTransform joyStick;
     public RectTransform moneyBoxRect;
     public RectTransform taskBoxRect;
     public RectTransform settingBoxRect;
@@ -60,27 +62,37 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(CheckHud());
         if (!PlayerPrefs.HasKey("Tutorial"))
         {
             StartCoroutine(StartTutorial());
         }
-        CheckHud();
 
+        avtarTapBtn.onClick.AddListener(() =>
+        {
+            StopCoroutine(TypeText(GetText()));
 
+            StartCoroutine(TypeText(GetText()));
+        });
     }
     #region TextBox
     public void StartTextBox(string text)
     {
         if (!avtarTextPanel.gameObject.activeInHierarchy)
         {
+            avtarText.text = "";
+
             avtarTextPanel.gameObject.SetActive(true);
-            Vector3 lastPos = avtarText.transform.localPosition;
-            Vector3 newPosition = avtarText.transform.localPosition;
-            newPosition.x = 15f;
-            avtarText.transform.localPosition = newPosition;
-            textBox.DOMove(lastPos, 1f).OnComplete(() =>
+            Vector3 lastPos = textBox.transform.position;
+            Vector3 newPosition = textBox.transform.position;
+            newPosition.x = -1500f;
+            textBox.transform.position = newPosition;
+            DOVirtual.DelayedCall(2f, () =>
             {
-                StartCoroutine(TypeText(text));
+                textBox.DOMove(lastPos, 1f).OnComplete(() =>
+                {
+                    StartCoroutine(TypeText(text));
+                });
             });
         }
     }
@@ -93,7 +105,7 @@ public class TutorialManager : MonoBehaviour
             for (int i = 0; i < fullText.Length; i++)
             {
                 avtarText.text += fullText[i];
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.01f);
             }
         }
         else
@@ -110,7 +122,7 @@ public class TutorialManager : MonoBehaviour
         TextCount++;
         switch (TextCount)
         {
-            case 1: return "Welcome to this beautiful town!The pets here need you.";
+            case 1: return "Welcome to this beautiful town! The pets here need you.";
             case 2: return "Today, you’re appointed as the owner of the first pet hospital.";
             case 3: return "Let’s collect the money and unlock the hospital to give every furry friend the care they deserve.";
             default:
@@ -124,6 +136,7 @@ public class TutorialManager : MonoBehaviour
     IEnumerator StartTutorial()
     {
         StartTextBox(GetText());
+
         yield return new WaitUntil(() => taskManager.hallManager_01.bIsUnlock);
         PlayerPrefs.SetInt("Tutorial", 0);
         yield break;
@@ -139,8 +152,12 @@ public class TutorialManager : MonoBehaviour
         illnessesBoxRect.gameObject.SetActive(false);
         campasBoxRect.gameObject.SetActive(false);
         messageBoxPanel.gameObject.SetActive(false);
+        joyStick.gameObject.SetActive(false);
 
+        yield return new WaitUntil(() => !textBox.gameObject.activeInHierarchy);
+        joyStick.gameObject.SetActive(true);
         yield return new WaitUntil(() => saveManager.economyManager.PetMoneyCount > 0);
+        messageBoxPanel.gameObject.SetActive(false);
         moneyBoxRect.gameObject.SetActive(true);
         yield return new WaitUntil(() => taskManager.receptionManager.bIsUnlock);
         taskBoxRect.gameObject.SetActive(true);
@@ -152,4 +169,20 @@ public class TutorialManager : MonoBehaviour
         yield break;
     }
 
+    IEnumerator PatientFollow()
+    {
+        bIsTutorialRunning = true;      
+        joyStick.gameObject.SetActive(true);
+        yield return new WaitUntil(() => taskManager.receptionManager.waitingQueue.patientInQueue.Count > 2);
+        CameraController.Instance.FollowPatient(taskManager.receptionManager.waitingQueue.patientInQueue[0].transform);
+        yield return new WaitUntil(() => !taskManager.receptionManager.waitingQueue.patientInQueue[0].NPCMovement.bIsMoving);
+        StartTextBox("Customer's are waiting for you on Reception ");
+        yield return new WaitForSeconds(2f);
+        messageBoxPanel.gameObject.SetActive(true);
+        messageText.text = "Set on the reception table ";
+        CameraController.Instance.MoveToTarget(taskManager.receptionManager.seat.transform);
+
+
+
+    }
 }
