@@ -31,7 +31,7 @@ public class TutorialManager : MonoBehaviour
     [Header("Message box")]
     public RectTransform messageBoxPanel;
     public Text messageText;
-    internal bool bIsTutorialRunning;
+    internal bool bIsTutorialRunning = false;
     internal bool Tutorial;
     private void Awake()
     {
@@ -60,15 +60,22 @@ public class TutorialManager : MonoBehaviour
 
     #endregion
 
+    bool bIsGameRestart;
     private void Start()
     {
         StartCoroutine(CheckHud());
         if (!PlayerPrefs.HasKey("Tutorial"))
         {
+            bIsGameRestart = false;
             StartCoroutine(StartTutorial());
         }
+        else
+        {
+            bIsGameRestart = true;
 
-        
+        }
+
+
 
 
     }
@@ -111,12 +118,6 @@ public class TutorialManager : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
         }
-        else
-        {
-            avtarTextPanel.gameObject.SetActive(false);
-            messageBoxPanel.gameObject.SetActive(true);
-            messageText.text = "Collect Money !";
-        }
     }
     public void StopTyping()
     {
@@ -127,7 +128,7 @@ public class TutorialManager : MonoBehaviour
     public string GetText()
     {
         TextCount++;
-        Debug.LogError(TextCount);
+
         switch (TextCount)
         {
             case 1: return "Welcome to this beautiful town! The pets here need you.";
@@ -144,6 +145,7 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator StartTutorial()
     {
+
         StartTextBox(GetText());
         yield return new WaitForSeconds(2);
         avtarTapBtn.onClick.AddListener(() =>
@@ -155,6 +157,10 @@ public class TutorialManager : MonoBehaviour
       });
         messageBoxPanel.gameObject.SetActive(true);
         messageText.text = "Tap To Continue..!";
+        yield return new WaitUntil(() => TextCount > 4);
+        avtarTextPanel.gameObject.SetActive(false);
+        messageBoxPanel.gameObject.SetActive(true);
+        messageText.text = "Collect Money !";
         yield return new WaitUntil(() => taskManager.hallManager_01.bIsUnlock);
         PlayerPrefs.SetInt("Tutorial", 0);
         yield break;
@@ -170,22 +176,23 @@ public class TutorialManager : MonoBehaviour
         illnessesBoxRect.gameObject.SetActive(false);
         campasBoxRect.gameObject.SetActive(false);
         messageBoxPanel.gameObject.SetActive(false);
-        joyStick.gameObject.SetActive(false);
+        FrizPlayer();
 
         yield return new WaitUntil(() => !textBox.gameObject.activeInHierarchy);
-        joyStick.gameObject.SetActive(true);
+        //UnFrizPlayer();
         yield return new WaitUntil(() => saveManager.economyManager.PetMoneyCount > 0);
         messageBoxPanel.gameObject.SetActive(false);
         moneyBoxRect.gameObject.SetActive(true);
         yield return new WaitUntil(() => taskManager.receptionManager.bIsUnlock);
         taskBoxRect.gameObject.SetActive(true);
         settingBoxRect.gameObject.SetActive(true);
-        yield return new WaitUntil(() => taskManager.InspectionRoom.bIsUnlock);
+        yield return new WaitUntil(() => taskManager.pharmacyRoom.bIsUnlock);
         overviweBoxRect.gameObject.SetActive(true);
         illnessesBoxRect.gameObject.SetActive(true);
         campasBoxRect.gameObject.SetActive(true);
         if (!PlayerPrefs.HasKey("PatientFollowTutorial"))
         {
+            FrizPlayer();
             StartCoroutine(PatientFollow());
 
         }
@@ -193,26 +200,33 @@ public class TutorialManager : MonoBehaviour
         {
             saveManager.gameManager.playerController.arrowController.target = null;
             saveManager.gameManager.playerController.arrowController.arrowIcon.SetActive(false);
+            bIsTutorialRunning = false;
         }
         yield break;
     }
 
     IEnumerator PatientFollow()
     {
+
+        bIsTutorialRunning = true;
         saveManager.gameManager.playerController.arrowController.target = null;
         saveManager.gameManager.playerController.arrowController.arrowIcon.SetActive(false);
-        bIsTutorialRunning = true;
-        joyStick.gameObject.SetActive(false);
         yield return new WaitUntil(() => taskManager.receptionManager.waitingQueue.patientInQueue.Count > 2);
+        if (bIsGameRestart)
+        {
+            yield return new WaitForSeconds(3f);
+        }
         CameraController.Instance.FollowPatient(taskManager.receptionManager.waitingQueue.patientInQueue[0].transform);
-        StartTextBox("Customer's are waiting for you on Reception ");
-        yield return new WaitForSeconds(3.5f);
+        StartTextBox("Customer's are coming on Reception ");
+        yield return new WaitUntil(() => !taskManager.receptionManager.waitingQueue.patientInQueue[0].NPCMovement.bIsMoving);
+        yield return new WaitForSeconds(1.5f);
         avtarTextPanel.gameObject.SetActive(false);
         messageBoxPanel.gameObject.SetActive(true);
         messageText.text = "Set on the reception table ";
         CameraController.Instance.MoveToTarget(taskManager.receptionManager.seat.transform);
-        joyStick.gameObject.SetActive(true);
         saveManager.gameManager.playerController.arrowController.target = taskManager.receptionManager.seat.transform;
+        yield return new WaitForSeconds(2f);
+        UnFrizPlayer();
         yield return new WaitUntil(() => taskManager.receptionManager.bIsPlayerOnDesk);
         messageBoxPanel.gameObject.SetActive(false);
         yield return new WaitUntil(() => taskManager.InspectionRoom.waitingQueue.patientInQueue.Count > 0);
@@ -235,10 +249,29 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => patient.NPCMovement.bIsMoving);
         CameraController.Instance.FollowPatient(patient.transform);
         PlayerPrefs.SetInt("PatientFollowTutorial", 0);
+        bIsTutorialRunning = false;
+
         yield return null;
+    }
 
+    public void FrizPlayer()
+    {
 
+        saveManager.gameManager.playerController.playerControllerData.characterMovement.enabled = false;
+        saveManager.gameManager.playerController.enabled = false;
+        saveManager.gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(false);
+        saveManager.gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
 
+    }
 
+    public void UnFrizPlayer()
+    {
+        saveManager.gameManager.playerController.playerControllerData.joystick.gameObject.SetActive(true);
+        saveManager.gameManager.playerController.playerControllerData.joystick.OnPointerUp(null);
+        saveManager.gameManager.playerController.playerControllerData.characterMovement.enabled = true;
+        if (saveManager.gameManager.playerController.animationController.GetCurrntAnimState() == AnimType.Run.ToString())
+        {
+            saveManager.gameManager.playerController.animationController.PlayAnimation(AnimType.Idle);
+        }
     }
 }

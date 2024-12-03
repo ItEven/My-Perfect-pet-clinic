@@ -110,7 +110,9 @@ public class CameraController : MonoBehaviour
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
-        if (playerController.animationController.GetCurrntAnimState() == AnimType.Walk.ToString()) 
+
+        Debug.LogError(playerController.animationController.GetCurrntAnimState());
+        if (playerController.animationController.GetCurrntAnimState() == AnimType.Run.ToString()) 
         {
             playerController.animationController.PlayAnimation(AnimType.Idle);
         }
@@ -129,7 +131,9 @@ public class CameraController : MonoBehaviour
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
-        if (playerController.animationController.GetCurrntAnimState() == AnimType.Walk.ToString())
+        Debug.LogError(playerController.animationController.GetCurrntAnimState());
+
+        if (playerController.animationController.GetCurrntAnimState() == AnimType.Run.ToString())
         {
             playerController.animationController.PlayAnimation(AnimType.Idle);
         }
@@ -151,7 +155,9 @@ public class CameraController : MonoBehaviour
             playerController.playerControllerData.joystick.gameObject.SetActive(true);
             playerController.playerControllerData.joystick.OnPointerUp(null);
             playerController.playerControllerData.characterMovement.enabled = true;
-            if (playerController.animationController.GetCurrntAnimState() == AnimType.Walk.ToString())
+            Debug.LogError(playerController.animationController.GetCurrntAnimState());
+
+            if (playerController.animationController.GetCurrntAnimState() == AnimType.Run.ToString())
             {
                 playerController.animationController.PlayAnimation(AnimType.Idle);
             }

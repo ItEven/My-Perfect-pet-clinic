@@ -31,9 +31,26 @@ public class AnimationController : MonoBehaviour
 
     public string GetCurrntAnimState()
     {
-        AnimatorStateInfo currentState = controller.GetCurrentAnimatorStateInfo(0);
-        string animationName = currentState.ToString();
-        return animationName;
+        if (controller != null)
+        {
+            // Get the current state info from the first layer of the Animator
+            AnimatorStateInfo currentState = controller.GetCurrentAnimatorStateInfo(0);
+
+            // Return the current animation state's name using its hash
+            foreach (AnimType anim in Enum.GetValues(typeof(AnimType)))
+            {
+                if (Animator.StringToHash(anim.ToString()) == currentState.shortNameHash)
+                {
+                    return anim.ToString();
+                }
+            }
+
+            // If no match found, return a default message
+            return "Unknown State";
+        }
+
+        // If the controller is null, return an error message
+        return "Animator Not Found";
     }
 
 
