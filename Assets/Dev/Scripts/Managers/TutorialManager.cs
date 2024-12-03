@@ -68,11 +68,7 @@ public class TutorialManager : MonoBehaviour
             StartCoroutine(StartTutorial());
         }
 
-        if (!PlayerPrefs.HasKey("PatientFollowTutorial"))
-        {
-            StartCoroutine(PatientFollow());
-
-        }
+        
 
 
     }
@@ -188,7 +184,16 @@ public class TutorialManager : MonoBehaviour
         overviweBoxRect.gameObject.SetActive(true);
         illnessesBoxRect.gameObject.SetActive(true);
         campasBoxRect.gameObject.SetActive(true);
-        StartCoroutine(PatientFollow());
+        if (!PlayerPrefs.HasKey("PatientFollowTutorial"))
+        {
+            StartCoroutine(PatientFollow());
+
+        }
+        else
+        {
+            saveManager.gameManager.playerController.arrowController.target = null;
+            saveManager.gameManager.playerController.arrowController.arrowIcon.SetActive(false);
+        }
         yield break;
     }
 
@@ -221,12 +226,14 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => taskManager.pharmacyRoom.waitingQueue.patientInQueue.Count > 0);
         CameraController.Instance.FollowPatient(taskManager.pharmacyRoom.waitingQueue.patientInQueue[0].transform);
         yield return new WaitUntil(() => !taskManager.pharmacyRoom.waitingQueue.patientInQueue[0].NPCMovement.bIsMoving);
+        Patient patient = taskManager.pharmacyRoom.waitingQueue.patientInQueue[0];
         messageBoxPanel.gameObject.SetActive(true);
         messageText.text = "Give some medicine to pet ";
         yield return new WaitUntil(() => taskManager.pharmacyRoom.bedsArr[0].bIsPlayerOnDesk);
         messageBoxPanel.gameObject.SetActive(false);
-        yield return new WaitUntil(() => taskManager.pharmacyRoom.waitingQueue.patientInQueue[0].NPCMovement.bIsMoving);
-        CameraController.Instance.FollowPatient(taskManager.InspectionRoom.waitingQueue.patientInQueue[0].transform);
+        yield return new WaitForSeconds(2f);
+        yield return new WaitUntil(() => patient.NPCMovement.bIsMoving);
+        CameraController.Instance.FollowPatient(patient.transform);
         PlayerPrefs.SetInt("PatientFollowTutorial", 0);
         yield return null;
 
