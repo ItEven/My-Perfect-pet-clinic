@@ -22,6 +22,10 @@ public class Overview : MonoBehaviour
     public Text currnetPatientCountText;
     public Text successRatePatientCountText;
     internal float ratingAndSuccesRate;
+
+    [Header("Hospital needs one")]
+    public Button pvcBtn;
+    public Button tremsBtn;
     public float RatingAndSuccesRate
     {
         get
@@ -113,10 +117,18 @@ public class Overview : MonoBehaviour
         closeBtn.onClick.RemoveAllListeners();
         speedBtn.onClick.RemoveAllListeners();
         profitBtn.onClick.RemoveAllListeners();
+        pvcBtn.onClick.RemoveAllListeners();
+        tremsBtn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(OpneOverviewPanel);
         closeBtn.onClick.AddListener(OpneOverviewPanel);
         speedBtn.onClick.AddListener(UpgradeSpeed);
         profitBtn.onClick.AddListener(UpgradeProfit);
+        pvcBtn.onClick.AddListener(()=>{
+            OpenLink("Button1");
+        });
+        tremsBtn.onClick.AddListener(() => {
+            OpenLink("Button2");
+        });
         SetUpData();
     }
 
@@ -268,5 +280,25 @@ public class Overview : MonoBehaviour
         UpdateUi();
     }
 
+
+    // Dictionary to store button names and corresponding URLs
+    private Dictionary<string, string> links = new Dictionary<string, string>
+    {
+        { "Button1", "https://playcrazzy.com/myperfectpetclinic/privacy-policy.php" },
+        { "Button2", "https://playcrazzy.com/myperfectpetclinic/terms-conditions.php" }
+    };
+
+    // Generic method to open links
+    public void OpenLink(string buttonName)
+    {
+        if (links.TryGetValue(buttonName, out string url))
+        {
+            Application.OpenURL(url);
+        }
+        else
+        {
+            Debug.LogWarning("Button name not found in links dictionary!");
+        }
+    }
 
 }

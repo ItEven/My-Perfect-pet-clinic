@@ -141,14 +141,10 @@ public class StaffNPC : MonoBehaviour
         if (bIsUpgraderActive)
         {
             TaskManager.instance.target = upGrader.transform;
-            if (!TutorialManager.instance.bIsTutorialRunning)
-            {
-                cameraController.FocusOnTarget(upGrader.transform);
-            }
-            else
-            {
-                upGrader.gameObject.SetActive(true);
-            }
+
+            cameraController.FocusOnTarget(upGrader.transform);
+
+
 
             SetTakeMoneyData(currentCost);
         }

@@ -22,7 +22,9 @@ public class TaskManager : MonoBehaviour
     public int curentTask
     {
         get { return saveManager.gameData.taskDataData.curentTask; }
-        set { saveManager.gameData.taskDataData.curentTask = value;
+        set
+        {
+            saveManager.gameData.taskDataData.curentTask = value;
             UpdateUI();
         }
     }
@@ -84,7 +86,7 @@ public class TaskManager : MonoBehaviour
         UpdateUI();
         campassBtn.onClick.RemoveAllListeners();
         campassBtn.onClick.AddListener(MovelastTarget);
-       
+
     }
 
     #endregion
@@ -121,9 +123,10 @@ public class TaskManager : MonoBehaviour
                 OnTaskComplete(4);
                 break;
             case 4:
-                InspectionRoom.LoadNextForStaff(0);
-                gameManager.playerController.arrowController.target = null;
-                gameManager.playerController.arrowController.target = receptionManager.seat.transform;
+                if (!TutorialManager.instance.bIsTutorialRunning)
+                {
+                    InspectionRoom.LoadNextForStaff(0);
+                }
                 break;
             case 5:
                 patientManager.AddDisease(DiseaseType.Cold);
@@ -378,7 +381,7 @@ public class TaskManager : MonoBehaviour
             case 92:
                 IcuRoom.LoadNextForStaff(1); break;
             case 93:
-                OpreationRoom.LoadNextForStaff(2); break; 
+                OpreationRoom.LoadNextForStaff(2); break;
             case 94:
                 IcuRoom.LoadNextForStaff(2); break;
             case 95:
@@ -396,18 +399,18 @@ public class TaskManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        
+
         taskProgressText.text = curentTask.ToString("00") + "/" + MaxTask.ToString();
         taskProgressSlider.value = curentTask;
-   
+
     }
 
     public void MovelastTarget()
     {
-        if(target != null)
-        {  
+        if (target != null)
+        {
             cameraController.MoveToTarget(target, () =>
-            {              
+            {
                 DOVirtual.DelayedCall(0.5f, () =>
                 {
                     cameraController.MoveToPlayer();
@@ -418,5 +421,5 @@ public class TaskManager : MonoBehaviour
         {
             Debug.LogError("target is null");
         }
-    } 
+    }
 }

@@ -7,7 +7,7 @@ public class AnimationController : MonoBehaviour
 {
     public Animator controller;
     public AnimType startanimation;
-    
+
 
     void Start()
     {
@@ -29,7 +29,13 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    
-    
+    public string GetCurrntAnimState()
+    {
+        AnimatorStateInfo currentState = controller.GetCurrentAnimatorStateInfo(0);
+        string animationName = currentState.ToString();
+        return animationName;
+    }
+
+
 
 }

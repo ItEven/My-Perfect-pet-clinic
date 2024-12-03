@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-       // ManageZoom();
+        // ManageZoom();
     }
 
 
@@ -101,16 +101,19 @@ public class CameraController : MonoBehaviour
     }
 
     #endregion
-    
+
     #region ForUpgr
     public void MoveToTarget(Transform target, Action onComplete = null, float delay = 1f)
     {
- 
+
         bCanCameraMove = false;
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
-        playerController.animationController.PlayAnimation(AnimType.Idle);
+        if (playerController.animationController.GetCurrntAnimState() == AnimType.Walk.ToString()) 
+        {
+            playerController.animationController.PlayAnimation(AnimType.Idle);
+        }
         DOVirtual.DelayedCall(delay, () =>
         {
             transform.DOMove(target.position, 1f).OnComplete(() =>
@@ -121,12 +124,15 @@ public class CameraController : MonoBehaviour
     }
     public void MoveToTargetPatient(Transform target, Action onComplete = null)
     {
-        
+
         bCanCameraMove = false;
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
-        playerController.animationController.PlayAnimation(AnimType.Idle);
+        if (playerController.animationController.GetCurrntAnimState() == AnimType.Walk.ToString())
+        {
+            playerController.animationController.PlayAnimation(AnimType.Idle);
+        }
         transform.SetParent(target);
         transform.DOMove(target.position, 0.5f).OnComplete(() =>
         {
@@ -145,7 +151,10 @@ public class CameraController : MonoBehaviour
             playerController.playerControllerData.joystick.gameObject.SetActive(true);
             playerController.playerControllerData.joystick.OnPointerUp(null);
             playerController.playerControllerData.characterMovement.enabled = true;
-            playerController.animationController.PlayAnimation(AnimType.Idle);
+            if (playerController.animationController.GetCurrntAnimState() == AnimType.Walk.ToString())
+            {
+                playerController.animationController.PlayAnimation(AnimType.Idle);
+            }
         });
     }
 
@@ -185,7 +194,7 @@ public class CameraController : MonoBehaviour
         MoveToTargetPatient(target, () =>
         {
             onComplite?.Invoke();
-            
+
             DOVirtual.DelayedCall(followDurtion, () => { bIsMoveingToPatient = false; MoveToPlayer(); ManageCamera(); ; });
         });
 
