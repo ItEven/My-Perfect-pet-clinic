@@ -43,3 +43,28 @@ MonoBehaviour:
     juniorVeterinarianFee: 84
     seniorVeterinarianFee: 112
     chiefVeterinarianFee: 128
+  - Type: 0
+    InternFee: 0
+    juniorVeterinarianFee: 0
+    seniorVeterinarianFee: 0
+    chiefVeterinarianFee: 0
+  - Type: 9
+    InternFee: 0
+    juniorVeterinarianFee: 0
+    seniorVeterinarianFee: 0
+    chiefVeterinarianFee: 0
+  - Type: 3
+    InternFee: 0
+    juniorVeterinarianFee: 0
+    seniorVeterinarianFee: 0
+    chiefVeterinarianFee: 0
+  - Type: 6
+    InternFee: 0
+    juniorVeterinarianFee: 0
+    seniorVeterinarianFee: 0
+    chiefVeterinarianFee: 0
+  - Type: 8
+    InternFee: 0
+    juniorVeterinarianFee: 0
+    seniorVeterinarianFee: 0
+    chiefVeterinarianFee: 0
