@@ -123,10 +123,12 @@ public class Overview : MonoBehaviour
         closeBtn.onClick.AddListener(OpneOverviewPanel);
         speedBtn.onClick.AddListener(UpgradeSpeed);
         profitBtn.onClick.AddListener(UpgradeProfit);
-        pvcBtn.onClick.AddListener(()=>{
+        pvcBtn.onClick.AddListener(() =>
+        {
             OpenLink("Button1");
         });
-        tremsBtn.onClick.AddListener(() => {
+        tremsBtn.onClick.AddListener(() =>
+        {
             OpenLink("Button2");
         });
         SetUpData();
@@ -187,24 +189,42 @@ public class Overview : MonoBehaviour
         speedImage.fillAmount = (float)playerData.speedLevel / 4;
         profitImage.fillAmount = (float)playerData.profitLevel / 4;
 
-        if (playerData.speedLevel > 0)
+        if (playerData.speedLevel >= maxSpeedLevel)
         {
-            currentUpgraderCostText.text = uiManager.ScoreShow(upgradeSpeedCost);
+            speedBtn.gameObject.SetActive(false);
+            speedMax.gameObject.SetActive(true);
         }
         else
         {
-            currentUpgraderCostText.text = "Free";
-            speedBtn.interactable = true;
+
+            if (playerData.speedLevel > 0)
+            {
+                currentUpgraderCostText.text = uiManager.ScoreShow(upgradeSpeedCost);
+            }
+            else
+            {
+                currentUpgraderCostText.text = "Free";
+                speedBtn.interactable = true;
+            }
         }
 
-        if (playerData.profitLevel > 0)
+
+        if (playerData.profitLevel >= maxProfitLevel)
         {
-            currentProfitUpgraderCostText.text = uiManager.ScoreShow(upgradeProfitCost);
+            profitBtn.gameObject.SetActive(false);
+            profitMax.gameObject.SetActive(true);
         }
         else
         {
-            currentProfitUpgraderCostText.text = "Free";
-            profitBtn.interactable = true;
+            if (playerData.profitLevel > 0)
+            {
+                currentProfitUpgraderCostText.text = uiManager.ScoreShow(upgradeProfitCost);
+            }
+            else
+            {
+                currentProfitUpgraderCostText.text = "Free";
+                profitBtn.interactable = true;
+            }
         }
         UpdateButtons();
     }
@@ -266,11 +286,12 @@ public class Overview : MonoBehaviour
 
     public void SetData()
     {
+
         for (int i = 1; i < playerData.profitLevel; i++)
         {
             upgradeProfitCost *= profitUpgradeCostMultiplair;
-
         }
+
 
         for (int i = 1; i < playerData.speedLevel; i++)
         {

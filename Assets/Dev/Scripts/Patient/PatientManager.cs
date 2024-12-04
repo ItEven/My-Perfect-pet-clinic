@@ -309,7 +309,10 @@ public class PatientManager : MonoBehaviour
     {
         if (!UnlocDiseases.Contains(disease))
         {
-            uiManager.AddIllnessesUi(disease.ToString());
+            if (disease != DiseaseType.Toy)
+            {
+                uiManager.AddIllnessesUi(disease.ToString());
+            }
             UnlocDiseases.Add(disease);
         }
     }
@@ -325,14 +328,14 @@ public class PatientManager : MonoBehaviour
         //        diseaseIndex = 0;
         //        return UnlocDiseases[diseaseIndex];
 
-            //    }
-            //    else
-            //    {
+        //    }
+        //    else
+        //    {
 
-            //        return UnlocDiseases[diseaseIndex];
-            //    }
+        //        return UnlocDiseases[diseaseIndex];
+        //    }
 
-            //}
+        //}
         if (UnlocDiseases.Count > 0)
         {
             int randomIndex = Random.Range(0, UnlocDiseases.Count);
@@ -378,7 +381,10 @@ public class PatientManager : MonoBehaviour
         UnlocDiseases = new List<DiseaseType>(receivefile.diseaseTypes);
         foreach (var item in UnlocDiseases)
         {
-            uiManager.AddIllnessesUi(item.ToShortString());
+            if (item != DiseaseType.Toy)
+            {
+                uiManager.AddIllnessesUi(item.ToShortString());
+            }
         }
         //UpdateDisease();
         LoadData();

@@ -6,12 +6,16 @@ using DG.Tweening;
 public class Items : MonoBehaviour
 {
     public ItemsTyps Typs;
+    public bool bIsUseScal = false;
     public float jumpTime;
     public float jumpHight;
     private void Start()
     {
-        transform.localScale = Vector3.zero;
-        SetVisual();
+        if (bIsUseScal)
+        {
+            transform.localScale = Vector3.zero;
+            SetVisual();
+        }
     }
 
     public void SetVisual()
@@ -41,21 +45,21 @@ public class Items : MonoBehaviour
     }
     public void StartJumpToMoving(Transform target)
     {
-        
+
         transform.parent = target;
         StartCoroutine(Jumping());
     }
     IEnumerator Jumping()
     {
         Vector3 jumpOffset = Vector3.zero;
-    
+
         yield return new WaitForEndOfFrame();
 
         AudioManager.i.OnMonenyCollect();
         float _jump = Random.Range(3.1f, 5.1f);
         transform.DOLocalJump(Vector3.zero, _jump, 1, 1).OnComplete(() =>
-        {          
-            DOTween.Kill(this); 
+        {
+            DOTween.Kill(this);
         });
     }
 
