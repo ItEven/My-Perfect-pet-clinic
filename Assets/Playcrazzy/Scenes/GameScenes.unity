@@ -42013,7 +42013,7 @@ PrefabInstance:
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.64
+      value: -7.79
       objectReference: {fileID: 0}
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
@@ -42023,7 +42023,7 @@ PrefabInstance:
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.7
+      value: -0.47
       objectReference: {fileID: 0}
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
@@ -42178,17 +42178,17 @@ PrefabInstance:
     - target: {fileID: 7437075522083782551, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7437075522083782551, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7437075522083782551, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44558,7 +44558,7 @@ PrefabInstance:
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.66
+      value: -5.44
       objectReference: {fileID: 0}
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
@@ -44568,7 +44568,7 @@ PrefabInstance:
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.59
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,
         type: 3}
@@ -58488,6 +58488,16 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032178987642137594, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032178987642137594, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
