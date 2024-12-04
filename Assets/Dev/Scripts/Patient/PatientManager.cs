@@ -311,7 +311,8 @@ public class PatientManager : MonoBehaviour
         {
             if (disease != DiseaseType.Toy)
             {
-                uiManager.AddIllnessesUi(disease.ToString());
+                string cleanedString = disease.ToShortString().Replace("_", ""); 
+                uiManager.AddIllnessesUi(cleanedString);
             }
             UnlocDiseases.Add(disease);
         }
@@ -383,7 +384,8 @@ public class PatientManager : MonoBehaviour
         {
             if (item != DiseaseType.Toy)
             {
-                uiManager.AddIllnessesUi(item.ToShortString());
+                string cleanedString = item.ToShortString().Replace("_", ""); // Remove underscores
+                uiManager.AddIllnessesUi(cleanedString);
             }
         }
         //UpdateDisease();

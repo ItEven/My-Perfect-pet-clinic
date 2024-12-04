@@ -70,12 +70,9 @@ public class Patient : MonoBehaviour
                 CameraController.Instance.FollowPatient(transform);
             }
         }
+
         NPCMovement.MoveToTarget(ExitPoint, () =>
-        {
-            if (CameraController.Instance.bCanCameraMove)
-            {
-                CameraController.Instance.bIsMoveingToPatient = false; CameraController.Instance.MoveToPlayer(); CameraController.Instance.ManageCamera();
-            }
+        { 
             Destroy(animal.gameObject);
             Destroy(gameObject);
         });
