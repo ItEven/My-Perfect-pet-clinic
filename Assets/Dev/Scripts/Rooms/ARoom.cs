@@ -277,6 +277,10 @@ public class ARoom : MonoBehaviour
 
             }
         }
+        else
+        {
+            Debug.LogError("Patient is null");
+        }
     }
     public void AddAllUnregisterPatient()
     {

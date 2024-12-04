@@ -7,20 +7,23 @@ public class MriBed : Bed
 {
     public Transform bedSeat;
     public float InOutTime;
+    Transform lastPerent;
     public override void StartProcessPatients()
     {
         if (patient == null) return;
 
-       
+        lastPerent = null;
         var opreationRoom = hospitalManager.OpreationRoom;
 
         var workingAnimation = seat.workingAnim;
         var processTime = staffNPC.currentLevelData.processTime;
         Vector3 bedOldPos = bedSeat.localPosition;
+        lastPerent = bedSeat.transform.parent;
+        patient.animal.transform.SetParent(bedSeat);
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
             patient.StopWatting();
-            patient.animal.transform.SetParent(bedSeat);
+
             bedSeat.DOLocalMoveZ(0f, 1f).OnComplete(() =>
             {
 
@@ -35,9 +38,8 @@ public class MriBed : Bed
         }
         else if (bIsPlayerOnDesk)
         {
-            bIsProcessing = true;       
-            patient.animal.transform.SetParent(bedSeat);
-                patient.StopWatting();
+            bIsProcessing = true;
+            patient.StopWatting();
             bedSeat.DOLocalMoveZ(0f, 1f).OnComplete(() =>
             {
 
@@ -59,20 +61,18 @@ public class MriBed : Bed
         worldProgresBar.fillAmount = 0;
         bIsProcessing = false;
 
-        animationController.PlayAnimation(idleAnim);
+        animationController.PlayAnimation(onTrigger.seat.idleAnim);
+        patient.animal.transform.SetParent(lastPerent);
         if (nextRoom != null)
         {
             if (nextRoom.bIsUnRegisterQueIsFull())
             {
                 if (nextRoom != null)
                 {
-                    Debug.LogError(nextRoom.gameObject.name + "room is not null" + nextRoom.bIsUnRegisterQueIsFull() + "que is full" + nextRoom.waitingQueue.gameObject.name + nextRoom.bIsUnlock + "the was not unlock");
+                    Debug.LogError(nextRoom.gameObject.name + "room is not null" + nextRoom.bIsUnRegisterQueIsFull() + "que is full" + nextRoom.waitingQueue.gameObject.name + nextRoom.bIsUnlock + "the was unlock");
 
                 }
-                else
-                {
-                    Debug.LogError(room.gameObject.name + "room is null");
-                }
+
                 //hospitalManager.OnPatientRegister();
                 patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
                 saveManager.gameData.hospitalData.failedPatientCount++;
@@ -82,6 +82,8 @@ public class MriBed : Bed
             else
             {
                 nextRoom.RegisterPatient(patient);
+                Debug.LogError(room.gameObject.name + "room is full");
+                // patient = null;
             }
         }
         else
@@ -89,6 +91,7 @@ public class MriBed : Bed
             //hospitalManager.OnPatientRegister();
 
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+            Debug.LogError(room.gameObject.name + "room is null");
 
         }
 

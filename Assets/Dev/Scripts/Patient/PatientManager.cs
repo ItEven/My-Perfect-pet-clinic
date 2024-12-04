@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -378,7 +378,7 @@ public class PatientManager : MonoBehaviour
         UnlocDiseases = new List<DiseaseType>(receivefile.diseaseTypes);
         foreach (var item in UnlocDiseases)
         {
-            uiManager.AddIllnessesUi(item.ToString());
+            uiManager.AddIllnessesUi(item.ToShortString());
         }
         //UpdateDisease();
         LoadData();

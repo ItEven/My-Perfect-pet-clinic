@@ -122,6 +122,7 @@ public class StaffNPC : MonoBehaviour
             npcObj.SetActive(true);
             transform.position = seat.transform.position;
             transform.rotation = seat.transform.rotation;
+            animationController.PlayAnimation(seat.idleAnim);
             //animationController.PlayAnimation(seat.idleAnim);
         }
         else

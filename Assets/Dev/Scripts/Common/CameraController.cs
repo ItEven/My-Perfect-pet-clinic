@@ -111,7 +111,7 @@ public class CameraController : MonoBehaviour
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
 
-        Debug.LogError(playerController.animationController.GetCurrntAnimState());
+       // Debug.LogError(playerController.animationController.GetCurrntAnimState());
         if (playerController.animationController.GetCurrntAnimState() == AnimType.Run.ToString()) 
         {
             playerController.animationController.PlayAnimation(AnimType.Idle);
@@ -131,7 +131,7 @@ public class CameraController : MonoBehaviour
         playerController.playerControllerData.characterMovement.enabled = false;
         playerController.enabled = false;
         playerController.playerControllerData.joystick.gameObject.SetActive(false);
-        Debug.LogError(playerController.animationController.GetCurrntAnimState());
+      //  Debug.LogError(playerController.animationController.GetCurrntAnimState());
 
         if (playerController.animationController.GetCurrntAnimState() == AnimType.Run.ToString())
         {
@@ -155,7 +155,7 @@ public class CameraController : MonoBehaviour
             playerController.playerControllerData.joystick.gameObject.SetActive(true);
             playerController.playerControllerData.joystick.OnPointerUp(null);
             playerController.playerControllerData.characterMovement.enabled = true;
-            Debug.LogError(playerController.animationController.GetCurrntAnimState());
+          //  Debug.LogError(playerController.animationController.GetCurrntAnimState());
 
             if (playerController.animationController.GetCurrntAnimState() == AnimType.Run.ToString())
             {

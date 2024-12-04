@@ -77,7 +77,7 @@ public class HospitalManager : MonoBehaviour
         if (storeRoom.bIsUnlock)
         {
             float index = Random.Range(0.1f, 1.1f);
-            Debug.LogError(index);
+          //  Debug.LogError(index);
             if (index > 0.6)
             {
                 return pharmacyRoom;
