@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     public float followDurtion = 7f;
     public float rectionTime = 1f;
     public bool bCanCameraMove = true;
-    bool bIsMoveingToPatient = false;
+   internal bool bIsMoveingToPatient = false;
 
     [Header("Zoom Things")]
     public Camera mainCamera;
@@ -201,7 +201,7 @@ public class CameraController : MonoBehaviour
         {
             onComplite?.Invoke();
 
-            DOVirtual.DelayedCall(followDurtion, () => { bIsMoveingToPatient = false; MoveToPlayer(); ManageCamera(); ; });
+            DOVirtual.DelayedCall(followDurtion, () => { bIsMoveingToPatient = false; MoveToPlayer(); ManageCamera(); });
         });
 
     }
