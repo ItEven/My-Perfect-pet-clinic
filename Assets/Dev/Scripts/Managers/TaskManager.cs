@@ -398,7 +398,7 @@ public class TaskManager : MonoBehaviour
                 IcuRoom.LoadNextForStaff(2); break;
             case 100:
                 IcuRoom.bedsArr[2].staffNPC.bIsUpgraderActive = false;
-                IcuRoom.bedsArr[2].staffNPC.gameObject.SetActive(false);
+                IcuRoom.bedsArr[2].staffNPC.upGrader.gameObject.SetActive(false);
                 break;
             default: break;
 

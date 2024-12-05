@@ -8234,7 +8234,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6032178987642137594, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
         type: 3}
@@ -25259,7 +25259,7 @@ PrefabInstance:
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: totalMoneyInBox
-      value: 325
+      value: 10000000
       objectReference: {fileID: 0}
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -25274,7 +25274,7 @@ PrefabInstance:
     - target: {fileID: 2867760371529191350, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -36765,7 +36765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -1.4055786, y: 0}
+  m_AnchoredPosition: {x: -1.4056396, y: 0}
   m_SizeDelta: {x: -116.1672, y: 227.1312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069921841
@@ -36934,6 +36934,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mri_Machine
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6032178987642137594, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -36947,7 +36952,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1070020419}
   m_SourcePrefab: {fileID: 100100000, guid: b63d3d6a11ad2b64fb5338e3ae1d802c, type: 3}
 --- !u!4 &1070020416 stripped
 Transform:
@@ -36961,6 +36970,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1070020415}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1070020419
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070020418}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1070968464
 GameObject:
   m_ObjectHideFlags: 0
@@ -37932,7 +37962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: -900}
+  m_AnchoredPosition: {x: 0.00012207031, y: -900}
   m_SizeDelta: {x: -55.0879, y: 354.9063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091836562

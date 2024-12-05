@@ -148,8 +148,8 @@ public class TutorialManager : MonoBehaviour
 
         switch (TextCountt)
         {
-            case 1: return "The first pet has recovered — well done!, It seems you are very talented.";
-            case 2: return "Welcome to this beautiful town! The pets here need you.";
+            case 1: return "The first pet has recovered well done! ";
+            case 2: return "It seems you are very talented.";
             case 3: return "However, don’t relax too soon; pets are pouring in continuously..";
             case 4: return "Let’s see if we can treat 5 more pets!.";
             default:
@@ -291,6 +291,8 @@ public class TutorialManager : MonoBehaviour
         saveManager.gameManager.playerController.arrowController.arrowIcon.SetActive(false);
         saveManager.gameManager.playerController.arrowController.enabled = false;
         yield return new WaitForSeconds(3f);
+        StartTextBox(GetTextForLastTut());
+
         avtarTapBtn.onClick.RemoveAllListeners();
         avtarTapBtn.onClick.AddListener(() =>
         {
