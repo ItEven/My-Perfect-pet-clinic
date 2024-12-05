@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    
+
     }
 
     void Start()
@@ -73,14 +73,14 @@ public class AudioManager : MonoBehaviour
         {
             settingData.bIsSoundOn = true;
             settingData.bIsMusicOn = true;
+            SetData();
+            musicAudioSource.Stop();
+            Play(GetRandomClip());
         }
         settingBtn.onClick.AddListener(OpneSettingPanel);
         settingCloseBtn.onClick.AddListener(OpneSettingPanel);
         soundBtn.onClick.AddListener(OnSoundButtunClick);
         musicBtn.onClick.AddListener(OnMusicButtunClick);
-        SetData();
-        musicAudioSource.Stop();
-        Play(GetRandomClip());
     }
     public void SetData()
     {

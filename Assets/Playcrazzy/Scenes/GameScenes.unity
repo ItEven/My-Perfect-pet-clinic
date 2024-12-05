@@ -26207,7 +26207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followDelay: 200
-  followDurtion: 7
+  followDurtion: 4
   rectionTime: 1
   bCanCameraMove: 1
   mainCamera: {fileID: 963194232}
