@@ -24128,7 +24128,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 100
+  m_fontSizeMax: 62
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -25259,7 +25259,7 @@ PrefabInstance:
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: totalMoneyInBox
-      value: 305
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -25270,6 +25270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MoneyBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867760371529191350, guid: 0e5bd949083ba40429f423746801cd9e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -26959,8 +26964,8 @@ MonoBehaviour:
   avtarText: {fileID: 1069921841}
   avtarTapBtn: {fileID: 1152380172}
   messageBoxPanel: {fileID: 1761819538}
-  messageText: {fileID: 0}
-  moneyBox: {fileID: 0}
+  messageText: {fileID: 653800604}
+  moneyBox: {fileID: 662185312}
 --- !u!1 &746924107
 GameObject:
   m_ObjectHideFlags: 0
@@ -37921,6 +37926,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1558865802}
   - {fileID: 1069921840}
   m_Father: {fileID: 1152380168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40174,7 +40180,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1558865802}
   - {fileID: 1091836561}
   m_Father: {fileID: 1674072608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48738,7 +48743,7 @@ MonoBehaviour:
   currentTask: 0
   unlockPrice: 130
   bIsUnlock: 0
-  bIsUpgraderActive: 1
+  bIsUpgraderActive: 0
   upGrader: {fileID: 1143806181}
   registerPos: []
   unlockObjs:
@@ -52647,11 +52652,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1152380168}
+  m_Father: {fileID: 1091836561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 693.544, y: -470}
+  m_AnchoredPosition: {x: 666, y: 430}
   m_SizeDelta: {x: 403.91, y: 505.62}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1558865803
@@ -56382,9 +56387,9 @@ RectTransform:
   - {fileID: 748775472}
   - {fileID: 714771366}
   - {fileID: 807539851}
-  - {fileID: 1761819538}
   - {fileID: 1152380168}
   - {fileID: 82900171}
+  - {fileID: 1761819538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

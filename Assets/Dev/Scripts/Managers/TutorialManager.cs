@@ -1,4 +1,5 @@
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using TMPro;
@@ -28,7 +29,7 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Message box")]
     public RectTransform messageBoxPanel;
-    public Text messageText;
+    public TextMeshProUGUI messageText;
     internal bool bIsTutorialRunning = false;
     internal bool Tutorial;
 
@@ -72,9 +73,9 @@ public class TutorialManager : MonoBehaviour
         else
         {
             bIsGameRestart = true;
-            StartCoroutine(CheckHud());
 
         }
+        StartCoroutine(CheckHud());
 
 
 
@@ -139,6 +140,21 @@ public class TutorialManager : MonoBehaviour
             default:
                 return null;
         }
+    }    
+    int TextCountt = 0;
+    public string GetTextForLastTut()
+    {
+        TextCountt++;
+
+        switch (TextCountt)
+        {
+            case 1: return "The first pet has recovered — well done!, It seems you are very talented.";
+            case 2: return "Welcome to this beautiful town! The pets here need you.";
+            case 3: return "However, don’t relax too soon; pets are pouring in continuously..";
+            case 4: return "Let’s see if we can treat 5 more pets!.";
+            default:
+                return null;
+        }
     }
 
     #endregion
@@ -146,7 +162,7 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator StartTutorial()
     {
-
+        bIsTutorialRunning = true;
         StartTextBox(GetText());
         yield return new WaitForSeconds(2);
         avtarTapBtn.onClick.AddListener(() =>
@@ -163,20 +179,21 @@ public class TutorialManager : MonoBehaviour
         messageBoxPanel.gameObject.SetActive(true);
         messageText.text = "Collect the Money!";
         moneyBox.gameObject.SetActive(true);
-        yield return new WaitUntil(() => !moneyBox.gameObject.activeInHierarchy);
+        MoneyBox money = moneyBox.GetComponent<MoneyBox>();
+
+        yield return new WaitUntil(() => money.totalMoneyInBox <= 0);
         taskManager.hallManager_01.bIsUpgraderActive = true;
         taskManager.hallManager_01.SetUpgredeVisual();
         messageText.text = "Open the Pet Hospital!";
         yield return new WaitUntil(() => taskManager.hallManager_01.bIsUnlock);
         PlayerPrefs.SetInt("Tutorial", 0);
-        StartCoroutine(CheckHud());
-
         yield break;
 
     }
 
     IEnumerator CheckHud()
     {
+        bIsTutorialRunning = true; 
         moneyBoxRect.gameObject.SetActive(false);
         taskBoxRect.gameObject.SetActive(false);
         settingBoxRect.gameObject.SetActive(false);
@@ -187,20 +204,28 @@ public class TutorialManager : MonoBehaviour
         //FrizPlayer();
 
         //yield return new WaitUntil(() => !textBox.gameObject.activeInHierarchy);
-        ////UnFrizPlayer();
-        //yield return new WaitUntil(() => saveManager.economyManager.PetMoneyCount > 0);
+        //UnFrizPlayer();
+        yield return new WaitUntil(() => saveManager.economyManager.PetMoneyCount > 0);
+        moneyBoxRect.gameObject.SetActive(true);
+        yield return new WaitUntil(() => taskManager.hallManager_01.bIsUnlock);
         //messageBoxPanel.gameObject.SetActive(false);
-        //moneyBoxRect.gameObject.SetActive(true);
+        messageBoxPanel.gameObject.SetActive(true);
+        messageText.text = "Build The Reception Desk!";
         yield return new WaitUntil(() => taskManager.receptionManager.bIsUnlock);
         taskBoxRect.gameObject.SetActive(true);
         settingBoxRect.gameObject.SetActive(true);
+        messageText.text = "Build the General Diagnosis Room!";
+        yield return new WaitUntil(() => taskManager.InspectionRoom.bIsUnlock);
+        messageText.text = "Set Up the Pharmacy!";
         yield return new WaitUntil(() => taskManager.pharmacyRoom.bIsUnlock);
+
         overviweBoxRect.gameObject.SetActive(true);
         illnessesBoxRect.gameObject.SetActive(true);
         campasBoxRect.gameObject.SetActive(true);
+        messageBoxPanel.gameObject.SetActive(false);
         if (!PlayerPrefs.HasKey("PatientFollowTutorial"))
         {
-            FrizPlayer();
+           // FrizPlayer();
             StartCoroutine(PatientFollow());
 
         }
@@ -225,15 +250,18 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
         }
         CameraController.Instance.FollowPatient(taskManager.receptionManager.waitingQueue.patientInQueue[0].transform);
-        StartTextBox("Customer's are coming on Reception ");
-        yield return new WaitUntil(() => !taskManager.receptionManager.waitingQueue.patientInQueue[0].NPCMovement.bIsMoving);
-        yield return new WaitForSeconds(1.5f);
-        avtarTextPanel.gameObject.SetActive(false);
         messageBoxPanel.gameObject.SetActive(true);
-        messageText.text = "Set on the reception table ";
-        CameraController.Instance.MoveToTarget(taskManager.receptionManager.seat.transform);
-        saveManager.gameManager.playerController.arrowController.target = taskManager.receptionManager.seat.transform;
+        messageText.text = "Patinet's are coming!";
+    
+        yield return new WaitUntil(() => !taskManager.receptionManager.waitingQueue.patientInQueue[0].NPCMovement.bIsMoving);
         yield return new WaitForSeconds(2f);
+            FrizPlayer();
+        avtarTextPanel.gameObject.SetActive(false);
+        //messageBoxPanel.gameObject.SetActive(true);
+        messageText.text = "Take your seat at Reception!";
+       // CameraController.Instance.MoveToTarget(taskManager.receptionManager.seat.transform);
+        saveManager.gameManager.playerController.arrowController.target = taskManager.receptionManager.seat.transform;
+        //yield return new WaitForSeconds(2f);
         UnFrizPlayer();
         yield return new WaitUntil(() => taskManager.receptionManager.bIsPlayerOnDesk);
         messageBoxPanel.gameObject.SetActive(false);
@@ -242,7 +270,8 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         yield return new WaitUntil(() => !taskManager.InspectionRoom.waitingQueue.patientInQueue[0].NPCMovement.bIsMoving);
         messageBoxPanel.gameObject.SetActive(true);
-        messageText.text = "Go for diagnose the pet";
+        messageText.text = "Diagnose the Pets!";
+        saveManager.gameManager.playerController.arrowController.target = taskManager.InspectionRoom.bedsArr[0].onTrigger.seat.transform;
         yield return new WaitUntil(() => taskManager.InspectionRoom.bedsArr[0].bIsPlayerOnDesk);
         messageBoxPanel.gameObject.SetActive(false);
         yield return new WaitUntil(() => taskManager.pharmacyRoom.waitingQueue.patientInQueue.Count > 0);
@@ -250,14 +279,30 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => !taskManager.pharmacyRoom.waitingQueue.patientInQueue[0].NPCMovement.bIsMoving);
         Patient patient = taskManager.pharmacyRoom.waitingQueue.patientInQueue[0];
         messageBoxPanel.gameObject.SetActive(true);
-        messageText.text = "Give some medicine to pet ";
+        messageText.text = "Provide the Medicine! ";
+        saveManager.gameManager.playerController.arrowController.target = taskManager.pharmacyRoom.bedsArr[0].onTrigger.seat.transform;
         yield return new WaitUntil(() => taskManager.pharmacyRoom.bedsArr[0].bIsPlayerOnDesk);
         messageBoxPanel.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
         yield return new WaitUntil(() => patient.NPCMovement.bIsMoving);
+        patient.emojisController.PlayEmoji(MoodType.Happy);
         CameraController.Instance.FollowPatient(patient.transform);
         PlayerPrefs.SetInt("PatientFollowTutorial", 0);
+        saveManager.gameManager.playerController.arrowController.arrowIcon.SetActive(false);
+        saveManager.gameManager.playerController.arrowController.enabled = false;
+        yield return new WaitForSeconds(3f);
+        avtarTapBtn.onClick.RemoveAllListeners();
+        avtarTapBtn.onClick.AddListener(() =>
+        {
+            StopTyping();
+            StopCoroutine(TypeText());
+
+            StartCoroutine(TypeText(GetTextForLastTut()));
+        });
+        yield return new WaitUntil(() => TextCountt > 4);
+        avtarTextPanel.gameObject.SetActive(false);
         bIsTutorialRunning = false;
+        taskManager.OnTaskComplete(4);
 
         yield return null;
     }
