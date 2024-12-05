@@ -20,8 +20,6 @@ public class TutorialManager : MonoBehaviour
     public RectTransform illnessesBoxRect;
     public RectTransform campasBoxRect;
 
-
-
     [Header("TextBoxes")]
     public RectTransform avtarTextPanel;
     public RectTransform textBox;
@@ -33,6 +31,9 @@ public class TutorialManager : MonoBehaviour
     public Text messageText;
     internal bool bIsTutorialRunning = false;
     internal bool Tutorial;
+
+    [Header("YO nig")]
+    public GameObject moneyBox;
     private void Awake()
     {
         instance = this;
@@ -63,7 +64,6 @@ public class TutorialManager : MonoBehaviour
     bool bIsGameRestart;
     private void Start()
     {
-        StartCoroutine(CheckHud());
         if (!PlayerPrefs.HasKey("Tutorial"))
         {
             bIsGameRestart = false;
@@ -72,6 +72,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             bIsGameRestart = true;
+            StartCoroutine(CheckHud());
 
         }
 
@@ -160,9 +161,16 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => TextCount > 4);
         avtarTextPanel.gameObject.SetActive(false);
         messageBoxPanel.gameObject.SetActive(true);
-        messageText.text = "Collect Money !";
+        messageText.text = "Collect the Money!";
+        moneyBox.gameObject.SetActive(true);
+        yield return new WaitUntil(() => !moneyBox.gameObject.activeInHierarchy);
+        taskManager.hallManager_01.bIsUpgraderActive = true;
+        taskManager.hallManager_01.SetUpgredeVisual();
+        messageText.text = "Open the Pet Hospital!";
         yield return new WaitUntil(() => taskManager.hallManager_01.bIsUnlock);
         PlayerPrefs.SetInt("Tutorial", 0);
+        StartCoroutine(CheckHud());
+
         yield break;
 
     }
@@ -176,13 +184,13 @@ public class TutorialManager : MonoBehaviour
         illnessesBoxRect.gameObject.SetActive(false);
         campasBoxRect.gameObject.SetActive(false);
         messageBoxPanel.gameObject.SetActive(false);
-        FrizPlayer();
+        //FrizPlayer();
 
-        yield return new WaitUntil(() => !textBox.gameObject.activeInHierarchy);
-        //UnFrizPlayer();
-        yield return new WaitUntil(() => saveManager.economyManager.PetMoneyCount > 0);
-        messageBoxPanel.gameObject.SetActive(false);
-        moneyBoxRect.gameObject.SetActive(true);
+        //yield return new WaitUntil(() => !textBox.gameObject.activeInHierarchy);
+        ////UnFrizPlayer();
+        //yield return new WaitUntil(() => saveManager.economyManager.PetMoneyCount > 0);
+        //messageBoxPanel.gameObject.SetActive(false);
+        //moneyBoxRect.gameObject.SetActive(true);
         yield return new WaitUntil(() => taskManager.receptionManager.bIsUnlock);
         taskBoxRect.gameObject.SetActive(true);
         settingBoxRect.gameObject.SetActive(true);

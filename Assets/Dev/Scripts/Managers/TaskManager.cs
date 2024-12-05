@@ -99,18 +99,29 @@ public class TaskManager : MonoBehaviour
         switch (taskNum)
         {
             case 0:
-                patientManager.bIsUnlock = true;
-                patientManager.gameObject.SetActive(true);
-                patientManager.LoadData();
-                receptionManager.bIsUpgraderActive = true;
-                receptionManager.SetUpgredeVisual(); break;
+                if (!TutorialManager.instance.bIsTutorialRunning)
+                {
+                    patientManager.bIsUnlock = true;
+                    patientManager.gameObject.SetActive(true);
+                    patientManager.LoadData();
+                    receptionManager.bIsUpgraderActive = true;
+                    receptionManager.SetUpgredeVisual();
+                }
+                break;
             case 1:
-                InspectionRoom.bIsUpgraderActive = true;
-                InspectionRoom.SetUpgradeVisual(); break;
+                if (!TutorialManager.instance.bIsTutorialRunning)
+                {
+                    InspectionRoom.bIsUpgraderActive = true;
+                    InspectionRoom.SetUpgradeVisual();
+                }
+                break;
             case 2:
-                particle.Play();
-                pharmacyRoom.bIsUpgraderActive = true;
-                pharmacyRoom.SetUpgradeVisual();
+                if (!TutorialManager.instance.bIsTutorialRunning)
+                {
+                    particle.Play();
+                    pharmacyRoom.bIsUpgraderActive = true;
+                    pharmacyRoom.SetUpgradeVisual();
+                }
                 break;
             case 3:
                 particle.Play();
