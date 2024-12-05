@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var obj in objects)
         {
-            if (obj.activeInHierarchy != state)
+           // if (obj.activeInHierarchy != state)
                 obj.SetActive(state);
         }
     }

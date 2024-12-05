@@ -25313,7 +25313,7 @@ PrefabInstance:
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: totalMoneyInBox
-      value: 10000000
+      value: 325
       objectReference: {fileID: 0}
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -25328,7 +25328,7 @@ PrefabInstance:
     - target: {fileID: 2867760371529191350, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3563708218401959708, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -52471,7 +52471,7 @@ Transform:
   m_GameObject: {fileID: 1541969644}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.18, y: 1.64, z: -1.051}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52491,7 +52491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  range: 10
+  range: 3.5
   arrowIcon: {fileID: 4465203987507851991}
 --- !u!1 &1545409138
 GameObject:
@@ -58275,7 +58275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1742414939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58988,6 +58988,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032178987642137594, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.036
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032178987642137594, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.421
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032178987642137594, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.066
       objectReference: {fileID: 0}
     - target: {fileID: 6032178987642137594, guid: b63d3d6a11ad2b64fb5338e3ae1d802c,
         type: 3}
@@ -82920,7 +82935,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4465203987507851991}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.3099976}
+  m_LocalPosition: {x: 0, y: 0, z: 1.489}
   m_LocalScale: {x: 0.9356711, y: 1.0291452, z: 0.9880954}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -82929,7 +82944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3305592263969108735
