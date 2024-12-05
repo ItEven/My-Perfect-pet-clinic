@@ -50,10 +50,10 @@ public class UiManager : MonoBehaviour
     }
     public void Start()
     {
-        //DOVirtual.DelayedCall(2f, () =>
-        //{
-        //    loderPnael.gameObject.SetActive(false);
-        //});
+        DOVirtual.DelayedCall(3f, () =>
+        {
+           loderPnael.gameObject.SetActive(false);
+        });
         //settingBtn.onClick.AddListener
         loderPnael.gameObject.SetActive(false);
         BtnLissnerts();
