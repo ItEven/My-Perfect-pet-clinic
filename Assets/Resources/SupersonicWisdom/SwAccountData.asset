@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bde5b51eef6a4560b2a2442b047a9a7, type: 3}
+  m_Name: SwAccountData
+  m_EditorClassIdentifier: 
+  titlesList:
+  - games: []
+    id: 
+    name: --- select ---
+    unityProjectId: 
+  - games:
+    - adMobId: 
+      bundleId: com.playcrazzy.myprefectpetclinic
+      facebookAppId: 941032037496702
+      facebookToken: 5a82075b174f9abf903f15357b7d70ee
+      gameAnalyticsKey: 70808106ea195fbe9781b0e1ed465791
+      gameAnalyticsSecret: 61589daf2d6837d80af028c5b70933d39b4c7980
+      id: e9c0f766-0b66-44be-aaa1-e961d6e0d827
+      isAppKey: 
+      os: android
+      platform: google_play
+      storeId: com.playcrazzy.myprefectpetclinic
+    id: 4b5ee8f9-ce62-4192-930e-8f0ab8b688e6
+    name: My Perfect Pet Clinic
+    unityProjectId: 
+  integrationGuideUrl: 

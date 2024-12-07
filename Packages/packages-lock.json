@@ -13,6 +13,14 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.supersonic.wisdom": {
+      "version": "file:SupersonicWisdom",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      }
+    },
     "com.unity.2d.common": {
       "version": "8.0.3",
       "depth": 1,
@@ -168,6 +176,13 @@
       "dependencies": {
         "com.unity.modules.androidjni": "1.0.0"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.profiling.core": {

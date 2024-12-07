@@ -3,6 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using SupersonicWisdomSDK;
 
 public class LoaderManager : MonoBehaviour
 {
@@ -25,11 +26,19 @@ public class LoaderManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Awake()
+    {
+        // Subscribe
+        SupersonicWisdom.Api.AddOnReadyListener(OnSupersonicWisdomReady);
+        // Then initialize
+        SupersonicWisdom.Api.Initialize();
+    }
+
+    void OnSupersonicWisdomReady()
     {
         LoadLevel(sceneNumber);
     }
-
+  
     public void LoadLevel(int sceneIndex)
     {
 
