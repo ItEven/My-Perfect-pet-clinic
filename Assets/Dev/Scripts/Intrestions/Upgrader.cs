@@ -237,7 +237,7 @@ public class Upgrader : MonoBehaviour
         if (bCanUsePLayerArrow)
         {
             saveManager.gameManager.playerController.arrowController.gameObject.SetActive(true);
-            saveManager.gameManager.playerController.arrowController.SetTarget(transform, 3f);
+            saveManager.gameManager.playerController.arrowController.SetTarget(transform, 4f);
         }
     }
     public void ShowArrow()

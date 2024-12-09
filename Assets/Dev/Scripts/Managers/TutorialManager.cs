@@ -287,12 +287,10 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitUntil(() => patient.NPCMovement.bIsMoving);
         patient.emojisController.PlayEmoji(MoodType.Happy);
         CameraController.Instance.FollowPatient(patient.transform);
-        PlayerPrefs.SetInt("PatientFollowTutorial", 0);
         saveManager.gameManager.playerController.arrowController.arrowIcon.SetActive(false);
         saveManager.gameManager.playerController.arrowController.enabled = false;
         yield return new WaitForSeconds(3f);
         StartTextBox(GetTextForLastTut());
-
         avtarTapBtn.onClick.RemoveAllListeners();
         avtarTapBtn.onClick.AddListener(() =>
         {
@@ -305,6 +303,7 @@ public class TutorialManager : MonoBehaviour
         avtarTextPanel.gameObject.SetActive(false);
         bIsTutorialRunning = false;
         taskManager.OnTaskComplete(4);
+        PlayerPrefs.SetInt("PatientFollowTutorial", 0);
 
         yield return null;
     }
