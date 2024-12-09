@@ -33,7 +33,7 @@ public class WaitingQueue : MonoBehaviour
 
 
             int index = queueIndex;
-            Debug.LogError(patient.name);
+
             patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
                 patient.transform.rotation = queue[index].rotation;

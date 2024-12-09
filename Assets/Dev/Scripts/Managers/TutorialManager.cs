@@ -29,7 +29,7 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Message box")]
     public RectTransform messageBoxPanel;
-    public TextMeshProUGUI messageText;
+    public Text messageText;
     internal bool bIsTutorialRunning = false;
     internal bool Tutorial;
 
