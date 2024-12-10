@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -212,13 +213,17 @@ public class PatientManager : MonoBehaviour
             Destroy(patient.animal.gameObject);
             Destroy(patient.gameObject);
         });
+
+        DOVirtual.DelayedCall(.5f, () =>
+        {
+            patient.MoveAnimal();
+        });
     }
 
     private void InitializePatientAndAnimal(Patient patient, Animal animal)
     {
         patient.NPCMovement.Init();
         animal.Init();
-        patient.MoveAnimal();
     }
 
     public void SendPatientToHospital()

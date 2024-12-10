@@ -1531,6 +1531,8 @@ MonoBehaviour:
   illnessesContentBox: {fileID: 1927996499}
   illnessesbtn: {fileID: 1413552758}
   illnessescloseBtn: {fileID: 1019281482}
+  toastBehaviour: {fileID: 7669668619374221711, guid: f9bd6ea202484f4459e78453f1f09ff6,
+    type: 3}
   loderPnael: {fileID: 1742414941}
 --- !u!114 &49313744
 MonoBehaviour:
@@ -6123,6 +6125,8 @@ MonoBehaviour:
   - {fileID: 1526392627}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!1 &142136738
 GameObject:
   m_ObjectHideFlags: 0
@@ -9261,8 +9265,8 @@ MonoBehaviour:
   ROOMNAME: Inspection_Room_2
   roomName: Infirmary Room
   roomIcon: {fileID: 21300000, guid: a7dc3b2b136c287478f1d69fd6b3ad8f, type: 3}
-  currentTask: 19
-  unlockPrice: 890
+  currentTask: 14
+  unlockPrice: 600
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 03000000040000000500000006000000070000000a00000008000000
@@ -13443,8 +13447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HallName: Hall_03_Data
-  currentTask: 28
-  unlockPrice: 2500
+  currentTask: 26
+  unlockPrice: 1740
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 1645198165}
@@ -16306,6 +16310,8 @@ MonoBehaviour:
   - {fileID: 340232017}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!1 &420769153
 GameObject:
   m_ObjectHideFlags: 0
@@ -19424,6 +19430,12 @@ MonoBehaviour:
   roundUpgradePartical:
   - {fileID: 100796703}
   - {fileID: 1476916540}
+--- !u!4 &495216982 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2577462756157032812, guid: f04f575947d45ec4ab771c2139b244b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3134277505691691947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &498342879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21413,7 +21425,7 @@ Transform:
   m_GameObject: {fileID: 574426163}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10.8, y: 0, z: 15.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28595,8 +28607,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HallName: Hall_02_Data
-  currentTask: 16
-  unlockPrice: 1000
+  currentTask: 9
+  unlockPrice: 500
   bIsUnlock: 0
   bIsUpgraderActive: 0
   upGrader: {fileID: 982404807}
@@ -32558,14 +32570,14 @@ MonoBehaviour:
     nextTask: 8
     processTime: 3
   - levelNum: 1
-    upgradeCost: 380
+    upgradeCost: 480
     customerCost: 10
-    nextTask: 11
+    nextTask: 13
     processTime: 2.5
   - levelNum: 2
-    upgradeCost: 500
+    upgradeCost: 1048
     customerCost: 15
-    nextTask: 14
+    nextTask: 21
     processTime: 2
   animationController: {fileID: 1470740741}
   sitPos: {fileID: 1801567337}
@@ -33593,7 +33605,7 @@ Transform:
   m_GameObject: {fileID: 828437419}
   serializedVersion: 2
   m_LocalRotation: {x: 0.34918264, y: -0.35787076, z: 0.15692298, w: 0.8516897}
-  m_LocalPosition: {x: 5.0000014, y: 5.071068, z: -5}
+  m_LocalPosition: {x: -5.8, y: 5.071068, z: 10.4000025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46992,8 +47004,8 @@ MonoBehaviour:
   ROOMNAME: Injection_Room
   roomName: Injection Room
   roomIcon: {fileID: 21300000, guid: 944ee1aca69178d42835b3e03a719ac6, type: 3}
-  currentTask: 17
-  unlockPrice: 740
+  currentTask: 10
+  unlockPrice: 350
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 
@@ -48507,6 +48519,90 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1422033392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1422033393}
+  - component: {fileID: 1422033394}
+  m_Layer: 0
+  m_Name: Enteredimg (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1422033393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422033392}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 495216982}
+  m_LocalEulerAnglesHint: {x: 90, y: -0, z: -0}
+--- !u!212 &1422033394
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422033392}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300022, guid: bd12243c8e515334c9807b29469b5f2e, type: 3}
+  m_Color: {r: 0.6117647, g: 0.9921569, b: 0.87843144, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 1
+  m_Size: {x: 2.1, y: 2.1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1422199864
 GameObject:
   m_ObjectHideFlags: 0
@@ -54535,7 +54631,7 @@ MonoBehaviour:
   tremsBtn: {fileID: 1376710863}
   maxSpeedLevel: 4
   speedMultiplair: 0.4
-  UpgradeSpeedCost: 5000
+  UpgradeSpeedCost: 1000
   upgradeSpeedCostMultiplair: 5
   speedImage: {fileID: 1356671409}
   speedMax: {fileID: 930418506}
@@ -56238,6 +56334,8 @@ MonoBehaviour:
   - {fileID: 0}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!1 &1669495952
 GameObject:
   m_ObjectHideFlags: 0
@@ -56550,10 +56648,10 @@ RectTransform:
   - {fileID: 1655446481}
   - {fileID: 748775472}
   - {fileID: 714771366}
-  - {fileID: 807539851}
   - {fileID: 1152380168}
   - {fileID: 82900171}
   - {fileID: 1761819538}
+  - {fileID: 807539851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -56750,8 +56848,8 @@ MonoBehaviour:
   ROOMNAME: Store_Room
   roomName: Pet Shop
   roomIcon: {fileID: 21300000, guid: 4cae8a827adef8d468c533c7bf9fb5c5, type: 3}
-  currentTask: 29
-  unlockPrice: 2240
+  currentTask: 27
+  unlockPrice: 1840
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 10000000
@@ -59237,7 +59335,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 676.6001}
-  m_SizeDelta: {x: 0, y: -2292.4094}
+  m_SizeDelta: {x: 0, y: -2321.3179}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1761819540
 CanvasRenderer:
@@ -60468,6 +60566,8 @@ MonoBehaviour:
   - {fileID: 1171079640}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!1 &1794581747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3677128683885214160, guid: 0ba686d679d44c74fb3a2c8d4fec0e9f,
@@ -62369,7 +62469,7 @@ Transform:
   m_GameObject: {fileID: 1862444609}
   serializedVersion: 2
   m_LocalRotation: {x: 0.34918264, y: -0.35787076, z: 0.15692298, w: 0.8516897}
-  m_LocalPosition: {x: 5.0000014, y: 5.071068, z: -5}
+  m_LocalPosition: {x: -5.8, y: 5.071068, z: 10.4000025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -71978,8 +72078,8 @@ MonoBehaviour:
   ROOMNAME: Grooming_Room
   roomName: 'Grooming Room '
   roomIcon: {fileID: 21300000, guid: 9ca473cf72c21a14daf5aef7980d7e31, type: 3}
-  currentTask: 23
-  unlockPrice: 1250
+  currentTask: 17
+  unlockPrice: 740
   bIsUnlock: 0
   bIsUpgraderActive: 0
   diseaseTypes: 
@@ -81356,18 +81456,18 @@ MonoBehaviour:
     processTime: 5
     StaffExprinceType: 0
   - levelNum: 1
-    upgradeCost: 270
-    nextTask: 7
+    upgradeCost: 380
+    nextTask: 11
     processTime: 5
     StaffExprinceType: 1
   - levelNum: 2
-    upgradeCost: 350
-    nextTask: 10
+    upgradeCost: 1370
+    nextTask: 24
     processTime: 4
     StaffExprinceType: 2
   - levelNum: 3
-    upgradeCost: 555
-    nextTask: 15
+    upgradeCost: 2803
+    nextTask: 31
     processTime: 3
     StaffExprinceType: 3
   npcObj: {fileID: 1964729800}
@@ -81375,6 +81475,8 @@ MonoBehaviour:
   - {fileID: 274305424}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!33 &2763365041735871872
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -82568,7 +82670,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2577462756157032812, guid: f04f575947d45ec4ab771c2139b244b0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1422033393}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f04f575947d45ec4ab771c2139b244b0, type: 3}
 --- !u!33 &3143684571549788827
@@ -99843,6 +99949,8 @@ MonoBehaviour:
   - {fileID: 1208116018}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749390187939149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99880,8 +99988,8 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - levelNum: 0
-    upgradeCost: 3280
-    nextTask: 33
+    upgradeCost: 2530
+    nextTask: 30
     processTime: 5
     StaffExprinceType: 0
   - levelNum: 1
@@ -99904,6 +100012,8 @@ MonoBehaviour:
   - {fileID: 445251797}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749390625311054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99965,6 +100075,8 @@ MonoBehaviour:
   - {fileID: 1849067025}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749390763685546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100026,6 +100138,8 @@ MonoBehaviour:
   - {fileID: 1564809082}
   playerEquipments:
     injection: {fileID: 2092406395}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749390869859317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100087,6 +100201,8 @@ MonoBehaviour:
   - {fileID: 586408602}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749390881811703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100148,6 +100264,8 @@ MonoBehaviour:
   - {fileID: 789922632}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749391146649419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100185,13 +100303,13 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - levelNum: 0
-    upgradeCost: 1590
-    nextTask: 25
+    upgradeCost: 1250
+    nextTask: 23
     processTime: 10
     StaffExprinceType: 0
   - levelNum: 1
-    upgradeCost: 2530
-    nextTask: 30
+    upgradeCost: 2230
+    nextTask: 29
     processTime: 9
     StaffExprinceType: 1
   - levelNum: 2
@@ -100209,6 +100327,8 @@ MonoBehaviour:
   - {fileID: 1311013933}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749391160124047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100246,8 +100366,8 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - levelNum: 0
-    upgradeCost: 900
-    nextTask: 20
+    upgradeCost: 555
+    nextTask: 15
     processTime: 6
     StaffExprinceType: 0
   - levelNum: 1
@@ -100256,8 +100376,8 @@ MonoBehaviour:
     processTime: 5
     StaffExprinceType: 1
   - levelNum: 2
-    upgradeCost: 1380
-    nextTask: 24
+    upgradeCost: 1580
+    nextTask: 25
     processTime: 4.5
     StaffExprinceType: 2
   - levelNum: 3
@@ -100270,6 +100390,8 @@ MonoBehaviour:
   - {fileID: 1286960776}
   playerEquipments:
     injection: {fileID: 1437814646}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749391533712439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100331,6 +100453,8 @@ MonoBehaviour:
   - {fileID: 1792887634}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749391759642012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100392,6 +100516,8 @@ MonoBehaviour:
   - {fileID: 1225967934}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749391842414499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100453,6 +100579,8 @@ MonoBehaviour:
   - {fileID: 1118365277}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749391954405223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100514,6 +100642,8 @@ MonoBehaviour:
   - {fileID: 1631551382}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749391992518271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100551,18 +100681,18 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - levelNum: 0
-    upgradeCost: 240
-    nextTask: 6
+    upgradeCost: 270
+    nextTask: 7
     processTime: 6
     StaffExprinceType: 0
   - levelNum: 1
-    upgradeCost: 320
-    nextTask: 9
+    upgradeCost: 1000
+    nextTask: 16
     processTime: 5
     StaffExprinceType: 1
   - levelNum: 2
-    upgradeCost: 490
-    nextTask: 13
+    upgradeCost: 990
+    nextTask: 20
     processTime: 4
     StaffExprinceType: 2
   npcObj: {fileID: 1728319663}
@@ -100570,6 +100700,8 @@ MonoBehaviour:
   - {fileID: 1786065650}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!114 &6756749391997257733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100607,18 +100739,18 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - levelNum: 0
-    upgradeCost: 1050
-    nextTask: 21
+    upgradeCost: 890
+    nextTask: 19
     processTime: 4
     StaffExprinceType: 0
   - levelNum: 1
-    upgradeCost: 1740
-    nextTask: 26
+    upgradeCost: 2500
+    nextTask: 28
     processTime: 3
     StaffExprinceType: 1
   - levelNum: 2
-    upgradeCost: 2800
-    nextTask: 31
+    upgradeCost: 3270
+    nextTask: 33
     processTime: 2
     StaffExprinceType: 2
   - levelNum: 3
@@ -100631,6 +100763,8 @@ MonoBehaviour:
   - {fileID: 1990912570}
   playerEquipments:
     injection: {fileID: 0}
+  toastBehaviour: {fileID: 7151034659825459272, guid: 77d4f678352e6c441adc2b4585e0ad06,
+    type: 3}
 --- !u!95 &6764587200812610208
 Animator:
   serializedVersion: 5

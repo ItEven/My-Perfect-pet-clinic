@@ -71,6 +71,8 @@ public class StaffNPC : MonoBehaviour
     public Equipments playerEquipments;
 
 
+    public GameObject toastBehaviour;
+
     internal NPCMovement nPCMovement;
     internal Seat seat;
     #region Initializers
@@ -140,7 +142,8 @@ public class StaffNPC : MonoBehaviour
     public void SetUpgredeVisual()
     {
         if (bIsUpgraderActive)
-        {
+        {   
+
             TaskManager.instance.target = upGrader.transform;
             if (!TutorialManager.instance.bIsTutorialRunning)
             {
@@ -194,7 +197,8 @@ public class StaffNPC : MonoBehaviour
         currentLevel++;
         currentLevelData = levels[currentLevel];
         roundUpgradePartical.ForEach(X => X.Play());
-        TaskManager.instance?.OnTaskComplete(currentLevelData.nextTask);
+        TaskManager.instance?.OnTaskComplete(currentLevelData.nextTask);   
+     //   PlayTosat("Upgrade To Level" + " " + currentLevel);
     }
 
     public void LoadNextUpgrade()
@@ -215,6 +219,12 @@ public class StaffNPC : MonoBehaviour
         SetUpgredeVisual();
     }
 
+    public void PlayTosat(string text)
+    {
+          GameObject gameObject = Instantiate(toastBehaviour, transform.position, Quaternion.identity, transform);
+            ToastBehaviour toast = gameObject.GetComponent<ToastBehaviour>();
+            toast.ONToastCreate(text);
+    }
 
     #endregion
 

@@ -5,6 +5,8 @@ using System;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.ComponentModel;
+using Unity.VisualScripting;
 
 public class UiManager : MonoBehaviour
 {
@@ -35,8 +37,8 @@ public class UiManager : MonoBehaviour
     public Button illnessesbtn;
     public Button illnessescloseBtn;
 
-
-
+    [Header("Toast")]
+    public GameObject toastBehaviour;
 
     [Header("Loder Panel")]
     public RectTransform loderPnael;
@@ -52,7 +54,7 @@ public class UiManager : MonoBehaviour
     {
         DOVirtual.DelayedCall(3f, () =>
         {
-           loderPnael.gameObject.SetActive(false);
+            loderPnael.gameObject.SetActive(false);
         });
         //settingBtn.onClick.AddListener
         loderPnael.gameObject.SetActive(false);
@@ -94,7 +96,7 @@ public class UiManager : MonoBehaviour
     #region Illnesses
     public void OpneIllnessesPanel()
     {
-        
+
         if (illnessesbackgroundPanel.gameObject.activeInHierarchy)
         {
             ClosePanel(illnessesbackgroundPanel, illnessesPanelBgImagel, roomPanel);
@@ -116,7 +118,7 @@ public class UiManager : MonoBehaviour
     #endregion
 
 
- 
+
 
     public void OpenPanel(RectTransform backgroundPanel, Image bgImg, RectTransform mainPanel)
     {
@@ -149,6 +151,8 @@ public class UiManager : MonoBehaviour
             bIsUiOn = false;
         });
     }
+
+   
     public string ScoreShow(double Score)
     {
         string result;

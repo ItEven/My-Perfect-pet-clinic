@@ -202,7 +202,6 @@ public class TutorialManager : MonoBehaviour
         campasBoxRect.gameObject.SetActive(false);
         messageBoxPanel.gameObject.SetActive(false);
         //FrizPlayer();
-
         //yield return new WaitUntil(() => !textBox.gameObject.activeInHierarchy);
         //UnFrizPlayer();
         yield return new WaitUntil(() => saveManager.economyManager.PetMoneyCount > 0);

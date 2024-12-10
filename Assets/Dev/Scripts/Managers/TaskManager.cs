@@ -137,106 +137,107 @@ public class TaskManager : MonoBehaviour
                 }
                 break;
             case 5:
+
                 patientManager.AddDisease(DiseaseType.Cold);
-                pharmacyRoom.LoadNextForStaff(0);
+                OnTaskComplete(6);
                 break;
             case 6:
-                InspectionRoom.LoadNextForStaff(0);
+                pharmacyRoom.LoadNextForStaff(0);
                 break;
             case 7:
+                patientManager.AddDisease(DiseaseType.Fever);
                 receptionManager.LoadNextUpgrade();
                 break;
             case 8:
-                patientManager.AddDisease(DiseaseType.Fever);
-                pharmacyRoom.LoadNextForStaff(0);
-                break;
+                hallManager_02.bIsUpgraderActive = true;
+                hallManager_02.SetUpgredeVisual(); break;
             case 9:
-                InspectionRoom.LoadNextForStaff(0);
+                InjectionRoom.bIsUpgraderActive = true;
+                InjectionRoom.SetUpgradeVisual();
                 break;
             case 10:
-                receptionManager.LoadNextUpgrade();
+                InspectionRoom.LoadNextForStaff(0);
                 break;
             case 11:
                 //  storageRoom.LoadNextUpgrade();
                 OnTaskComplete(12);
                 break;
             case 12:
-                pharmacyRoom.LoadNextForStaff(0);
+                receptionManager.LoadNextUpgrade();
                 break;
             case 13:
                 patientManager.AddDisease(DiseaseType.Heartworm_Disease);
+                InspectionRoom_2.bIsUpgraderActive = true;
+                InspectionRoom_2.SetUpgradeVisual(); break;
 
-                receptionManager.LoadNextUpgrade();
-                break;
             case 14:
-                InspectionRoom.LoadNextForStaff(0);
+                InjectionRoom.LoadNextForStaff(0);
                 break;
             case 15:
-                hallManager_02.bIsUpgraderActive = true;
-                hallManager_02.SetUpgredeVisual(); break;
+                pharmacyRoom.LoadNextForStaff(0);
+                break;
             case 16:
                 particle.Play();
                 patientManager.AddDisease(DiseaseType.Ear_Infection);
-
-                InjectionRoom.bIsUpgraderActive = true;
-                InjectionRoom.SetUpgradeVisual(); break;
+                GroomingRoom.bIsUpgraderActive = true;
+                GroomingRoom.SetUpgradeVisual();
+                break;
             case 17:
                 particle.Play();
                 patientManager.AddDisease(DiseaseType.Fleas_and_Ticks);
                 OnTaskComplete(18); break;
             case 18:
-                InspectionRoom_2.bIsUpgraderActive = true;
-                InspectionRoom_2.SetUpgradeVisual(); break;
-            case 19:
-                particle.Play();
-
-                InjectionRoom.LoadNextForStaff(0); break;
-            case 20:
                 InspectionRoom_2.LoadNextForStaff(0);
                 break;
-            case 21:
 
+            case 19:
+                particle.Play();
+                pharmacyRoom.LoadNextForStaff(0);
+                break;
+            case 20:
+                receptionManager.LoadNextUpgrade();
+                break;
+            case 21:
                 patientManager.AddDisease(DiseaseType.Allergies);
                 patientManager.AddDisease(DiseaseType.Skin_Infecction);
                 InjectionRoom.LoadNextForStaff(0);
                 break;
             case 22:
-                GroomingRoom.bIsUpgraderActive = true;
-                GroomingRoom.SetUpgradeVisual();
+                GroomingRoom.LoadNextForStaff(0);
                 break;
 
             case 23:
                 particle.Play();
-                InjectionRoom.LoadNextForStaff(0);
+                InspectionRoom.LoadNextForStaff(0);
                 break;
             case 24:
-                GroomingRoom.LoadNextForStaff(0);
-
-
+                InjectionRoom.LoadNextForStaff(0);
                 break;
             case 25:
-                InspectionRoom_2.LoadNextForStaff(0);
+                hallManager_03.bIsUpgraderActive = true;
+                hallManager_03.SetUpgredeVisual();
                 break;
             case 26:
                 patientManager.AddDisease(DiseaseType.Toy);
-                OnTaskComplete(27);
+                StoreRoom.bIsUpgraderActive = true;
+                StoreRoom.SetUpgradeVisual();
                 break;
             case 27:
-                hallManager_03.bIsUpgraderActive = true;
-                hallManager_03.SetUpgredeVisual(); break;
+                InspectionRoom_2.LoadNextForStaff(0); break;
             case 28:
                 particle.Play();
-                StoreRoom.bIsUpgraderActive = true;
-                StoreRoom.SetUpgradeVisual(); break;
+                GroomingRoom.LoadNextForStaff(0);
+                break;
             case 29:
                 particle.Play();
+                StoreRoom.LoadNextForStaff(0);
                 patientManager.AddDisease(DiseaseType.Vomitting);
-                GroomingRoom.LoadNextForStaff(0); break;
+                break;
             case 30:
-                InspectionRoom_2.LoadNextForStaff(0);
+                InspectionRoom.LoadNextForStaff(0);
                 break;
             case 31: GroomingRoom.LoadNextForStaff(0); break;
-            case 32: StoreRoom.LoadNextForStaff(0); break;
+            case 32: InspectionRoom_2.LoadNextForStaff(0); break;
             case 33:
                 InjectionRoom.LoadNextForStaff(0);
                 break;

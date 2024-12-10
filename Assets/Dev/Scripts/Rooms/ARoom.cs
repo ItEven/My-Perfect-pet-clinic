@@ -158,7 +158,8 @@ public class ARoom : MonoBehaviour
     public void OnUnlock()
     {
         if (bIsUnlock)
-        {
+        {   
+         
             gameManager.SetObjectsStates(lockedObjs, false);
             foreach (var item in unlockObjs)
             {
