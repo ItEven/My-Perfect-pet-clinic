@@ -26977,6 +26977,13 @@ MonoBehaviour:
   messageBoxPanel: {fileID: 1761819538}
   messageText: {fileID: 653800604}
   moneyBox: {fileID: 662185312}
+  audioClip1: {fileID: 8300000, guid: dbde846427d3f6d499c460323cc3ff8a, type: 3}
+  audioClip2: {fileID: 8300000, guid: bcd5b20a228cc3a469b04ad2e5c5f587, type: 3}
+  audioClip3: {fileID: 8300000, guid: 223b3a10e880b8948899c592b62914db, type: 3}
+  audioClip4: {fileID: 8300000, guid: 6a3f3d20be5b22e47867f6a1614ee60b, type: 3}
+  audioClip5: {fileID: 8300000, guid: 972ff64eef685034ead5794e32c2f299, type: 3}
+  audioClip6: {fileID: 8300000, guid: acc4b00b76f1d3a49b5f721bfedfc10b, type: 3}
+  audioClip7: {fileID: 8300000, guid: f4ce2c59bb2dd874b938327851a23fc8, type: 3}
 --- !u!1 &746924107
 GameObject:
   m_ObjectHideFlags: 0
@@ -66220,7 +66227,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

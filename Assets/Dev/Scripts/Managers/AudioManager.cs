@@ -102,20 +102,28 @@ public class AudioManager : MonoBehaviour
     public void OnUpgrade()
     {
         if (!settingData.bIsSoundOn) return;
-        musicAudioSource.PlayOneShot(upgradeClip);
+        soundAudioSource.PlayOneShot(upgradeClip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
     }
     public void OnMonenyCollect()
     {
         if (!settingData.bIsSoundOn) return;
-        musicAudioSource.PlayOneShot(moneyCollectClip);
+        soundAudioSource.PlayOneShot(moneyCollectClip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
     }
     public void OnMoneyDrop()
     {
         if (!settingData.bIsSoundOn) return;
-        musicAudioSource.PlayOneShot(moneyDropClip);
+        soundAudioSource.PlayOneShot(moneyDropClip);
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
+    }
+
+    public void PlayTutAudio(AudioClip clip)
+    {
+        if (!settingData.bIsSoundOn) return;
+        soundAudioSource.Stop();
+        soundAudioSource.PlayOneShot(clip);
+
     }
 
     public void OpneSettingPanel()

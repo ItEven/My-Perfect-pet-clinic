@@ -35,6 +35,17 @@ public class TutorialManager : MonoBehaviour
 
     [Header("YO nig")]
     public GameObject moneyBox;
+
+    [Header("TutAudio")]
+    public AudioClip audioClip1;
+    public AudioClip audioClip2;
+    public AudioClip audioClip3;
+
+    [Header("TutAudio")]
+    public AudioClip audioClip4;
+    public AudioClip audioClip5;
+    public AudioClip audioClip6;
+    public AudioClip audioClip7;
     private void Awake()
     {
         instance = this;
@@ -133,11 +144,22 @@ public class TutorialManager : MonoBehaviour
 
         switch (TextCount)
         {
-            case 1: return "Welcome to this beautiful town! The pets here need you.";
-            case 2: return "Welcome to this beautiful town! The pets here need you.";
-            case 3: return "Today, you’re appointed as the owner of the first pet hospital.";
-            case 4: return "Let’s collect the money and unlock the hospital to give every furry friend the care they deserve.";
+            case 1:
+                DOVirtual.DelayedCall(1.5f, () =>
+                {
+                    AudioManager.i.PlayTutAudio(audioClip1);
+                });
+                return "Welcome to this beautiful town! The pets here need you.";
+            case 2:
+                return "Welcome to this beautiful town! The pets here need you.";
+            case 3:
+                AudioManager.i.PlayTutAudio(audioClip2);
+                return "Today, you’re appointed as the owner of the first pet hospital.";
+            case 4:
+                AudioManager.i.PlayTutAudio(audioClip3);
+                return "Let’s collect the money and unlock the hospital to give every furry friend the care they deserve.";
             default:
+                AudioManager.i.soundAudioSource.Stop();
                 return null;
         }
     }    
@@ -148,11 +170,21 @@ public class TutorialManager : MonoBehaviour
 
         switch (TextCountt)
         {
-            case 1: return "The first pet has recovered well done! ";
-            case 2: return "It seems you are very talented.";
-            case 3: return "However, don’t relax too soon; pets are pouring in continuously..";
-            case 4: return "Let’s see if we can treat 5 more pets!.";
+            case 1: 
+                AudioManager.i.PlayTutAudio(audioClip4);
+                return "The first pet has recovered well done! ";
+            case 2: 
+                AudioManager.i.PlayTutAudio(audioClip5);
+                return "It seems you are very talented.";
+            case 3: 
+                AudioManager.i.PlayTutAudio(audioClip6);
+                return "However, don’t relax too soon; pets are pouring in continuously..";
+            case 4: 
+                AudioManager.i.PlayTutAudio(audioClip7);
+                return "Let’s see if we can treat 5 more pets!.";
             default:
+                AudioManager.i.soundAudioSource.Stop();
+
                 return null;
         }
     }
