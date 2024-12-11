@@ -170,8 +170,11 @@ public class TutorialManager : MonoBehaviour
 
         switch (TextCountt)
         {
-            case 1: 
-                AudioManager.i.PlayTutAudio(audioClip4);
+            case 1:
+                DOVirtual.DelayedCall(1.5f, () =>
+                {
+                    AudioManager.i.PlayTutAudio(audioClip4);
+                });
                 return "The first pet has recovered well done! ";
             case 2: 
                 AudioManager.i.PlayTutAudio(audioClip5);
