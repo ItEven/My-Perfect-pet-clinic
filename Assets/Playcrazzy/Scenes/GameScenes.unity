@@ -16512,6 +16512,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nurse_Female_Mri
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d53a55e231176745a990b3d2c0fd832,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 3d53a55e231176745a990b3d2c0fd832,
         type: 3}
       propertyPath: m_Avatar
@@ -27192,6 +27197,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nurse_Female_Mri
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d53a55e231176745a990b3d2c0fd832,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 3d53a55e231176745a990b3d2c0fd832,
         type: 3}
       propertyPath: m_Avatar
@@ -30866,6 +30876,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41887,6 +41902,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -50187,6 +50207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -69541,6 +69566,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -74749,6 +74779,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -74853,6 +74888,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -74959,6 +74999,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -75063,6 +75108,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75169,6 +75219,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -75274,6 +75329,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -75378,6 +75438,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75589,6 +75654,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -75694,6 +75764,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -75798,6 +75873,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -107968,6 +108048,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Male_Doctor_Extra '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92012800a7f0d6f4bb8bdab12e5c8436,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
