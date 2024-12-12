@@ -400,6 +400,7 @@ public class TaskManager : MonoBehaviour
             case 100:
                 IcuRoom.bedsArr[2].staffNPC.bIsUpgraderActive = false;
                 IcuRoom.bedsArr[2].staffNPC.upGrader.gameObject.SetActive(false);
+                campassBtn.gameObject.SetActive(false);
                 break;
             default: break;
 
@@ -411,6 +412,10 @@ public class TaskManager : MonoBehaviour
 
         taskProgressText.text = curentTask.ToString("00") + "/" + MaxTask.ToString();
         taskProgressSlider.value = curentTask;
+        if(curentTask >= 100)
+        {
+            campassBtn.gameObject.SetActive(false);
+        }
 
     }
 

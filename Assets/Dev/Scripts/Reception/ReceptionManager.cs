@@ -212,7 +212,7 @@ public class ReceptionManager : MonoBehaviour
         bIsPlayerOnDesk = true;
         if (!npc.bIsUnlock)
         {
-            Debug.LogError("Waaaaooo");
+            //Debug.LogError("Waaaaooo");
             SetUpPlayer();
             StratProssesPatients();
         }

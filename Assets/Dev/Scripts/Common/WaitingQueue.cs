@@ -58,15 +58,24 @@ public class WaitingQueue : MonoBehaviour
         {
             var patient = patientInQueue[i];
 
-            // Skip if the patient is null
+        
             if (patient == null)
             {
-                continue;
+                return;
+            }
+                
+            if (QueueIndex >= queue.Count)
+            {
+                Debug.LogWarning("Queue index exceeds queue size. Skipping reorder for remaining patients.");
+                break;
             }
 
             patient.NPCMovement.MoveToTarget(queue[QueueIndex], () =>
             {
-                patient.transform.rotation = queue[i].rotation;
+                if (QueueIndex < queue.Count)
+                {
+                    patient.transform.rotation = queue[QueueIndex].rotation;
+                }
                 OnReachedQueueAction(patient);
             });
             patient.MoveAnimal();
