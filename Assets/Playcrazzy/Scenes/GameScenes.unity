@@ -16292,22 +16292,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 10670
     nextTask: 45
-    processTime: 4
+    processTime: 5
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 18720
     nextTask: 51
-    processTime: 3
+    processTime: 5
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 26000
     nextTask: 55
-    processTime: 2
+    processTime: 4
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 27620
     nextTask: 57
-    processTime: 1.5
+    processTime: 3
     StaffExprinceType: 3
   npcObj: {fileID: 1194782847}
   roundUpgradePartical:
@@ -25279,7 +25279,7 @@ PrefabInstance:
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: totalMoneyInBox
-      value: 4544545
+      value: 305
       objectReference: {fileID: 0}
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -100946,22 +100946,22 @@ MonoBehaviour:
   - levelNum: 0
     upgradeCost: 890
     nextTask: 19
-    processTime: 4
+    processTime: 5
     StaffExprinceType: 0
   - levelNum: 1
     upgradeCost: 2020
     nextTask: 28
-    processTime: 3
+    processTime: 5
     StaffExprinceType: 1
   - levelNum: 2
     upgradeCost: 3270
     nextTask: 33
-    processTime: 2
+    processTime: 4
     StaffExprinceType: 2
   - levelNum: 3
     upgradeCost: 8000
     nextTask: 42
-    processTime: 1.5
+    processTime: 3
     StaffExprinceType: 3
   npcObj: {fileID: 894010762}
   roundUpgradePartical:

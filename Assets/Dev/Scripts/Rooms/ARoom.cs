@@ -158,8 +158,8 @@ public class ARoom : MonoBehaviour
     public void OnUnlock()
     {
         if (bIsUnlock)
-        {   
-         
+        {
+
             gameManager.SetObjectsStates(lockedObjs, false);
             foreach (var item in unlockObjs)
             {
@@ -186,7 +186,7 @@ public class ARoom : MonoBehaviour
     {
         if (bIsUpgraderActive)
         {
-        TaskManager.instance.target = upGrader.transform;
+            TaskManager.instance.target = upGrader.transform;
             CameraController.Instance.FocusOnTarget(upGrader.transform);
             SetTakeMoneyData(currentCost);
         }
@@ -234,7 +234,7 @@ public class ARoom : MonoBehaviour
     }
 
     public void LoadNextForStaff(int index)
-    {   
+    {
 
         bedsArr[index].staffNPC.LoadNextUpgrade();
     }
@@ -245,7 +245,7 @@ public class ARoom : MonoBehaviour
     {
         if (patients != null)
         {
-          
+
             if (!waitingQueue.bIsQueueFull() && bIsUnlock)
             {
                 patients.markForFull.gameObject.SetActive(false);
@@ -310,7 +310,7 @@ public class ARoom : MonoBehaviour
         }
     }
 
- 
+
     public void RemovePatientFromUnRegisterQ(Patient patient)
     {
         hospitalManager.OnRoomHaveSpace();
@@ -338,7 +338,11 @@ public class ARoom : MonoBehaviour
 
             if (bed != null)
             {
-                if (bed.bIsOccupied) return;
+                if (bed.bIsOccupied)
+                {
+                    // Debug.LogError(bed.room.name);
+                    return;
+                }
 
                 bed.bIsOccupied = true;
                 waitingQueue.RemoveFromQueue(patient);
@@ -355,7 +359,6 @@ public class ARoom : MonoBehaviour
                 });
                 hospitalManager.OnRoomHaveSpace();
                 patient.MoveAnimal();
-
                 NextPatientFromUnRegisterQ();
             }
         }
@@ -415,7 +418,7 @@ public class ARoom : MonoBehaviour
         }
     }
 
-  
+
     #endregion
 
     #region Data Functions

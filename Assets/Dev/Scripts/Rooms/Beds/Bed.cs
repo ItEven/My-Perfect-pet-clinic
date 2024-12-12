@@ -352,7 +352,7 @@ public class Bed : MonoBehaviour
         {
             nextRoom.RegisterPatient(patient);
         }
-
+        bIsOccupied = false;
         MoveAnimal(patient.animal);
         hospitalManager.OnRoomHaveSpace();
     }
@@ -389,7 +389,6 @@ public class Bed : MonoBehaviour
         DOVirtual.DelayedCall(0.3f, () =>
         {
             patient.MoveAnimal();
-            bIsOccupied = false;
             patient = null;
             room.RearngeQue();
         });

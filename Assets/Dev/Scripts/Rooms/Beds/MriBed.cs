@@ -112,7 +112,7 @@ public class MriBed : Bed
             Debug.LogError(room.gameObject.name + "room is null");
 
         }
-
+        bIsOccupied = false;
         MoveAnimal(patient.animal);
         hospitalManager.OnRoomHaveSpace();
 
