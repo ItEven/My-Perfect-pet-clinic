@@ -186,7 +186,7 @@ public class Patient : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Room is Null");
+           // Debug.LogError("Room is Null");
         }
     }
 
@@ -198,7 +198,7 @@ public class Patient : MonoBehaviour
         }
         else
         {
-            Debug.LogError("WattingQ is Null");
+           // Debug.LogError("WattingQ is Null");
         }
     }
 
