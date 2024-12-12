@@ -388,7 +388,7 @@ public class Bed : MonoBehaviour
         //animal.enabled = true;
         DOVirtual.DelayedCall(0.3f, () =>
         {
-            bIsOccupied = false;
+           //bIsOccupied = false;
             patient.MoveAnimal();
             patient = null;
             room.RearngeQue();

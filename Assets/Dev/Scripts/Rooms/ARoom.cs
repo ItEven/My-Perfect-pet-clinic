@@ -340,7 +340,7 @@ public class ARoom : MonoBehaviour
             {
                 if (bed.bIsOccupied)
                 {
-                    // Debug.LogError(bed.room.name);
+                    Debug.LogError(bed.room.name);
                     return;
                 }
 
