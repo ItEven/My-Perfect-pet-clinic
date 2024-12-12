@@ -212,6 +212,7 @@ public class ReceptionManager : MonoBehaviour
         bIsPlayerOnDesk = true;
         if (!npc.bIsUnlock)
         {
+            Debug.LogError("Waaaaooo");
             SetUpPlayer();
             StratProssesPatients();
         }
@@ -221,7 +222,7 @@ public class ReceptionManager : MonoBehaviour
     bool bIsSfitedOnece;
     public void OnPlayerStay()
     {
-        if (bIsPlayerOnDesk && !gameManager.playerController.playerControllerData.joystick.bIsOnHold && !bIsSfitedOnece)
+        if (bIsPlayerOnDesk && !gameManager.playerController.playerControllerData.joystick.bIsOnHold && !bIsSfitedOnece && !npc.bIsUnlock)
         {
             bIsSfitedOnece = true;
             if (!bIsProcessing)

@@ -244,7 +244,7 @@ public class TaskManager : MonoBehaviour
             case 34:
                 InjectionRoom.LoadNextUpgrade();
                 patientManager.AddDisease(DiseaseType.Dental_Disease);
-                ; break;
+                break;
             case 35:
                 hallManager_04.bIsUpgraderActive = true;
                 patientManager.AddDisease(DiseaseType.Bloat);

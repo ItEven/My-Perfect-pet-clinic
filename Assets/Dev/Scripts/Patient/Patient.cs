@@ -53,7 +53,7 @@ public class Patient : MonoBehaviour
     public void MoveAnimal()
     {
         animal.player = RightFollowPos;
-        animal.startFollow(); 
+        animal.startFollow();
     }
     public void MoveToExit(Transform ExitPoint, MoodType moodType)
     {
@@ -72,7 +72,7 @@ public class Patient : MonoBehaviour
         }
 
         NPCMovement.MoveToTarget(ExitPoint, () =>
-        { 
+        {
             Destroy(animal.gameObject);
             Destroy(gameObject);
         });
@@ -105,6 +105,7 @@ public class Patient : MonoBehaviour
 
     public void StartWatting(Action onCompliet = null)
     {
+        if (TutorialManager.instance.bIsTutorialRunning) return;
         if (string.IsNullOrEmpty(WattingTweenId))
         {
             WattingTweenId = "WattingTween" + Guid.NewGuid().ToString();

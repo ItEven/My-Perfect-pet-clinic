@@ -225,10 +225,10 @@ public class ARoom : MonoBehaviour
     public void LoadNextUpgrade()
     {
         currntOpenBeds++;
-        Debug.LogError(gameObject.name + " currntOpenBeds" + currntOpenBeds);
+        //Debug.LogError(gameObject.name + " currntOpenBeds" + currntOpenBeds);
         bedsArr[currntOpenBeds].bIsUpgraderActive = true;
         bedsArr[currntOpenBeds].gameObject.SetActive(true);
-        Debug.LogError(gameObject.name + " object na,e " + bedsArr[currntOpenBeds].gameObject.name);
+        //Debug.LogError(gameObject.name + " object na,e " + bedsArr[currntOpenBeds].gameObject.name);
 
         bedsArr[currntOpenBeds].LoadData();
     }

@@ -162,6 +162,7 @@ public class ReceptionNPC : MonoBehaviour
 
     public void OnUpgrade()
     {
+        bIsUpgraderActive = false;
         currentLevel++;
         currentLevelData = levels[currentLevel];
         roundUpgradePartical.ForEach(X => X.Play());

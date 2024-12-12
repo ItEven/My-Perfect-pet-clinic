@@ -5,9 +5,27 @@ using UnityEngine;
 
 public class MriBed : Bed
 {
+
     public Transform bedSeat;
     public float InOutTime;
     Transform lastPerent;
+
+    public override void SetVisual()
+    {
+        DOVirtual.DelayedCall(1f, () =>
+        {
+           // Debug.LogError(bIsUnlock);
+        base.SetVisual();
+        });
+
+        //if (bIsUnlock)
+        //{
+        //    foreach (var item in unlockObjs)
+        //    {
+        //        item.gameObject.SetActive(true);
+        //    }
+        //}
+    }
     public override void StartProcessPatients()
     {
         if (patient == null) return;

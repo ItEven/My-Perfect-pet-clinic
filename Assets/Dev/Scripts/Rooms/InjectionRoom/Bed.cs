@@ -105,7 +105,7 @@ public class Bed : MonoBehaviour
         SetVisual();
     }
 
-    private void SetVisual()
+    public virtual void SetVisual()
     {
         if (bIsUnlock)
         {

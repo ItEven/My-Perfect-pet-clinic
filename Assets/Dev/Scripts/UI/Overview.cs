@@ -238,7 +238,7 @@ public class Overview : MonoBehaviour
             {
                 playerData.speedLevel++;
                 gameManager.playerController.playerControllerData.maxSpeed += speedMultiplair;
-                economyManager.bCanWeSpendPetMoney(upgradeSpeedCost);
+                economyManager.SpendPetMoney(upgradeSpeedCost);
                 upgradeSpeedCost *= upgradeSpeedCostMultiplair;
                 if (playerData.speedLevel >= maxSpeedLevel)
                 {
@@ -265,7 +265,8 @@ public class Overview : MonoBehaviour
             {
                 playerData.profitLevel++;
                 gameManager.profitMultiplier += profitMultiplair;
-                economyManager.bCanWeSpendPetMoney(upgradeProfitCost);
+                economyManager.SpendPetMoney(upgradeProfitCost);
+
                 upgradeProfitCost *= profitUpgradeCostMultiplair;
                 if (playerData.profitLevel >= maxProfitLevel)
                 {
@@ -290,13 +291,14 @@ public class Overview : MonoBehaviour
         for (int i = 1; i < playerData.profitLevel; i++)
         {
             upgradeProfitCost *= profitUpgradeCostMultiplair;
+            gameManager.profitMultiplier += profitMultiplair;
         }
 
 
         for (int i = 1; i < playerData.speedLevel; i++)
         {
             upgradeSpeedCost *= upgradeSpeedCostMultiplair;
-
+            gameManager.playerController.playerControllerData.maxSpeed += speedMultiplair;
         }
         UpdateUi();
     }
