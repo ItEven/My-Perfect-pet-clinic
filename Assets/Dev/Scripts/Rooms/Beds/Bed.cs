@@ -212,7 +212,6 @@ public class Bed : MonoBehaviour
     {
 
         bIsPlayerOnDesk = false;
-
         playerController.SetItemState(needIteam, false);
 
         if (!staffNPC.bIsUnlock)
