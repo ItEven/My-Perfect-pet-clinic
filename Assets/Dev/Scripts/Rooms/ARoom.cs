@@ -245,7 +245,7 @@ public class ARoom : MonoBehaviour
     {
         if (patients != null)
         {
-
+            patients.currnetRoom = this;
             if (!waitingQueue.bIsQueueFull() && bIsUnlock)
             {
                 patients.markForFull.gameObject.SetActive(false);

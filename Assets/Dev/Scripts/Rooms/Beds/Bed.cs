@@ -284,6 +284,8 @@ public class Bed : MonoBehaviour
         var processTime = staffNPC.currentLevelData.processTime;
         if (staffNPC.bIsUnlock && staffNPC.bIsOnDesk)
         {
+            patient.StopWatting();
+
             StartPatientProcessing(staffNPC.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
                 OnProcessComplite(pharmacyRoom, staffNPC.animationController, AnimType.Idle);
@@ -292,6 +294,7 @@ public class Bed : MonoBehaviour
         else if (bIsPlayerOnDesk)
         {
             bIsProcessing = true;
+            patient.StopWatting();
 
             StartPatientProcessing(playerController.animationController, workingAnimation, AnimType.Idle, staffNPC.currentLevelData.processTime, () =>
             {
@@ -336,9 +339,15 @@ public class Bed : MonoBehaviour
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
         bIsProcessing = false;
-        if (nextRoom.bIsUnRegisterQueIsFull() || nextRoom == null || !nextRoom.bIsUnlock)
+
+        if (!nextRoom.bIsUnRegisterQueIsFull())
         {
             // hospitalManager.OnPatientRegister();
+
+            nextRoom.RegisterPatient(patient);
+        }
+        else
+        {
             saveManager.gameData.hospitalData.failedPatientCount++;
             if (cameraController.bCanCameraMove)
             {
@@ -346,11 +355,6 @@ public class Bed : MonoBehaviour
             }
             animationController.PlayAnimation(idleAnim);
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
-
-        }
-        else
-        {
-            nextRoom.RegisterPatient(patient);
         }
         MoveAnimal(patient.animal);
         hospitalManager.OnRoomHaveSpace();
@@ -389,10 +393,10 @@ public class Bed : MonoBehaviour
         {
             patient.MoveAnimal();
             patient = null;
-            DOVirtual.DelayedCall(0.3f, () =>
+            room.RearngeQue();
+            DOVirtual.DelayedCall(0.1f, () =>
             {
                 bIsOccupied = false;
-                room.RearngeQue();
             });
         });
 

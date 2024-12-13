@@ -56,31 +56,19 @@ public class InspestionBed : Bed
         animationController.PlayAnimation(idleAnim);
         if (nextRoom != null && bCanFindNextRoom)
         {
-            if (nextRoom.bIsUnRegisterQueIsFull())
+            if (!nextRoom.bIsUnRegisterQueIsFull())
             {
-                if (nextRoom != null)
-                {
-                    //Debug.LogError(nextRoom.gameObject.name + "room is not null" + nextRoom.bIsUnRegisterQueIsFull() + "que is full" + nextRoom.waitingQueue.gameObject.name + nextRoom.bIsUnlock + "the was not unlock");
-
-                }
-                else
-                {
-                    //Debug.LogError(room.gameObject.name + "room is null");
-                }
-                //hospitalManager.OnPatientRegister();
-                patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
-                saveManager.gameData.hospitalData.failedPatientCount++;
-
-
+                nextRoom.RegisterPatient(patient);
             }
             else
             {
-                nextRoom.RegisterPatient(patient);
+                patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+                saveManager.gameData.hospitalData.failedPatientCount++;
             }
         }
         else
         {
-          //  hospitalManager.OnPatientRegister();
+            //  hospitalManager.OnPatientRegister();
 
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
 

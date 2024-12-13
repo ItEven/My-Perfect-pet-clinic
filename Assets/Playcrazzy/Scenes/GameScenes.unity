@@ -25279,7 +25279,7 @@ PrefabInstance:
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
       propertyPath: totalMoneyInBox
-      value: 305
+      value: 3000000
       objectReference: {fileID: 0}
     - target: {fileID: 960093975027274561, guid: 0e5bd949083ba40429f423746801cd9e,
         type: 3}
@@ -36912,7 +36912,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -1.4056396, y: 0}
+  m_AnchoredPosition: {x: -1.4055176, y: 0}
   m_SizeDelta: {x: -116.1672, y: 227.1312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069921841
@@ -38134,7 +38134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.00012207031, y: -900}
+  m_AnchoredPosition: {x: 0.00024414062, y: -900}
   m_SizeDelta: {x: -55.0879, y: 354.9063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091836562
