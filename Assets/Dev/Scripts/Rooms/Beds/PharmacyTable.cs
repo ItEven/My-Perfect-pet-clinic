@@ -48,7 +48,6 @@ public class PharmacyTable : Bed
         animationController.PlayAnimation(idleAnim);
         patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
 
-        bIsOccupied = false;
         MoveAnimal(patient.animal);
 
     }

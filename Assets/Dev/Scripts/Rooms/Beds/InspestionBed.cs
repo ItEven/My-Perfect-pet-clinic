@@ -85,7 +85,6 @@ public class InspestionBed : Bed
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
 
         }
-        bIsOccupied = false;
         MoveAnimal(patient.animal);
         hospitalManager.OnRoomHaveSpace();
 
