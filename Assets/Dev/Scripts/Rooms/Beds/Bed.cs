@@ -393,10 +393,10 @@ public class Bed : MonoBehaviour
         {
             patient.MoveAnimal();
             patient = null;
-            room.RearngeQue();
+            bIsOccupied = false;
             DOVirtual.DelayedCall(0.1f, () =>
             {
-                bIsOccupied = false;
+                room.RearngeQue();
             });
         });
 
