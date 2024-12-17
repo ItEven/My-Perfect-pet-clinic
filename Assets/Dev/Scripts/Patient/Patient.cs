@@ -21,7 +21,7 @@ public class Patient : MonoBehaviour
     public DiseaseType diseaseType;
     internal RegisterPos registerPos;
 
-    internal WaitingQueue waitingQueue;
+  //  internal WaitingQueue waitingQueue;
     internal ARoom currnetRoom;
 
     [Header("Watting Duration")]
@@ -165,12 +165,10 @@ public class Patient : MonoBehaviour
 
     public void MoveFromQ()
     {
-
-        RemoveFromWattingQ();
+        currnetRoom.waitingQueue.RemoveFromQueue(this);
         RemoveFromUnregisterd();
         MoveToExit(SaveManager.instance.hospitalManager.GetRandomExit(this), MoodType.Angry);
         MoveAnimal();
-
     }
     public void StopWatting()
     {
@@ -192,14 +190,14 @@ public class Patient : MonoBehaviour
 
     public void RemoveFromWattingQ()
     {
-        if (waitingQueue != null)
-        {
-            waitingQueue.RemoveFromQueue(this);
-        }
-        else
-        {
-           // Debug.LogError("WattingQ is Null");
-        }
+        //if (waitingQueue != null)
+        //{
+        //    waitingQueue.RemoveFromQueue(this);
+        //}
+        //else
+        //{
+        //   // Debug.LogError("WattingQ is Null");
+        //}
     }
 
     public void MarkOff()

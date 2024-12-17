@@ -58,12 +58,12 @@ public class WaitingQueue : MonoBehaviour
         {
             var patient = patientInQueue[i];
 
-        
+
             if (patient == null)
             {
                 return;
             }
-                
+
             if (QueueIndex >= queue.Count)
             {
                 Debug.LogWarning("Queue index exceeds queue size. Skipping reorder for remaining patients.");
@@ -87,9 +87,9 @@ public class WaitingQueue : MonoBehaviour
     }
     public virtual void RemoveFromQueue(Patient patient)
     {
-        QueueIndex--;
         if (patientInQueue.Contains(patient))
         {
+            QueueIndex--;
             patientInQueue.Remove(patient);
             ReOrderQueue();
         }
@@ -98,8 +98,7 @@ public class WaitingQueue : MonoBehaviour
     public virtual void OnReachedQueueAction(Patient patient)
     {
         patient.StartWatting();
-    
-        patient.waitingQueue = this;
+
         if (patientInQueue.Count > 0)
         {
             if (patient != null && patientInQueue[0] != null)

@@ -313,17 +313,18 @@ public class ARoom : MonoBehaviour
 
     public void RemovePatientFromUnRegisterQ(Patient patient)
     {
-        hospitalManager.OnRoomHaveSpace();
-        patient.registerPos.bIsRegiseter = false;
-        patient.BrakeDally();
         if (unRegisterPatientList.Contains(patient))
         {
+            hospitalManager.OnRoomHaveSpace();
+            patient.registerPos.bIsRegiseter = false;
+            patient.BrakeDally();
             unRegisterPatientList.Remove(patient);
         }
     }
     public void RearngeQue()
     {
         waitingQueue.OnReachedQueueAction(waitingQueue.patientInQueue[0]);
+        NextPatientFromUnRegisterQ();
     }
     public void OnReachQueEnd()
     {

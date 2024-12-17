@@ -389,16 +389,14 @@ public class Bed : MonoBehaviour
         animal.transform.rotation = patient.RightFollowPos.rotation;
         //animal.navmeshAgent.enabled = true;
         //animal.enabled = true;
-        DOVirtual.DelayedCall(0.3f, () =>
-        {
-            patient.MoveAnimal();
-            patient = null;
-            bIsOccupied = false;
-            DOVirtual.DelayedCall(0.1f, () =>
-            {
-                room.RearngeQue();
-            });
-        });
+        //DOVirtual.DelayedCall(0.3f, () =>
+        //{
+        patient.MoveAnimal();
+        patient = null;
+        bIsOccupied = false;
+        room.RearngeQue();
+
+        //});
 
     }
     #endregion
