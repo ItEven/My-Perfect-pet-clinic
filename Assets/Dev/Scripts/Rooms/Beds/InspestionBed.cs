@@ -56,7 +56,8 @@ public class InspestionBed : Bed
         animationController.PlayAnimation(idleAnim);
         if (nextRoom != null)
         {
-            if (!nextRoom.bIsUnRegisterQueIsFull())
+            //if (!nextRoom.bIsUnRegisterQueIsFull())
+            if (!nextRoom.waitingQueue.bIsQueueFull())
             {
                 nextRoom.RegisterPatient(patient);
                 Debug.LogError(" ques is not full");

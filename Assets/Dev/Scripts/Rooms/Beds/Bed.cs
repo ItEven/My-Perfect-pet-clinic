@@ -341,7 +341,8 @@ public class Bed : MonoBehaviour
         bIsProcessing = false;
         if (nextRoom != null)
         {
-            if (!nextRoom.bIsUnRegisterQueIsFull())
+            //if (!nextRoom.bIsUnRegisterQueIsFull())
+            if (!nextRoom.waitingQueue.bIsQueueFull())
             {
                 // hospitalManager.OnPatientRegister();
                 nextRoom.RegisterPatient(patient);

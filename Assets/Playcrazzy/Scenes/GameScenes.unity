@@ -14407,7 +14407,6 @@ MonoBehaviour:
   groundCanvas: {fileID: 681851229}
   roundUpgradePartical: {fileID: 1035766581}
   processParticals: {fileID: 0}
-  bCanFindNextRoom: 1
 --- !u!208 &388733829
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -20725,7 +20724,6 @@ MonoBehaviour:
   groundCanvas: {fileID: 543161394}
   roundUpgradePartical: {fileID: 543161389}
   processParticals: {fileID: 0}
-  bCanFindNextRoom: 1
 --- !u!1001 &544801851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111690,7 +111688,6 @@ MonoBehaviour:
   groundCanvas: {fileID: 8902683946432182772}
   roundUpgradePartical: {fileID: 8902683946432182767}
   processParticals: {fileID: 0}
-  bCanFindNextRoom: 1
 --- !u!4 &8902683946432182780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269955825578824558, guid: f04f575947d45ec4ab771c2139b244b0,

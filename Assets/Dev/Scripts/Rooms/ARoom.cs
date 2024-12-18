@@ -255,26 +255,26 @@ public class ARoom : MonoBehaviour
             }
             else
             {
-                if (bIsUnlock)
-                {
-                    patients.markForFull.gameObject.SetActive(true);
-                    patients.markForLock.gameObject.SetActive(false);
-                }
-                else
-                {
-                    patients.markForFull.gameObject.SetActive(false);
-                    patients.markForLock.gameObject.SetActive(true);
-                }
-                unRegisterPatientList.Add(patients);
-                Transform transform = hospitalManager.GetRandomPos(patients);
-                patients.NPCMovement.MoveToTarget(transform, null);
-                patients.MoveAnimal();
-                StartStuffle();
-                patients.StartWatting(() =>
-                {
-                    patients.MarkOff();
-                    RemovePatientFromUnRegisterQ(patients);
-                });
+                //if (bIsUnlock)
+                //{
+                //    patients.markForFull.gameObject.SetActive(true);
+                //    patients.markForLock.gameObject.SetActive(false);
+                //}
+                //else
+                //{
+                //    patients.markForFull.gameObject.SetActive(false);
+                //    patients.markForLock.gameObject.SetActive(true);
+                //}
+                //unRegisterPatientList.Add(patients);
+                //Transform transform = hospitalManager.GetRandomPos(patients);
+                //patients.NPCMovement.MoveToTarget(transform, null);
+                //patients.MoveAnimal();
+                ////StartStuffle();
+                //patients.StartWatting(() =>
+                //{
+                //    patients.MarkOff();
+                //    RemovePatientFromUnRegisterQ(patients);
+                //});
 
             }
         }
