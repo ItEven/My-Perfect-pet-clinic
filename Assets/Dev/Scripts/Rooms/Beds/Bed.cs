@@ -339,24 +339,34 @@ public class Bed : MonoBehaviour
         room.moneyBox.TakeMoney(hospitalManager.GetCustomerCost(patient, room.diseaseData, staffNPC.currentLevelData.StaffExprinceType));
         worldProgresBar.fillAmount = 0;
         bIsProcessing = false;
-
-        if (!nextRoom.bIsUnRegisterQueIsFull())
+        if (nextRoom != null)
         {
-            // hospitalManager.OnPatientRegister();
-
-            nextRoom.RegisterPatient(patient);
+            if (!nextRoom.bIsUnRegisterQueIsFull())
+            {
+                // hospitalManager.OnPatientRegister();
+                nextRoom.RegisterPatient(patient);
+                MoveAnimal(patient.animal);
+            }
+            else
+            {
+                saveManager.gameData.hospitalData.failedPatientCount++;
+                if (cameraController.bCanCameraMove)
+                {
+                    cameraController.FollowPatient(patient.transform);
+                }
+                animationController.PlayAnimation(idleAnim);
+                patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+                MoveAnimal(patient.animal);
+            }
         }
         else
         {
-            saveManager.gameData.hospitalData.failedPatientCount++;
-            if (cameraController.bCanCameraMove)
-            {
-                cameraController.FollowPatient(patient.transform);
-            }
-            animationController.PlayAnimation(idleAnim);
+
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+            MoveAnimal(patient.animal);
         }
-        MoveAnimal(patient.animal);
+
+
         hospitalManager.OnRoomHaveSpace();
     }
 
@@ -384,6 +394,7 @@ public class Bed : MonoBehaviour
 
     public virtual void MoveAnimal(Animal animal)
     {
+        bIsOccupied = false;
         animal.animator.PlayAnimation(AnimType.Idle);
         animal.transform.position = patient.RightFollowPos.position;
         animal.transform.rotation = patient.RightFollowPos.rotation;
@@ -393,7 +404,6 @@ public class Bed : MonoBehaviour
         //{
         patient.MoveAnimal();
         patient = null;
-        bIsOccupied = false;
         room.RearngeQue();
 
         //});

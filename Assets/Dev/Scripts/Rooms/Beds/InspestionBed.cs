@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class InspestionBed : Bed
 {
-    public bool bCanFindNextRoom = false;
+    // public bool bCanFindNextRoom = false;
     public override void SetUpPlayer()
     {
         //   playerController.animationController.PlayAnimation(AnimType.Idle);
@@ -54,26 +54,31 @@ public class InspestionBed : Bed
         bIsProcessing = false;
 
         animationController.PlayAnimation(idleAnim);
-        if (nextRoom != null && bCanFindNextRoom)
+        if (nextRoom != null)
         {
             if (!nextRoom.bIsUnRegisterQueIsFull())
             {
                 nextRoom.RegisterPatient(patient);
+                Debug.LogError(" ques is not full");
+                MoveAnimal(patient.animal);
             }
             else
             {
+                Debug.LogError(" room is not null and que is full");
+
                 patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
                 saveManager.gameData.hospitalData.failedPatientCount++;
+                MoveAnimal(patient.animal);
             }
         }
         else
         {
             //  hospitalManager.OnPatientRegister();
-
+            Debug.LogError(" room is null");
             patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
 
+            MoveAnimal(patient.animal);
         }
-        MoveAnimal(patient.animal);
         hospitalManager.OnRoomHaveSpace();
 
     }

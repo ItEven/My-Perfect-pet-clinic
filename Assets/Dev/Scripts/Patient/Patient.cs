@@ -21,7 +21,7 @@ public class Patient : MonoBehaviour
     public DiseaseType diseaseType;
     internal RegisterPos registerPos;
 
-  //  internal WaitingQueue waitingQueue;
+    //  internal WaitingQueue waitingQueue;
     internal ARoom currnetRoom;
 
     [Header("Watting Duration")]
@@ -88,10 +88,13 @@ public class Patient : MonoBehaviour
         }
 
         int index = Random.Range(0, 5);
+        StopWatting();
         DOVirtual.DelayedCall(index, () =>
         {
-
-            NPCMovement.MoveToTarget(traget, null);
+            NPCMovement.MoveToTarget(traget, () =>
+            {
+                StartWatting();
+            });
             MoveAnimal();
         }).SetId(processTweenId);
     }
@@ -184,7 +187,7 @@ public class Patient : MonoBehaviour
         }
         else
         {
-           // Debug.LogError("Room is Null");
+            // Debug.LogError("Room is Null");
         }
     }
 

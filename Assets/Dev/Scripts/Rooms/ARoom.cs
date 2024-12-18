@@ -531,17 +531,50 @@ public class ARoom : MonoBehaviour
     Coroutine shuffle;
     IEnumerator ShuffleUnresgisterPatient()
     {
+        if (unRegisterPatientList == null || unRegisterPatientList.Count == 0)
+        {
+            Debug.LogError("unRegisterPatientList is null or empty.");
+            yield break;
+        }
+
         while (unRegisterPatientList.Count > 0)
         {
             yield return new WaitForSeconds(unregisterQueShuffleTimer);
+
             if (unRegisterPatientList.Count > 0)
             {
                 foreach (var p in unRegisterPatientList)
                 {
-                    p.registerPos.bIsRegiseter = false;
-                    p.BrakeDally();
-                    Transform transform = hospitalManager.GetRandomPos(p);
-                    p.MoveNewShufflePos(transform);
+                    if (p == null)
+                    {
+                        Debug.LogError("Patient in the list is null.");
+                        continue;
+                    }
+
+                    if (p.registerPos == null)
+                    {
+                        Debug.LogError($"registerPos is null for patient {p}");
+                        continue;
+                    }
+
+                    try
+                    {
+                        p.registerPos.bIsRegiseter = false;
+                        p.BrakeDally();
+
+                        Transform transform = hospitalManager?.GetRandomPos(p);
+                        if (transform == null)
+                        {
+                            Debug.LogError($"GetRandomPos returned null for patient {p}");
+                            continue;
+                        }
+
+                        p.MoveNewShufflePos(transform);
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        Debug.LogError($"Error processing patient {p}: {ex.Message}");
+                    }
                 }
             }
             else
