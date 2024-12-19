@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEditor.Search;
 
 [Serializable]
 
@@ -255,20 +256,20 @@ public class ARoom : MonoBehaviour
             }
             else
             {
-                //if (bIsUnlock)
-                //{
-                //    patients.markForFull.gameObject.SetActive(true);
-                //    patients.markForLock.gameObject.SetActive(false);
-                //}
-                //else
-                //{
-                //    patients.markForFull.gameObject.SetActive(false);
-                //    patients.markForLock.gameObject.SetActive(true);
-                //}
-                //unRegisterPatientList.Add(patients);
-                //Transform transform = hospitalManager.GetRandomPos(patients);
-                //patients.NPCMovement.MoveToTarget(transform, null);
-                //patients.MoveAnimal();
+                if (bIsUnlock)
+                {
+                    patients.markForFull.gameObject.SetActive(true);
+                    patients.markForLock.gameObject.SetActive(false);
+                }
+                else
+                {
+                    patients.markForFull.gameObject.SetActive(false);
+                    patients.markForLock.gameObject.SetActive(true);
+                }
+                unRegisterPatientList.Add(patients);
+                Transform transform = hospitalManager.GetRandomPos(patients);
+                patients.NPCMovement.MoveToTarget(transform, null);
+                patients.MoveAnimal();
                 ////StartStuffle();
                 //patients.StartWatting(() =>
                 //{
@@ -305,8 +306,8 @@ public class ARoom : MonoBehaviour
         if (unRegisterPatientList.Count > 0)
         {
             Patient patient = unRegisterPatientList[0];
-            RegisterPatient(patient);
             RemovePatientFromUnRegisterQ(patient);
+            RegisterPatient(patient);
         }
     }
 
@@ -315,7 +316,7 @@ public class ARoom : MonoBehaviour
     {
         if (unRegisterPatientList.Contains(patient))
         {
-            hospitalManager.OnRoomHaveSpace();
+           
             patient.registerPos.bIsRegiseter = false;
             patient.BrakeDally();
             unRegisterPatientList.Remove(patient);
@@ -335,8 +336,6 @@ public class ARoom : MonoBehaviour
             Bed bed = GetBed();
             Patient patient = waitingQueue.patientInQueue[0];
 
-
-
             if (bed != null)
             {
                 if (bed.bIsOccupied)
@@ -352,15 +351,15 @@ public class ARoom : MonoBehaviour
                 patient.NPCMovement.MoveToTarget(bed.petOwnerSeat.transform, () =>
                 {
                     OnReachTable(bed, patient);
-                    patient.StartWatting(() =>
-                    {
-                        patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
-                        bed.MoveAnimal(patient.animal);
-                    });
+                    //patient.StartWatting(() =>
+                    //{
+                    //    patient.MoveToExit(hospitalManager.GetRandomExit(patient), hospitalManager.GetAnimalMood());
+                    //    bed.MoveAnimal(patient.animal);
+                    //});
                 });
                 hospitalManager.OnRoomHaveSpace();
                 patient.MoveAnimal();
-                NextPatientFromUnRegisterQ();
+                // NextPatientFromUnRegisterQ();
             }
         }
     }
@@ -409,14 +408,7 @@ public class ARoom : MonoBehaviour
     }
     public bool bIsUnRegisterQueIsFull()
     {
-        if (unRegisterPatientList.Count >= unRegisterLimit)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return unRegisterLimit < unRegisterPatientList.Count;
     }
 
 
