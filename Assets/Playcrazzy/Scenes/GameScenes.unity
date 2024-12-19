@@ -1429,6 +1429,7 @@ GameObject:
   - component: {fileID: 49313745}
   - component: {fileID: 49313747}
   - component: {fileID: 49313746}
+  - component: {fileID: 49313748}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1703,6 +1704,18 @@ MonoBehaviour:
   musicCircleImg: {fileID: 1357455560}
   musicOnText: {fileID: 1037593004}
   musicOffText: {fileID: 357331684}
+--- !u!114 &49313748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49313739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f366ed6a492284a89c48f30ab919a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &49769380
 GameObject:
   m_ObjectHideFlags: 0
