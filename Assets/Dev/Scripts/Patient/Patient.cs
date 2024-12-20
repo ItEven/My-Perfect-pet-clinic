@@ -173,13 +173,13 @@ public class Patient : MonoBehaviour
         MoveAnimal();
         if (currnetRoom != null)
         {
-            currnetRoom.waitingQueue.RemoveFromQueue(this);
-            currnetRoom.RemovePatientFromUnRegisterQ(this);
-            currnetRoom.RearngeQue();
             if(currnetBed != null )
             {
                 currnetBed.bIsOccupied = false;
             }
+            currnetRoom.waitingQueue.RemoveFromQueue(this);
+            currnetRoom.RemovePatientFromUnRegisterQ(this);
+            currnetRoom.RearngeQue();
         }
     }
     public void StopWatting()
