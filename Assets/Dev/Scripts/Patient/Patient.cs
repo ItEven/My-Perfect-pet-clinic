@@ -108,35 +108,35 @@ public class Patient : MonoBehaviour
 
     public void StartWatting(Action onCompliet = null)
     {
-        //if (TutorialManager.instance.bIsTutorialRunning) return;
-        //if (string.IsNullOrEmpty(WattingTweenId))
-        //{
-        //    WattingTweenId = "WattingTween" + Guid.NewGuid().ToString();
-        //}
-        //StopWatting();
-        //StartPlayingSalogan();
-        //int index = (int)Random.Range(wattingTime - 50, wattingTime);
-        //DOVirtual.DelayedCall(index, () =>
-        //{
-        //    onCompliet?.Invoke();
-        //    NPCMovement.animator.PlayAnimation(AnimType.Angry);
-        //    NPCMovement.walkingAnimType = AnimType.Angry_Walk;
-        //    if (CameraController.Instance.bCanCameraMove)
-        //    {
-        //        CameraController.Instance.FollowPatient(transform, () =>
-        //        {
-        //            DOVirtual.DelayedCall(waitStandTime, () =>
-        //            {
-        //                MoveFromQ();
-        //            });
-        //        });
-        //    }
-        //    else
-        //    {
-        //        MoveFromQ();
-        //    }
+        if (TutorialManager.instance.bIsTutorialRunning) return;
+        if (string.IsNullOrEmpty(WattingTweenId))
+        {
+            WattingTweenId = "WattingTween" + Guid.NewGuid().ToString();
+        }
+        StopWatting();
+        StartPlayingSalogan();
+        int index = (int)Random.Range(wattingTime - 50, wattingTime);
+        DOVirtual.DelayedCall(index, () =>
+        {
+            onCompliet?.Invoke();
+            NPCMovement.animator.PlayAnimation(AnimType.Angry);
+            NPCMovement.walkingAnimType = AnimType.Angry_Walk;
+            if (CameraController.Instance.bCanCameraMove)
+            {
+                CameraController.Instance.FollowPatient(transform, () =>
+                {
+                    DOVirtual.DelayedCall(waitStandTime, () =>
+                    {
+                        MoveFromQ();
+                    });
+                });
+            }
+            else
+            {
+                MoveFromQ();
+            }
 
-        //}).SetId(WattingTweenId);
+        }).SetId(WattingTweenId);
     }
     protected string SaloganTweenId;
     public void StartPlayingSalogan()
