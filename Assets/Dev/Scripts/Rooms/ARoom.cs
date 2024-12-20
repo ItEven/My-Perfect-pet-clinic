@@ -245,8 +245,9 @@ public class ARoom : MonoBehaviour
     public void RegisterPatient(Patient patients)
     {
         if (patients != null)
-        {
+        {   
             patients.currnetRoom = this;
+            patients.currnetBed = null;
             if (!waitingQueue.bIsQueueFull() && bIsUnlock)
             {
                 patients.markForFull.gameObject.SetActive(false);
@@ -323,7 +324,8 @@ public class ARoom : MonoBehaviour
         }
     }
     public void RearngeQue()
-    {
+    {  
+        
         waitingQueue.OnReachedQueueAction(waitingQueue.patientInQueue[0]);
         NextPatientFromUnRegisterQ();
     }
@@ -335,6 +337,7 @@ public class ARoom : MonoBehaviour
 
             Bed bed = GetBed();
             Patient patient = waitingQueue.patientInQueue[0];
+            
 
             if (bed != null)
             {
@@ -345,6 +348,7 @@ public class ARoom : MonoBehaviour
                 }
 
                 bed.bIsOccupied = true;
+                patient.currnetBed = bed;
                 waitingQueue.RemoveFromQueue(patient);
 
                 patient.NPCMovement.navmeshAgent.enabled = enabled;

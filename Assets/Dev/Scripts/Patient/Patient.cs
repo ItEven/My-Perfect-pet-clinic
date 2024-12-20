@@ -23,6 +23,7 @@ public class Patient : MonoBehaviour
 
     //  internal WaitingQueue waitingQueue;
     internal ARoom currnetRoom;
+    internal Bed currnetBed;
 
     [Header("Watting Duration")]
     public float wattingTime = 10f;
@@ -175,6 +176,10 @@ public class Patient : MonoBehaviour
             currnetRoom.waitingQueue.RemoveFromQueue(this);
             currnetRoom.RemovePatientFromUnRegisterQ(this);
             currnetRoom.RearngeQue();
+            if(currnetBed != null )
+            {
+                currnetBed.bIsOccupied = false;
+            }
         }
     }
     public void StopWatting()
