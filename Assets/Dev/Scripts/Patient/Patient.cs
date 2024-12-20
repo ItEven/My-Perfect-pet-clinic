@@ -168,39 +168,19 @@ public class Patient : MonoBehaviour
 
     public void MoveFromQ()
     {
-        currnetRoom.waitingQueue.RemoveFromQueue(this);
-        RemoveFromUnregisterd();
         MoveToExit(SaveManager.instance.hospitalManager.GetRandomExit(this), MoodType.Angry);
         MoveAnimal();
+        if (currnetRoom != null)
+        {
+            currnetRoom.waitingQueue.RemoveFromQueue(this);
+            currnetRoom.RemovePatientFromUnRegisterQ(this);
+            currnetRoom.RearngeQue();
+        }
     }
     public void StopWatting()
     {
         StopSlogan();
         DOTween.Kill(WattingTweenId);
-    }
-
-    public void RemoveFromUnregisterd()
-    {
-        if (currnetRoom != null)
-        {
-            currnetRoom.RemovePatientFromUnRegisterQ(this);
-        }
-        else
-        {
-            // Debug.LogError("Room is Null");
-        }
-    }
-
-    public void RemoveFromWattingQ()
-    {
-        //if (waitingQueue != null)
-        //{
-        //    waitingQueue.RemoveFromQueue(this);
-        //}
-        //else
-        //{
-        //   // Debug.LogError("WattingQ is Null");
-        //}
     }
 
     public void MarkOff()
